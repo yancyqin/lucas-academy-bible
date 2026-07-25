@@ -11,6 +11,7 @@ interface LevelCompleteProps {
   stars: number;
   mistakes: number;
   soundEnabled: boolean;
+  showChinese: boolean;
   narrator: Narrator;
   onContinue: () => void;
   onQuit: () => void;
@@ -21,6 +22,7 @@ export function LevelComplete({
   stars,
   mistakes,
   soundEnabled,
+  showChinese,
   narrator,
   onContinue,
   onQuit,
@@ -61,11 +63,15 @@ export function LevelComplete({
 
         <p className="reference" style={{ display: 'block' }}>
           {level.reference}
-          {level.referenceZh && <span className="reference-zh"> · {level.referenceZh}</span>}
+          {showChinese && level.referenceZh && (
+            <span className="reference-zh"> · {level.referenceZh}</span>
+          )}
         </p>
         <blockquote className="restored">
           {level.fullText}
-          {level.fullTextZh && <span className="restored__zh">{level.fullTextZh}</span>}
+          {showChinese && level.fullTextZh && (
+            <span className="restored__zh">{level.fullTextZh}</span>
+          )}
         </blockquote>
 
         <div className="stat-row">

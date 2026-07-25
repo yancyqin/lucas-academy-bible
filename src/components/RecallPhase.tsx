@@ -7,6 +7,7 @@ import { Tile } from './Tile';
 
 interface RecallPhaseProps {
   level: BuiltLevel;
+  showChinese: boolean;
   sound: SoundEngine;
   announce: (msg: string, assertive?: boolean) => void;
   /** Level cleared: reports mistakes + hearts remaining (for the run score). */
@@ -19,6 +20,7 @@ interface RecallPhaseProps {
 
 export function RecallPhase({
   level,
+  showChinese,
   sound,
   announce,
   onComplete,
@@ -121,12 +123,14 @@ export function RecallPhase({
 
         <p className="reference" style={{ display: 'block' }}>
           {level.reference}
-          {level.referenceZh && <span className="reference-zh"> · {level.referenceZh}</span>}
+          {showChinese && level.referenceZh && (
+            <span className="reference-zh"> · {level.referenceZh}</span>
+          )}
         </p>
 
         {/* Chinese (和合本) shown as a meaning reference while you rebuild the
             English. It won't line up word-for-word with the tiles — that's fine. */}
-        {level.fullTextZh && (
+        {showChinese && level.fullTextZh && (
           <p className="scripture-zh recall__zh" lang="zh-Hans">
             {level.fullTextZh}
           </p>

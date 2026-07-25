@@ -22,6 +22,8 @@ export interface Progress {
   /** Level the player was last on (for a "Continue" button). */
   currentLevel: number;
   soundEnabled: boolean;
+  /** Whether the Chinese (和合本) translation is shown. */
+  showChinese: boolean;
   introSeen: boolean;
 }
 
@@ -34,6 +36,7 @@ export function defaultProgress(): Progress {
     bestAttempts: {},
     currentLevel: MIN_LEVEL,
     soundEnabled: true,
+    showChinese: true,
     introSeen: false,
   };
 }
@@ -97,6 +100,7 @@ export function sanitizeProgress(raw: unknown): Progress {
     bestAttempts,
     currentLevel: clampLevel(obj.currentLevel, MIN_LEVEL),
     soundEnabled: typeof obj.soundEnabled === 'boolean' ? obj.soundEnabled : true,
+    showChinese: typeof obj.showChinese === 'boolean' ? obj.showChinese : true,
     introSeen: typeof obj.introSeen === 'boolean' ? obj.introSeen : false,
   };
 }

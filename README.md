@@ -75,8 +75,10 @@ from the **World English Bible (WEB) Classic** edition.
 - **A Chinese translation** is included alongside: the **Chinese Union Version
   (和合本, Simplified — CUV), also public domain**, fetched from the same source. Each
   passage carries `bookZh` + `textZh`, and each verse a `textZh`. The Chinese verse
-  and reference are shown under the English on the memorize / complete / fail cards
-  (English narration only — there is no Chinese audio). See `metadata.translationZh`.
+  and reference are shown under the English on the memorize / recall / complete /
+  certificate cards (English narration only — there is no Chinese audio). It is a
+  persisted **toggle** (中文): the welcome screen shows Sound + 中文 options above
+  Begin, and both are also in the in-game brand bar. See `metadata.translationZh`.
 - The text is treated as **read-only**. The app never rewrites, modernizes,
   paraphrases, corrects, or silently normalizes scripture — punctuation and
   capitalization are preserved exactly (including curly quotes `“ ” ‘ ’` and the

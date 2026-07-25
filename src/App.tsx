@@ -14,6 +14,7 @@ import { RecallPhase } from './components/RecallPhase';
 import { LevelComplete } from './components/LevelComplete';
 import { FinalCelebration } from './components/FinalCelebration';
 import { SoundToggle } from './components/SoundToggle';
+import { ChineseToggle } from './components/ChineseToggle';
 import { BookMark } from './components/icons';
 
 type Phase = 'welcome' | 'study' | 'recall' | 'success' | 'final';
@@ -66,6 +67,7 @@ export default function App() {
   const [assertive, setAssertive] = useState<LiveMsg>({ text: '', id: 0 });
 
   const soundEnabled = progress.soundEnabled;
+  const showChinese = progress.showChinese;
 
   useEffect(() => {
     soundEngine.setEnabled(soundEnabled);
@@ -83,8 +85,16 @@ export default function App() {
     else narrator.stop();
     const updated = { ...progress, soundEnabled: next };
     setProgress(updated);
-    saveProgress(updated); // the sound preference is the only thing we persist
+    saveProgress(updated); // sound + Chinese preferences are what we persist
     announce(next ? 'Sound on.' : 'Sound off.');
+  };
+
+  const toggleChinese = () => {
+    const next = !showChinese;
+    const updated = { ...progress, showChinese: next };
+    setProgress(updated);
+    saveProgress(updated);
+    announce(next ? '中文 on.' : '中文 off.');
   };
 
   // Enter one level of the current run (does not touch the run score).
@@ -183,12 +193,21 @@ export default function App() {
             </span>
             Bible Sequence
           </button>
-          <SoundToggle enabled={soundEnabled} onToggle={toggleSound} />
+          <span style={{ display: 'inline-flex', gap: 10 }}>
+            <ChineseToggle enabled={showChinese} onToggle={toggleChinese} />
+            <SoundToggle enabled={soundEnabled} onToggle={toggleSound} />
+          </span>
         </header>
       )}
 
       {phase === 'welcome' && (
-        <Welcome soundEnabled={soundEnabled} onToggleSound={toggleSound} onBegin={startRun} />
+        <Welcome
+          soundEnabled={soundEnabled}
+          showChinese={showChinese}
+          onToggleSound={toggleSound}
+          onToggleChinese={toggleChinese}
+          onBegin={startRun}
+        />
       )}
 
       {phase === 'study' && built && (
@@ -196,6 +215,7 @@ export default function App() {
           key={`study-${playId}`}
           built={built}
           soundEnabled={soundEnabled}
+          showChinese={showChinese}
           narrator={narrator}
           sound={soundEngine}
           onReady={() => setPhase('recall')}
@@ -208,6 +228,7 @@ export default function App() {
         <RecallPhase
           key={`recall-${playId}`}
           level={built}
+          showChinese={showChinese}
           sound={soundEngine}
           announce={announce}
           onComplete={handleComplete}
@@ -222,6 +243,7 @@ export default function App() {
           stars={result.stars}
           mistakes={result.mistakes}
           soundEnabled={soundEnabled}
+          showChinese={showChinese}
           narrator={narrator}
           onContinue={continueNext}
           onQuit={goWelcome}
@@ -236,6 +258,7 @@ export default function App() {
           scorePercent={final.scorePercent}
           reference={final.reference}
           referenceZh={final.referenceZh}
+          showChinese={showChinese}
           soundEnabled={soundEnabled}
           sound={soundEngine}
           onPlayAgain={startRun}

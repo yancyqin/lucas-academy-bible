@@ -8,6 +8,7 @@ import { Hearts } from './Hearts';
 interface StudyPhaseProps {
   built: BuiltLevel;
   soundEnabled: boolean;
+  showChinese: boolean;
   narrator: Narrator;
   sound: SoundEngine;
   onReady: () => void;
@@ -24,6 +25,7 @@ function clock(seconds: number): string {
 export function StudyPhase({
   built,
   soundEnabled,
+  showChinese,
   narrator,
   sound,
   onReady,
@@ -115,7 +117,9 @@ export function StudyPhase({
 
         <p className="reference" style={{ display: 'block', marginTop: 12 }}>
           {built.reference}
-          {built.referenceZh && <span className="reference-zh"> · {built.referenceZh}</span>}
+          {showChinese && built.referenceZh && (
+            <span className="reference-zh"> · {built.referenceZh}</span>
+          )}
         </p>
 
         <blockquote className="scripture study__scripture">
@@ -135,13 +139,11 @@ export function StudyPhase({
             : built.fullText}
         </blockquote>
 
-        {built.fullTextZh && (
+        {showChinese && built.fullTextZh && (
           <p className="scripture-zh" lang="zh-Hans">
             {built.fullTextZh}
           </p>
         )}
-
-        <p className="study__hint">Read it, picture it. It hides when the timer ends.</p>
 
         <div className="divider" />
 

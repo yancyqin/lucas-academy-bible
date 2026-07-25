@@ -184,7 +184,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--gold-deep);
 }
 
@@ -209,10 +209,10 @@ body {
 }
 .scripture-zh {
   font-family: var(--font-zh);
-  font-size: clamp(1.05rem, 3.4vw, 1.4rem);
-  line-height: 1.75;
+  font-size: clamp(1.35rem, 4vw, 1.95rem);
+  line-height: 1.8;
   color: var(--ink-soft);
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   text-align: left;
 }
 .restored__zh {
@@ -233,7 +233,7 @@ body {
 /* Chinese meaning reference on the recall card — compact + muted so it aids
    without crowding the puzzle. Scrolls when the passage is long. */
 .recall__zh {
-  font-size: 0.98rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: var(--ink-soft);
   opacity: 0.9;
@@ -246,12 +246,12 @@ body {
 
 .btn {
   font-family: var(--font-ui);
-  font-size: 1.08rem;
+  font-size: 1.25rem;
   font-weight: 600;
   border: none;
   border-radius: 999px;
-  padding: 16px 30px;
-  min-height: 54px;
+  padding: 18px 34px;
+  min-height: 60px;
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
   color: var(--ink);
@@ -291,7 +291,7 @@ body {
 }
 .btn--on-navy:hover { background: rgba(243, 236, 219, 0.2); }
 
-.btn--sm { min-height: 44px; padding: 10px 18px; font-size: 0.92rem; }
+.btn--sm { min-height: 48px; padding: 12px 22px; font-size: 1.05rem; }
 
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
@@ -316,15 +316,21 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 0 14px;
+  gap: 7px;
+  padding: 0 18px;
+  min-height: 48px;
   font-weight: 600;
-  font-size: 0.9rem;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  font-size: 1.02rem;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 .icon-btn:hover { border-color: var(--gold-deep); }
 .icon-btn:focus-visible { outline: none; box-shadow: var(--focus); }
-.icon-btn__glyph { font-size: 1.15rem; line-height: 1; }
+.icon-btn__glyph { font-size: 1.25rem; line-height: 1; }
+.icon-btn--on {
+  border-color: var(--gold-deep);
+  color: var(--gold-deep);
+  background: rgba(200, 162, 76, 0.12);
+}
 
 /* ---- Hearts ------------------------------------------------------------- */
 
@@ -406,9 +412,9 @@ body {
 }
 
 .study__scripture {
-  font-size: clamp(1.55rem, 4.8vw, 2.4rem);
-  line-height: 1.6;
-  margin: 20px 0 8px;
+  font-size: clamp(1.95rem, 5.6vw, 3.1rem);
+  line-height: 1.55;
+  margin: 22px 0 10px;
   text-align: left;
 }
 
@@ -501,8 +507,8 @@ body {
 .answer__prior {
   color: var(--on-navy-soft);
   font-family: var(--font-scripture);
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: 1.2rem;
+  line-height: 1.55;
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px dashed rgba(227, 202, 127, 0.25);
@@ -541,10 +547,10 @@ body {
   color: var(--ink);
   border: 1px solid var(--sage);
   border-radius: var(--radius-tile);
-  padding: 9px 15px;
+  padding: 10px 17px;
   font-family: var(--font-scripture);
-  font-size: 1.18rem;
-  min-height: 44px;
+  font-size: 1.45rem;
+  min-height: 50px;
   display: inline-flex;
   align-items: center;
   animation: place-in 0.22s ease backwards;
@@ -570,10 +576,10 @@ body {
   color: var(--ink);
   border: 1.5px solid rgba(85, 77, 64, 0.22);
   border-radius: var(--radius-tile);
-  padding: 13px 18px;
-  min-height: 54px;
+  padding: 14px 20px;
+  min-height: 62px;
   font-family: var(--font-scripture);
-  font-size: 1.28rem;
+  font-size: 1.55rem;
   cursor: pointer;
   transition: transform 0.1s ease, border-color 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
   box-shadow: 0 2px 0 rgba(85, 77, 64, 0.12);
@@ -651,7 +657,7 @@ body {
 /* ---- Complete / celebration -------------------------------------------- */
 .restored {
   font-family: var(--font-scripture);
-  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-size: clamp(1.5rem, 4.5vw, 2.1rem);
   line-height: 1.6;
   color: var(--ink);
   text-align: left;
@@ -878,7 +884,8 @@ body {
 /* ---- Small screens ------------------------------------------------------ */
 @media (max-width: 560px) {
   .card { padding: 18px; }
-  .study__scripture { font-size: 1.3rem; }
-  .tile { font-size: 1rem; padding: 10px 13px; }
-  .answer { max-height: 30vh; }
+  .study__scripture { font-size: 1.65rem; }
+  .tile { font-size: 1.3rem; padding: 12px 15px; min-height: 56px; }
+  .answer { max-height: 32vh; }
+  .btn { font-size: 1.12rem; }
 }

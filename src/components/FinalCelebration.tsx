@@ -11,6 +11,7 @@ interface FinalCelebrationProps {
   scorePercent: number;
   reference: string;
   referenceZh: string;
+  showChinese: boolean;
   soundEnabled: boolean;
   sound: SoundEngine;
   onPlayAgain: () => void;
@@ -24,11 +25,13 @@ export function FinalCelebration({
   scorePercent,
   reference,
   referenceZh,
+  showChinese,
   soundEnabled,
   sound,
   onPlayAgain,
   onHome,
 }: FinalCelebrationProps) {
+  const zhRef = showChinese ? referenceZh : '';
   const played = useRef(false);
   const [awarded] = useState(() => {
     const d = new Date();
@@ -110,7 +113,7 @@ export function FinalCelebration({
           {reference ? (
             <>
               {' '}— up to <em>{reference}</em>
-              {referenceZh ? ` · ${referenceZh}` : ''}
+              {zhRef ? ` · ${zhRef}` : ''}
             </>
           ) : null}
           .
@@ -139,7 +142,7 @@ export function FinalCelebration({
                 clearedCount,
                 scorePercent,
                 reference,
-                referenceZh,
+                referenceZh: zhRef,
                 awarded,
               })
             }
