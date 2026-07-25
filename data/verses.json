@@ -1,0 +1,1978 @@
+{
+  "metadata": {
+    "title": "Lucas Academy Bible Scripture Collection",
+    "repositoryName": "lucas-academy-bible",
+    "siteUrl": "https://bible.lucasacademy.org",
+    "createdDate": "2026-07-24",
+    "entryCount": 89,
+    "duplicatesPreserved": true,
+    "translation": {
+      "id": "WEB",
+      "name": "World English Bible Classic",
+      "edition": "2020 stable text",
+      "language": "English",
+      "license": "Public Domain",
+      "licenseUrl": "https://ebible.org/details.php?id=eng-web",
+      "sourceUrl": "https://ebible.org/Scriptures/eng-web_vpl.zip"
+    }
+  },
+  "passages": [
+    {
+      "id": "passage-001",
+      "order": 1,
+      "requestedAs": "Jesus wept",
+      "reference": "John 11:35",
+      "book": "John",
+      "chapter": 11,
+      "verseStart": 35,
+      "verseEnd": 35,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 35,
+          "text": "Jesus wept."
+        }
+      ],
+      "text": "Jesus wept.",
+      "matchNote": "Matched from the supplied phrase."
+    },
+    {
+      "id": "passage-002",
+      "order": 2,
+      "requestedAs": "你的话是我脚前的灯....",
+      "reference": "Psalm 119:105",
+      "book": "Psalm",
+      "chapter": 119,
+      "verseStart": 105,
+      "verseEnd": 105,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 105,
+          "text": "Your word is a lamp to my feet, and a light for my path."
+        }
+      ],
+      "text": "Your word is a lamp to my feet, and a light for my path.",
+      "matchNote": "Matched from the supplied Chinese phrase."
+    },
+    {
+      "id": "passage-003",
+      "order": 3,
+      "requestedAs": "约翰一书1章9节",
+      "reference": "1 John 1:9",
+      "book": "1 John",
+      "chapter": 1,
+      "verseStart": 9,
+      "verseEnd": 9,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness."
+        }
+      ],
+      "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness."
+    },
+    {
+      "id": "passage-004",
+      "order": 4,
+      "requestedAs": "John 8:31-32",
+      "reference": "John 8:31-32",
+      "book": "John",
+      "chapter": 8,
+      "verseStart": 31,
+      "verseEnd": 32,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+        },
+        {
+          "verse": 32,
+          "text": "You will know the truth, and the truth will make you free.”"
+        }
+      ],
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.”"
+    },
+    {
+      "id": "passage-005",
+      "order": 5,
+      "requestedAs": "腓立比书2:15",
+      "reference": "Philippians 2:15",
+      "book": "Philippians",
+      "chapter": 2,
+      "verseStart": 15,
+      "verseEnd": 15,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 15,
+          "text": "that you may become blameless and harmless, children of God without defect in the middle of a crooked and perverse generation, among whom you are seen as lights in the world,"
+        }
+      ],
+      "text": "that you may become blameless and harmless, children of God without defect in the middle of a crooked and perverse generation, among whom you are seen as lights in the world,"
+    },
+    {
+      "id": "passage-006",
+      "order": 6,
+      "requestedAs": "彼得前书2：10",
+      "reference": "1 Peter 2:10",
+      "book": "1 Peter",
+      "chapter": 2,
+      "verseStart": 10,
+      "verseEnd": 10,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy."
+        }
+      ],
+      "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy."
+    },
+    {
+      "id": "passage-007",
+      "order": 7,
+      "requestedAs": "以弗所书2:8",
+      "reference": "Ephesians 2:8",
+      "book": "Ephesians",
+      "chapter": 2,
+      "verseStart": 8,
+      "verseEnd": 8,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God,"
+        }
+      ],
+      "text": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God,"
+    },
+    {
+      "id": "passage-008",
+      "order": 8,
+      "requestedAs": "以弗所书2:10",
+      "reference": "Ephesians 2:10",
+      "book": "Ephesians",
+      "chapter": 2,
+      "verseStart": 10,
+      "verseEnd": 10,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them."
+        }
+      ],
+      "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them."
+    },
+    {
+      "id": "passage-009",
+      "order": 9,
+      "requestedAs": "Matthew 7:7",
+      "reference": "Matthew 7:7",
+      "book": "Matthew",
+      "chapter": 7,
+      "verseStart": 7,
+      "verseEnd": 7,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "“Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened for you."
+        }
+      ],
+      "text": "“Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened for you."
+    },
+    {
+      "id": "passage-010",
+      "order": 10,
+      "requestedAs": "创世纪1:1",
+      "reference": "Genesis 1:1",
+      "book": "Genesis",
+      "chapter": 1,
+      "verseStart": 1,
+      "verseEnd": 1,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "In the beginning, God created the heavens and the earth."
+        }
+      ],
+      "text": "In the beginning, God created the heavens and the earth."
+    },
+    {
+      "id": "passage-011",
+      "order": 11,
+      "requestedAs": "人要离开父母，夫妻二人成为一体",
+      "reference": "Genesis 2:24",
+      "book": "Genesis",
+      "chapter": 2,
+      "verseStart": 24,
+      "verseEnd": 24,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh."
+        }
+      ],
+      "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh.",
+      "matchNote": "Matched to the original statement in Genesis."
+    },
+    {
+      "id": "passage-012",
+      "order": 12,
+      "requestedAs": "各按其时成为美好",
+      "reference": "Ecclesiastes 3:11",
+      "book": "Ecclesiastes",
+      "chapter": 3,
+      "verseStart": 11,
+      "verseEnd": 11,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end."
+        }
+      ],
+      "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end.",
+      "matchNote": "Matched from the supplied Chinese phrase."
+    },
+    {
+      "id": "passage-013",
+      "order": 13,
+      "requestedAs": "诸天诉说神的荣耀",
+      "reference": "Psalm 19:1",
+      "book": "Psalm",
+      "chapter": 19,
+      "verseStart": 1,
+      "verseEnd": 1,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "For the Chief Musician. A Psalm by David. The heavens declare the glory of God. The expanse shows his handiwork."
+        }
+      ],
+      "text": "For the Chief Musician. A Psalm by David. The heavens declare the glory of God. The expanse shows his handiwork.",
+      "matchNote": "Matched from the supplied Chinese phrase."
+    },
+    {
+      "id": "passage-014",
+      "order": 14,
+      "requestedAs": "人算什么你既然在乎他",
+      "reference": "Psalm 8:4",
+      "book": "Psalm",
+      "chapter": 8,
+      "verseStart": 4,
+      "verseEnd": 4,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "what is man, that you think of him? What is the son of man, that you care for him?"
+        }
+      ],
+      "text": "what is man, that you think of him? What is the son of man, that you care for him?",
+      "matchNote": "Matched from the supplied Chinese phrase."
+    },
+    {
+      "id": "passage-015",
+      "order": 15,
+      "requestedAs": "Joshua 出名的那个 do not afraid",
+      "reference": "Joshua 1:9",
+      "book": "Joshua",
+      "chapter": 1,
+      "verseStart": 9,
+      "verseEnd": 9,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”"
+        }
+      ],
+      "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”",
+      "matchNote": "Matched to Joshua's well-known command to be strong and not afraid."
+    },
+    {
+      "id": "passage-016",
+      "order": 16,
+      "requestedAs": "what merely mortal can do to me from plasm",
+      "reference": "Psalm 56:4",
+      "book": "Psalm",
+      "chapter": 56,
+      "verseStart": 4,
+      "verseEnd": 4,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "In God, I praise his word. In God, I put my trust. I will not be afraid. What can flesh do to me?"
+        }
+      ],
+      "text": "In God, I praise his word. In God, I put my trust. I will not be afraid. What can flesh do to me?",
+      "matchNote": "Matched to the NIV wording 'what can mere mortals do to me'."
+    },
+    {
+      "id": "passage-017",
+      "order": 17,
+      "requestedAs": "加拉太书2：20",
+      "reference": "Galatians 2:20",
+      "book": "Galatians",
+      "chapter": 2,
+      "verseStart": 20,
+      "verseEnd": 20,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 20,
+          "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me."
+        }
+      ],
+      "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me."
+    },
+    {
+      "id": "passage-018",
+      "order": 18,
+      "requestedAs": "加拉太书圣灵的果子",
+      "reference": "Galatians 5:22-23",
+      "book": "Galatians",
+      "chapter": 5,
+      "verseStart": 22,
+      "verseEnd": 23,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 22,
+          "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,"
+        },
+        {
+          "verse": 23,
+          "text": "gentleness, and self-control. Against such things there is no law."
+        }
+      ],
+      "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith, gentleness, and self-control. Against such things there is no law.",
+      "matchNote": "Matched to the fruit of the Spirit passage."
+    },
+    {
+      "id": "passage-019",
+      "order": 19,
+      "requestedAs": "加拉太书 新造的人",
+      "reference": "Galatians 6:15",
+      "book": "Galatians",
+      "chapter": 6,
+      "verseStart": 15,
+      "verseEnd": 15,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 15,
+          "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation."
+        }
+      ],
+      "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation.",
+      "matchNote": "Matched to Galatians' reference to a new creation."
+    },
+    {
+      "id": "passage-020",
+      "order": 20,
+      "requestedAs": "哥林多后书5：17",
+      "reference": "2 Corinthians 5:17",
+      "book": "2 Corinthians",
+      "chapter": 5,
+      "verseStart": 17,
+      "verseEnd": 17,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+        }
+      ],
+      "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+    },
+    {
+      "id": "passage-021",
+      "order": 21,
+      "requestedAs": "哥林多后书3: 17",
+      "reference": "2 Corinthians 3:17",
+      "book": "2 Corinthians",
+      "chapter": 3,
+      "verseStart": 17,
+      "verseEnd": 17,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty."
+        }
+      ],
+      "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty."
+    },
+    {
+      "id": "passage-022",
+      "order": 22,
+      "requestedAs": "哥林多后书3：18",
+      "reference": "2 Corinthians 3:18",
+      "book": "2 Corinthians",
+      "chapter": 3,
+      "verseStart": 18,
+      "verseEnd": 18,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 18,
+          "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit."
+        }
+      ],
+      "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit."
+    },
+    {
+      "id": "passage-023",
+      "order": 23,
+      "requestedAs": "约珥书 关于圣灵的",
+      "reference": "Joel 2:28-29",
+      "book": "Joel",
+      "chapter": 2,
+      "verseStart": 28,
+      "verseEnd": 29,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 28,
+          "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions."
+        },
+        {
+          "verse": 29,
+          "text": "And also on the servants and on the handmaids in those days, I will pour out my Spirit."
+        }
+      ],
+      "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions. And also on the servants and on the handmaids in those days, I will pour out my Spirit.",
+      "matchNote": "Matched to the promise that God will pour out his Spirit."
+    },
+    {
+      "id": "passage-024",
+      "order": 24,
+      "requestedAs": "哥林多前书 11：11",
+      "reference": "1 Corinthians 11:11",
+      "book": "1 Corinthians",
+      "chapter": 11,
+      "verseStart": 11,
+      "verseEnd": 11,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord."
+        }
+      ],
+      "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord."
+    },
+    {
+      "id": "passage-025",
+      "order": 25,
+      "requestedAs": "哥林多前书 12：12",
+      "reference": "1 Corinthians 12:12",
+      "book": "1 Corinthians",
+      "chapter": 12,
+      "verseStart": 12,
+      "verseEnd": 12,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ."
+        }
+      ],
+      "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ."
+    },
+    {
+      "id": "passage-026",
+      "order": 26,
+      "requestedAs": "哥林多前书 13：13",
+      "reference": "1 Corinthians 13:13",
+      "book": "1 Corinthians",
+      "chapter": 13,
+      "verseStart": 13,
+      "verseEnd": 13,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "But now faith, hope, and love remain—these three. The greatest of these is love."
+        }
+      ],
+      "text": "But now faith, hope, and love remain—these three. The greatest of these is love."
+    },
+    {
+      "id": "passage-027",
+      "order": 27,
+      "requestedAs": "约 8:31-34",
+      "reference": "John 8:31-34",
+      "book": "John",
+      "chapter": 8,
+      "verseStart": 31,
+      "verseEnd": 34,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+        },
+        {
+          "verse": 32,
+          "text": "You will know the truth, and the truth will make you free.”"
+        },
+        {
+          "verse": 33,
+          "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+        },
+        {
+          "verse": 34,
+          "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+        }
+      ],
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.” They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?” Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+    },
+    {
+      "id": "passage-028",
+      "order": 28,
+      "requestedAs": "约 12:20-26",
+      "reference": "John 12:20-26",
+      "book": "John",
+      "chapter": 12,
+      "verseStart": 20,
+      "verseEnd": 26,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 20,
+          "text": "Now there were certain Greeks among those who went up to worship at the feast."
+        },
+        {
+          "verse": 21,
+          "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”"
+        },
+        {
+          "verse": 22,
+          "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+        },
+        {
+          "verse": 23,
+          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+        },
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        },
+        {
+          "verse": 25,
+          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+        },
+        {
+          "verse": 26,
+          "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+        }
+      ],
+      "text": "Now there were certain Greeks among those who went up to worship at the feast. Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.” Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus. Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life. If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+    },
+    {
+      "id": "passage-029",
+      "order": 29,
+      "requestedAs": "箴 4:23",
+      "reference": "Proverbs 4:23",
+      "book": "Proverbs",
+      "chapter": 4,
+      "verseStart": 23,
+      "verseEnd": 23,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Keep your heart with all diligence, for out of it is the wellspring of life."
+        }
+      ],
+      "text": "Keep your heart with all diligence, for out of it is the wellspring of life."
+    },
+    {
+      "id": "passage-030",
+      "order": 30,
+      "requestedAs": "约 3:16",
+      "reference": "John 3:16",
+      "book": "John",
+      "chapter": 3,
+      "verseStart": 16,
+      "verseEnd": 16,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+        }
+      ],
+      "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+    },
+    {
+      "id": "passage-031",
+      "order": 31,
+      "requestedAs": "罗 5:5-8",
+      "reference": "Romans 5:5-8",
+      "book": "Romans",
+      "chapter": 5,
+      "verseStart": 5,
+      "verseEnd": 8,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        },
+        {
+          "verse": 6,
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+        },
+        {
+          "verse": 7,
+          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die."
+        },
+        {
+          "verse": 8,
+          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+        }
+      ],
+      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+    },
+    {
+      "id": "passage-032",
+      "order": 32,
+      "requestedAs": "弗1:3-6",
+      "reference": "Ephesians 1:3-6",
+      "book": "Ephesians",
+      "chapter": 1,
+      "verseStart": 3,
+      "verseEnd": 6,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,"
+        },
+        {
+          "verse": 4,
+          "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,"
+        },
+        {
+          "verse": 5,
+          "text": "having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire,"
+        },
+        {
+          "verse": 6,
+          "text": "to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+        }
+      ],
+      "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ, even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love, having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire, to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+    },
+    {
+      "id": "passage-033",
+      "order": 33,
+      "requestedAs": "弗1:7-9",
+      "reference": "Ephesians 1:7-9",
+      "book": "Ephesians",
+      "chapter": 1,
+      "verseStart": 7,
+      "verseEnd": 9,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace"
+        },
+        {
+          "verse": 8,
+          "text": "which he made to abound toward us in all wisdom and prudence,"
+        },
+        {
+          "verse": 9,
+          "text": "making known to us the mystery of his will, according to his good pleasure which he purposed in him"
+        }
+      ],
+      "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace which he made to abound toward us in all wisdom and prudence, making known to us the mystery of his will, according to his good pleasure which he purposed in him"
+    },
+    {
+      "id": "passage-034",
+      "order": 34,
+      "requestedAs": "弗1:10-12",
+      "reference": "Ephesians 1:10-12",
+      "book": "Ephesians",
+      "chapter": 1,
+      "verseStart": 10,
+      "verseEnd": 12,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him."
+        },
+        {
+          "verse": 11,
+          "text": "We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will,"
+        },
+        {
+          "verse": 12,
+          "text": "to the end that we should be to the praise of his glory, we who had before hoped in Christ."
+        }
+      ],
+      "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him. We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will, to the end that we should be to the praise of his glory, we who had before hoped in Christ."
+    },
+    {
+      "id": "passage-035",
+      "order": 35,
+      "requestedAs": "弗1:13-14",
+      "reference": "Ephesians 1:13-14",
+      "book": "Ephesians",
+      "chapter": 1,
+      "verseStart": 13,
+      "verseEnd": 14,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "In him you also, having heard the word of the truth, the Good News of your salvation—in whom, having also believed, you were sealed with the promised Holy Spirit,"
+        },
+        {
+          "verse": 14,
+          "text": "who is a pledge of our inheritance, to the redemption of God’s own possession, to the praise of his glory."
+        }
+      ],
+      "text": "In him you also, having heard the word of the truth, the Good News of your salvation—in whom, having also believed, you were sealed with the promised Holy Spirit, who is a pledge of our inheritance, to the redemption of God’s own possession, to the praise of his glory."
+    },
+    {
+      "id": "passage-036",
+      "order": 36,
+      "requestedAs": "来 4:14-16",
+      "reference": "Hebrews 4:14-16",
+      "book": "Hebrews",
+      "chapter": 4,
+      "verseStart": 14,
+      "verseEnd": 16,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession."
+        },
+        {
+          "verse": 15,
+          "text": "For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin."
+        },
+        {
+          "verse": 16,
+          "text": "Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+        }
+      ],
+      "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession. For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin. Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+    },
+    {
+      "id": "passage-037",
+      "order": 37,
+      "requestedAs": "压伤的芦苇我不折断...",
+      "reference": "Isaiah 42:3",
+      "book": "Isaiah",
+      "chapter": 42,
+      "verseStart": 3,
+      "verseEnd": 3,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+        }
+      ],
+      "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice.",
+      "matchNote": "Matched to Isaiah's bruised reed prophecy."
+    },
+    {
+      "id": "passage-038",
+      "order": 38,
+      "requestedAs": "赛 50:6",
+      "reference": "Isaiah 50:6",
+      "book": "Isaiah",
+      "chapter": 50,
+      "verseStart": 6,
+      "verseEnd": 6,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting."
+        }
+      ],
+      "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting."
+    },
+    {
+      "id": "passage-039",
+      "order": 39,
+      "requestedAs": "希伯来书 神的道比一切两刃的剑更快。",
+      "reference": "Hebrews 4:12",
+      "book": "Hebrews",
+      "chapter": 4,
+      "verseStart": 12,
+      "verseEnd": 12,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart."
+        }
+      ],
+      "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart.",
+      "matchNote": "Matched to the living and active word of God."
+    },
+    {
+      "id": "passage-040",
+      "order": 40,
+      "requestedAs": "路 11:11-13",
+      "reference": "Luke 11:11-13",
+      "book": "Luke",
+      "chapter": 11,
+      "verseStart": 11,
+      "verseEnd": 13,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he?"
+        },
+        {
+          "verse": 12,
+          "text": "Or if he asks for an egg, he won’t give him a scorpion, will he?"
+        },
+        {
+          "verse": 13,
+          "text": "If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+        }
+      ],
+      "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he? Or if he asks for an egg, he won’t give him a scorpion, will he? If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+    },
+    {
+      "id": "passage-041",
+      "order": 41,
+      "requestedAs": "罗 5:5-6",
+      "reference": "Romans 5:5-6",
+      "book": "Romans",
+      "chapter": 5,
+      "verseStart": 5,
+      "verseEnd": 6,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        },
+        {
+          "verse": 6,
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+        }
+      ],
+      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly."
+    },
+    {
+      "id": "passage-042",
+      "order": 42,
+      "requestedAs": "太 6:9-13",
+      "reference": "Matthew 6:9-13",
+      "book": "Matthew",
+      "chapter": 6,
+      "verseStart": 9,
+      "verseEnd": 13,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+        },
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        },
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        },
+        {
+          "verse": 12,
+          "text": "Forgive us our debts, as we also forgive our debtors."
+        },
+        {
+          "verse": 13,
+          "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+        }
+      ],
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also forgive our debtors. Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+    },
+    {
+      "id": "passage-043",
+      "order": 43,
+      "requestedAs": "来 12:2",
+      "reference": "Hebrews 12:2",
+      "book": "Hebrews",
+      "chapter": 12,
+      "verseStart": 2,
+      "verseEnd": 2,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God."
+        }
+      ],
+      "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God."
+    },
+    {
+      "id": "passage-044",
+      "order": 44,
+      "requestedAs": "来 3:14",
+      "reference": "Hebrews 3:14",
+      "book": "Hebrews",
+      "chapter": 3,
+      "verseStart": 14,
+      "verseEnd": 14,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,"
+        }
+      ],
+      "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,"
+    },
+    {
+      "id": "passage-045",
+      "order": 45,
+      "requestedAs": "罗 4:23-25",
+      "reference": "Romans 4:23-25",
+      "book": "Romans",
+      "chapter": 4,
+      "verseStart": 23,
+      "verseEnd": 25,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Now it was not written that it was accounted to him for his sake alone,"
+        },
+        {
+          "verse": 24,
+          "text": "but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead,"
+        },
+        {
+          "verse": 25,
+          "text": "who was delivered up for our trespasses, and was raised for our justification."
+        }
+      ],
+      "text": "Now it was not written that it was accounted to him for his sake alone, but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead, who was delivered up for our trespasses, and was raised for our justification."
+    },
+    {
+      "id": "passage-046",
+      "order": 46,
+      "requestedAs": "罗 5:1-8",
+      "reference": "Romans 5:1-8",
+      "book": "Romans",
+      "chapter": 5,
+      "verseStart": 1,
+      "verseEnd": 8,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;"
+        },
+        {
+          "verse": 2,
+          "text": "through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God."
+        },
+        {
+          "verse": 3,
+          "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;"
+        },
+        {
+          "verse": 4,
+          "text": "and perseverance, proven character; and proven character, hope;"
+        },
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        },
+        {
+          "verse": 6,
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+        },
+        {
+          "verse": 7,
+          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die."
+        },
+        {
+          "verse": 8,
+          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+        }
+      ],
+      "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ; through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God. Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+    },
+    {
+      "id": "passage-047",
+      "order": 47,
+      "requestedAs": "罗 6:1-4;",
+      "reference": "Romans 6:1-4",
+      "book": "Romans",
+      "chapter": 6,
+      "verseStart": 1,
+      "verseEnd": 4,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What shall we say then? Shall we continue in sin, that grace may abound?"
+        },
+        {
+          "verse": 2,
+          "text": "May it never be! We who died to sin, how could we live in it any longer?"
+        },
+        {
+          "verse": 3,
+          "text": "Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?"
+        },
+        {
+          "verse": 4,
+          "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+        }
+      ],
+      "text": "What shall we say then? Shall we continue in sin, that grace may abound? May it never be! We who died to sin, how could we live in it any longer? Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death? We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+    },
+    {
+      "id": "passage-048",
+      "order": 48,
+      "requestedAs": "弗 2:1-2",
+      "reference": "Ephesians 2:1-2",
+      "book": "Ephesians",
+      "chapter": 2,
+      "verseStart": 1,
+      "verseEnd": 2,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "You were made alive when you were dead in transgressions and sins,"
+        },
+        {
+          "verse": 2,
+          "text": "in which you once walked according to the course of this world, according to the prince of the power of the air, the spirit who now works in the children of disobedience."
+        }
+      ],
+      "text": "You were made alive when you were dead in transgressions and sins, in which you once walked according to the course of this world, according to the prince of the power of the air, the spirit who now works in the children of disobedience."
+    },
+    {
+      "id": "passage-049",
+      "order": 49,
+      "requestedAs": "约 3:5-6",
+      "reference": "John 3:5-6",
+      "book": "John",
+      "chapter": 3,
+      "verseStart": 5,
+      "verseEnd": 6,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom."
+        },
+        {
+          "verse": 6,
+          "text": "That which is born of the flesh is flesh. That which is born of the Spirit is spirit."
+        }
+      ],
+      "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom. That which is born of the flesh is flesh. That which is born of the Spirit is spirit."
+    },
+    {
+      "id": "passage-050",
+      "order": 50,
+      "requestedAs": "一粒麦子不落在地里",
+      "reference": "John 12:24",
+      "book": "John",
+      "chapter": 12,
+      "verseStart": 24,
+      "verseEnd": 24,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        }
+      ],
+      "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit.",
+      "matchNote": "Matched to Jesus' grain of wheat saying."
+    },
+    {
+      "id": "passage-051",
+      "order": 51,
+      "requestedAs": "约 3:7-8",
+      "reference": "John 3:7-8",
+      "book": "John",
+      "chapter": 3,
+      "verseStart": 7,
+      "verseEnd": 8,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "Don’t marvel that I said to you, ‘You must all be born anew.’"
+        },
+        {
+          "verse": 8,
+          "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+        }
+      ],
+      "text": "Don’t marvel that I said to you, ‘You must all be born anew.’ The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+    },
+    {
+      "id": "passage-052",
+      "order": 52,
+      "requestedAs": "林后 5:16-17",
+      "reference": "2 Corinthians 5:16-17",
+      "book": "2 Corinthians",
+      "chapter": 5,
+      "verseStart": 16,
+      "verseEnd": 17,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more."
+        },
+        {
+          "verse": 17,
+          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+        }
+      ],
+      "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more. Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+    },
+    {
+      "id": "passage-053",
+      "order": 53,
+      "requestedAs": "约 3:3",
+      "reference": "John 3:3",
+      "book": "John",
+      "chapter": 3,
+      "verseStart": 3,
+      "verseEnd": 3,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”"
+        }
+      ],
+      "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”"
+    },
+    {
+      "id": "passage-054",
+      "order": 54,
+      "requestedAs": "罗 4:2-3",
+      "reference": "Romans 4:2-3",
+      "book": "Romans",
+      "chapter": 4,
+      "verseStart": 2,
+      "verseEnd": 3,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "For if Abraham was justified by works, he has something to boast about, but not toward God."
+        },
+        {
+          "verse": 3,
+          "text": "For what does the Scripture say? “Abraham believed God, and it was accounted to him for righteousness.”"
+        }
+      ],
+      "text": "For if Abraham was justified by works, he has something to boast about, but not toward God. For what does the Scripture say? “Abraham believed God, and it was accounted to him for righteousness.”"
+    },
+    {
+      "id": "passage-055",
+      "order": 55,
+      "requestedAs": "创 15:6",
+      "reference": "Genesis 15:6",
+      "book": "Genesis",
+      "chapter": 15,
+      "verseStart": 6,
+      "verseEnd": 6,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "He believed in Yahweh, who credited it to him for righteousness."
+        }
+      ],
+      "text": "He believed in Yahweh, who credited it to him for righteousness."
+    },
+    {
+      "id": "passage-056",
+      "order": 56,
+      "requestedAs": "罗 6:4",
+      "reference": "Romans 6:4",
+      "book": "Romans",
+      "chapter": 6,
+      "verseStart": 4,
+      "verseEnd": 4,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+        }
+      ],
+      "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+    },
+    {
+      "id": "passage-057",
+      "order": 57,
+      "requestedAs": "罗 6:5",
+      "reference": "Romans 6:5",
+      "book": "Romans",
+      "chapter": 6,
+      "verseStart": 5,
+      "verseEnd": 5,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "For if we have become united with him in the likeness of his death, we will also be part of his resurrection;"
+        }
+      ],
+      "text": "For if we have become united with him in the likeness of his death, we will also be part of his resurrection;"
+    },
+    {
+      "id": "passage-058",
+      "order": 58,
+      "requestedAs": "岂不晓得他丰富的恩赐是领你们悔改",
+      "reference": "Romans 2:4",
+      "book": "Romans",
+      "chapter": 2,
+      "verseStart": 4,
+      "verseEnd": 4,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Or do you despise the riches of his goodness, forbearance, and patience, not knowing that the goodness of God leads you to repentance?"
+        }
+      ],
+      "text": "Or do you despise the riches of his goodness, forbearance, and patience, not knowing that the goodness of God leads you to repentance?",
+      "matchNote": "Matched to God's goodness leading to repentance."
+    },
+    {
+      "id": "passage-059",
+      "order": 59,
+      "requestedAs": "罗马书3:25",
+      "reference": "Romans 3:25",
+      "book": "Romans",
+      "chapter": 3,
+      "verseStart": 25,
+      "verseEnd": 25,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 25,
+          "text": "whom God sent to be an atoning sacrifice through faith in his blood, for a demonstration of his righteousness through the passing over of prior sins, in God’s forbearance;"
+        }
+      ],
+      "text": "whom God sent to be an atoning sacrifice through faith in his blood, for a demonstration of his righteousness through the passing over of prior sins, in God’s forbearance;"
+    },
+    {
+      "id": "passage-060",
+      "order": 60,
+      "requestedAs": "约 3:14-16",
+      "reference": "John 3:14-16",
+      "book": "John",
+      "chapter": 3,
+      "verseStart": 14,
+      "verseEnd": 16,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up,"
+        },
+        {
+          "verse": 15,
+          "text": "that whoever believes in him should not perish, but have eternal life."
+        },
+        {
+          "verse": 16,
+          "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+        }
+      ],
+      "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up, that whoever believes in him should not perish, but have eternal life. For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+    },
+    {
+      "id": "passage-061",
+      "order": 61,
+      "requestedAs": "罗 6:14",
+      "reference": "Romans 6:14",
+      "book": "Romans",
+      "chapter": 6,
+      "verseStart": 14,
+      "verseEnd": 14,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "For sin will not have dominion over you, for you are not under law, but under grace."
+        }
+      ],
+      "text": "For sin will not have dominion over you, for you are not under law, but under grace."
+    },
+    {
+      "id": "passage-062",
+      "order": 62,
+      "requestedAs": "罗 7:18",
+      "reference": "Romans 7:18",
+      "book": "Romans",
+      "chapter": 7,
+      "verseStart": 18,
+      "verseEnd": 18,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 18,
+          "text": "For I know that in me, that is, in my flesh, dwells no good thing. For desire is present with me, but I don’t find it doing that which is good."
+        }
+      ],
+      "text": "For I know that in me, that is, in my flesh, dwells no good thing. For desire is present with me, but I don’t find it doing that which is good."
+    },
+    {
+      "id": "passage-063",
+      "order": 63,
+      "requestedAs": "罗 7:23-24",
+      "reference": "Romans 7:23-24",
+      "book": "Romans",
+      "chapter": 7,
+      "verseStart": 23,
+      "verseEnd": 24,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "but I see a different law in my members, warring against the law of my mind, and bringing me into captivity under the law of sin which is in my members."
+        },
+        {
+          "verse": 24,
+          "text": "What a wretched man I am! Who will deliver me out of the body of this death?"
+        }
+      ],
+      "text": "but I see a different law in my members, warring against the law of my mind, and bringing me into captivity under the law of sin which is in my members. What a wretched man I am! Who will deliver me out of the body of this death?"
+    },
+    {
+      "id": "passage-064",
+      "order": 64,
+      "requestedAs": "罗 7:25",
+      "reference": "Romans 7:25",
+      "book": "Romans",
+      "chapter": 7,
+      "verseStart": 25,
+      "verseEnd": 25,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 25,
+          "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law."
+        }
+      ],
+      "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law."
+    },
+    {
+      "id": "passage-065",
+      "order": 65,
+      "requestedAs": "罗8：1",
+      "reference": "Romans 8:1",
+      "book": "Romans",
+      "chapter": 8,
+      "verseStart": 1,
+      "verseEnd": 1,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit."
+        }
+      ],
+      "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit."
+    },
+    {
+      "id": "passage-066",
+      "order": 66,
+      "requestedAs": "罗 8:2",
+      "reference": "Romans 8:2",
+      "book": "Romans",
+      "chapter": 8,
+      "verseStart": 2,
+      "verseEnd": 2,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death."
+        }
+      ],
+      "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death."
+    },
+    {
+      "id": "passage-067",
+      "order": 67,
+      "requestedAs": "罗 8:27-28",
+      "reference": "Romans 8:27-28",
+      "book": "Romans",
+      "chapter": 8,
+      "verseStart": 27,
+      "verseEnd": 28,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 27,
+          "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God."
+        },
+        {
+          "verse": 28,
+          "text": "We know that all things work together for good for those who love God, for those who are called according to his purpose."
+        }
+      ],
+      "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God. We know that all things work together for good for those who love God, for those who are called according to his purpose."
+    },
+    {
+      "id": "passage-068",
+      "order": 68,
+      "requestedAs": "罗 8:29-30",
+      "reference": "Romans 8:29-30",
+      "book": "Romans",
+      "chapter": 8,
+      "verseStart": 29,
+      "verseEnd": 30,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 29,
+          "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers."
+        },
+        {
+          "verse": 30,
+          "text": "Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified."
+        }
+      ],
+      "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers. Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified."
+    },
+    {
+      "id": "passage-069",
+      "order": 69,
+      "requestedAs": "罗 8:31-32",
+      "reference": "Romans 8:31-32",
+      "book": "Romans",
+      "chapter": 8,
+      "verseStart": 31,
+      "verseEnd": 32,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "What then shall we say about these things? If God is for us, who can be against us?"
+        },
+        {
+          "verse": 32,
+          "text": "He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"
+        }
+      ],
+      "text": "What then shall we say about these things? If God is for us, who can be against us? He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"
+    },
+    {
+      "id": "passage-070",
+      "order": 70,
+      "requestedAs": "罗 8:33-34",
+      "reference": "Romans 8:33-34",
+      "book": "Romans",
+      "chapter": 8,
+      "verseStart": 33,
+      "verseEnd": 34,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 33,
+          "text": "Who could bring a charge against God’s chosen ones? It is God who justifies."
+        },
+        {
+          "verse": 34,
+          "text": "Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us."
+        }
+      ],
+      "text": "Who could bring a charge against God’s chosen ones? It is God who justifies. Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us."
+    },
+    {
+      "id": "passage-071",
+      "order": 71,
+      "requestedAs": "腓 1:9-11",
+      "reference": "Philippians 1:9-11",
+      "book": "Philippians",
+      "chapter": 1,
+      "verseStart": 9,
+      "verseEnd": 11,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment,"
+        },
+        {
+          "verse": 10,
+          "text": "so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ,"
+        },
+        {
+          "verse": 11,
+          "text": "being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God."
+        }
+      ],
+      "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment, so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ, being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God."
+    },
+    {
+      "id": "passage-072",
+      "order": 72,
+      "requestedAs": "弗 4:1-12",
+      "reference": "Ephesians 4:1-12",
+      "book": "Ephesians",
+      "chapter": 4,
+      "verseStart": 1,
+      "verseEnd": 12,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called,"
+        },
+        {
+          "verse": 2,
+          "text": "with all lowliness and humility, with patience, bearing with one another in love,"
+        },
+        {
+          "verse": 3,
+          "text": "being eager to keep the unity of the Spirit in the bond of peace."
+        },
+        {
+          "verse": 4,
+          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
+        },
+        {
+          "verse": 5,
+          "text": "one Lord, one faith, one baptism,"
+        },
+        {
+          "verse": 6,
+          "text": "one God and Father of all, who is over all and through all and in us all."
+        },
+        {
+          "verse": 7,
+          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
+        },
+        {
+          "verse": 8,
+          "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.”"
+        },
+        {
+          "verse": 9,
+          "text": "Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth?"
+        },
+        {
+          "verse": 10,
+          "text": "He who descended is the one who also ascended far above all the heavens, that he might fill all things."
+        },
+        {
+          "verse": 11,
+          "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;"
+        },
+        {
+          "verse": 12,
+          "text": "for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,"
+        }
+      ],
+      "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called, with all lowliness and humility, with patience, bearing with one another in love, being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ. Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.” Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth? He who descended is the one who also ascended far above all the heavens, that he might fill all things. He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers; for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,"
+    },
+    {
+      "id": "passage-073",
+      "order": 73,
+      "requestedAs": "腓 2:3",
+      "reference": "Philippians 2:3",
+      "book": "Philippians",
+      "chapter": 2,
+      "verseStart": 3,
+      "verseEnd": 3,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "doing nothing through rivalry or through conceit, but in humility, each counting others better than himself;"
+        }
+      ],
+      "text": "doing nothing through rivalry or through conceit, but in humility, each counting others better than himself;"
+    },
+    {
+      "id": "passage-074",
+      "order": 74,
+      "requestedAs": "赛 42:2-4",
+      "reference": "Isaiah 42:2-4",
+      "book": "Isaiah",
+      "chapter": 42,
+      "verseStart": 2,
+      "verseEnd": 4,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street."
+        },
+        {
+          "verse": 3,
+          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+        },
+        {
+          "verse": 4,
+          "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+        }
+      ],
+      "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street. He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice. He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+    },
+    {
+      "id": "passage-075",
+      "order": 75,
+      "requestedAs": "加 5:16",
+      "reference": "Galatians 5:16",
+      "book": "Galatians",
+      "chapter": 5,
+      "verseStart": 16,
+      "verseEnd": 16,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh."
+        }
+      ],
+      "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh."
+    },
+    {
+      "id": "passage-076",
+      "order": 76,
+      "requestedAs": "腓 4:4-5",
+      "reference": "Philippians 4:4-5",
+      "book": "Philippians",
+      "chapter": 4,
+      "verseStart": 4,
+      "verseEnd": 5,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”"
+        },
+        {
+          "verse": 5,
+          "text": "Let your gentleness be known to all men. The Lord is at hand."
+        }
+      ],
+      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!” Let your gentleness be known to all men. The Lord is at hand."
+    },
+    {
+      "id": "passage-077",
+      "order": 77,
+      "requestedAs": "腓 4:4-7",
+      "reference": "Philippians 4:4-7",
+      "book": "Philippians",
+      "chapter": 4,
+      "verseStart": 4,
+      "verseEnd": 7,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”"
+        },
+        {
+          "verse": 5,
+          "text": "Let your gentleness be known to all men. The Lord is at hand."
+        },
+        {
+          "verse": 6,
+          "text": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God."
+        },
+        {
+          "verse": 7,
+          "text": "And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus."
+        }
+      ],
+      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!” Let your gentleness be known to all men. The Lord is at hand. In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus."
+    },
+    {
+      "id": "passage-078",
+      "order": 78,
+      "requestedAs": "弗 5:16",
+      "reference": "Ephesians 5:16",
+      "book": "Ephesians",
+      "chapter": 5,
+      "verseStart": 16,
+      "verseEnd": 16,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "redeeming the time, because the days are evil."
+        }
+      ],
+      "text": "redeeming the time, because the days are evil."
+    },
+    {
+      "id": "passage-079",
+      "order": 79,
+      "requestedAs": "弗 5:15-18",
+      "reference": "Ephesians 5:15-18",
+      "book": "Ephesians",
+      "chapter": 5,
+      "verseStart": 15,
+      "verseEnd": 18,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 15,
+          "text": "Therefore watch carefully how you walk, not as unwise, but as wise,"
+        },
+        {
+          "verse": 16,
+          "text": "redeeming the time, because the days are evil."
+        },
+        {
+          "verse": 17,
+          "text": "Therefore, don’t be foolish, but understand what the will of the Lord is."
+        },
+        {
+          "verse": 18,
+          "text": "Don’t be drunken with wine, in which is dissipation, but be filled with the Spirit,"
+        }
+      ],
+      "text": "Therefore watch carefully how you walk, not as unwise, but as wise, redeeming the time, because the days are evil. Therefore, don’t be foolish, but understand what the will of the Lord is. Don’t be drunken with wine, in which is dissipation, but be filled with the Spirit,"
+    },
+    {
+      "id": "passage-080",
+      "order": 80,
+      "requestedAs": "彼前 5:1-4",
+      "reference": "1 Peter 5:1-4",
+      "book": "1 Peter",
+      "chapter": 5,
+      "verseStart": 1,
+      "verseEnd": 4,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed:"
+        },
+        {
+          "verse": 2,
+          "text": "shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;"
+        },
+        {
+          "verse": 3,
+          "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock."
+        },
+        {
+          "verse": 4,
+          "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+        }
+      ],
+      "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed: shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly; not as lording it over those entrusted to you, but making yourselves examples to the flock. When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+    },
+    {
+      "id": "passage-081",
+      "order": 81,
+      "requestedAs": "太 5:14",
+      "reference": "Matthew 5:14",
+      "book": "Matthew",
+      "chapter": 5,
+      "verseStart": 14,
+      "verseEnd": 14,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "“You are the light of the world. A city located on a hill can’t be hidden."
+        }
+      ],
+      "text": "“You are the light of the world. A city located on a hill can’t be hidden."
+    },
+    {
+      "id": "passage-082",
+      "order": 82,
+      "requestedAs": "林前2:12-14",
+      "reference": "1 Corinthians 2:12-14",
+      "book": "1 Corinthians",
+      "chapter": 2,
+      "verseStart": 12,
+      "verseEnd": 14,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God."
+        },
+        {
+          "verse": 13,
+          "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+        },
+        {
+          "verse": 14,
+          "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+        }
+      ],
+      "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God. We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things. Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+    },
+    {
+      "id": "passage-083",
+      "order": 83,
+      "requestedAs": "彼前2:2-3",
+      "reference": "1 Peter 2:2-3",
+      "book": "1 Peter",
+      "chapter": 2,
+      "verseStart": 2,
+      "verseEnd": 3,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow,"
+        },
+        {
+          "verse": 3,
+          "text": "if indeed you have tasted that the Lord is gracious."
+        }
+      ],
+      "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow, if indeed you have tasted that the Lord is gracious."
+    },
+    {
+      "id": "passage-084",
+      "order": 84,
+      "requestedAs": "太5:13",
+      "reference": "Matthew 5:13",
+      "book": "Matthew",
+      "chapter": 5,
+      "verseStart": 13,
+      "verseEnd": 13,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "“You are the salt of the earth, but if the salt has lost its flavor, with what will it be salted? It is then good for nothing, but to be cast out and trodden under the feet of men."
+        }
+      ],
+      "text": "“You are the salt of the earth, but if the salt has lost its flavor, with what will it be salted? It is then good for nothing, but to be cast out and trodden under the feet of men."
+    },
+    {
+      "id": "passage-085",
+      "order": 85,
+      "requestedAs": "路16:8",
+      "reference": "Luke 16:8",
+      "book": "Luke",
+      "chapter": 16,
+      "verseStart": 8,
+      "verseEnd": 8,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light."
+        }
+      ],
+      "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light."
+    },
+    {
+      "id": "passage-086",
+      "order": 86,
+      "requestedAs": "路16:9",
+      "reference": "Luke 16:9",
+      "book": "Luke",
+      "chapter": 16,
+      "verseStart": 9,
+      "verseEnd": 9,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents."
+        }
+      ],
+      "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents."
+    },
+    {
+      "id": "passage-087",
+      "order": 87,
+      "requestedAs": "罗12:1-2",
+      "reference": "Romans 12:1-2",
+      "book": "Romans",
+      "chapter": 12,
+      "verseStart": 1,
+      "verseEnd": 2,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service."
+        },
+        {
+          "verse": 2,
+          "text": "Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God."
+        }
+      ],
+      "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service. Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God."
+    },
+    {
+      "id": "passage-088",
+      "order": 88,
+      "requestedAs": "加5:1",
+      "reference": "Galatians 5:1",
+      "book": "Galatians",
+      "chapter": 5,
+      "verseStart": 1,
+      "verseEnd": 1,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage."
+        }
+      ],
+      "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage."
+    },
+    {
+      "id": "passage-089",
+      "order": 89,
+      "requestedAs": "何6:6",
+      "reference": "Hosea 6:6",
+      "book": "Hosea",
+      "chapter": 6,
+      "verseStart": 6,
+      "verseEnd": 6,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+        }
+      ],
+      "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+    }
+  ]
+}
