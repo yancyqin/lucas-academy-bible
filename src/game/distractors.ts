@@ -1,5 +1,5 @@
 import { allPassages } from '../data/scripture';
-import { tokenize } from './chunk';
+import { isContentWord, tokenize } from './chunk';
 import { shuffle, type Rng } from './random';
 
 /**
@@ -54,9 +54,11 @@ export function pickDistractors(req: DistractorRequest): string[] {
 
   // Shuffled, filtered candidate list per target size.
   const lists: string[][] = sizes.map((size) => {
-    let windows = buildWindows(excludeId, size).filter((w) => !correctSet.has(w));
-    // For single-word distractors, prefer meatier words over "a/of/the"
-    // so the bank isn't full of trivial function words.
+    let windows = buildWindows(excludeId, size)
+      .filter((w) => !correctSet.has(w))
+      // Every decoy must carry a content word — no confusing lone 虚词 decoys.
+      .filter((w) => w.split(' ').some(isContentWord));
+    // For single-word distractors, prefer meatier words.
     if (size === 1) {
       const meaty = windows.filter((w) => letters(w) >= 3);
       if (meaty.length >= count * 2) windows = meaty;

@@ -2,7 +2,7 @@ import { HeartIcon } from './icons';
 
 interface HeartsProps {
   total: number;
-  remaining: number; // may be fractional (half hearts)
+  remaining: number; // may be fractional (½, ¼ hearts)
   /** True to briefly animate the heart that just changed. */
   justLost?: boolean;
 }
@@ -15,19 +15,15 @@ export function Hearts({ total, remaining, justLost }: HeartsProps) {
   return (
     <span className="hearts" role="img" aria-label={label(remaining, total)}>
       {Array.from({ length: total }, (_, i) => {
-        const fill: 'full' | 'half' | 'empty' =
-          remaining >= i + 1 ? 'full' : remaining >= i + 0.5 ? 'half' : 'empty';
-        // Animate the slot at the current fractional boundary when a heart drops.
-        const edge = justLost && i === Math.floor(remaining);
-        const cls =
-          fill === 'empty' ? 'heart--empty' : 'heart--full';
+        const frac = Math.max(0, Math.min(1, remaining - i));
+        const edge = justLost && i === Math.floor(Math.max(0, remaining - 0.0001));
         return (
           <span
             key={i}
-            className={`heart ${cls} ${edge ? 'heart--lost' : ''}`}
+            className={`heart ${frac > 0 ? 'heart--full' : 'heart--empty'} ${edge ? 'heart--lost' : ''}`}
             aria-hidden="true"
           >
-            <HeartIcon fill={fill} />
+            <HeartIcon fill={frac} />
           </span>
         );
       })}

@@ -1,27 +1,34 @@
-/** Small inline SVG icons — no external assets, theme via currentColor. */
 import { useId } from 'react';
 
-const HEART_PATH =
-  'M12 20.5S3.5 14.6 3.5 8.9C3.5 6.1 5.7 4 8.3 4c1.7 0 3.1.9 3.7 2.2C12.6 4.9 14 4 15.7 4c2.6 0 4.8 2.1 4.8 4.9 0 5.7-8.5 11.6-8.5 11.6z';
-
-/** A heart that can be full, half (left side filled), or empty. */
-export function HeartIcon({ fill }: { fill: 'full' | 'half' | 'empty' }) {
+/**
+ * Smooth, Zelda-style health heart with four discrete fill states.
+ * The silhouette never changes: only its left-to-right fill becomes
+ * empty, ¼, ½, ¾, or full.
+ */
+export function HeartIcon({ fill }: { fill: number }) {
   const clipId = useId();
+  const fraction = Math.round(Math.max(0, Math.min(1, fill)) * 4) / 4;
+  const path =
+    'M12 21.1C10.8 20.2 3 15.2 3 9.2 3 6 5.4 3.7 8.4 3.7c1.6 0 2.9.7 3.6 1.9.7-1.2 2-1.9 3.6-1.9 3 0 5.4 2.3 5.4 5.5 0 6-7.8 11-9 11.9z';
+
   return (
     <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true" focusable="false">
-      {fill === 'half' && (
+      <defs>
         <clipPath id={clipId}>
-          <rect x="0" y="0" width="12" height="24" />
+          <rect x="0" y="0" width={24 * fraction} height="24" />
         </clipPath>
+      </defs>
+      <path d={path} fill="currentColor" opacity="0.16" />
+      {fraction > 0 && (
+        <path d={path} fill="currentColor" clipPath={`url(#${clipId})`} />
       )}
       <path
-        d={HEART_PATH}
-        fill={fill === 'full' ? 'currentColor' : 'none'}
+        d={path}
+        fill="none"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="1.9"
         strokeLinejoin="round"
       />
-      {fill === 'half' && <path d={HEART_PATH} fill="currentColor" clipPath={`url(#${clipId})`} />}
     </svg>
   );
 }

@@ -13,16 +13,16 @@
   "questions": [
     {
       "id": "L02-q00",
-      "reference": "1 Corinthians 11:11d",
-      "passageId": "passage-024",
+      "reference": "1 Corinthians 13:13a",
+      "passageId": "passage-026",
       "fragment": true,
       "verses": [
         {
-          "verse": 11,
-          "text": "in the Lord."
+          "verse": 13,
+          "text": "But now faith,"
         }
       ],
-      "text": "in the Lord."
+      "text": "But now faith,"
     },
     {
       "id": "L02-q01",
@@ -39,29 +39,29 @@
     },
     {
       "id": "L02-q02",
-      "reference": "1 Peter 2:10a",
-      "passageId": "passage-006",
+      "reference": "1 Peter 5:2b",
+      "passageId": "passage-080",
       "fragment": true,
       "verses": [
         {
-          "verse": 10,
-          "text": "In the past,"
+          "verse": 2,
+          "text": "exercising the oversight,"
         }
       ],
-      "text": "In the past,"
+      "text": "exercising the oversight,"
     },
     {
       "id": "L02-q03",
-      "reference": "2 Corinthians 3:17c",
-      "passageId": "passage-021",
+      "reference": "2 Corinthians 3:18d",
+      "passageId": "passage-022",
       "fragment": true,
       "verses": [
         {
-          "verse": 17,
-          "text": "there is liberty."
+          "verse": 18,
+          "text": "even as from the Lord,"
         }
       ],
-      "text": "there is liberty."
+      "text": "even as from the Lord,"
     },
     {
       "id": "L02-q04",
@@ -78,32 +78,19 @@
     },
     {
       "id": "L02-q05",
-      "reference": "Galatians 5:16a",
+      "reference": "Galatians 5:16b",
       "passageId": "passage-075",
       "fragment": true,
       "verses": [
         {
           "verse": 16,
-          "text": "But I say,"
+          "text": "walk by the Spirit,"
         }
       ],
-      "text": "But I say,"
+      "text": "walk by the Spirit,"
     },
     {
       "id": "L02-q06",
-      "reference": "Genesis 15:6a",
-      "passageId": "passage-055",
-      "fragment": true,
-      "verses": [
-        {
-          "verse": 6,
-          "text": "He believed in Yahweh,"
-        }
-      ],
-      "text": "He believed in Yahweh,"
-    },
-    {
-      "id": "L02-q07",
       "reference": "Hebrews 12:2d",
       "passageId": "passage-043",
       "fragment": true,
@@ -116,17 +103,30 @@
       "text": "despising its shame,"
     },
     {
-      "id": "L02-q08",
-      "reference": "Hosea 6:6a",
-      "passageId": "passage-089",
+      "id": "L02-q07",
+      "reference": "Isaiah 42:2b",
+      "passageId": "passage-074",
       "fragment": true,
       "verses": [
         {
-          "verse": 6,
-          "text": "For I desire mercy,"
+          "verse": 2,
+          "text": "nor raise his voice,"
         }
       ],
-      "text": "For I desire mercy,"
+      "text": "nor raise his voice,"
+    },
+    {
+      "id": "L02-q08",
+      "reference": "Joel 2:28a",
+      "passageId": "passage-023",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 28,
+          "text": "“It will happen afterward,"
+        }
+      ],
+      "text": "“It will happen afterward,"
     }
   ]
 }

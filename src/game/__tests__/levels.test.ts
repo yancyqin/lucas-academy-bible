@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { LEVELS, TOTAL_LEVELS, getLevelFile, memorizeSeconds } from '../levels';
 import { buildLevel } from '../build';
-import { chunksReproduce, tokenize } from '../chunk';
+import { chunksReproduce, isContentWord, tokenize } from '../chunk';
 import { getPassage, allPassages } from '../../data/scripture';
 
 /** Does `text` occur as a contiguous word-window inside `passageText`? */
@@ -163,6 +163,8 @@ describe('level bank files', () => {
     for (const l of LEVELS) {
       const built = buildLevel(l, { seed: 1, questionIndex: 0 });
       for (const section of built.sections) {
+        // A single-tile section is trivially "in order" — nothing to shuffle.
+        if (section.correct.length < 2) continue;
         const correctInBankOrder = section.bank
           .filter((t) => !t.isDistractor)
           .map((t) => t.text);
@@ -170,6 +172,19 @@ describe('level bank files', () => {
           correctInBankOrder.length === section.correct.length &&
           correctInBankOrder.every((t, i) => t === section.correct[i]);
         expect(alreadyOrdered, `L${l.level}`).toBe(false);
+      }
+    }
+  });
+
+  it('no correct tile is a lone function word (虚词) in any level/question', () => {
+    for (const l of LEVELS) {
+      for (let qi = 0; qi < l.questions.length; qi++) {
+        const built = buildLevel(l, { seed: 6, questionIndex: qi });
+        for (const section of built.sections) {
+          for (const c of section.correct) {
+            expect(c.split(' ').some(isContentWord), `L${l.level}: "${c}"`).toBe(true);
+          }
+        }
       }
     }
   });

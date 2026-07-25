@@ -149,7 +149,7 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
   const { label, texts } = sectionUnits(question, file.policy.sectionBy);
 
   const sections: RecallSection[] = texts.map((unitText, si) => {
-    const correct = autoChunk(unitText, file.policy.granularity);
+    const correct = autoChunk(unitText);
     const distractors = pickDistractors({
       excludeId: question.passageId,
       correctChunks: correct,

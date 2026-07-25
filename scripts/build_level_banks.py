@@ -25,6 +25,31 @@ OUT_DIR = ROOT / "src" / "game" / "levels"
 CLAUSE_END = re.compile(r"[,;:.!?”’]$")
 SENTENCE_END = re.compile(r"[.!?][”’\"]?$")
 
+# 虚词 (must match FUNCTION_WORDS in src/game/chunk.ts). A question needs at least
+# two CONTENT words so it never chunks down to a single or function-only tile.
+FUNCTION_WORDS = {
+    "a", "an", "the",
+    "and", "or", "but", "nor", "for", "as", "so", "yet", "than", "if",
+    "of", "to", "in", "on", "at", "by", "from", "with", "into", "unto", "onto",
+    "upon", "out", "up", "off", "over", "under", "about", "through",
+    "i", "you", "he", "she", "it", "we", "they", "me", "him", "her", "us", "them",
+    "my", "your", "his", "its", "our", "their", "mine", "yours", "hers", "ours", "theirs",
+    "who", "whom", "whose", "which", "this", "that", "these", "those",
+    "is", "are", "was", "were", "be", "am", "been", "being",
+    "not", "no", "o", "oh",
+}
+
+_STRIP = re.compile(r"[^0-9A-Za-z'’-]")
+
+
+def content_word_count(text: str) -> int:
+    n = 0
+    for tok in text.split(" "):
+        bare = _STRIP.sub("", tok).strip("'’-").lower()
+        if bare and bare not in FUNCTION_WORDS:
+            n += 1
+    return n
+
 # Per-level design. `words` is the target word-count window for questions.
 # granularity: how tiles are cut  (words | short | phrase)
 # sectionBy:   how a question is broken into recall sections (none | sentence | verse)
@@ -123,6 +148,9 @@ def candidates_for(p: dict) -> list[dict]:
     verses = p["verses"]
 
     def add(ref, vs, text, fragment):
+        # Skip anything that wouldn't make at least two meaningful tiles.
+        if content_word_count(text) < 2:
+            return
         out.append(
             {
                 "passageId": p["id"],

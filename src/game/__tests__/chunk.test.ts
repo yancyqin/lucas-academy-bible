@@ -1,41 +1,50 @@
 import { describe, expect, it } from 'vitest';
-import { autoChunk, chunksReproduce, splitSentences } from '../chunk';
+import { autoChunk, chunksReproduce, isContentWord, splitSentences } from '../chunk';
 
-describe('autoChunk', () => {
-  it("'words' gives one tile per word", () => {
-    expect(autoChunk('Jesus wept.', 'words')).toEqual(['Jesus', 'wept.']);
+describe('autoChunk (content-word tiles)', () => {
+  it('keeps content words as their own tiles', () => {
+    expect(autoChunk('Jesus wept.')).toEqual(['Jesus', 'wept.']);
   });
 
-  it('always reproduces the source text when joined', () => {
+  it('never leaves a function word (虚词) standing alone', () => {
     const samples = [
       'In the beginning, God created the heavens and the earth.',
       'For God so loved the world, that he gave his only born Son,',
       'one Lord, one faith, one baptism,',
-      'Rejoice in the Lord always!',
+      'Your word is a lamp to my feet, and a light for my path.',
+      '“You are the light of the world.',
     ];
     for (const text of samples) {
-      for (const g of ['words', 'short', 'phrase'] as const) {
-        expect(chunksReproduce(text, autoChunk(text, g)), `${g}: ${text}`).toBe(true);
+      const chunks = autoChunk(text);
+      expect(chunksReproduce(text, chunks), text).toBe(true); // nothing dropped/added
+      for (const c of chunks) {
+        expect(c.split(' ').some(isContentWord), `"${c}" in "${text}"`).toBe(true);
       }
     }
   });
 
-  it('never returns a single tile for a multi-word verse', () => {
-    // A short phrase with no internal punctuation still splits.
-    expect(autoChunk('Have this in mind', 'phrase').length).toBeGreaterThanOrEqual(2);
+  it('attaches leading 虚词 forward to the next content word', () => {
+    expect(autoChunk('In the beginning, God created the heavens and the earth.')).toEqual([
+      'In the beginning,',
+      'God',
+      'created',
+      'the heavens',
+      'and the earth.',
+    ]);
   });
 
-  it('breaks phrase-level text at clause punctuation', () => {
-    const chunks = autoChunk('In the beginning, God created the heavens and the earth.', 'phrase');
-    expect(chunks[0]).toBe('In the beginning,');
-    expect(chunks.join(' ')).toBe('In the beginning, God created the heavens and the earth.');
+  it('classifies the/of/him/it/this as function words, God/wept as content', () => {
+    for (const w of ['the', 'of', 'him', 'it', 'this', 'is', 'and']) {
+      expect(isContentWord(w), w).toBe(false);
+    }
+    for (const w of ['God', 'wept.', 'world,', 'Jesus', 'one']) {
+      expect(isContentWord(w), w).toBe(true);
+    }
   });
 
-  it('produces no empty or punctuation-only tiles', () => {
-    const chunks = autoChunk('“You are the light of the world.', 'short');
-    for (const c of chunks) {
+  it('produces no empty tiles', () => {
+    for (const c of autoChunk('“You are the light of the world.')) {
       expect(c.trim().length).toBeGreaterThan(0);
-      expect(/[A-Za-z0-9’]/.test(c)).toBe(true); // contains a real letter/word
     }
   });
 });

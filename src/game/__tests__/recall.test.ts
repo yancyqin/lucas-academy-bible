@@ -45,6 +45,25 @@ describe('recall state machine (bank model)', () => {
     expect(s1.lastEvent).toMatchObject({ kind: 'wrong', penalty: 1, belongsToVerse: false });
   });
 
+  it('time-out drain removes a quarter heart and is not a mistake', () => {
+    const level = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 }); // 3 hearts
+    let s = initRecall(level);
+    s = recallReducer(s, { type: 'drain', amount: 0.25 });
+    expect(s.hearts).toBe(2.75);
+    expect(s.mistakes).toBe(0);
+    expect(s.lastEvent).toMatchObject({ kind: 'drain', heartsLeft: 2.75 });
+  });
+
+  it('draining all hearts (12 quarter-ticks) fails the level', () => {
+    const level = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 });
+    let s = initRecall(level);
+    for (let i = 0; i < 12 && s.status === 'playing'; i++) {
+      s = recallReducer(s, { type: 'drain', amount: 0.25 });
+    }
+    expect(s.hearts).toBe(0);
+    expect(s.status).toBe('failed');
+  });
+
   it('running out of hearts (3 distractor taps) moves to failed', () => {
     const level = buildLevel(getLevelFile(11)!, { seed: 1, questionIndex: 0 });
     let s = initRecall(level);

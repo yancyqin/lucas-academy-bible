@@ -39,16 +39,16 @@
     },
     {
       "id": "L03-q02",
-      "reference": "2 Corinthians 3:18d",
-      "passageId": "passage-022",
+      "reference": "2 Corinthians 5:17b",
+      "passageId": "passage-020",
       "fragment": true,
       "verses": [
         {
-          "verse": 18,
-          "text": "even as from the Lord,"
+          "verse": 17,
+          "text": "he is a new creation."
         }
       ],
-      "text": "even as from the Lord,"
+      "text": "he is a new creation."
     },
     {
       "id": "L03-q03",
@@ -65,16 +65,16 @@
     },
     {
       "id": "L03-q04",
-      "reference": "Galatians 5:16b",
-      "passageId": "passage-075",
+      "reference": "Galatians 6:15c",
+      "passageId": "passage-019",
       "fragment": true,
       "verses": [
         {
-          "verse": 16,
-          "text": "walk by the Spirit,"
+          "verse": 15,
+          "text": "but a new creation."
         }
       ],
-      "text": "walk by the Spirit,"
+      "text": "but a new creation."
     },
     {
       "id": "L03-q05",
@@ -117,16 +117,16 @@
     },
     {
       "id": "L03-q08",
-      "reference": "Isaiah 42:2b",
-      "passageId": "passage-074",
+      "reference": "Isaiah 42:3c",
+      "passageId": "passage-037",
       "fragment": true,
       "verses": [
         {
-          "verse": 2,
-          "text": "nor raise his voice,"
+          "verse": 3,
+          "text": "He will faithfully bring justice."
         }
       ],
-      "text": "nor raise his voice,"
+      "text": "He will faithfully bring justice."
     }
   ]
 }

@@ -35,10 +35,16 @@ export function RecallPhase({
   const resolved = useRef(false);
   const wrongTimer = useRef<number | undefined>(undefined);
 
+  // Challenge timer: you get twice the memorize (prep) time to rebuild. When it
+  // runs out you bleed ¼ heart every 1.5s until the level is done or hearts hit 0.
+  const timeBudget = Math.max(1, level.memorizeSeconds * 2);
+  const [timeLeft, setTimeLeft] = useState(timeBudget);
+
   const section = state.level.sections[state.sectionIndex];
   const singleWord = level.sections.every((s) => s.correct.every((c) => !c.includes(' ')));
   const hearts = level.hearts;
   const remainingSlots = section.correct.length - state.placed.length;
+  const overtime = timeLeft <= 0 && state.status === 'playing';
 
   // React to game events: sound + screen-reader announcements + visual feedback.
   useEffect(() => {
@@ -78,6 +84,10 @@ export function RecallPhase({
         sound.playClick();
         setFeedback({ tone: 'neutral', text: 'Took back the last word.' });
         break;
+      case 'drain':
+        sound.playWrong();
+        setFeedback({ tone: 'wrong', text: 'Time is up — hurry, hearts are draining!' });
+        break;
       case 'failed':
         sound.playWrong();
         announce('Out of hearts. The run is over.', true);
@@ -85,6 +95,22 @@ export function RecallPhase({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.eventSeq]);
+
+  // Challenge countdown (1s tick). Stops once the level resolves.
+  useEffect(() => {
+    if (state.status !== 'playing') return undefined;
+    const id = window.setInterval(() => setTimeLeft((s) => Math.max(0, s - 1)), 1000);
+    return () => window.clearInterval(id);
+  }, [state.status]);
+
+  // Overtime: once the clock hits zero, bleed ¼ heart every 1.5s.
+  useEffect(() => {
+    if (!overtime) return undefined;
+    announce('Time is up. Rebuild quickly — you are losing hearts.', true);
+    const id = window.setInterval(() => dispatch({ type: 'drain', amount: 0.25 }), 1500);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [overtime]);
 
   // Resolve the level once — either cleared (report hearts) or failed (run ends).
   useEffect(() => {
@@ -135,6 +161,23 @@ export function RecallPhase({
             {level.fullTextZh}
           </p>
         )}
+
+        {/* Challenge timer — 2× the memorize time; overtime bleeds hearts. */}
+        <div
+          className={`memo ${overtime ? 'memo--urgent' : timeLeft / timeBudget <= 0.25 ? 'memo--urgent' : ''}`}
+          role="timer"
+          aria-label={overtime ? 'Time is up, hearts draining' : `${timeLeft} seconds left`}
+        >
+          <div className="memo__track">
+            <div
+              className="memo__fill"
+              style={{ width: `${Math.max(0, Math.min(1, timeLeft / timeBudget)) * 100}%` }}
+            />
+          </div>
+          <span className="memo__digits" aria-hidden="true">
+            {overtime ? "Time's up!" : `${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`}
+          </span>
+        </div>
 
         {/* Answer area — assembled sequence, always visible above the bank. */}
         <div className="answer" aria-label="Assembled passage so far" aria-live="off">

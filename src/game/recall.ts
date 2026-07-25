@@ -21,6 +21,8 @@ export type RecallEvent =
   | { kind: 'undo' }
   | { kind: 'section-advance'; sectionIndex: number }
   | { kind: 'level-complete' }
+  /** Time ran out — hearts are bleeding away. */
+  | { kind: 'drain'; heartsLeft: number }
   | { kind: 'failed' };
 
 export interface RecallState {
@@ -41,7 +43,9 @@ export interface RecallState {
 export type RecallAction =
   | { type: 'select'; tileId: string }
   | { type: 'undo' }
-  | { type: 'restart' };
+  | { type: 'restart' }
+  /** Time-out heart bleed (does not count as a mistake). */
+  | { type: 'drain'; amount: number };
 
 export function initRecall(level: BuiltLevel): RecallState {
   return {
@@ -70,6 +74,26 @@ export function recallReducer(state: RecallState, action: RecallAction): RecallS
   switch (action.type) {
     case 'restart':
       return initRecall(state.level);
+
+    case 'drain': {
+      if (state.status !== 'playing') return state;
+      const hearts = Math.max(0, state.hearts - action.amount);
+      if (hearts <= 0) {
+        return {
+          ...state,
+          hearts: 0,
+          status: 'failed',
+          lastEvent: { kind: 'failed' },
+          eventSeq: seq,
+        };
+      }
+      return {
+        ...state,
+        hearts,
+        lastEvent: { kind: 'drain', heartsLeft: hearts },
+        eventSeq: seq,
+      };
+    }
 
     case 'undo': {
       if (state.status !== 'playing' || state.placed.length === 0) return state;

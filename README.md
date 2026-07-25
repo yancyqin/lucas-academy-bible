@@ -122,7 +122,7 @@ Each level file’s `policy` declares:
 | --- | --- |
 | `hearts` | always **3**; a right-word/wrong-order tap costs ½, an out-of-verse word costs 1 |
 | `hintLevel` | `slots` (numbered answer slots) · `count` (“x of y placed”) · `none` |
-| `granularity` | tile size: `words` · `short` (≤2 words) · `phrase` (≤4 words) |
+| `granularity` | legacy field (retained for data shape; chunking is now content-word based) |
 | `sectionBy` | rebuild in one go (`none`), per sentence, or per `verse` |
 | `distractorsPerSection` | decoy tiles added to each section’s bank |
 | `memorizeSecondsPerWord` / `memorizeMin` / `memorizeMax` | timer scaling |
@@ -145,6 +145,13 @@ maintain. To add, remove, or re-tune levels you mostly edit the generator's tabl
 
 - Tiles are only ever contiguous groups of the source tokens, so joining them back
   with single spaces reproduces the passage text exactly.
+- **Content-word tiles:** each tile carries exactly one content word plus the little
+  function words (虚词 — `the`, `of`, `to`, `him`, `is`, …) that lean on it, so a lone
+  “the”/“this” is **never** its own confusing card. E.g. John 3:16 →
+  `For God` · `so loved` · `the world,` · `that he gave` … The 虚词 list lives in
+  `src/game/chunk.ts` (`FUNCTION_WORDS`) and is mirrored in `build_level_banks.py`,
+  which only keeps questions with ≥2 content words. Distractors must carry a content
+  word too.
 - Punctuation stays attached to its word; there are never punctuation-only tiles.
 - Repeated words become **separate tile instances with unique IDs** (e.g. Ephesians 4:5
   “one Lord, one faith, one baptism,”).
@@ -157,6 +164,12 @@ count, and finishing every section completes the level.
 **The memorize timer.** Time is `words × memorizeSecondsPerWord`, clamped to the
 level’s min/max — generous early (~3s/word), tight later (~1.3s/word). At zero the
 passage hides and recall begins; you can also hit **Start recall** early.
+
+**The challenge (recall) timer.** Rebuilding is itself timed: you get **2× the
+memorize time**. If the clock runs out before you finish, you enter overtime and
+**bleed ¼ heart every 1.5s** until you finish or run out of hearts (which ends the
+run). Hearts use a smooth game-style silhouette with discrete ¼ / ½ / ¾ / full
+fills, and the lost hearts lower your final score.
 
 **Distractors** ([`src/game/distractors.ts`](src/game/distractors.ts)) are real
 contiguous word-windows taken **only from other passages** — never invented. They’re

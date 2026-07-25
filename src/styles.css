@@ -52,6 +52,8 @@ html, body, #root {
 body {
   margin: 0;
   font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 600;
   color: var(--ink);
   background: var(--bg);
   /* Subtle stained-glass-inspired glow, kept faint so text stays calm. */
@@ -67,7 +69,7 @@ body {
 /* ---- App shell ---------------------------------------------------------- */
 
 :root {
-  --maxw: 960px;
+  --maxw: 1080px;
 }
 
 .app {
@@ -106,26 +108,27 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.2px;
   color: var(--ink);
-  font-size: 1.02rem;
+  font-size: 1.18rem;
 }
 
 .brandbar__mark {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   flex: none;
 }
 
 /* ---- Cards / panels ----------------------------------------------------- */
 
 .card {
+  width: 100%;
   background: var(--surface);
-  border-radius: var(--radius);
+  border-radius: 24px;
   box-shadow: var(--shadow);
-  border: 1px solid rgba(169, 132, 47, 0.28);
-  padding: clamp(20px, 4vw, 34px);
+  border: 2px solid rgba(169, 132, 47, 0.38);
+  padding: clamp(28px, 5vw, 48px);
 }
 
 .panel-navy {
@@ -133,13 +136,13 @@ body {
   color: var(--on-navy);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  border: 1px solid rgba(200, 162, 76, 0.28);
+  border: 2px solid rgba(200, 162, 76, 0.38);
 }
 
 .center-col {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
   text-align: center;
   align-items: center;
 }
@@ -149,8 +152,8 @@ body {
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.74rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 800;
   color: var(--gold-deep);
 }
 
@@ -160,7 +163,7 @@ body {
   line-height: 1.05;
   margin: 0;
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .subtitle {
@@ -168,12 +171,14 @@ body {
   font-style: italic;
   font-size: clamp(1.2rem, 3.6vw, 1.6rem);
   color: var(--ink-soft);
+  font-weight: 600;
   margin: 0;
 }
 
 .lede {
-  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
-  line-height: 1.5;
+  font-size: clamp(1.18rem, 2.6vw, 1.4rem);
+  line-height: 1.6;
+  font-weight: 650;
   color: var(--ink-soft);
   margin: 0;
   max-width: 48ch;
@@ -181,10 +186,10 @@ body {
 
 .reference {
   font-family: var(--font-ui);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 1.12rem;
   color: var(--gold-deep);
 }
 
@@ -193,6 +198,7 @@ body {
   line-height: 1.6;
   color: var(--ink);
   letter-spacing: 0.01em;
+  font-weight: 600;
 }
 
 /* Chinese (和合本) */
@@ -203,7 +209,7 @@ body {
 .reference-zh {
   font-family: var(--font-zh);
   color: var(--gold-deep);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0;
   text-transform: none;
 }
@@ -214,6 +220,7 @@ body {
   color: var(--ink-soft);
   margin: 8px 0 0;
   text-align: left;
+  font-weight: 600;
 }
 .restored__zh {
   display: block;
@@ -246,12 +253,12 @@ body {
 
 .btn {
   font-family: var(--font-ui);
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.38rem;
+  font-weight: 800;
   border: none;
   border-radius: 999px;
-  padding: 18px 34px;
-  min-height: 60px;
+  padding: 20px 40px;
+  min-height: 68px;
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
   color: var(--ink);
@@ -279,7 +286,7 @@ body {
 
 .btn--ghost {
   background: transparent;
-  border: 1.5px solid rgba(85, 77, 64, 0.35);
+  border: 2px solid rgba(85, 77, 64, 0.42);
   color: var(--ink);
 }
 .btn--ghost:hover { border-color: var(--gold-deep); }
@@ -287,18 +294,18 @@ body {
 .btn--on-navy {
   background: rgba(243, 236, 219, 0.12);
   color: var(--on-navy);
-  border: 1.5px solid rgba(227, 202, 127, 0.4);
+  border: 2px solid rgba(227, 202, 127, 0.5);
 }
 .btn--on-navy:hover { background: rgba(243, 236, 219, 0.2); }
 
-.btn--sm { min-height: 48px; padding: 12px 22px; font-size: 1.05rem; }
+.btn--sm { min-height: 58px; padding: 15px 26px; font-size: 1.16rem; }
 
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
 .btn-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   justify-content: center;
   align-items: center;
 }
@@ -306,10 +313,10 @@ body {
 /* ---- Icon button (sound toggle etc.) ------------------------------------ */
 
 .icon-btn {
-  min-width: 44px;
-  min-height: 44px;
+  min-width: 56px;
+  min-height: 56px;
   border-radius: 999px;
-  border: 1.5px solid rgba(85, 77, 64, 0.3);
+  border: 2px solid rgba(85, 77, 64, 0.36);
   background: var(--surface);
   color: var(--ink);
   cursor: pointer;
@@ -317,15 +324,14 @@ body {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  padding: 0 18px;
-  min-height: 48px;
-  font-weight: 600;
-  font-size: 1.02rem;
+  padding: 0 20px;
+  font-weight: 800;
+  font-size: 1.12rem;
   transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 .icon-btn:hover { border-color: var(--gold-deep); }
 .icon-btn:focus-visible { outline: none; box-shadow: var(--focus); }
-.icon-btn__glyph { font-size: 1.25rem; line-height: 1; }
+.icon-btn__glyph { font-size: 1.4rem; line-height: 1; }
 .icon-btn--on {
   border-color: var(--gold-deep);
   color: var(--gold-deep);
@@ -334,13 +340,14 @@ body {
 
 /* ---- Hearts ------------------------------------------------------------- */
 
-.hearts { display: inline-flex; gap: 6px; align-items: center; }
+.hearts { display: inline-flex; gap: 9px; align-items: center; }
 .heart {
-  width: 22px; height: 22px; display: inline-block;
+  width: 38px; height: 38px; display: inline-block;
+  color: var(--terracotta);
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 .heart--full { color: var(--terracotta); }
-.heart--empty { color: rgba(43, 38, 32, 0.22); }
+.heart--empty { color: var(--terracotta); }
 .heart--lost { animation: heart-pop 0.4s ease; }
 
 @keyframes heart-pop {
@@ -412,10 +419,11 @@ body {
 }
 
 .study__scripture {
-  font-size: clamp(1.95rem, 5.6vw, 3.1rem);
+  font-size: clamp(2.1rem, 5.8vw, 3.4rem);
   line-height: 1.55;
   margin: 22px 0 10px;
   text-align: left;
+  font-weight: 600;
 }
 
 .study__hint {
@@ -456,8 +464,8 @@ body {
 }
 .memo__digits {
   font-variant-numeric: tabular-nums;
-  font-weight: 700;
-  font-size: 1.05rem;
+  font-weight: 800;
+  font-size: 1.2rem;
   color: var(--ink-soft);
   min-width: 3.2ch;
   text-align: right;
@@ -486,8 +494,8 @@ body {
 }
 
 .recall__sectionlabel {
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
   color: var(--gold-deep);
   letter-spacing: 0.05em;
 }
@@ -496,9 +504,9 @@ body {
 .answer {
   background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
   border-radius: var(--radius);
-  border: 1px solid rgba(200, 162, 76, 0.3);
-  padding: 20px;
-  min-height: 120px;
+  border: 2px solid rgba(200, 162, 76, 0.42);
+  padding: 24px;
+  min-height: 140px;
   box-shadow: var(--shadow-soft);
   max-height: 38vh;
   overflow-y: auto;
@@ -507,7 +515,8 @@ body {
 .answer__prior {
   color: var(--on-navy-soft);
   font-family: var(--font-scripture);
-  font-size: 1.2rem;
+  font-size: 1.35rem;
+  font-weight: 600;
   line-height: 1.55;
   margin-bottom: 10px;
   padding-bottom: 10px;
@@ -527,6 +536,8 @@ body {
   font-style: italic;
   font-family: var(--font-scripture);
   opacity: 0.75;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .slot {
@@ -545,12 +556,13 @@ body {
 .placed-tile {
   background: linear-gradient(180deg, #fbf6ea, var(--sage-tint));
   color: var(--ink);
-  border: 1px solid var(--sage);
+  border: 2px solid var(--sage);
   border-radius: var(--radius-tile);
-  padding: 10px 17px;
+  padding: 12px 19px;
   font-family: var(--font-scripture);
-  font-size: 1.45rem;
-  min-height: 50px;
+  font-size: 1.62rem;
+  font-weight: 700;
+  min-height: 58px;
   display: inline-flex;
   align-items: center;
   animation: place-in 0.22s ease backwards;
@@ -564,7 +576,7 @@ body {
 .bank {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   align-content: flex-start;
   padding: 4px;
   overflow-y: auto;
@@ -574,12 +586,13 @@ body {
 .tile {
   background: var(--ivory);
   color: var(--ink);
-  border: 1.5px solid rgba(85, 77, 64, 0.22);
+  border: 2px solid rgba(85, 77, 64, 0.3);
   border-radius: var(--radius-tile);
-  padding: 14px 20px;
-  min-height: 62px;
+  padding: 16px 22px;
+  min-height: 70px;
   font-family: var(--font-scripture);
-  font-size: 1.55rem;
+  font-size: 1.72rem;
+  font-weight: 700;
   cursor: pointer;
   transition: transform 0.1s ease, border-color 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
   box-shadow: 0 2px 0 rgba(85, 77, 64, 0.12);
@@ -616,10 +629,10 @@ body {
 
 /* ---- Feedback line (reserved height to avoid layout shift) -------------- */
 .feedback {
-  min-height: 26px;
+  min-height: 32px;
   text-align: center;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1.12rem;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -627,7 +640,7 @@ body {
 }
 .feedback--correct { color: var(--sage-deep); }
 .feedback--wrong { color: var(--terracotta); }
-.feedback--neutral { color: var(--ink-soft); font-weight: 500; }
+.feedback--neutral { color: var(--ink-soft); font-weight: 700; }
 
 /* ---- Overlays (fail / complete) ----------------------------------------- */
 .overlay {
@@ -665,6 +678,7 @@ body {
   border-radius: var(--radius);
   padding: 18px 20px;
   border-left: 4px solid var(--gold);
+  font-weight: 600;
 }
 
 .stat-row {
@@ -676,12 +690,12 @@ body {
 .stat {
   background: var(--parchment-2);
   border-radius: 14px;
-  padding: 12px 18px;
-  min-width: 110px;
+  padding: 16px 22px;
+  min-width: 130px;
   text-align: center;
 }
-.stat__num { font-size: 1.7rem; font-weight: 800; color: var(--gold-deep); font-variant-numeric: tabular-nums; }
-.stat__label { font-size: 0.78rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat__num { font-size: 2rem; font-weight: 800; color: var(--gold-deep); font-variant-numeric: tabular-nums; }
+.stat__label { font-size: 0.9rem; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; }
 
 /* Final score */
 .score {
@@ -851,6 +865,8 @@ body {
 /* ---- Accessibility helpers ---------------------------------------------- */
 .visually-hidden {
   position: absolute !important;
+  top: 0;
+  left: 0;
   width: 1px; height: 1px;
   padding: 0; margin: -1px;
   overflow: hidden;
@@ -860,7 +876,8 @@ body {
 }
 
 .progress-caption {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--ink-soft);
 }
 
@@ -883,9 +900,51 @@ body {
 
 /* ---- Small screens ------------------------------------------------------ */
 @media (max-width: 560px) {
-  .card { padding: 18px; }
-  .study__scripture { font-size: 1.65rem; }
-  .tile { font-size: 1.3rem; padding: 12px 15px; min-height: 56px; }
-  .answer { max-height: 32vh; }
-  .btn { font-size: 1.12rem; }
+  .app {
+    padding:
+      calc(12px + var(--pad-safe-t))
+      12px
+      calc(18px + var(--pad-safe-b));
+  }
+  .brandbar { margin-bottom: 14px; }
+  .brandbar {
+    flex-wrap: wrap;
+  }
+  .brandbar__title {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.08rem;
+  }
+  .brandbar > span {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .brandbar__mark { width: 34px; height: 34px; }
+  .card { padding: 24px 20px; border-radius: 20px; }
+  .center-col { gap: 20px; }
+  .title-xl { font-size: clamp(2.65rem, 14vw, 3.4rem); }
+  .reference { font-size: 1.05rem; line-height: 1.55; }
+  .study__scripture { font-size: 1.85rem; line-height: 1.55; }
+  .scripture-zh { font-size: 1.48rem; line-height: 1.75; }
+  .tile {
+    font-size: 1.48rem;
+    font-weight: 700;
+    padding: 14px 17px;
+    min-height: 64px;
+  }
+  .placed-tile { font-size: 1.42rem; min-height: 56px; }
+  .answer { max-height: 34vh; min-height: 130px; padding: 18px; }
+  .bank { gap: 14px; }
+  .btn {
+    width: 100%;
+    min-height: 68px;
+    padding: 18px 22px;
+    font-size: 1.28rem;
+    font-weight: 800;
+  }
+  .btn--sm { min-height: 62px; font-size: 1.18rem; }
+  .btn-row { width: 100%; }
+  .recall__controls { width: 100%; }
+  .recall__controls .btn { flex: 1 1 100%; }
+  .heart { width: 34px; height: 34px; }
 }

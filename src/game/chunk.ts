@@ -1,5 +1,3 @@
-import type { Granularity } from './levels';
-
 /**
  * Turn scripture into ordered chunks (tiles) and into recall sections.
  *
@@ -7,51 +5,68 @@ import type { Granularity } from './levels';
  * back with a single space reproduces the source text EXACTLY. We only ever
  * group contiguous whitespace-separated tokens — we never alter capitalization
  * or punctuation, and there are no punctuation-only tiles.
+ *
+ * Tiles are CONTENT-word based: each tile carries exactly one content word plus
+ * any little function words (虚词 — articles, prepositions, pronouns, conjunctions,
+ * the copula…) that lean on it. A lone "the" / "of" / "him" is never its own tile,
+ * because that reads as meaningless/confusing.
  */
 
 export function tokenize(text: string): string[] {
   return text.split(' ');
 }
 
-const CLAUSE_END = /[,;:.!?”’")]$/;
 const SENTENCE_END = /[.!?][”’")]?$/;
 
-const MAX_WORDS: Record<Granularity, number> = {
-  words: 1,
-  short: 2,
-  phrase: 4,
-};
+/** 虚词 that should never stand alone as a tile — they attach to a content word. */
+export const FUNCTION_WORDS = new Set<string>([
+  // articles
+  'a', 'an', 'the',
+  // conjunctions / connectors
+  'and', 'or', 'but', 'nor', 'for', 'as', 'so', 'yet', 'than', 'if',
+  // prepositions
+  'of', 'to', 'in', 'on', 'at', 'by', 'from', 'with', 'into', 'unto', 'onto',
+  'upon', 'out', 'up', 'off', 'over', 'under', 'about', 'through',
+  // pronouns / determiners
+  'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them',
+  'my', 'your', 'his', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs',
+  'who', 'whom', 'whose', 'which', 'this', 'that', 'these', 'those',
+  // copula
+  'is', 'are', 'was', 'were', 'be', 'am', 'been', 'being',
+  // particles
+  'not', 'no', 'o', 'oh',
+]);
 
-/** Group contiguous tokens, breaking at clause punctuation or a max width. */
-function group(tokens: string[], maxWords: number): string[] {
-  if (maxWords <= 1) return tokens.slice();
+/** A token is "content" unless its bare word is a function word. */
+export function isContentWord(token: string): boolean {
+  const bare = token
+    .replace(/[^\p{L}\p{N}'’-]/gu, '')
+    .replace(/^['’-]+|['’-]+$/g, '')
+    .toLowerCase();
+  return bare.length > 0 && !FUNCTION_WORDS.has(bare);
+}
+
+/**
+ * Chunk one unit of text into tiles. Every tile ends on a content word, so
+ * leading 虚词 attach forward to it; any trailing 虚词 attach to the last tile.
+ */
+export function autoChunk(text: string): string[] {
+  const tokens = tokenize(text);
+  if (tokens.length <= 1) return tokens;
+
   const chunks: string[] = [];
   let cur: string[] = [];
   for (const tok of tokens) {
     cur.push(tok);
-    if (cur.length >= maxWords || CLAUSE_END.test(tok)) {
+    if (isContentWord(tok)) {
       chunks.push(cur.join(' '));
       cur = [];
     }
   }
-  if (cur.length) chunks.push(cur.join(' '));
-  return chunks;
-}
-
-/**
- * Chunk one unit of text into tiles at the given granularity.
- * Guarantees at least two tiles when there are at least two words.
- */
-export function autoChunk(text: string, granularity: Granularity): string[] {
-  const tokens = tokenize(text);
-  if (tokens.length <= 1) return tokens;
-
-  let chunks = group(tokens, MAX_WORDS[granularity]);
-
-  // Never hand back a single tile for a multi-word verse — split in half.
-  if (chunks.length < 2) {
-    const mid = Math.ceil(tokens.length / 2);
-    chunks = [tokens.slice(0, mid).join(' '), tokens.slice(mid).join(' ')];
+  if (cur.length) {
+    // trailing function words with no following content word
+    if (chunks.length) chunks[chunks.length - 1] += ' ' + cur.join(' ');
+    else chunks.push(cur.join(' '));
   }
   return chunks;
 }
