@@ -31,6 +31,16 @@ npm test         # run the Vitest game-logic suite once
 npm run test:watch
 ```
 
+Deploy the production build as an assets-only Cloudflare Worker:
+
+```bash
+npm run build
+npx wrangler deploy
+```
+
+The custom domain is declared in `wrangler.jsonc`; Cloudflare manages its DNS
+record and TLS certificate automatically.
+
 Requirements: Node 18+ (developed on Node 20). The app is **frontend-only** — no
 backend, database, auth, ads, or analytics. Everything runs in the browser and
 progress is saved to `localStorage`.

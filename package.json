@@ -6,7 +6,7 @@
   "description": "Bible Sequence — a scripture memorization game for Lucas Academy",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/prepare_sites_build.mjs",
+    "build": "tsc -b && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest"
