@@ -1,6 +1,8 @@
 node_modules
 dist
 dist-ssr
+dist-itch
+lucas-academy-bible-itch.zip
 *.local
 .DS_Store
 coverage

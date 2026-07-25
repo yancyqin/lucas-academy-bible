@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { TOTAL_LEVELS } from '../game/levels';
+import { MAX_LEVEL } from '../game/levels';
 import type { BuiltLevel } from '../game/build';
+// MAX_LEVEL is used only to decide the final "Finish" vs "Continue" label.
 import type { Narrator } from '../audio/speech';
 import { shouldAutoNarrate } from '../audio/speech';
 import { Stars } from './Stars';
@@ -9,22 +10,20 @@ interface LevelCompleteProps {
   level: BuiltLevel;
   stars: number;
   mistakes: number;
-  attempts: number;
   soundEnabled: boolean;
   narrator: Narrator;
   onContinue: () => void;
-  onReview: () => void;
+  onQuit: () => void;
 }
 
 export function LevelComplete({
   level,
   stars,
   mistakes,
-  attempts,
   soundEnabled,
   narrator,
   onContinue,
-  onReview,
+  onQuit,
 }: LevelCompleteProps) {
   const [speaking, setSpeaking] = useState(false);
   const started = useRef(false);
@@ -33,7 +32,7 @@ export function LevelComplete({
   const readAloud = () => {
     if (!narrator.supported) return;
     setSpeaking(true);
-    narrator.speak(level.fullText, { onend: () => setSpeaking(false) });
+    narrator.speak(level.fullText, { slow: true, onend: () => setSpeaking(false) });
   };
 
   useEffect(() => {
@@ -54,9 +53,7 @@ export function LevelComplete({
   return (
     <div className="stage" role="region" aria-label={`Level ${level.level} complete`}>
       <div className="card center-col celebrate">
-        <p className="eyebrow">
-          Level {level.level} of {TOTAL_LEVELS} · Complete
-        </p>
+        <p className="eyebrow">Level {level.level} · Complete</p>
         <Stars value={stars} animate size={40} />
         <h1 className="title-xl" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.6rem)' }}>
           {praise}
@@ -64,17 +61,17 @@ export function LevelComplete({
 
         <p className="reference" style={{ display: 'block' }}>
           {level.reference}
+          {level.referenceZh && <span className="reference-zh"> · {level.referenceZh}</span>}
         </p>
-        <blockquote className="restored">{level.fullText}</blockquote>
+        <blockquote className="restored">
+          {level.fullText}
+          {level.fullTextZh && <span className="restored__zh">{level.fullTextZh}</span>}
+        </blockquote>
 
         <div className="stat-row">
           <div className="stat">
             <div className="stat__num">{mistakes}</div>
             <div className="stat__label">{mistakes === 1 ? 'mistake' : 'mistakes'}</div>
-          </div>
-          <div className="stat">
-            <div className="stat__num">{attempts}</div>
-            <div className="stat__label">{attempts === 1 ? 'attempt' : 'attempts'}</div>
           </div>
           <div className="stat">
             <div className="stat__num">{stars}/3</div>
@@ -92,7 +89,7 @@ export function LevelComplete({
               {speaking ? '⏹ Stop' : '▶ Hear it'}
             </button>
           )}
-          {level.level < TOTAL_LEVELS ? (
+          {level.level < MAX_LEVEL ? (
             <button type="button" className="btn btn--primary" onClick={onContinue}>
               Continue to Level {nextLevel}
             </button>
@@ -101,8 +98,8 @@ export function LevelComplete({
               Finish
             </button>
           )}
-          <button type="button" className="btn btn--ghost btn--sm" onClick={onReview}>
-            Level map
+          <button type="button" className="btn btn--ghost btn--sm" onClick={onQuit}>
+            Quit
           </button>
         </div>
       </div>

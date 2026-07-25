@@ -1,0 +1,132 @@
+{
+  "level": 11,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "count",
+    "granularity": "short",
+    "sectionBy": "none",
+    "distractorsPerSection": 3,
+    "memorizeSecondsPerWord": 2.0,
+    "memorizeMin": 16,
+    "memorizeMax": 34
+  },
+  "questions": [
+    {
+      "id": "L11-q00",
+      "reference": "1 Corinthians 2:13",
+      "passageId": "passage-082",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+        }
+      ],
+      "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+    },
+    {
+      "id": "L11-q01",
+      "reference": "1 Peter 2:10",
+      "passageId": "passage-006",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy."
+        }
+      ],
+      "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy."
+    },
+    {
+      "id": "L11-q02",
+      "reference": "2 Corinthians 5:17",
+      "passageId": "passage-020",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+        }
+      ],
+      "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+    },
+    {
+      "id": "L11-q03",
+      "reference": "Ephesians 1:7",
+      "passageId": "passage-033",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace"
+        }
+      ],
+      "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace"
+    },
+    {
+      "id": "L11-q04",
+      "reference": "Galatians 5:1",
+      "passageId": "passage-088",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage."
+        }
+      ],
+      "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage."
+    },
+    {
+      "id": "L11-q05",
+      "reference": "Hebrews 4:14",
+      "passageId": "passage-036",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession."
+        }
+      ],
+      "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession."
+    },
+    {
+      "id": "L11-q06",
+      "reference": "Isaiah 42:4",
+      "passageId": "passage-074",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+        }
+      ],
+      "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+    },
+    {
+      "id": "L11-q07",
+      "reference": "John 12:21",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 21,
+          "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”"
+        }
+      ],
+      "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”"
+    },
+    {
+      "id": "L11-q08",
+      "reference": "Joshua 1:9",
+      "passageId": "passage-015",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”"
+        }
+      ],
+      "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "level": 9,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "count",
+    "granularity": "short",
+    "sectionBy": "none",
+    "distractorsPerSection": 2,
+    "memorizeSecondsPerWord": 2.3,
+    "memorizeMin": 14,
+    "memorizeMax": 30
+  },
+  "questions": [
+    {
+      "id": "L09-q00",
+      "reference": "1 Corinthians 11:11",
+      "passageId": "passage-024",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord."
+        }
+      ],
+      "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord."
+    },
+    {
+      "id": "L09-q01",
+      "reference": "1 Peter 5:4",
+      "passageId": "passage-080",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+        }
+      ],
+      "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+    },
+    {
+      "id": "L09-q02",
+      "reference": "2 Corinthians 3:18a",
+      "passageId": "passage-022",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 18,
+          "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror,"
+        }
+      ],
+      "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror,"
+    },
+    {
+      "id": "L09-q03",
+      "reference": "Ephesians 4:11",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;"
+        }
+      ],
+      "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;"
+    },
+    {
+      "id": "L09-q04",
+      "reference": "Galatians 5:16",
+      "passageId": "passage-075",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh."
+        }
+      ],
+      "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh."
+    },
+    {
+      "id": "L09-q05",
+      "reference": "Hebrews 3:14",
+      "passageId": "passage-044",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,"
+        }
+      ],
+      "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,"
+    },
+    {
+      "id": "L09-q06",
+      "reference": "Isaiah 42:2",
+      "passageId": "passage-074",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street."
+        }
+      ],
+      "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street."
+    },
+    {
+      "id": "L09-q07",
+      "reference": "Joel 2:29",
+      "passageId": "passage-023",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 29,
+          "text": "And also on the servants and on the handmaids in those days, I will pour out my Spirit."
+        }
+      ],
+      "text": "And also on the servants and on the handmaids in those days, I will pour out my Spirit."
+    },
+    {
+      "id": "L09-q08",
+      "reference": "John 12:22",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 22,
+          "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+        }
+      ],
+      "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+    }
+  ]
+}

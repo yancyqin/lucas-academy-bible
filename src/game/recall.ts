@@ -8,7 +8,16 @@ import type { BuiltLevel, Tile } from './build';
 
 export type RecallEvent =
   | { kind: 'correct'; tileId: string; streak: number }
-  | { kind: 'wrong'; tileId: string; heartsLeft: number }
+  | {
+      kind: 'wrong';
+      tileId: string;
+      heartsLeft: number;
+      /** How much heart was lost: 0.5 for a right-word/wrong-order tap, 1 for a
+       * word that isn't in the verse (a distractor). */
+      penalty: number;
+      /** True when the tapped word belongs to the verse but was out of order. */
+      belongsToVerse: boolean;
+    }
   | { kind: 'undo' }
   | { kind: 'section-advance'; sectionIndex: number }
   | { kind: 'level-complete' }
@@ -87,7 +96,11 @@ export function recallReducer(state: RecallState, action: RecallAction): RecallS
       const isCorrect = tile.text === expected;
 
       if (!isCorrect) {
-        const hearts = state.hearts - 1;
+        // A word that belongs to the verse but is out of order costs half a
+        // heart; a word that isn't in the verse (a distractor) costs a full one.
+        const belongsToVerse = !tile.isDistractor;
+        const penalty = belongsToVerse ? 0.5 : 1;
+        const hearts = Math.max(0, state.hearts - penalty);
         const mistakes = state.mistakes + 1;
         if (hearts <= 0) {
           return {
@@ -103,7 +116,13 @@ export function recallReducer(state: RecallState, action: RecallAction): RecallS
           ...state,
           hearts,
           mistakes,
-          lastEvent: { kind: 'wrong', tileId: tile.id, heartsLeft: hearts },
+          lastEvent: {
+            kind: 'wrong',
+            tileId: tile.id,
+            heartsLeft: hearts,
+            penalty,
+            belongsToVerse,
+          },
           eventSeq: seq,
         };
       }

@@ -1,0 +1,132 @@
+{
+  "level": 6,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "slots",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 1,
+    "memorizeSecondsPerWord": 2.6,
+    "memorizeMin": 12,
+    "memorizeMax": 24
+  },
+  "questions": [
+    {
+      "id": "L06-q00",
+      "reference": "1 Corinthians 11:11b",
+      "passageId": "passage-024",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "nor the man independent of the woman, in the Lord."
+        }
+      ],
+      "text": "nor the man independent of the woman, in the Lord."
+    },
+    {
+      "id": "L06-q01",
+      "reference": "1 Peter 2:10b",
+      "passageId": "passage-006",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "who had not obtained mercy, but now have obtained mercy."
+        }
+      ],
+      "text": "who had not obtained mercy, but now have obtained mercy."
+    },
+    {
+      "id": "L06-q02",
+      "reference": "2 Corinthians 3:18c",
+      "passageId": "passage-022",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 18,
+          "text": "are transformed into the same image from glory to glory,"
+        }
+      ],
+      "text": "are transformed into the same image from glory to glory,"
+    },
+    {
+      "id": "L06-q03",
+      "reference": "Ephesians 1:8",
+      "passageId": "passage-033",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "which he made to abound toward us in all wisdom and prudence,"
+        }
+      ],
+      "text": "which he made to abound toward us in all wisdom and prudence,"
+    },
+    {
+      "id": "L06-q04",
+      "reference": "Galatians 5:1b",
+      "passageId": "passage-088",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "and don’t be entangled again with a yoke of bondage."
+        }
+      ],
+      "text": "and don’t be entangled again with a yoke of bondage."
+    },
+    {
+      "id": "L06-q05",
+      "reference": "Genesis 15:6",
+      "passageId": "passage-055",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "He believed in Yahweh, who credited it to him for righteousness."
+        }
+      ],
+      "text": "He believed in Yahweh, who credited it to him for righteousness."
+    },
+    {
+      "id": "L06-q06",
+      "reference": "Hebrews 4:14c",
+      "passageId": "passage-036",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "the Son of God, let’s hold tightly to our confession."
+        }
+      ],
+      "text": "the Son of God, let’s hold tightly to our confession."
+    },
+    {
+      "id": "L06-q07",
+      "reference": "Isaiah 50:6b",
+      "passageId": "passage-038",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "and my cheeks to those who plucked off the hair."
+        }
+      ],
+      "text": "and my cheeks to those who plucked off the hair."
+    },
+    {
+      "id": "L06-q08",
+      "reference": "Joel 2:28b",
+      "passageId": "passage-023",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 28,
+          "text": "that I will pour out my Spirit on all flesh;"
+        }
+      ],
+      "text": "that I will pour out my Spirit on all flesh;"
+    }
+  ]
+}

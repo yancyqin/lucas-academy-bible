@@ -1,0 +1,188 @@
+{
+  "level": 16,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "none",
+    "granularity": "words",
+    "sectionBy": "sentence",
+    "distractorsPerSection": 5,
+    "memorizeSecondsPerWord": 1.5,
+    "memorizeMin": 24,
+    "memorizeMax": 68
+  },
+  "questions": [
+    {
+      "id": "L16-q00",
+      "reference": "1 Corinthians 2:12-13",
+      "passageId": "passage-082",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God."
+        },
+        {
+          "verse": 13,
+          "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+        }
+      ],
+      "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God. We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+    },
+    {
+      "id": "L16-q01",
+      "reference": "1 Peter 5:1-2",
+      "passageId": "passage-080",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed:"
+        },
+        {
+          "verse": 2,
+          "text": "shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;"
+        }
+      ],
+      "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed: shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;"
+    },
+    {
+      "id": "L16-q02",
+      "reference": "Ephesians 1:3-4",
+      "passageId": "passage-032",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,"
+        },
+        {
+          "verse": 4,
+          "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,"
+        }
+      ],
+      "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ, even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,"
+    },
+    {
+      "id": "L16-q03",
+      "reference": "Hebrews 4:14-15",
+      "passageId": "passage-036",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession."
+        },
+        {
+          "verse": 15,
+          "text": "For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin."
+        }
+      ],
+      "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession. For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin."
+    },
+    {
+      "id": "L16-q04",
+      "reference": "Isaiah 42:2-4",
+      "passageId": "passage-074",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street."
+        },
+        {
+          "verse": 3,
+          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+        },
+        {
+          "verse": 4,
+          "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+        }
+      ],
+      "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street. He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice. He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+    },
+    {
+      "id": "L16-q05",
+      "reference": "John 12:24-25",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        },
+        {
+          "verse": 25,
+          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+        }
+      ],
+      "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+    },
+    {
+      "id": "L16-q06",
+      "reference": "Matthew 6:10-13",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        },
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        },
+        {
+          "verse": 12,
+          "text": "Forgive us our debts, as we also forgive our debtors."
+        },
+        {
+          "verse": 13,
+          "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+        }
+      ],
+      "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also forgive our debtors. Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+    },
+    {
+      "id": "L16-q07",
+      "reference": "Philippians 4:5-7",
+      "passageId": "passage-077",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Let your gentleness be known to all men. The Lord is at hand."
+        },
+        {
+          "verse": 6,
+          "text": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God."
+        },
+        {
+          "verse": 7,
+          "text": "And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus."
+        }
+      ],
+      "text": "Let your gentleness be known to all men. The Lord is at hand. In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus."
+    },
+    {
+      "id": "L16-q08",
+      "reference": "Romans 6:1-3",
+      "passageId": "passage-047",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What shall we say then? Shall we continue in sin, that grace may abound?"
+        },
+        {
+          "verse": 2,
+          "text": "May it never be! We who died to sin, how could we live in it any longer?"
+        },
+        {
+          "verse": 3,
+          "text": "Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?"
+        }
+      ],
+      "text": "What shall we say then? Shall we continue in sin, that grace may abound? May it never be! We who died to sin, how could we live in it any longer? Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?"
+    }
+  ]
+}

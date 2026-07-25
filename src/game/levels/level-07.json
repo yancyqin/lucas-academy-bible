@@ -1,0 +1,132 @@
+{
+  "level": 7,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "count",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 2,
+    "memorizeSecondsPerWord": 2.5,
+    "memorizeMin": 12,
+    "memorizeMax": 26
+  },
+  "questions": [
+    {
+      "id": "L07-q00",
+      "reference": "1 Corinthians 13:13",
+      "passageId": "passage-026",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "But now faith, hope, and love remain—these three. The greatest of these is love."
+        }
+      ],
+      "text": "But now faith, hope, and love remain—these three. The greatest of these is love."
+    },
+    {
+      "id": "L07-q01",
+      "reference": "1 Peter 2:2",
+      "passageId": "passage-083",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow,"
+        }
+      ],
+      "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow,"
+    },
+    {
+      "id": "L07-q02",
+      "reference": "2 Corinthians 5:16a",
+      "passageId": "passage-052",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "Therefore we know no one according to the flesh from now on."
+        }
+      ],
+      "text": "Therefore we know no one according to the flesh from now on."
+    },
+    {
+      "id": "L07-q03",
+      "reference": "Ephesians 2:1",
+      "passageId": "passage-048",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "You were made alive when you were dead in transgressions and sins,"
+        }
+      ],
+      "text": "You were made alive when you were dead in transgressions and sins,"
+    },
+    {
+      "id": "L07-q04",
+      "reference": "Galatians 5:22",
+      "passageId": "passage-018",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 22,
+          "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,"
+        }
+      ],
+      "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,"
+    },
+    {
+      "id": "L07-q05",
+      "reference": "Genesis 2:24b",
+      "passageId": "passage-011",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "and will join with his wife, and they will be one flesh."
+        }
+      ],
+      "text": "and will join with his wife, and they will be one flesh."
+    },
+    {
+      "id": "L07-q06",
+      "reference": "Hebrews 12:2c",
+      "passageId": "passage-043",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "who for the joy that was set before him endured the cross,"
+        }
+      ],
+      "text": "who for the joy that was set before him endured the cross,"
+    },
+    {
+      "id": "L07-q07",
+      "reference": "Isaiah 42:3b",
+      "passageId": "passage-037",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He won’t quench a dimly burning wick. He will faithfully bring justice."
+        }
+      ],
+      "text": "He won’t quench a dimly burning wick. He will faithfully bring justice."
+    },
+    {
+      "id": "L07-q08",
+      "reference": "Joel 2:28c",
+      "passageId": "passage-023",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 28,
+          "text": "Your old men will dream dreams. Your young men will see visions."
+        }
+      ],
+      "text": "Your old men will dream dreams. Your young men will see visions."
+    }
+  ]
+}

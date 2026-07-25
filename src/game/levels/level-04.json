@@ -1,0 +1,132 @@
+{
+  "level": 4,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "slots",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 1,
+    "memorizeSecondsPerWord": 2.9,
+    "memorizeMin": 10,
+    "memorizeMax": 20
+  },
+  "questions": [
+    {
+      "id": "L04-q00",
+      "reference": "1 Corinthians 13:13d",
+      "passageId": "passage-026",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "The greatest of these is love."
+        }
+      ],
+      "text": "The greatest of these is love."
+    },
+    {
+      "id": "L04-q01",
+      "reference": "1 Peter 2:2b",
+      "passageId": "passage-083",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "long for the pure spiritual milk,"
+        }
+      ],
+      "text": "long for the pure spiritual milk,"
+    },
+    {
+      "id": "L04-q02",
+      "reference": "2 Corinthians 3:17a",
+      "passageId": "passage-021",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "Now the Lord is the Spirit;"
+        }
+      ],
+      "text": "Now the Lord is the Spirit;"
+    },
+    {
+      "id": "L04-q03",
+      "reference": "Ecclesiastes 3:11a",
+      "passageId": "passage-012",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "He has made everything beautiful in its time."
+        }
+      ],
+      "text": "He has made everything beautiful in its time."
+    },
+    {
+      "id": "L04-q04",
+      "reference": "Ephesians 5:16",
+      "passageId": "passage-078",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "redeeming the time, because the days are evil."
+        }
+      ],
+      "text": "redeeming the time, because the days are evil."
+    },
+    {
+      "id": "L04-q05",
+      "reference": "Galatians 2:20a",
+      "passageId": "passage-017",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 20,
+          "text": "I have been crucified with Christ,"
+        }
+      ],
+      "text": "I have been crucified with Christ,"
+    },
+    {
+      "id": "L04-q06",
+      "reference": "Genesis 2:24c",
+      "passageId": "passage-011",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "and they will be one flesh."
+        }
+      ],
+      "text": "and they will be one flesh."
+    },
+    {
+      "id": "L04-q07",
+      "reference": "Hebrews 12:2b",
+      "passageId": "passage-043",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "the author and perfecter of faith,"
+        }
+      ],
+      "text": "the author and perfecter of faith,"
+    },
+    {
+      "id": "L04-q08",
+      "reference": "Hosea 6:6c",
+      "passageId": "passage-089",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "and the knowledge of God more than burnt offerings."
+        }
+      ],
+      "text": "and the knowledge of God more than burnt offerings."
+    }
+  ]
+}

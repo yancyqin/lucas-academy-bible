@@ -1,25 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
-import { TOTAL_LEVELS, type LevelConfig } from '../game/levels';
-import type { Passage } from '../data/scripture';
+import type { BuiltLevel } from '../game/build';
 import type { Narrator } from '../audio/speech';
 import { shouldAutoNarrate } from '../audio/speech';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
 
 interface StudyPhaseProps {
-  config: LevelConfig;
-  passage: Passage;
+  built: BuiltLevel;
   soundEnabled: boolean;
   narrator: Narrator;
   sound: SoundEngine;
   onReady: () => void;
   onBack: () => void;
-  announce: (msg: string) => void;
+  announce: (msg: string, assertive?: boolean) => void;
+}
+
+function clock(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, '0')}`;
 }
 
 export function StudyPhase({
-  config,
-  passage,
+  built,
   soundEnabled,
   narrator,
   sound,
@@ -27,23 +30,18 @@ export function StudyPhase({
   onBack,
   announce,
 }: StudyPhaseProps) {
-  const [seconds, setSeconds] = useState(0);
+  const total = built.memorizeSeconds;
+  const [left, setLeft] = useState(total);
   const [speaking, setSpeaking] = useState(false);
+  const onReadyRef = useRef(onReady);
+  onReadyRef.current = onReady;
   const startedNarration = useRef(false);
-
-  // Elapsed-time indicator — subtle, non-pressuring.
-  useEffect(() => {
-    const id = window.setInterval(() => setSeconds((s) => s + 1), 1000);
-    return () => window.clearInterval(id);
-  }, []);
 
   const readAloud = () => {
     if (!narrator.supported) return;
     sound.resume();
     setSpeaking(true);
-    narrator.speak(passage.text, {
-      onend: () => setSpeaking(false),
-    });
+    narrator.speak(built.fullText, { slow: true, onend: () => setSpeaking(false) });
   };
 
   const stopReading = () => {
@@ -51,12 +49,28 @@ export function StudyPhase({
     setSpeaking(false);
   };
 
-  // Auto-narrate once when the study phase opens — only if sound is on.
+  // Countdown: the interval only decrements (a pure state update).
+  useEffect(() => {
+    const id = window.setInterval(() => setLeft((s) => Math.max(0, s - 1)), 1000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  // When it hits zero, announce + advance — in an effect, never inside a
+  // setState updater (which would setState during render).
+  useEffect(() => {
+    if (left > 0) return;
+    announce('Time is up. Rebuild the verse now.', true);
+    const id = window.setTimeout(() => onReadyRef.current(), 0);
+    return () => window.clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [left]);
+
+  // Auto-narrate once (slow) when memorize opens — only if sound is on.
   useEffect(() => {
     if (startedNarration.current) return;
     startedNarration.current = true;
+    announce(`Memorize ${built.reference}. ${total} seconds.`);
     if (shouldAutoNarrate(soundEnabled, narrator.supported)) {
-      // Slight delay so the screen settles before narration begins.
       const id = window.setTimeout(readAloud, 350);
       return () => window.clearTimeout(id);
     }
@@ -64,42 +78,50 @@ export function StudyPhase({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Stop narration when leaving study.
   useEffect(() => () => narrator.stop(), [narrator]);
 
-  const proceed = () => {
+  const startRecall = () => {
     narrator.stop();
-    announce('Recall phase. Rebuild the passage in order.');
-    onReady();
+    announce('Rebuild the verse now.');
+    onReadyRef.current();
   };
 
-  const mm = Math.floor(seconds / 60);
-  const ss = String(seconds % 60).padStart(2, '0');
+  const pct = Math.max(0, Math.min(1, left / total));
+  const urgent = pct <= 0.25;
 
   return (
-    <div className="stage" role="region" aria-label={`Study ${passage.reference}`}>
+    <div className="stage" role="region" aria-label={`Memorize ${built.reference}`}>
       <div className="card">
         <div className="study__meta">
-          <span className="eyebrow">
-            Level {config.level} of {TOTAL_LEVELS} · Study
-          </span>
-          <span className="study__meta-right" style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
-            <Hearts total={config.hearts} remaining={config.hearts} />
-            <span className="timer" aria-hidden="true">
-              <span className="timer__dot" />
-              {mm}:{ss}
-            </span>
+          <span className="eyebrow">Level {built.level} · Memorize</span>
+          <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
+            <Hearts total={built.hearts} remaining={built.hearts} />
           </span>
         </div>
 
-        <p className="reference" style={{ display: 'block', marginTop: 6 }}>
-          {passage.reference}
+        {/* Countdown */}
+        <div
+          className={`memo ${urgent ? 'memo--urgent' : ''}`}
+          role="timer"
+          aria-label={`${left} seconds left to memorize`}
+        >
+          <div className="memo__track">
+            <div className="memo__fill" style={{ width: `${pct * 100}%` }} />
+          </div>
+          <span className="memo__digits" aria-hidden="true">
+            {clock(left)}
+          </span>
+        </div>
+
+        <p className="reference" style={{ display: 'block', marginTop: 12 }}>
+          {built.reference}
+          {built.referenceZh && <span className="reference-zh"> · {built.referenceZh}</span>}
         </p>
 
         <blockquote className="scripture study__scripture">
-          {passage.verses.length > 1
-            ? passage.verses.map((v, i) => (
-                <span key={v.verse}>
+          {built.verses.length > 1
+            ? built.verses.map((v, i) => (
+                <span key={`${v.verse}-${i}`}>
                   <sup
                     style={{ color: 'var(--gold-deep)', fontWeight: 700, marginRight: 3, fontSize: '0.6em' }}
                     aria-hidden="true"
@@ -107,13 +129,19 @@ export function StudyPhase({
                     {v.verse}
                   </sup>
                   {v.text}
-                  {i < passage.verses.length - 1 ? ' ' : ''}
+                  {i < built.verses.length - 1 ? ' ' : ''}
                 </span>
               ))
-            : passage.text}
+            : built.fullText}
         </blockquote>
 
-        <p className="study__hint">Take your time. When the passage feels familiar, begin.</p>
+        {built.fullTextZh && (
+          <p className="scripture-zh" lang="zh-Hans">
+            {built.fullTextZh}
+          </p>
+        )}
+
+        <p className="study__hint">Read it, picture it. It hides when the timer ends.</p>
 
         <div className="divider" />
 
@@ -136,10 +164,10 @@ export function StudyPhase({
 
           <div className="btn-row">
             <button type="button" className="btn btn--ghost btn--sm" onClick={onBack}>
-              Level map
+              Quit
             </button>
-            <button type="button" className="btn btn--primary" onClick={proceed}>
-              I&rsquo;m Ready
+            <button type="button" className="btn btn--primary" onClick={startRecall}>
+              Start recall
             </button>
           </div>
         </div>

@@ -12,6 +12,9 @@ from pathlib import Path
 
 
 SOURCE_URL = "https://ebible.org/Scriptures/eng-web_vpl.zip"
+# Chinese Union Version (和合本, Simplified) — public domain. Same VPL format /
+# book codes as the WEB source, so we can look verses up by the same keys.
+CUV_SOURCE_URL = "https://ebible.org/Scriptures/cmn-cu89s_vpl.zip"
 OUTPUT_PATH = Path(__file__).resolve().parents[1] / "data" / "verses.json"
 
 BOOK_NAMES = {
@@ -35,6 +38,30 @@ BOOK_NAMES = {
     "HEB": "Hebrews",
     "1PE": "1 Peter",
     "1JO": "1 John",
+}
+
+# Chinese book names (和合本).
+BOOK_NAMES_ZH = {
+    "GEN": "创世记",
+    "JOS": "约书亚记",
+    "PSA": "诗篇",
+    "PRO": "箴言",
+    "ECC": "传道书",
+    "ISA": "以赛亚书",
+    "JOE": "约珥书",
+    "HOS": "何西阿书",
+    "MAT": "马太福音",
+    "LUK": "路加福音",
+    "JOH": "约翰福音",
+    "ROM": "罗马书",
+    "1CO": "哥林多前书",
+    "2CO": "哥林多后书",
+    "GAL": "加拉太书",
+    "EPH": "以弗所书",
+    "PHI": "腓立比书",
+    "HEB": "希伯来书",
+    "1PE": "彼得前书",
+    "1JO": "约翰一书",
 }
 
 # (original request, normalized reference, source book code, chapter,
@@ -129,24 +156,27 @@ PASSAGE_REQUESTS = [
     ("罗12:1-2", "Romans 12:1-2", "ROM", 12, 1, 2, None),
     ("加5:1", "Galatians 5:1", "GAL", 5, 1, 1, None),
     ("何6:6", "Hosea 6:6", "HOS", 6, 6, 6, None),
+    ("腓 2:4-11 基督的心", "Philippians 2:4-11", "PHI", 2, 4, 11, "Christ's humility and exaltation."),
 ]
 
 
-def fetch_verse_text() -> dict[tuple[str, int, int], str]:
+LINE_PATTERN = re.compile(r"([1-3]?[A-Z]{2,3}) (\d+):(\d+) (.*)")
+
+
+def fetch_vpl(url: str, member: str) -> dict[tuple[str, int, int], str]:
+    """Download a verse-per-line archive and index it by (book, chapter, verse)."""
     request = urllib.request.Request(
-        SOURCE_URL,
-        headers={"User-Agent": "lucas-academy-bible scripture data builder"},
+        url, headers={"User-Agent": "lucas-academy-bible scripture data builder"}
     )
-    with urllib.request.urlopen(request, timeout=60) as response:
+    with urllib.request.urlopen(request, timeout=90) as response:
         archive = response.read()
 
     with zipfile.ZipFile(io.BytesIO(archive)) as source_zip:
-        source_text = source_zip.read("eng-web_vpl.txt").decode("utf-8")
+        source_text = source_zip.read(member).decode("utf-8")
 
     verses: dict[tuple[str, int, int], str] = {}
-    line_pattern = re.compile(r"([1-3]?[A-Z]{2,3}) (\d+):(\d+) (.*)")
     for line in source_text.splitlines():
-        match = line_pattern.fullmatch(line)
+        match = LINE_PATTERN.fullmatch(line)
         if match:
             book_code, chapter, verse, text = match.groups()
             verses[(book_code, int(chapter), int(verse))] = text
@@ -154,7 +184,8 @@ def fetch_verse_text() -> dict[tuple[str, int, int], str]:
 
 
 def build_collection() -> dict[str, object]:
-    source_verses = fetch_verse_text()
+    source_verses = fetch_vpl(SOURCE_URL, "eng-web_vpl.txt")
+    cuv_verses = fetch_vpl(CUV_SOURCE_URL, "cmn-cu89s_vpl.txt")
     passages = []
 
     for index, request in enumerate(PASSAGE_REQUESTS, start=1):
@@ -168,6 +199,9 @@ def build_collection() -> dict[str, object]:
                 {
                     "verse": verse_number,
                     "text": source_verses[key],
+                    # Chinese Union Version (和合本). Empty string if a verse is
+                    # missing in the CUV versification — never blocks the build.
+                    "textZh": cuv_verses.get(key, ""),
                 }
             )
 
@@ -177,12 +211,14 @@ def build_collection() -> dict[str, object]:
             "requestedAs": requested_as,
             "reference": reference,
             "book": BOOK_NAMES[book_code],
+            "bookZh": BOOK_NAMES_ZH.get(book_code, ""),
             "chapter": chapter,
             "verseStart": first,
             "verseEnd": last,
             "matchedFromDescription": match_note is not None,
             "verses": passage_verses,
             "text": " ".join(item["text"] for item in passage_verses),
+            "textZh": "".join(item["textZh"] for item in passage_verses),
         }
         if match_note is not None:
             passage["matchNote"] = match_note
@@ -204,6 +240,14 @@ def build_collection() -> dict[str, object]:
                 "license": "Public Domain",
                 "licenseUrl": "https://ebible.org/details.php?id=eng-web",
                 "sourceUrl": SOURCE_URL,
+            },
+            "translationZh": {
+                "id": "CUV",
+                "name": "Chinese Union Version (和合本, Simplified)",
+                "language": "Chinese",
+                "license": "Public Domain",
+                "licenseUrl": "https://ebible.org/details.php?id=cmn-cu89s",
+                "sourceUrl": CUV_SOURCE_URL,
             },
         },
         "passages": passages,

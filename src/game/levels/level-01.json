@@ -1,0 +1,132 @@
+{
+  "level": 1,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "slots",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 0,
+    "memorizeSecondsPerWord": 3.2,
+    "memorizeMin": 8,
+    "memorizeMax": 16
+  },
+  "questions": [
+    {
+      "id": "L01-q00",
+      "reference": "1 Corinthians 12:12c",
+      "passageId": "passage-025",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "being many,"
+        }
+      ],
+      "text": "being many,"
+    },
+    {
+      "id": "L01-q01",
+      "reference": "1 Peter 5:2d",
+      "passageId": "passage-080",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "but voluntarily;"
+        }
+      ],
+      "text": "but voluntarily;"
+    },
+    {
+      "id": "L01-q02",
+      "reference": "2 Corinthians 3:18e",
+      "passageId": "passage-022",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 18,
+          "text": "the Spirit."
+        }
+      ],
+      "text": "the Spirit."
+    },
+    {
+      "id": "L01-q03",
+      "reference": "Ephesians 1:10d",
+      "passageId": "passage-034",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "in him."
+        }
+      ],
+      "text": "in him."
+    },
+    {
+      "id": "L01-q04",
+      "reference": "Galatians 5:23b",
+      "passageId": "passage-018",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "and self-control."
+        }
+      ],
+      "text": "and self-control."
+    },
+    {
+      "id": "L01-q05",
+      "reference": "Genesis 1:1a",
+      "passageId": "passage-010",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "In the beginning,"
+        }
+      ],
+      "text": "In the beginning,"
+    },
+    {
+      "id": "L01-q06",
+      "reference": "Hebrews 12:2a",
+      "passageId": "passage-043",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "looking to Jesus,"
+        }
+      ],
+      "text": "looking to Jesus,"
+    },
+    {
+      "id": "L01-q07",
+      "reference": "Hosea 6:6b",
+      "passageId": "passage-089",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "and not sacrifice;"
+        }
+      ],
+      "text": "and not sacrifice;"
+    },
+    {
+      "id": "L01-q08",
+      "reference": "Isaiah 42:2a",
+      "passageId": "passage-074",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He will not shout,"
+        }
+      ],
+      "text": "He will not shout,"
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "level": 2,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "slots",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 0,
+    "memorizeSecondsPerWord": 3.1,
+    "memorizeMin": 8,
+    "memorizeMax": 16
+  },
+  "questions": [
+    {
+      "id": "L02-q00",
+      "reference": "1 Corinthians 11:11d",
+      "passageId": "passage-024",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "in the Lord."
+        }
+      ],
+      "text": "in the Lord."
+    },
+    {
+      "id": "L02-q01",
+      "reference": "1 John 1:9a",
+      "passageId": "passage-003",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "If we confess our sins,"
+        }
+      ],
+      "text": "If we confess our sins,"
+    },
+    {
+      "id": "L02-q02",
+      "reference": "1 Peter 2:10a",
+      "passageId": "passage-006",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "In the past,"
+        }
+      ],
+      "text": "In the past,"
+    },
+    {
+      "id": "L02-q03",
+      "reference": "2 Corinthians 3:17c",
+      "passageId": "passage-021",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "there is liberty."
+        }
+      ],
+      "text": "there is liberty."
+    },
+    {
+      "id": "L02-q04",
+      "reference": "Ephesians 1:13d",
+      "passageId": "passage-035",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "having also believed,"
+        }
+      ],
+      "text": "having also believed,"
+    },
+    {
+      "id": "L02-q05",
+      "reference": "Galatians 5:16a",
+      "passageId": "passage-075",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "But I say,"
+        }
+      ],
+      "text": "But I say,"
+    },
+    {
+      "id": "L02-q06",
+      "reference": "Genesis 15:6a",
+      "passageId": "passage-055",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "He believed in Yahweh,"
+        }
+      ],
+      "text": "He believed in Yahweh,"
+    },
+    {
+      "id": "L02-q07",
+      "reference": "Hebrews 12:2d",
+      "passageId": "passage-043",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "despising its shame,"
+        }
+      ],
+      "text": "despising its shame,"
+    },
+    {
+      "id": "L02-q08",
+      "reference": "Hosea 6:6a",
+      "passageId": "passage-089",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "For I desire mercy,"
+        }
+      ],
+      "text": "For I desire mercy,"
+    }
+  ]
+}

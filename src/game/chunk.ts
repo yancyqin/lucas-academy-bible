@@ -1,50 +1,75 @@
+import type { Granularity } from './levels';
+
 /**
- * Chunking: turn a piece of scripture into ordered "chunks" (tiles).
+ * Turn scripture into ordered chunks (tiles) and into recall sections.
  *
- * Invariant we always uphold and test: joining the chunks in order with a
- * single space reproduces the source text EXACTLY. We never alter
- * capitalization or punctuation; punctuation stays attached to its word.
- *
- * Two modes:
- *  - 'words'  : every space-separated token is its own chunk (single words).
- *  - 'sizes'  : group consecutive tokens using an explicit list of group
- *               sizes (curated phrase chunks). The sizes must sum to the token
- *               count, otherwise we throw (caught by the validation tests).
+ * Core invariant, upheld everywhere and re-checked by tests: joining the pieces
+ * back with a single space reproduces the source text EXACTLY. We only ever
+ * group contiguous whitespace-separated tokens — we never alter capitalization
+ * or punctuation, and there are no punctuation-only tiles.
  */
 
-export type ChunkSpec = { mode: 'words' } | { mode: 'sizes'; sizes: number[] };
-
-/** Split scripture into single-space-separated tokens. */
 export function tokenize(text: string): string[] {
   return text.split(' ');
 }
 
-/**
- * Produce ordered chunk strings for one unit of text (a whole passage or a
- * single verse) according to the spec.
- */
-export function chunkText(text: string, spec: ChunkSpec): string[] {
-  const tokens = tokenize(text);
+const CLAUSE_END = /[,;:.!?”’")]$/;
+const SENTENCE_END = /[.!?][”’")]?$/;
 
-  if (spec.mode === 'words') {
-    return tokens;
-  }
+const MAX_WORDS: Record<Granularity, number> = {
+  words: 1,
+  short: 2,
+  phrase: 4,
+};
 
-  // mode === 'sizes'
-  const total = spec.sizes.reduce((a, b) => a + b, 0);
-  if (total !== tokens.length) {
-    throw new Error(
-      `chunk sizes sum to ${total} but text has ${tokens.length} tokens: "${text}"`,
-    );
-  }
+/** Group contiguous tokens, breaking at clause punctuation or a max width. */
+function group(tokens: string[], maxWords: number): string[] {
+  if (maxWords <= 1) return tokens.slice();
   const chunks: string[] = [];
-  let cursor = 0;
-  for (const size of spec.sizes) {
-    if (size <= 0) throw new Error(`chunk size must be positive, got ${size}`);
-    chunks.push(tokens.slice(cursor, cursor + size).join(' '));
-    cursor += size;
+  let cur: string[] = [];
+  for (const tok of tokens) {
+    cur.push(tok);
+    if (cur.length >= maxWords || CLAUSE_END.test(tok)) {
+      chunks.push(cur.join(' '));
+      cur = [];
+    }
+  }
+  if (cur.length) chunks.push(cur.join(' '));
+  return chunks;
+}
+
+/**
+ * Chunk one unit of text into tiles at the given granularity.
+ * Guarantees at least two tiles when there are at least two words.
+ */
+export function autoChunk(text: string, granularity: Granularity): string[] {
+  const tokens = tokenize(text);
+  if (tokens.length <= 1) return tokens;
+
+  let chunks = group(tokens, MAX_WORDS[granularity]);
+
+  // Never hand back a single tile for a multi-word verse — split in half.
+  if (chunks.length < 2) {
+    const mid = Math.ceil(tokens.length / 2);
+    chunks = [tokens.slice(0, mid).join(' '), tokens.slice(mid).join(' ')];
   }
   return chunks;
+}
+
+/** Split text into sentences (contiguous token groups). Rejoins to the source. */
+export function splitSentences(text: string): string[] {
+  const tokens = tokenize(text);
+  const sentences: string[] = [];
+  let cur: string[] = [];
+  for (const tok of tokens) {
+    cur.push(tok);
+    if (SENTENCE_END.test(tok)) {
+      sentences.push(cur.join(' '));
+      cur = [];
+    }
+  }
+  if (cur.length) sentences.push(cur.join(' '));
+  return sentences.length ? sentences : [text];
 }
 
 /** True when joining the chunks with single spaces reproduces `text` exactly. */

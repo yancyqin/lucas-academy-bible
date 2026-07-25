@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { LEVELS, getLevelConfig } from '../levels';
+import { LEVELS, getLevelFile } from '../levels';
 import { buildLevel, type BuiltLevel } from '../build';
 import {
   expectedChunk,
@@ -11,7 +11,7 @@ import {
 function playPerfectly(level: BuiltLevel): RecallState {
   let s = initRecall(level);
   let guard = 0;
-  while (s.status === 'playing' && guard < 1000) {
+  while (s.status === 'playing' && guard < 4000) {
     guard++;
     const section = s.level.sections[s.sectionIndex];
     const expected = section.correct[s.placed.length];
@@ -22,43 +22,52 @@ function playPerfectly(level: BuiltLevel): RecallState {
   return s;
 }
 
-describe('recall state machine', () => {
-  // Requirement 11
-  it('a wrong selection removes exactly one heart', () => {
-    const level = buildLevel(LEVELS[0], { seed: 1 }); // 3 hearts
+describe('recall state machine (bank model)', () => {
+  // Requirement 1 — half heart for a right-word/wrong-order tap
+  it('a right word tapped out of order costs half a heart', () => {
+    const level = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 }); // "Jesus wept.", 0 distractors
     const s0 = initRecall(level);
     expect(s0.hearts).toBe(3);
-    const wrong = s0.bank.find((t) => t.text !== expectedChunk(s0));
-    expect(wrong).toBeDefined();
-    const s1 = recallReducer(s0, { type: 'select', tileId: wrong!.id });
+    // "wept." is a correct tile, but it isn't the expected first word ("Jesus").
+    const outOfOrder = s0.bank.find((t) => !t.isDistractor && t.text !== expectedChunk(s0))!;
+    const s1 = recallReducer(s0, { type: 'select', tileId: outOfOrder.id });
+    expect(s1.hearts).toBe(2.5);
+    expect(s1.lastEvent).toMatchObject({ kind: 'wrong', penalty: 0.5, belongsToVerse: true });
+  });
+
+  // Requirement 1 — a word not in the verse (a distractor) costs a full heart
+  it('a distractor word costs a full heart', () => {
+    const level = buildLevel(getLevelFile(11)!, { seed: 1, questionIndex: 0 }); // has distractors
+    const s0 = initRecall(level);
+    const distractor = s0.bank.find((t) => t.isDistractor)!;
+    const s1 = recallReducer(s0, { type: 'select', tileId: distractor.id });
     expect(s1.hearts).toBe(2);
-    expect(s1.mistakes).toBe(1);
-    expect(s1.status).toBe('playing');
-    expect(s1.lastEvent).toMatchObject({ kind: 'wrong', heartsLeft: 2 });
+    expect(s1.lastEvent).toMatchObject({ kind: 'wrong', penalty: 1, belongsToVerse: false });
   });
 
-  it('running out of hearts moves to failed and keeps prior progress intact', () => {
-    const level = buildLevel(getLevelConfig(11)!, { seed: 1 }); // 1 heart
-    const s0 = initRecall(level);
-    const wrong = s0.bank.find((t) => t.text !== expectedChunk(s0))!;
-    const s1 = recallReducer(s0, { type: 'select', tileId: wrong.id });
-    expect(s1.hearts).toBe(0);
-    expect(s1.status).toBe('failed');
-    expect(s1.lastEvent).toMatchObject({ kind: 'failed' });
+  it('running out of hearts (3 distractor taps) moves to failed', () => {
+    const level = buildLevel(getLevelFile(11)!, { seed: 1, questionIndex: 0 });
+    let s = initRecall(level);
+    const distractor = s.bank.find((t) => t.isDistractor)!;
+    s = recallReducer(s, { type: 'select', tileId: distractor.id }); // 3 -> 2
+    s = recallReducer(s, { type: 'select', tileId: distractor.id }); // 2 -> 1
+    expect(s.status).toBe('playing');
+    s = recallReducer(s, { type: 'select', tileId: distractor.id }); // 1 -> 0
+    expect(s.hearts).toBe(0);
+    expect(s.status).toBe('failed');
   });
 
-  it('a correct selection moves the tile out of the bank into placed', () => {
-    const level = buildLevel(LEVELS[0], { seed: 1 });
+  it('a correct selection moves the tile from bank to placed', () => {
+    const level = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 });
     const s0 = initRecall(level);
-    const correct = s0.bank.find((t) => t.text === expectedChunk(s0))!;
-    const s1 = recallReducer(s0, { type: 'select', tileId: correct.id });
+    const first = s0.bank.find((t) => t.text === expectedChunk(s0))!;
+    const s1 = recallReducer(s0, { type: 'select', tileId: first.id });
     expect(s1.placed.map((t) => t.text)).toEqual(['Jesus']);
-    expect(s1.bank.find((t) => t.id === correct.id)).toBeUndefined();
-    expect(s1.lastEvent).toMatchObject({ kind: 'correct', streak: 1 });
+    expect(s1.bank.find((t) => t.id === first.id)).toBeUndefined();
   });
 
   it('undo returns the most recent correct tile to the bank', () => {
-    const level = buildLevel(LEVELS[0], { seed: 1 });
+    const level = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 });
     let s = initRecall(level);
     const first = s.bank.find((t) => t.text === expectedChunk(s))!;
     s = recallReducer(s, { type: 'select', tileId: first.id });
@@ -66,64 +75,55 @@ describe('recall state machine', () => {
     s = recallReducer(s, { type: 'undo' });
     expect(s.placed).toHaveLength(0);
     expect(s.bank.some((t) => t.id === first.id)).toBe(true);
-    expect(s.lastEvent).toMatchObject({ kind: 'undo' });
   });
 
-  it('completing the passage marks the level complete', () => {
-    const final = playPerfectly(buildLevel(LEVELS[0], { seed: 1 }));
+  it('completing the passage marks the level complete (flawless)', () => {
+    const final = playPerfectly(buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 }));
     expect(final.status).toBe('complete');
-    expect(final.hearts).toBe(3); // flawless
+    expect(final.hearts).toBe(3);
     expect(final.mistakes).toBe(0);
-    expect(final.lastEvent).toMatchObject({ kind: 'level-complete' });
   });
 
-  // Requirement 12
-  it('long multi-section passages advance through every section', () => {
-    for (const cfg of LEVELS.filter((l) => l.sectioned)) {
-      const level = buildLevel(cfg, { seed: 4 });
-      const sectionCount = level.sections.length;
-      expect(sectionCount).toBeGreaterThan(1);
+  // Requirement 12 — long multi-section passages advance through every section
+  it('the longest level completes section by section', () => {
+    const top = LEVELS[LEVELS.length - 1]; // longest passages, verse-sectioned
+    const level = buildLevel(top, { seed: 1, questionIndex: 0 });
+    expect(level.sections.length).toBeGreaterThan(1);
+    let s = initRecall(level);
+    const seen = new Set<number>();
+    let guard = 0;
+    while (s.status === 'playing' && guard < 5000) {
+      guard++;
+      seen.add(s.sectionIndex);
+      const section = s.level.sections[s.sectionIndex];
+      const tile = s.bank.find((t) => t.text === section.correct[s.placed.length])!;
+      s = recallReducer(s, { type: 'select', tileId: tile.id });
+    }
+    expect(s.status).toBe('complete');
+    expect(seen.size).toBe(level.sections.length);
+    expect(s.completedSections).toHaveLength(level.sections.length);
+    expect(s.completedSections.join(' ')).toBe(level.fullText);
+  });
 
-      // Walk the first section, then confirm we advance to section index 1.
-      let s = initRecall(level);
-      const seenSections = new Set<number>();
-      let guard = 0;
-      while (s.status === 'playing' && guard < 2000) {
-        guard++;
-        seenSections.add(s.sectionIndex);
-        const section = s.level.sections[s.sectionIndex];
-        const expected = section.correct[s.placed.length];
-        const tile = s.bank.find((t) => t.text === expected)!;
-        s = recallReducer(s, { type: 'select', tileId: tile.id });
+  it('every level, every question, can be completed by picking correct tiles', () => {
+    for (const l of LEVELS) {
+      for (let qi = 0; qi < l.questions.length; qi++) {
+        const built = buildLevel(l, { seed: 4, questionIndex: qi });
+        const final = playPerfectly(built);
+        expect(final.status, `L${l.level} q${qi}`).toBe('complete');
       }
-      expect(s.status).toBe('complete');
-      expect(s.completedSections).toHaveLength(sectionCount);
-      // Every section index was visited.
-      expect(seenSections.size).toBe(sectionCount);
-      // Each completed section text equals its verse text.
-      s.completedSections.forEach((text, i) => {
-        expect(text).toBe(level.sections[i].correct.join(' '));
-      });
     }
   });
 
-  it('the whole Ephesians 4 level (12 verses) can be completed section by section', () => {
-    const level = buildLevel(LEVELS[19], { seed: 1 });
-    const final = playPerfectly(level);
-    expect(final.status).toBe('complete');
-    expect(final.completedSections.join(' ')).toBe(level.fullText);
-  });
-
   it('restart resets placed tiles, hearts, and mistakes', () => {
-    const level = buildLevel(getLevelConfig(11)!, { seed: 1 });
+    const level = buildLevel(getLevelFile(11)!, { seed: 1, questionIndex: 0 });
     let s = initRecall(level);
     const wrong = s.bank.find((t) => t.text !== expectedChunk(s))!;
-    s = recallReducer(s, { type: 'select', tileId: wrong.id }); // fails (1 heart)
+    s = recallReducer(s, { type: 'select', tileId: wrong.id });
     s = recallReducer(s, { type: 'restart' });
     expect(s.hearts).toBe(level.hearts);
     expect(s.mistakes).toBe(0);
     expect(s.placed).toHaveLength(0);
     expect(s.status).toBe('playing');
-    expect(s.sectionIndex).toBe(0);
   });
 });

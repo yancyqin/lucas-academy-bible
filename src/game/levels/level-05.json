@@ -1,0 +1,132 @@
+{
+  "level": 5,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "slots",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 1,
+    "memorizeSecondsPerWord": 2.8,
+    "memorizeMin": 10,
+    "memorizeMax": 22
+  },
+  "questions": [
+    {
+      "id": "L05-q00",
+      "reference": "1 Corinthians 11:11b",
+      "passageId": "passage-024",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "neither is the woman independent of the man,"
+        }
+      ],
+      "text": "neither is the woman independent of the man,"
+    },
+    {
+      "id": "L05-q01",
+      "reference": "1 Peter 2:3",
+      "passageId": "passage-083",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "if indeed you have tasted that the Lord is gracious."
+        }
+      ],
+      "text": "if indeed you have tasted that the Lord is gracious."
+    },
+    {
+      "id": "L05-q02",
+      "reference": "2 Corinthians 3:17b",
+      "passageId": "passage-021",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "and where the Spirit of the Lord is,"
+        }
+      ],
+      "text": "and where the Spirit of the Lord is,"
+    },
+    {
+      "id": "L05-q03",
+      "reference": "Ecclesiastes 3:11b",
+      "passageId": "passage-012",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "He has also set eternity in their hearts,"
+        }
+      ],
+      "text": "He has also set eternity in their hearts,"
+    },
+    {
+      "id": "L05-q04",
+      "reference": "Ephesians 1:11a",
+      "passageId": "passage-034",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "We were also assigned an inheritance in him,"
+        }
+      ],
+      "text": "We were also assigned an inheritance in him,"
+    },
+    {
+      "id": "L05-q05",
+      "reference": "Galatians 5:23",
+      "passageId": "passage-018",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "gentleness, and self-control. Against such things there is no law."
+        }
+      ],
+      "text": "gentleness, and self-control. Against such things there is no law."
+    },
+    {
+      "id": "L05-q06",
+      "reference": "Genesis 1:1",
+      "passageId": "passage-010",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "In the beginning, God created the heavens and the earth."
+        }
+      ],
+      "text": "In the beginning, God created the heavens and the earth."
+    },
+    {
+      "id": "L05-q07",
+      "reference": "Hebrews 12:2a",
+      "passageId": "passage-043",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "looking to Jesus, the author and perfecter of faith,"
+        }
+      ],
+      "text": "looking to Jesus, the author and perfecter of faith,"
+    },
+    {
+      "id": "L05-q08",
+      "reference": "Isaiah 42:2a",
+      "passageId": "passage-074",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He will not shout, nor raise his voice,"
+        }
+      ],
+      "text": "He will not shout, nor raise his voice,"
+    }
+  ]
+}

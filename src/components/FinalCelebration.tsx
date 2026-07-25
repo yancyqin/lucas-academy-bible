@@ -1,79 +1,159 @@
-import { useEffect, useRef } from 'react';
-import { TOTAL_LEVELS } from '../game/levels';
-import type { Progress } from '../game/progress';
-import { totalStars } from '../game/progress';
+import { useEffect, useRef, useState } from 'react';
 import type { SoundEngine } from '../audio/sound';
-import { Stars } from './Stars';
-import { BookMark } from './icons';
+import { downloadCertificate } from '../game/certificate';
+import { BookMark, DownloadIcon } from './icons';
 
 interface FinalCelebrationProps {
-  progress: Progress;
-  level20Reference: string;
+  pass: boolean;
+  /** Highest level fully passed; null if the player cleared none. */
+  certLevel: number | null;
+  clearedCount: number;
+  scorePercent: number;
+  reference: string;
+  referenceZh: string;
   soundEnabled: boolean;
   sound: SoundEngine;
   onPlayAgain: () => void;
-  onReview: () => void;
+  onHome: () => void;
 }
 
 export function FinalCelebration({
-  progress,
-  level20Reference,
+  pass,
+  certLevel,
+  clearedCount,
+  scorePercent,
+  reference,
+  referenceZh,
   soundEnabled,
   sound,
   onPlayAgain,
-  onReview,
+  onHome,
 }: FinalCelebrationProps) {
   const played = useRef(false);
-  const stars = totalStars(progress);
-  const maxStars = TOTAL_LEVELS * 3;
+  const [awarded] = useState(() => {
+    const d = new Date();
+    const date = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    const time = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    return `${date} · ${time}`;
+  });
+
+  const hasCert = certLevel !== null;
 
   useEffect(() => {
     if (played.current) return;
     played.current = true;
-    if (soundEnabled) {
-      sound.resume();
-      sound.playFinale();
-    }
-  }, [soundEnabled, sound]);
+    if (!soundEnabled) return;
+    sound.resume();
+    if (pass) sound.playFinale();
+    else if (hasCert) sound.playComplete();
+  }, [soundEnabled, pass, hasCert, sound]);
+
+  // Cleared nothing (failed the very first level) — no certificate to award.
+  if (!hasCert) {
+    return (
+      <div className="stage" role="region" aria-label="Run over">
+        <div className="card center-col">
+          <div style={{ width: 64, height: 64 }} aria-hidden="true">
+            <BookMark />
+          </div>
+          <p className="eyebrow">Out of hearts</p>
+          <h1 className="title-xl" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.6rem)' }}>
+            So close — try again!
+          </h1>
+          <p className="lede" style={{ textAlign: 'center' }}>
+            Clear a level to earn your certificate. Every run starts fresh at Level 0.
+          </p>
+          <div className="btn-row">
+            <button type="button" className="btn btn--primary" onClick={onPlayAgain}>
+              Play again
+            </button>
+            <button type="button" className="btn btn--ghost" onClick={onHome}>
+              Home
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const levelWord = clearedCount === 1 ? 'level' : 'levels';
 
   return (
-    <div className="stage" role="region" aria-label="All levels complete">
-      <div className="card center-col celebrate">
-        <div style={{ width: 72, height: 72 }} aria-hidden="true">
-          <BookMark />
-        </div>
-        <p className="eyebrow">Journey complete</p>
-        <h1 className="title-xl">You restored all 20 passages.</h1>
-        <Stars value={3} animate size={40} />
-
-        <div className="stat-row">
-          <div className="stat">
-            <div className="stat__num">{progress.completed.length}</div>
-            <div className="stat__label">passages</div>
-          </div>
-          <div className="stat">
-            <div className="stat__num">
-              {stars}
-              <span style={{ fontSize: '0.9rem', color: 'var(--ink-soft)' }}>/{maxStars}</span>
-            </div>
-            <div className="stat__label">total stars</div>
+    <div className="stage" role="region" aria-label="Certificate">
+      <div className={`card certificate center-col ${pass ? 'certificate--gold' : ''}`}>
+        <div className="cert__seal" aria-hidden="true">
+          <div style={{ width: 46, height: 46 }}>
+            <BookMark />
           </div>
         </div>
 
-        <div className="divider" />
-        <p className="lede" style={{ textAlign: 'center' }}>
-          Your final passage was
+        <p className="cert__kicker">Lucas Academy · Bible Sequence</p>
+        <h1 className="cert__title">Certificate of Scripture Memory</h1>
+
+        {pass && <p className="verdict verdict--pass">Full journey complete</p>}
+
+        <p className="cert__awarded-to">This certifies that you passed</p>
+        <p className="cert__level">Level {certLevel}</p>
+
+        <div className="score" role="img" aria-label={`Score ${scorePercent} percent of hearts kept`}>
+          <div className="score__bar">
+            <div className="score__fill" style={{ width: `${scorePercent}%` }} />
+          </div>
+          <div className="score__label">
+            {scorePercent}% hearts kept · {clearedCount} {levelWord} cleared
+          </div>
+        </div>
+
+        <p className="cert__body">
+          Having studied and restored the Word of God through{' '}
+          <strong>Level {certLevel}</strong> of Bible Sequence
+          {reference ? (
+            <>
+              {' '}— up to <em>{reference}</em>
+              {referenceZh ? ` · ${referenceZh}` : ''}
+            </>
+          ) : null}
+          .
         </p>
-        <p className="reference" style={{ display: 'block', fontSize: '1rem' }}>
-          {level20Reference}
-        </p>
+
+        <div className="cert__rule" aria-hidden="true" />
+        <div className="cert__meta">
+          <span>
+            <span className="cert__meta-label">Awarded</span>
+            <span className="cert__meta-value">{awarded}</span>
+          </span>
+          <span style={{ textAlign: 'right' }}>
+            <span className="cert__meta-label">Issued by</span>
+            <span className="cert__meta-value cert__sig">Lucas Academy</span>
+          </span>
+        </div>
 
         <div className="btn-row">
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() =>
+              downloadCertificate({
+                pass,
+                certLevel: certLevel as number,
+                clearedCount,
+                scorePercent,
+                reference,
+                referenceZh,
+                awarded,
+              })
+            }
+          >
+            <span aria-hidden="true" style={{ display: 'inline-flex' }}>
+              <DownloadIcon />
+            </span>
+            Download
+          </button>
           <button type="button" className="btn btn--primary" onClick={onPlayAgain}>
             Play again
           </button>
-          <button type="button" className="btn btn--ghost" onClick={onReview}>
-            Review any level
+          <button type="button" className="btn btn--ghost" onClick={onHome}>
+            Home
           </button>
         </div>
       </div>

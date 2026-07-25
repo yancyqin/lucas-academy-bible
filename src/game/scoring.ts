@@ -15,3 +15,18 @@ export function computeStars(mistakes: number, retries: number): 1 | 2 | 3 {
 export function starLabel(stars: number): string {
   return `${stars} of 3 stars`;
 }
+
+/**
+ * Final run score: the percentage of hearts kept across every level the player
+ * attempted (each level starts with `heartsPerLevel`). A flawless full run is
+ * 100%; a level the player failed contributes 0 kept hearts out of its max.
+ */
+export function heartPercent(
+  heartsKept: number,
+  levelsAttempted: number,
+  heartsPerLevel = 3,
+): number {
+  if (levelsAttempted <= 0) return 0;
+  const pct = (heartsKept / (heartsPerLevel * levelsAttempted)) * 100;
+  return Math.max(0, Math.min(100, Math.round(pct)));
+}

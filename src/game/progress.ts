@@ -1,4 +1,4 @@
-import { TOTAL_LEVELS } from './levels';
+import { MAX_LEVEL, MIN_LEVEL } from './levels';
 
 /**
  * Local progress persistence. Frontend-only: everything lives in localStorage.
@@ -11,7 +11,7 @@ const CURRENT_VERSION = 1;
 
 export interface Progress {
   version: number;
-  /** Highest level the player may enter (1..TOTAL_LEVELS). */
+  /** Highest level the player may enter (MIN_LEVEL..MAX_LEVEL). */
   highestUnlocked: number;
   /** Levels the player has cleared at least once. */
   completed: number[];
@@ -28,11 +28,11 @@ export interface Progress {
 export function defaultProgress(): Progress {
   return {
     version: CURRENT_VERSION,
-    highestUnlocked: 1,
+    highestUnlocked: MIN_LEVEL,
     completed: [],
     stars: {},
     bestAttempts: {},
-    currentLevel: 1,
+    currentLevel: MIN_LEVEL,
     soundEnabled: true,
     introSeen: false,
   };
@@ -40,7 +40,7 @@ export function defaultProgress(): Progress {
 
 function clampLevel(n: unknown, fallback: number): number {
   if (typeof n !== 'number' || !Number.isFinite(n)) return fallback;
-  return Math.min(TOTAL_LEVELS, Math.max(1, Math.floor(n)));
+  return Math.min(MAX_LEVEL, Math.max(MIN_LEVEL, Math.floor(n)));
 }
 
 /**
@@ -58,7 +58,7 @@ export function sanitizeProgress(raw: unknown): Progress {
         new Set(
           obj.completed
             .filter((v): v is number => typeof v === 'number' && Number.isFinite(v))
-            .map((v) => clampLevel(v, 1)),
+            .map((v) => clampLevel(v, MIN_LEVEL)),
         ),
       ).sort((a, b) => a - b)
     : [];
@@ -83,10 +83,10 @@ export function sanitizeProgress(raw: unknown): Progress {
     }
   }
 
-  // highestUnlocked must be at least 1 and cover every completed level (+ next).
-  let highestUnlocked = clampLevel(obj.highestUnlocked, 1);
+  // highestUnlocked must cover every completed level (+ the next one).
+  let highestUnlocked = clampLevel(obj.highestUnlocked, MIN_LEVEL);
   for (const c of completed) {
-    highestUnlocked = Math.max(highestUnlocked, Math.min(TOTAL_LEVELS, c + 1));
+    highestUnlocked = Math.max(highestUnlocked, Math.min(MAX_LEVEL, c + 1));
   }
 
   return {
@@ -95,7 +95,7 @@ export function sanitizeProgress(raw: unknown): Progress {
     completed,
     stars,
     bestAttempts,
-    currentLevel: clampLevel(obj.currentLevel, 1),
+    currentLevel: clampLevel(obj.currentLevel, MIN_LEVEL),
     soundEnabled: typeof obj.soundEnabled === 'boolean' ? obj.soundEnabled : true,
     introSeen: typeof obj.introSeen === 'boolean' ? obj.introSeen : false,
   };
@@ -148,7 +148,7 @@ export function recordCompletion(
   const completed = Array.from(new Set([...progress.completed, level])).sort(
     (a, b) => a - b,
   );
-  const nextUnlock = Math.min(TOTAL_LEVELS, level + 1);
+  const nextUnlock = Math.min(MAX_LEVEL, level + 1);
   const prevStars = progress.stars[level] ?? 0;
   const prevBest = progress.bestAttempts[level] ?? Infinity;
 

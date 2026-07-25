@@ -1,21 +1,14 @@
 import { useEffect, useState } from 'react';
 import './styles.css';
 
-import { getLevelConfig, TOTAL_LEVELS } from './game/levels';
+import { getLevelFile, MAX_LEVEL, MIN_LEVEL } from './game/levels';
 import { buildLevel, type BuiltLevel } from './game/build';
-import { computeStars } from './game/scoring';
-import {
-  loadProgress,
-  recordCompletion,
-  saveProgress,
-  type Progress,
-} from './game/progress';
-import { requirePassage } from './data/scripture';
+import { computeStars, heartPercent } from './game/scoring';
+import { loadProgress, saveProgress, type Progress } from './game/progress';
 import { soundEngine } from './audio/sound';
 import { narrator } from './audio/speech';
 
 import { Welcome } from './components/Welcome';
-import { LevelIntro } from './components/LevelIntro';
 import { StudyPhase } from './components/StudyPhase';
 import { RecallPhase } from './components/RecallPhase';
 import { LevelComplete } from './components/LevelComplete';
@@ -23,12 +16,31 @@ import { FinalCelebration } from './components/FinalCelebration';
 import { SoundToggle } from './components/SoundToggle';
 import { BookMark } from './components/icons';
 
-type Phase = 'welcome' | 'intro' | 'study' | 'recall' | 'success' | 'final';
+type Phase = 'welcome' | 'study' | 'recall' | 'success' | 'final';
+
+/** Score accumulated across a single run (which always starts at Level 0). */
+interface Run {
+  levelsAttempted: number;
+  heartsKept: number;
+  /** The highest level fully cleared so far (for the certificate). */
+  top: { level: number; reference: string; referenceZh: string } | null;
+}
 
 interface Result {
   stars: number;
   mistakes: number;
-  attempts: number;
+}
+
+interface FinalState {
+  pass: boolean;
+  /** Highest level fully passed (null if the player failed the very first level). */
+  certLevel: number | null;
+  /** Levels fully cleared — the FAILED level is not counted. */
+  clearedCount: number;
+  /** Percentage of hearts kept across the cleared levels (excludes the fail). */
+  scorePercent: number;
+  reference: string;
+  referenceZh: string;
 }
 
 interface LiveMsg {
@@ -36,28 +48,28 @@ interface LiveMsg {
   id: number;
 }
 
+// App can use Math.random for a fresh verse each play (only Workflow scripts forbid it).
+function freshSeed(): number {
+  return Math.floor(Math.random() * 1_000_000_000);
+}
+
 export default function App() {
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
   const [phase, setPhase] = useState<Phase>('welcome');
-  const [level, setLevel] = useState(1);
-  const [attempt, setAttempt] = useState(1); // 1-based attempt number for this visit
-  const [retries, setRetries] = useState(0);
+  const [level, setLevel] = useState(MIN_LEVEL);
+  const [playId, setPlayId] = useState(0);
   const [built, setBuilt] = useState<BuiltLevel | null>(null);
+  const [run, setRun] = useState<Run>({ levelsAttempted: 0, heartsKept: 0, top: null });
   const [result, setResult] = useState<Result | null>(null);
+  const [final, setFinal] = useState<FinalState | null>(null);
   const [polite, setPolite] = useState<LiveMsg>({ text: '', id: 0 });
   const [assertive, setAssertive] = useState<LiveMsg>({ text: '', id: 0 });
 
   const soundEnabled = progress.soundEnabled;
 
-  // Keep the audio engine's enabled flag in sync with saved preference.
   useEffect(() => {
     soundEngine.setEnabled(soundEnabled);
   }, [soundEnabled]);
-
-  const persist = (next: Progress) => {
-    setProgress(next);
-    saveProgress(next);
-  };
 
   const announce = (text: string, isAssertive = false) => {
     if (isAssertive) setAssertive((m) => ({ text, id: m.id + 1 }));
@@ -69,56 +81,72 @@ export default function App() {
     soundEngine.setEnabled(next);
     if (next) soundEngine.resume();
     else narrator.stop();
-    persist({ ...progress, soundEnabled: next });
+    const updated = { ...progress, soundEnabled: next };
+    setProgress(updated);
+    saveProgress(updated); // the sound preference is the only thing we persist
     announce(next ? 'Sound on.' : 'Sound off.');
   };
 
-  const cfg = getLevelConfig(level);
-
-  const enterStudy = (lvl: number, attemptNum: number, prog: Progress) => {
-    const config = getLevelConfig(lvl);
-    if (!config) return;
-    setBuilt(buildLevel(config, { seed: lvl * 1000 + attemptNum }));
-    if (prog.soundEnabled) soundEngine.resume();
+  // Enter one level of the current run (does not touch the run score).
+  const enterLevel = (lvl: number) => {
+    const file = getLevelFile(lvl);
+    if (!file) return;
+    setLevel(lvl);
+    setResult(null);
+    narrator.stop();
+    setBuilt(buildLevel(file, { seed: freshSeed() }));
+    setPlayId((p) => p + 1);
+    if (soundEnabled) soundEngine.resume(); // the tap into a level is our gesture
     setPhase('study');
   };
 
-  const startLevel = (lvl: number) => {
-    const next = { ...progress, currentLevel: lvl };
-    persist(next);
-    setLevel(lvl);
-    setAttempt(1);
-    setRetries(0);
-    setBuilt(null);
-    setResult(null);
-    narrator.stop();
-    setPhase('intro');
+  // Start (or restart) a whole run from Level 0.
+  const startRun = () => {
+    setRun({ levelsAttempted: 0, heartsKept: 0, top: null });
+    setFinal(null);
+    enterLevel(MIN_LEVEL);
   };
 
-  const beginStudyFromIntro = () => {
-    const prog = progress.introSeen ? progress : { ...progress, introSeen: true };
-    if (!progress.introSeen) persist(prog);
-    // First real user gesture into audio: allow the engine to start.
-    if (prog.soundEnabled) soundEngine.resume();
-    enterStudy(level, attempt, prog);
+  const handleComplete = (mistakes: number, hearts: number) => {
+    const top = {
+      level,
+      reference: built?.reference ?? '',
+      referenceZh: built?.referenceZh ?? '',
+    };
+    const levelsAttempted = run.levelsAttempted + 1;
+    const heartsKept = run.heartsKept + hearts;
+    setRun({ levelsAttempted, heartsKept, top });
+    setResult({ stars: computeStars(mistakes, 0), mistakes });
+
+    if (level >= MAX_LEVEL) {
+      // Full run: the certificate is for the final level, over all levels.
+      setFinal({
+        pass: true,
+        certLevel: level,
+        clearedCount: levelsAttempted,
+        scorePercent: heartPercent(heartsKept, levelsAttempted),
+        reference: top.reference,
+        referenceZh: top.referenceZh,
+      });
+      setPhase('final');
+    } else {
+      setPhase('success');
+    }
   };
 
-  const handleComplete = (mistakes: number) => {
-    const attemptsUsed = attempt;
-    const stars = computeStars(mistakes, retries);
-    setResult({ stars, mistakes, attempts: attemptsUsed });
-    const nextProgress = recordCompletion(progress, level, stars, attemptsUsed);
-    persist(nextProgress);
-    if (level >= TOTAL_LEVELS) setPhase('final');
-    else setPhase('success');
-  };
-
-  const handleRetry = () => {
-    const nextAttempt = attempt + 1;
-    setAttempt(nextAttempt);
-    setRetries((r) => r + 1);
-    narrator.stop();
-    enterStudy(level, nextAttempt, progress);
+  const handleFail = () => {
+    // The failed level is NOT counted — the certificate is for the last level
+    // cleared, and the score is over the cleared levels only.
+    const clearedCount = run.levelsAttempted;
+    setFinal({
+      pass: false,
+      certLevel: run.top ? run.top.level : null,
+      clearedCount,
+      scorePercent: clearedCount > 0 ? heartPercent(run.heartsKept, clearedCount) : 0,
+      reference: run.top?.reference ?? '',
+      referenceZh: run.top?.referenceZh ?? '',
+    });
+    setPhase('final');
   };
 
   const goWelcome = () => {
@@ -128,16 +156,12 @@ export default function App() {
 
   const continueNext = () => {
     narrator.stop();
-    const next = level + 1;
-    if (next > TOTAL_LEVELS) setPhase('final');
-    else startLevel(next);
+    if (level >= MAX_LEVEL) setPhase('final');
+    else enterLevel(level + 1);
   };
-
-  const showBrandToggle = phase !== 'welcome';
 
   return (
     <div className="app">
-      {/* Screen-reader live regions */}
       <div className="visually-hidden" aria-live="polite" aria-atomic="true">
         <span key={polite.id}>{polite.text}</span>
       </div>
@@ -145,14 +169,14 @@ export default function App() {
         <span key={assertive.id}>{assertive.text}</span>
       </div>
 
-      {showBrandToggle && (
+      {phase !== 'welcome' && (
         <header className="brandbar">
           <button
             type="button"
             className="brandbar__title"
             onClick={goWelcome}
             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-            aria-label="Bible Sequence — go to level map"
+            aria-label="Bible Sequence — quit to start"
           >
             <span className="brandbar__mark" aria-hidden="true">
               <BookMark />
@@ -164,28 +188,13 @@ export default function App() {
       )}
 
       {phase === 'welcome' && (
-        <Welcome
-          progress={progress}
-          soundEnabled={soundEnabled}
-          onToggleSound={toggleSound}
-          onStartLevel={startLevel}
-        />
+        <Welcome soundEnabled={soundEnabled} onToggleSound={toggleSound} onBegin={startRun} />
       )}
 
-      {phase === 'intro' && cfg && (
-        <LevelIntro
-          config={cfg}
-          verseCount={requirePassage(cfg.passageId).verses.length}
-          firstEver={!progress.introSeen}
-          onBegin={beginStudyFromIntro}
-          onBack={goWelcome}
-        />
-      )}
-
-      {phase === 'study' && cfg && (
+      {phase === 'study' && built && (
         <StudyPhase
-          config={cfg}
-          passage={requirePassage(cfg.passageId)}
+          key={`study-${playId}`}
+          built={built}
           soundEnabled={soundEnabled}
           narrator={narrator}
           sound={soundEngine}
@@ -197,13 +206,13 @@ export default function App() {
 
       {phase === 'recall' && built && (
         <RecallPhase
-          key={`${level}-${attempt}`}
+          key={`recall-${playId}`}
           level={built}
           sound={soundEngine}
           announce={announce}
           onComplete={handleComplete}
-          onRetry={handleRetry}
-          onExit={goWelcome}
+          onFail={handleFail}
+          onStartOver={startRun}
         />
       )}
 
@@ -212,22 +221,25 @@ export default function App() {
           level={built}
           stars={result.stars}
           mistakes={result.mistakes}
-          attempts={result.attempts}
           soundEnabled={soundEnabled}
           narrator={narrator}
           onContinue={continueNext}
-          onReview={goWelcome}
+          onQuit={goWelcome}
         />
       )}
 
-      {phase === 'final' && (
+      {phase === 'final' && final && (
         <FinalCelebration
-          progress={progress}
-          level20Reference={requirePassage(getLevelConfig(TOTAL_LEVELS)!.passageId).reference}
+          pass={final.pass}
+          certLevel={final.certLevel}
+          clearedCount={final.clearedCount}
+          scorePercent={final.scorePercent}
+          reference={final.reference}
+          referenceZh={final.referenceZh}
           soundEnabled={soundEnabled}
           sound={soundEngine}
-          onPlayAgain={() => startLevel(1)}
-          onReview={goWelcome}
+          onPlayAgain={startRun}
+          onHome={goWelcome}
         />
       )}
     </div>

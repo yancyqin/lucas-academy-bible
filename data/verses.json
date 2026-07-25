@@ -4,7 +4,7 @@
     "repositoryName": "lucas-academy-bible",
     "siteUrl": "https://bible.lucasacademy.org",
     "createdDate": "2026-07-24",
-    "entryCount": 89,
+    "entryCount": 90,
     "duplicatesPreserved": true,
     "translation": {
       "id": "WEB",
@@ -14,6 +14,14 @@
       "license": "Public Domain",
       "licenseUrl": "https://ebible.org/details.php?id=eng-web",
       "sourceUrl": "https://ebible.org/Scriptures/eng-web_vpl.zip"
+    },
+    "translationZh": {
+      "id": "CUV",
+      "name": "Chinese Union Version (和合本, Simplified)",
+      "language": "Chinese",
+      "license": "Public Domain",
+      "licenseUrl": "https://ebible.org/details.php?id=cmn-cu89s",
+      "sourceUrl": "https://ebible.org/Scriptures/cmn-cu89s_vpl.zip"
     }
   },
   "passages": [
@@ -23,6 +31,7 @@
       "requestedAs": "Jesus wept",
       "reference": "John 11:35",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 11,
       "verseStart": 35,
       "verseEnd": 35,
@@ -30,10 +39,12 @@
       "verses": [
         {
           "verse": 35,
-          "text": "Jesus wept."
+          "text": "Jesus wept.",
+          "textZh": "耶稣哭了。"
         }
       ],
       "text": "Jesus wept.",
+      "textZh": "耶稣哭了。",
       "matchNote": "Matched from the supplied phrase."
     },
     {
@@ -42,6 +53,7 @@
       "requestedAs": "你的话是我脚前的灯....",
       "reference": "Psalm 119:105",
       "book": "Psalm",
+      "bookZh": "诗篇",
       "chapter": 119,
       "verseStart": 105,
       "verseEnd": 105,
@@ -49,10 +61,12 @@
       "verses": [
         {
           "verse": 105,
-          "text": "Your word is a lamp to my feet, and a light for my path."
+          "text": "Your word is a lamp to my feet, and a light for my path.",
+          "textZh": "你的话是我脚前的灯， 是我路上的光。"
         }
       ],
       "text": "Your word is a lamp to my feet, and a light for my path.",
+      "textZh": "你的话是我脚前的灯， 是我路上的光。",
       "matchNote": "Matched from the supplied Chinese phrase."
     },
     {
@@ -61,6 +75,7 @@
       "requestedAs": "约翰一书1章9节",
       "reference": "1 John 1:9",
       "book": "1 John",
+      "bookZh": "约翰一书",
       "chapter": 1,
       "verseStart": 9,
       "verseEnd": 9,
@@ -68,10 +83,12 @@
       "verses": [
         {
           "verse": 9,
-          "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness."
+          "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness.",
+          "textZh": "我们若认自己的罪，　神是信实的，是公义的，必要赦免我们的罪，洗净我们一切的不义。"
         }
       ],
-      "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness."
+      "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness.",
+      "textZh": "我们若认自己的罪，　神是信实的，是公义的，必要赦免我们的罪，洗净我们一切的不义。"
     },
     {
       "id": "passage-004",
@@ -79,6 +96,7 @@
       "requestedAs": "John 8:31-32",
       "reference": "John 8:31-32",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 8,
       "verseStart": 31,
       "verseEnd": 32,
@@ -86,14 +104,17 @@
       "verses": [
         {
           "verse": 31,
-          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples.",
+          "textZh": "耶稣对信他的犹太人说：「你们若常常遵守我的道，就真是我的门徒；"
         },
         {
           "verse": 32,
-          "text": "You will know the truth, and the truth will make you free.”"
+          "text": "You will know the truth, and the truth will make you free.”",
+          "textZh": "你们必晓得真理，真理必叫你们得以自由。」"
         }
       ],
-      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.”"
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.”",
+      "textZh": "耶稣对信他的犹太人说：「你们若常常遵守我的道，就真是我的门徒；你们必晓得真理，真理必叫你们得以自由。」"
     },
     {
       "id": "passage-005",
@@ -101,6 +122,7 @@
       "requestedAs": "腓立比书2:15",
       "reference": "Philippians 2:15",
       "book": "Philippians",
+      "bookZh": "腓立比书",
       "chapter": 2,
       "verseStart": 15,
       "verseEnd": 15,
@@ -108,10 +130,12 @@
       "verses": [
         {
           "verse": 15,
-          "text": "that you may become blameless and harmless, children of God without defect in the middle of a crooked and perverse generation, among whom you are seen as lights in the world,"
+          "text": "that you may become blameless and harmless, children of God without defect in the middle of a crooked and perverse generation, among whom you are seen as lights in the world,",
+          "textZh": "使你们无可指摘，诚实无伪，在这弯曲悖谬的世代作　神无瑕疵的儿女。你们显在这世代中，好像明光照耀，"
         }
       ],
-      "text": "that you may become blameless and harmless, children of God without defect in the middle of a crooked and perverse generation, among whom you are seen as lights in the world,"
+      "text": "that you may become blameless and harmless, children of God without defect in the middle of a crooked and perverse generation, among whom you are seen as lights in the world,",
+      "textZh": "使你们无可指摘，诚实无伪，在这弯曲悖谬的世代作　神无瑕疵的儿女。你们显在这世代中，好像明光照耀，"
     },
     {
       "id": "passage-006",
@@ -119,6 +143,7 @@
       "requestedAs": "彼得前书2：10",
       "reference": "1 Peter 2:10",
       "book": "1 Peter",
+      "bookZh": "彼得前书",
       "chapter": 2,
       "verseStart": 10,
       "verseEnd": 10,
@@ -126,10 +151,12 @@
       "verses": [
         {
           "verse": 10,
-          "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy."
+          "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy.",
+          "textZh": "你们从前算不得子民， 现在却作了　神的子民； 从前未曾蒙怜恤， 现在却蒙了怜恤。"
         }
       ],
-      "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy."
+      "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy.",
+      "textZh": "你们从前算不得子民， 现在却作了　神的子民； 从前未曾蒙怜恤， 现在却蒙了怜恤。"
     },
     {
       "id": "passage-007",
@@ -137,6 +164,7 @@
       "requestedAs": "以弗所书2:8",
       "reference": "Ephesians 2:8",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 2,
       "verseStart": 8,
       "verseEnd": 8,
@@ -144,10 +172,12 @@
       "verses": [
         {
           "verse": 8,
-          "text": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God,"
+          "text": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God,",
+          "textZh": "你们得救是本乎恩，也因着信；这并不是出于自己，乃是　神所赐的；"
         }
       ],
-      "text": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God,"
+      "text": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God,",
+      "textZh": "你们得救是本乎恩，也因着信；这并不是出于自己，乃是　神所赐的；"
     },
     {
       "id": "passage-008",
@@ -155,6 +185,7 @@
       "requestedAs": "以弗所书2:10",
       "reference": "Ephesians 2:10",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 2,
       "verseStart": 10,
       "verseEnd": 10,
@@ -162,10 +193,12 @@
       "verses": [
         {
           "verse": 10,
-          "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them."
+          "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them.",
+          "textZh": "我们原是他的工作，在基督耶稣里造成的，为要叫我们行善，就是　神所预备叫我们行的。"
         }
       ],
-      "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them."
+      "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them.",
+      "textZh": "我们原是他的工作，在基督耶稣里造成的，为要叫我们行善，就是　神所预备叫我们行的。"
     },
     {
       "id": "passage-009",
@@ -173,6 +206,7 @@
       "requestedAs": "Matthew 7:7",
       "reference": "Matthew 7:7",
       "book": "Matthew",
+      "bookZh": "马太福音",
       "chapter": 7,
       "verseStart": 7,
       "verseEnd": 7,
@@ -180,10 +214,12 @@
       "verses": [
         {
           "verse": 7,
-          "text": "“Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened for you."
+          "text": "“Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened for you.",
+          "textZh": "「你们祈求，就给你们；寻找，就寻见；叩门，就给你们开门。"
         }
       ],
-      "text": "“Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened for you."
+      "text": "“Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened for you.",
+      "textZh": "「你们祈求，就给你们；寻找，就寻见；叩门，就给你们开门。"
     },
     {
       "id": "passage-010",
@@ -191,6 +227,7 @@
       "requestedAs": "创世纪1:1",
       "reference": "Genesis 1:1",
       "book": "Genesis",
+      "bookZh": "创世记",
       "chapter": 1,
       "verseStart": 1,
       "verseEnd": 1,
@@ -198,10 +235,12 @@
       "verses": [
         {
           "verse": 1,
-          "text": "In the beginning, God created the heavens and the earth."
+          "text": "In the beginning, God created the heavens and the earth.",
+          "textZh": "起初，　神创造天地。"
         }
       ],
-      "text": "In the beginning, God created the heavens and the earth."
+      "text": "In the beginning, God created the heavens and the earth.",
+      "textZh": "起初，　神创造天地。"
     },
     {
       "id": "passage-011",
@@ -209,6 +248,7 @@
       "requestedAs": "人要离开父母，夫妻二人成为一体",
       "reference": "Genesis 2:24",
       "book": "Genesis",
+      "bookZh": "创世记",
       "chapter": 2,
       "verseStart": 24,
       "verseEnd": 24,
@@ -216,10 +256,12 @@
       "verses": [
         {
           "verse": 24,
-          "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh."
+          "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh.",
+          "textZh": "因此，人要离开父母，与妻子连合，二人成为一体。"
         }
       ],
       "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh.",
+      "textZh": "因此，人要离开父母，与妻子连合，二人成为一体。",
       "matchNote": "Matched to the original statement in Genesis."
     },
     {
@@ -228,6 +270,7 @@
       "requestedAs": "各按其时成为美好",
       "reference": "Ecclesiastes 3:11",
       "book": "Ecclesiastes",
+      "bookZh": "传道书",
       "chapter": 3,
       "verseStart": 11,
       "verseEnd": 11,
@@ -235,10 +278,12 @@
       "verses": [
         {
           "verse": 11,
-          "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end."
+          "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end.",
+          "textZh": "神造万物，各按其时成为美好，又将永生安置在世人心里。然而　神从始至终的作为，人不能参透。"
         }
       ],
       "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end.",
+      "textZh": "神造万物，各按其时成为美好，又将永生安置在世人心里。然而　神从始至终的作为，人不能参透。",
       "matchNote": "Matched from the supplied Chinese phrase."
     },
     {
@@ -247,6 +292,7 @@
       "requestedAs": "诸天诉说神的荣耀",
       "reference": "Psalm 19:1",
       "book": "Psalm",
+      "bookZh": "诗篇",
       "chapter": 19,
       "verseStart": 1,
       "verseEnd": 1,
@@ -254,10 +300,12 @@
       "verses": [
         {
           "verse": 1,
-          "text": "For the Chief Musician. A Psalm by David. The heavens declare the glory of God. The expanse shows his handiwork."
+          "text": "For the Chief Musician. A Psalm by David. The heavens declare the glory of God. The expanse shows his handiwork.",
+          "textZh": "大卫的诗，交与伶长。 诸天述说　神的荣耀； 穹苍传扬他的手段。"
         }
       ],
       "text": "For the Chief Musician. A Psalm by David. The heavens declare the glory of God. The expanse shows his handiwork.",
+      "textZh": "大卫的诗，交与伶长。 诸天述说　神的荣耀； 穹苍传扬他的手段。",
       "matchNote": "Matched from the supplied Chinese phrase."
     },
     {
@@ -266,6 +314,7 @@
       "requestedAs": "人算什么你既然在乎他",
       "reference": "Psalm 8:4",
       "book": "Psalm",
+      "bookZh": "诗篇",
       "chapter": 8,
       "verseStart": 4,
       "verseEnd": 4,
@@ -273,10 +322,12 @@
       "verses": [
         {
           "verse": 4,
-          "text": "what is man, that you think of him? What is the son of man, that you care for him?"
+          "text": "what is man, that you think of him? What is the son of man, that you care for him?",
+          "textZh": "[便说]：人算什么，你竟顾念他！ 世人算什么，你竟眷顾他！"
         }
       ],
       "text": "what is man, that you think of him? What is the son of man, that you care for him?",
+      "textZh": "[便说]：人算什么，你竟顾念他！ 世人算什么，你竟眷顾他！",
       "matchNote": "Matched from the supplied Chinese phrase."
     },
     {
@@ -285,6 +336,7 @@
       "requestedAs": "Joshua 出名的那个 do not afraid",
       "reference": "Joshua 1:9",
       "book": "Joshua",
+      "bookZh": "约书亚记",
       "chapter": 1,
       "verseStart": 9,
       "verseEnd": 9,
@@ -292,10 +344,12 @@
       "verses": [
         {
           "verse": 9,
-          "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”"
+          "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”",
+          "textZh": "我岂没有吩咐你吗？你当刚强壮胆！不要惧怕，也不要惊惶；因为你无论往哪里去，耶和华—你的　神必与你同在。」"
         }
       ],
       "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”",
+      "textZh": "我岂没有吩咐你吗？你当刚强壮胆！不要惧怕，也不要惊惶；因为你无论往哪里去，耶和华—你的　神必与你同在。」",
       "matchNote": "Matched to Joshua's well-known command to be strong and not afraid."
     },
     {
@@ -304,6 +358,7 @@
       "requestedAs": "what merely mortal can do to me from plasm",
       "reference": "Psalm 56:4",
       "book": "Psalm",
+      "bookZh": "诗篇",
       "chapter": 56,
       "verseStart": 4,
       "verseEnd": 4,
@@ -311,10 +366,12 @@
       "verses": [
         {
           "verse": 4,
-          "text": "In God, I praise his word. In God, I put my trust. I will not be afraid. What can flesh do to me?"
+          "text": "In God, I praise his word. In God, I put my trust. I will not be afraid. What can flesh do to me?",
+          "textZh": "我倚靠　神，我要赞美他的话； 我倚靠　神，必不惧怕。 血气之辈能把我怎么样呢？"
         }
       ],
       "text": "In God, I praise his word. In God, I put my trust. I will not be afraid. What can flesh do to me?",
+      "textZh": "我倚靠　神，我要赞美他的话； 我倚靠　神，必不惧怕。 血气之辈能把我怎么样呢？",
       "matchNote": "Matched to the NIV wording 'what can mere mortals do to me'."
     },
     {
@@ -323,6 +380,7 @@
       "requestedAs": "加拉太书2：20",
       "reference": "Galatians 2:20",
       "book": "Galatians",
+      "bookZh": "加拉太书",
       "chapter": 2,
       "verseStart": 20,
       "verseEnd": 20,
@@ -330,10 +388,12 @@
       "verses": [
         {
           "verse": 20,
-          "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me."
+          "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me.",
+          "textZh": "我已经与基督同钉十字架，现在活着的不再是我，乃是基督在我里面活着；并且我如今在肉身活着，是因信　神的儿子而活；他是爱我，为我舍己。"
         }
       ],
-      "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me."
+      "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me.",
+      "textZh": "我已经与基督同钉十字架，现在活着的不再是我，乃是基督在我里面活着；并且我如今在肉身活着，是因信　神的儿子而活；他是爱我，为我舍己。"
     },
     {
       "id": "passage-018",
@@ -341,6 +401,7 @@
       "requestedAs": "加拉太书圣灵的果子",
       "reference": "Galatians 5:22-23",
       "book": "Galatians",
+      "bookZh": "加拉太书",
       "chapter": 5,
       "verseStart": 22,
       "verseEnd": 23,
@@ -348,14 +409,17 @@
       "verses": [
         {
           "verse": 22,
-          "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,"
+          "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,",
+          "textZh": "圣灵所结的果子，就是仁爱、喜乐、和平、忍耐、恩慈、良善、信实、"
         },
         {
           "verse": 23,
-          "text": "gentleness, and self-control. Against such things there is no law."
+          "text": "gentleness, and self-control. Against such things there is no law.",
+          "textZh": "温柔、节制。这样的事没有律法禁止。"
         }
       ],
       "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith, gentleness, and self-control. Against such things there is no law.",
+      "textZh": "圣灵所结的果子，就是仁爱、喜乐、和平、忍耐、恩慈、良善、信实、温柔、节制。这样的事没有律法禁止。",
       "matchNote": "Matched to the fruit of the Spirit passage."
     },
     {
@@ -364,6 +428,7 @@
       "requestedAs": "加拉太书 新造的人",
       "reference": "Galatians 6:15",
       "book": "Galatians",
+      "bookZh": "加拉太书",
       "chapter": 6,
       "verseStart": 15,
       "verseEnd": 15,
@@ -371,10 +436,12 @@
       "verses": [
         {
           "verse": 15,
-          "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation."
+          "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation.",
+          "textZh": "受割礼不受割礼都无关紧要，要紧的就是作新造的人。"
         }
       ],
       "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation.",
+      "textZh": "受割礼不受割礼都无关紧要，要紧的就是作新造的人。",
       "matchNote": "Matched to Galatians' reference to a new creation."
     },
     {
@@ -383,6 +450,7 @@
       "requestedAs": "哥林多后书5：17",
       "reference": "2 Corinthians 5:17",
       "book": "2 Corinthians",
+      "bookZh": "哥林多后书",
       "chapter": 5,
       "verseStart": 17,
       "verseEnd": 17,
@@ -390,10 +458,12 @@
       "verses": [
         {
           "verse": 17,
-          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new.",
+          "textZh": "若有人在基督里，他就是新造的人，旧事已过，都变成新的了。"
         }
       ],
-      "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+      "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new.",
+      "textZh": "若有人在基督里，他就是新造的人，旧事已过，都变成新的了。"
     },
     {
       "id": "passage-021",
@@ -401,6 +471,7 @@
       "requestedAs": "哥林多后书3: 17",
       "reference": "2 Corinthians 3:17",
       "book": "2 Corinthians",
+      "bookZh": "哥林多后书",
       "chapter": 3,
       "verseStart": 17,
       "verseEnd": 17,
@@ -408,10 +479,12 @@
       "verses": [
         {
           "verse": 17,
-          "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty."
+          "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty.",
+          "textZh": "主就是那灵；主的灵在哪里，那里就得以自由。"
         }
       ],
-      "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty."
+      "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty.",
+      "textZh": "主就是那灵；主的灵在哪里，那里就得以自由。"
     },
     {
       "id": "passage-022",
@@ -419,6 +492,7 @@
       "requestedAs": "哥林多后书3：18",
       "reference": "2 Corinthians 3:18",
       "book": "2 Corinthians",
+      "bookZh": "哥林多后书",
       "chapter": 3,
       "verseStart": 18,
       "verseEnd": 18,
@@ -426,10 +500,12 @@
       "verses": [
         {
           "verse": 18,
-          "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit."
+          "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit.",
+          "textZh": "我们众人既然敞着脸得以看见主的荣光，好像从镜子里返照，就变成主的形状，荣上加荣，如同从主的灵变成的。"
         }
       ],
-      "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit."
+      "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit.",
+      "textZh": "我们众人既然敞着脸得以看见主的荣光，好像从镜子里返照，就变成主的形状，荣上加荣，如同从主的灵变成的。"
     },
     {
       "id": "passage-023",
@@ -437,6 +513,7 @@
       "requestedAs": "约珥书 关于圣灵的",
       "reference": "Joel 2:28-29",
       "book": "Joel",
+      "bookZh": "约珥书",
       "chapter": 2,
       "verseStart": 28,
       "verseEnd": 29,
@@ -444,14 +521,17 @@
       "verses": [
         {
           "verse": 28,
-          "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions."
+          "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions.",
+          "textZh": "以后，我要将我的灵浇灌凡有血气的。 你们的儿女要说预言； 你们的老年人要做异梦， 少年人要见异象。"
         },
         {
           "verse": 29,
-          "text": "And also on the servants and on the handmaids in those days, I will pour out my Spirit."
+          "text": "And also on the servants and on the handmaids in those days, I will pour out my Spirit.",
+          "textZh": "在那些日子， 我要将我的灵浇灌我的仆人和使女。"
         }
       ],
       "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions. And also on the servants and on the handmaids in those days, I will pour out my Spirit.",
+      "textZh": "以后，我要将我的灵浇灌凡有血气的。 你们的儿女要说预言； 你们的老年人要做异梦， 少年人要见异象。在那些日子， 我要将我的灵浇灌我的仆人和使女。",
       "matchNote": "Matched to the promise that God will pour out his Spirit."
     },
     {
@@ -460,6 +540,7 @@
       "requestedAs": "哥林多前书 11：11",
       "reference": "1 Corinthians 11:11",
       "book": "1 Corinthians",
+      "bookZh": "哥林多前书",
       "chapter": 11,
       "verseStart": 11,
       "verseEnd": 11,
@@ -467,10 +548,12 @@
       "verses": [
         {
           "verse": 11,
-          "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord."
+          "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord.",
+          "textZh": "然而照主的安排，女也不是无男，男也不是无女。"
         }
       ],
-      "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord."
+      "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord.",
+      "textZh": "然而照主的安排，女也不是无男，男也不是无女。"
     },
     {
       "id": "passage-025",
@@ -478,6 +561,7 @@
       "requestedAs": "哥林多前书 12：12",
       "reference": "1 Corinthians 12:12",
       "book": "1 Corinthians",
+      "bookZh": "哥林多前书",
       "chapter": 12,
       "verseStart": 12,
       "verseEnd": 12,
@@ -485,10 +569,12 @@
       "verses": [
         {
           "verse": 12,
-          "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ."
+          "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ.",
+          "textZh": "就如身子是一个，却有许多肢体；而且肢体虽多，仍是一个身子；基督也是这样。"
         }
       ],
-      "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ."
+      "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ.",
+      "textZh": "就如身子是一个，却有许多肢体；而且肢体虽多，仍是一个身子；基督也是这样。"
     },
     {
       "id": "passage-026",
@@ -496,6 +582,7 @@
       "requestedAs": "哥林多前书 13：13",
       "reference": "1 Corinthians 13:13",
       "book": "1 Corinthians",
+      "bookZh": "哥林多前书",
       "chapter": 13,
       "verseStart": 13,
       "verseEnd": 13,
@@ -503,10 +590,12 @@
       "verses": [
         {
           "verse": 13,
-          "text": "But now faith, hope, and love remain—these three. The greatest of these is love."
+          "text": "But now faith, hope, and love remain—these three. The greatest of these is love.",
+          "textZh": "如今常存的有信，有望，有爱这三样，其中最大的是爱。"
         }
       ],
-      "text": "But now faith, hope, and love remain—these three. The greatest of these is love."
+      "text": "But now faith, hope, and love remain—these three. The greatest of these is love.",
+      "textZh": "如今常存的有信，有望，有爱这三样，其中最大的是爱。"
     },
     {
       "id": "passage-027",
@@ -514,6 +603,7 @@
       "requestedAs": "约 8:31-34",
       "reference": "John 8:31-34",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 8,
       "verseStart": 31,
       "verseEnd": 34,
@@ -521,22 +611,27 @@
       "verses": [
         {
           "verse": 31,
-          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples.",
+          "textZh": "耶稣对信他的犹太人说：「你们若常常遵守我的道，就真是我的门徒；"
         },
         {
           "verse": 32,
-          "text": "You will know the truth, and the truth will make you free.”"
+          "text": "You will know the truth, and the truth will make you free.”",
+          "textZh": "你们必晓得真理，真理必叫你们得以自由。」"
         },
         {
           "verse": 33,
-          "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+          "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”",
+          "textZh": "他们回答说：「我们是亚伯拉罕的后裔，从来没有作过谁的奴仆。你怎么说『你们必得以自由』呢？」"
         },
         {
           "verse": 34,
-          "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+          "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin.",
+          "textZh": "耶稣回答说：「我实实在在地告诉你们，所有犯罪的就是罪的奴仆。"
         }
       ],
-      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.” They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?” Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.” They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?” Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin.",
+      "textZh": "耶稣对信他的犹太人说：「你们若常常遵守我的道，就真是我的门徒；你们必晓得真理，真理必叫你们得以自由。」他们回答说：「我们是亚伯拉罕的后裔，从来没有作过谁的奴仆。你怎么说『你们必得以自由』呢？」耶稣回答说：「我实实在在地告诉你们，所有犯罪的就是罪的奴仆。"
     },
     {
       "id": "passage-028",
@@ -544,6 +639,7 @@
       "requestedAs": "约 12:20-26",
       "reference": "John 12:20-26",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 12,
       "verseStart": 20,
       "verseEnd": 26,
@@ -551,34 +647,42 @@
       "verses": [
         {
           "verse": 20,
-          "text": "Now there were certain Greeks among those who went up to worship at the feast."
+          "text": "Now there were certain Greeks among those who went up to worship at the feast.",
+          "textZh": "那时，上来过节礼拜的人中，有几个希腊人。"
         },
         {
           "verse": 21,
-          "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”"
+          "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”",
+          "textZh": "他们来见加利利、伯赛大的腓力，求他说：「先生，我们愿意见耶稣。」"
         },
         {
           "verse": 22,
-          "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+          "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus.",
+          "textZh": "腓力去告诉安得烈，安得烈同腓力去告诉耶稣。"
         },
         {
           "verse": 23,
-          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified.",
+          "textZh": "耶稣说：「人子得荣耀的时候到了。"
         },
         {
           "verse": 24,
-          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit.",
+          "textZh": "我实实在在地告诉你们，一粒麦子不落在地里死了，仍旧是一粒，若是死了，就结出许多子粒来。"
         },
         {
           "verse": 25,
-          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life.",
+          "textZh": "爱惜自己生命的，就失丧生命；在这世上恨恶自己生命的，就要保守生命到永生。"
         },
         {
           "verse": 26,
-          "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+          "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him.",
+          "textZh": "若有人服事我，就当跟从我；我在哪里，服事我的人也要在那里；若有人服事我，我父必尊重他。」"
         }
       ],
-      "text": "Now there were certain Greeks among those who went up to worship at the feast. Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.” Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus. Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life. If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+      "text": "Now there were certain Greeks among those who went up to worship at the feast. Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.” Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus. Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life. If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him.",
+      "textZh": "那时，上来过节礼拜的人中，有几个希腊人。他们来见加利利、伯赛大的腓力，求他说：「先生，我们愿意见耶稣。」腓力去告诉安得烈，安得烈同腓力去告诉耶稣。耶稣说：「人子得荣耀的时候到了。我实实在在地告诉你们，一粒麦子不落在地里死了，仍旧是一粒，若是死了，就结出许多子粒来。爱惜自己生命的，就失丧生命；在这世上恨恶自己生命的，就要保守生命到永生。若有人服事我，就当跟从我；我在哪里，服事我的人也要在那里；若有人服事我，我父必尊重他。」"
     },
     {
       "id": "passage-029",
@@ -586,6 +690,7 @@
       "requestedAs": "箴 4:23",
       "reference": "Proverbs 4:23",
       "book": "Proverbs",
+      "bookZh": "箴言",
       "chapter": 4,
       "verseStart": 23,
       "verseEnd": 23,
@@ -593,10 +698,12 @@
       "verses": [
         {
           "verse": 23,
-          "text": "Keep your heart with all diligence, for out of it is the wellspring of life."
+          "text": "Keep your heart with all diligence, for out of it is the wellspring of life.",
+          "textZh": "你要保守你心，胜过保守一切， 因为一生的果效是由心发出。"
         }
       ],
-      "text": "Keep your heart with all diligence, for out of it is the wellspring of life."
+      "text": "Keep your heart with all diligence, for out of it is the wellspring of life.",
+      "textZh": "你要保守你心，胜过保守一切， 因为一生的果效是由心发出。"
     },
     {
       "id": "passage-030",
@@ -604,6 +711,7 @@
       "requestedAs": "约 3:16",
       "reference": "John 3:16",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 3,
       "verseStart": 16,
       "verseEnd": 16,
@@ -611,10 +719,12 @@
       "verses": [
         {
           "verse": 16,
-          "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+          "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life.",
+          "textZh": "「　神爱世人，甚至将他的独生子赐给[他们]，叫一切信他的，不致灭亡，反得永生。"
         }
       ],
-      "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+      "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life.",
+      "textZh": "「　神爱世人，甚至将他的独生子赐给[他们]，叫一切信他的，不致灭亡，反得永生。"
     },
     {
       "id": "passage-031",
@@ -622,6 +732,7 @@
       "requestedAs": "罗 5:5-8",
       "reference": "Romans 5:5-8",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 5,
       "verseStart": 5,
       "verseEnd": 8,
@@ -629,22 +740,27 @@
       "verses": [
         {
           "verse": 5,
-          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us.",
+          "textZh": "盼望不至于羞耻，因为所赐给我们的圣灵将　神的爱浇灌在我们心里。"
         },
         {
           "verse": 6,
-          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly.",
+          "textZh": "因我们还软弱的时候，基督就按所定的日期为罪人死。"
         },
         {
           "verse": 7,
-          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die."
+          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die.",
+          "textZh": "为义人死，是少有的；为仁人死，或者有敢做的。"
         },
         {
           "verse": 8,
-          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us.",
+          "textZh": "惟有基督在我们还作罪人的时候为我们死，　神的爱就在此向我们显明了。"
         }
       ],
-      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us.",
+      "textZh": "盼望不至于羞耻，因为所赐给我们的圣灵将　神的爱浇灌在我们心里。因我们还软弱的时候，基督就按所定的日期为罪人死。为义人死，是少有的；为仁人死，或者有敢做的。惟有基督在我们还作罪人的时候为我们死，　神的爱就在此向我们显明了。"
     },
     {
       "id": "passage-032",
@@ -652,6 +768,7 @@
       "requestedAs": "弗1:3-6",
       "reference": "Ephesians 1:3-6",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 1,
       "verseStart": 3,
       "verseEnd": 6,
@@ -659,22 +776,27 @@
       "verses": [
         {
           "verse": 3,
-          "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,"
+          "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,",
+          "textZh": "愿颂赞归与我们主耶稣基督的父　神！他在基督里曾赐给我们天上各样属灵的福气："
         },
         {
           "verse": 4,
-          "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,"
+          "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,",
+          "textZh": "就如　神从创立世界以前，在基督里拣选了我们，使我们在他面前成为圣洁，无有瑕疵；"
         },
         {
           "verse": 5,
-          "text": "having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire,"
+          "text": "having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire,",
+          "textZh": "又因爱我们，就按着自己的意旨所喜悦的，预定我们借着耶稣基督得儿子的名分，"
         },
         {
           "verse": 6,
-          "text": "to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+          "text": "to the praise of the glory of his grace, by which he freely gave us favor in the Beloved.",
+          "textZh": "使他荣耀的恩典得着称赞；这恩典是他在爱子里所赐给我们的。"
         }
       ],
-      "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ, even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love, having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire, to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+      "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ, even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love, having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire, to the praise of the glory of his grace, by which he freely gave us favor in the Beloved.",
+      "textZh": "愿颂赞归与我们主耶稣基督的父　神！他在基督里曾赐给我们天上各样属灵的福气：就如　神从创立世界以前，在基督里拣选了我们，使我们在他面前成为圣洁，无有瑕疵；又因爱我们，就按着自己的意旨所喜悦的，预定我们借着耶稣基督得儿子的名分，使他荣耀的恩典得着称赞；这恩典是他在爱子里所赐给我们的。"
     },
     {
       "id": "passage-033",
@@ -682,6 +804,7 @@
       "requestedAs": "弗1:7-9",
       "reference": "Ephesians 1:7-9",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 1,
       "verseStart": 7,
       "verseEnd": 9,
@@ -689,18 +812,22 @@
       "verses": [
         {
           "verse": 7,
-          "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace"
+          "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace",
+          "textZh": "我们借这爱子的血得蒙救赎，过犯得以赦免，乃是照他丰富的恩典。"
         },
         {
           "verse": 8,
-          "text": "which he made to abound toward us in all wisdom and prudence,"
+          "text": "which he made to abound toward us in all wisdom and prudence,",
+          "textZh": "这恩典是　神用诸般智慧聪明，充充足足赏给我们的；"
         },
         {
           "verse": 9,
-          "text": "making known to us the mystery of his will, according to his good pleasure which he purposed in him"
+          "text": "making known to us the mystery of his will, according to his good pleasure which he purposed in him",
+          "textZh": "都是照他自己所预定的美意，叫我们知道他旨意的奥秘，"
         }
       ],
-      "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace which he made to abound toward us in all wisdom and prudence, making known to us the mystery of his will, according to his good pleasure which he purposed in him"
+      "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace which he made to abound toward us in all wisdom and prudence, making known to us the mystery of his will, according to his good pleasure which he purposed in him",
+      "textZh": "我们借这爱子的血得蒙救赎，过犯得以赦免，乃是照他丰富的恩典。这恩典是　神用诸般智慧聪明，充充足足赏给我们的；都是照他自己所预定的美意，叫我们知道他旨意的奥秘，"
     },
     {
       "id": "passage-034",
@@ -708,6 +835,7 @@
       "requestedAs": "弗1:10-12",
       "reference": "Ephesians 1:10-12",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 1,
       "verseStart": 10,
       "verseEnd": 12,
@@ -715,18 +843,22 @@
       "verses": [
         {
           "verse": 10,
-          "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him."
+          "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him.",
+          "textZh": "要照所安排的，在日期满足的时候，使天上、地上、一切所有的都在基督里面同归于一。"
         },
         {
           "verse": 11,
-          "text": "We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will,"
+          "text": "We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will,",
+          "textZh": "我们也在他里面得了基业；这原是那位随己意行、做万事的，照着他旨意所预定的，"
         },
         {
           "verse": 12,
-          "text": "to the end that we should be to the praise of his glory, we who had before hoped in Christ."
+          "text": "to the end that we should be to the praise of his glory, we who had before hoped in Christ.",
+          "textZh": "叫他的荣耀从我们这首先在基督里有盼望的人可以得着称赞。"
         }
       ],
-      "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him. We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will, to the end that we should be to the praise of his glory, we who had before hoped in Christ."
+      "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him. We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will, to the end that we should be to the praise of his glory, we who had before hoped in Christ.",
+      "textZh": "要照所安排的，在日期满足的时候，使天上、地上、一切所有的都在基督里面同归于一。我们也在他里面得了基业；这原是那位随己意行、做万事的，照着他旨意所预定的，叫他的荣耀从我们这首先在基督里有盼望的人可以得着称赞。"
     },
     {
       "id": "passage-035",
@@ -734,6 +866,7 @@
       "requestedAs": "弗1:13-14",
       "reference": "Ephesians 1:13-14",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 1,
       "verseStart": 13,
       "verseEnd": 14,
@@ -741,14 +874,17 @@
       "verses": [
         {
           "verse": 13,
-          "text": "In him you also, having heard the word of the truth, the Good News of your salvation—in whom, having also believed, you were sealed with the promised Holy Spirit,"
+          "text": "In him you also, having heard the word of the truth, the Good News of your salvation—in whom, having also believed, you were sealed with the promised Holy Spirit,",
+          "textZh": "你们既听见真理的道，就是那叫你们得救的福音，也[信了]基督，既然信他，就受了所应许的圣灵为印记。"
         },
         {
           "verse": 14,
-          "text": "who is a pledge of our inheritance, to the redemption of God’s own possession, to the praise of his glory."
+          "text": "who is a pledge of our inheritance, to the redemption of God’s own possession, to the praise of his glory.",
+          "textZh": "这圣灵是我们得基业的凭据，直等到　[神]之民被赎，使他的荣耀得着称赞。"
         }
       ],
-      "text": "In him you also, having heard the word of the truth, the Good News of your salvation—in whom, having also believed, you were sealed with the promised Holy Spirit, who is a pledge of our inheritance, to the redemption of God’s own possession, to the praise of his glory."
+      "text": "In him you also, having heard the word of the truth, the Good News of your salvation—in whom, having also believed, you were sealed with the promised Holy Spirit, who is a pledge of our inheritance, to the redemption of God’s own possession, to the praise of his glory.",
+      "textZh": "你们既听见真理的道，就是那叫你们得救的福音，也[信了]基督，既然信他，就受了所应许的圣灵为印记。这圣灵是我们得基业的凭据，直等到　[神]之民被赎，使他的荣耀得着称赞。"
     },
     {
       "id": "passage-036",
@@ -756,6 +892,7 @@
       "requestedAs": "来 4:14-16",
       "reference": "Hebrews 4:14-16",
       "book": "Hebrews",
+      "bookZh": "希伯来书",
       "chapter": 4,
       "verseStart": 14,
       "verseEnd": 16,
@@ -763,18 +900,22 @@
       "verses": [
         {
           "verse": 14,
-          "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession."
+          "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession.",
+          "textZh": "我们既然有一位已经升入高天尊荣的大祭司，就是　神的儿子耶稣，便当持定所承认的道。"
         },
         {
           "verse": 15,
-          "text": "For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin."
+          "text": "For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin.",
+          "textZh": "因我们的大祭司并非不能体恤我们的软弱。他也曾凡事受过试探，与我们一样，只是他没有犯罪。"
         },
         {
           "verse": 16,
-          "text": "Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+          "text": "Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need.",
+          "textZh": "所以，我们只管坦然无惧地来到施恩的宝座前，为要得怜恤，蒙恩惠，作随时的帮助。"
         }
       ],
-      "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession. For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin. Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+      "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession. For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin. Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need.",
+      "textZh": "我们既然有一位已经升入高天尊荣的大祭司，就是　神的儿子耶稣，便当持定所承认的道。因我们的大祭司并非不能体恤我们的软弱。他也曾凡事受过试探，与我们一样，只是他没有犯罪。所以，我们只管坦然无惧地来到施恩的宝座前，为要得怜恤，蒙恩惠，作随时的帮助。"
     },
     {
       "id": "passage-037",
@@ -782,6 +923,7 @@
       "requestedAs": "压伤的芦苇我不折断...",
       "reference": "Isaiah 42:3",
       "book": "Isaiah",
+      "bookZh": "以赛亚书",
       "chapter": 42,
       "verseStart": 3,
       "verseEnd": 3,
@@ -789,10 +931,12 @@
       "verses": [
         {
           "verse": 3,
-          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice.",
+          "textZh": "压伤的芦苇，他不折断； 将残的灯火，他不吹灭。 他凭真实将公理传开。"
         }
       ],
       "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice.",
+      "textZh": "压伤的芦苇，他不折断； 将残的灯火，他不吹灭。 他凭真实将公理传开。",
       "matchNote": "Matched to Isaiah's bruised reed prophecy."
     },
     {
@@ -801,6 +945,7 @@
       "requestedAs": "赛 50:6",
       "reference": "Isaiah 50:6",
       "book": "Isaiah",
+      "bookZh": "以赛亚书",
       "chapter": 50,
       "verseStart": 6,
       "verseEnd": 6,
@@ -808,10 +953,12 @@
       "verses": [
         {
           "verse": 6,
-          "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting."
+          "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting.",
+          "textZh": "人打我的背，我任他打； 人拔我腮颊的胡须，我由他拔； 人辱我，吐我，我并不掩面。"
         }
       ],
-      "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting."
+      "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting.",
+      "textZh": "人打我的背，我任他打； 人拔我腮颊的胡须，我由他拔； 人辱我，吐我，我并不掩面。"
     },
     {
       "id": "passage-039",
@@ -819,6 +966,7 @@
       "requestedAs": "希伯来书 神的道比一切两刃的剑更快。",
       "reference": "Hebrews 4:12",
       "book": "Hebrews",
+      "bookZh": "希伯来书",
       "chapter": 4,
       "verseStart": 12,
       "verseEnd": 12,
@@ -826,10 +974,12 @@
       "verses": [
         {
           "verse": 12,
-          "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart."
+          "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart.",
+          "textZh": "神的道是活泼的，是有功效的，比一切两刃的剑更快，甚至魂与灵，骨节与骨髓，都能刺入、剖开，连心中的思念和主意都能辨明。"
         }
       ],
       "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart.",
+      "textZh": "神的道是活泼的，是有功效的，比一切两刃的剑更快，甚至魂与灵，骨节与骨髓，都能刺入、剖开，连心中的思念和主意都能辨明。",
       "matchNote": "Matched to the living and active word of God."
     },
     {
@@ -838,6 +988,7 @@
       "requestedAs": "路 11:11-13",
       "reference": "Luke 11:11-13",
       "book": "Luke",
+      "bookZh": "路加福音",
       "chapter": 11,
       "verseStart": 11,
       "verseEnd": 13,
@@ -845,18 +996,22 @@
       "verses": [
         {
           "verse": 11,
-          "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he?"
+          "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he?",
+          "textZh": "你们中间作父亲的，谁有儿子求饼，反给他石头呢？求鱼，反拿蛇当鱼给他呢？"
         },
         {
           "verse": 12,
-          "text": "Or if he asks for an egg, he won’t give him a scorpion, will he?"
+          "text": "Or if he asks for an egg, he won’t give him a scorpion, will he?",
+          "textZh": "求[鸡]蛋，反给他蝎子呢？"
         },
         {
           "verse": 13,
-          "text": "If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+          "text": "If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”",
+          "textZh": "你们虽然不好，尚且知道拿好东西给儿女；何况天父，岂不更将圣灵给求他的人吗？」"
         }
       ],
-      "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he? Or if he asks for an egg, he won’t give him a scorpion, will he? If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+      "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he? Or if he asks for an egg, he won’t give him a scorpion, will he? If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”",
+      "textZh": "你们中间作父亲的，谁有儿子求饼，反给他石头呢？求鱼，反拿蛇当鱼给他呢？求[鸡]蛋，反给他蝎子呢？你们虽然不好，尚且知道拿好东西给儿女；何况天父，岂不更将圣灵给求他的人吗？」"
     },
     {
       "id": "passage-041",
@@ -864,6 +1019,7 @@
       "requestedAs": "罗 5:5-6",
       "reference": "Romans 5:5-6",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 5,
       "verseStart": 5,
       "verseEnd": 6,
@@ -871,14 +1027,17 @@
       "verses": [
         {
           "verse": 5,
-          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us.",
+          "textZh": "盼望不至于羞耻，因为所赐给我们的圣灵将　神的爱浇灌在我们心里。"
         },
         {
           "verse": 6,
-          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly.",
+          "textZh": "因我们还软弱的时候，基督就按所定的日期为罪人死。"
         }
       ],
-      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly."
+      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly.",
+      "textZh": "盼望不至于羞耻，因为所赐给我们的圣灵将　神的爱浇灌在我们心里。因我们还软弱的时候，基督就按所定的日期为罪人死。"
     },
     {
       "id": "passage-042",
@@ -886,6 +1045,7 @@
       "requestedAs": "太 6:9-13",
       "reference": "Matthew 6:9-13",
       "book": "Matthew",
+      "bookZh": "马太福音",
       "chapter": 6,
       "verseStart": 9,
       "verseEnd": 13,
@@ -893,26 +1053,32 @@
       "verses": [
         {
           "verse": 9,
-          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy.",
+          "textZh": "所以，你们祷告要这样说： 我们在天上的父： 愿人都尊你的名为圣。"
         },
         {
           "verse": 10,
-          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven.",
+          "textZh": "愿你的国降临； 愿你的旨意行在地上， 如同行在天上。"
         },
         {
           "verse": 11,
-          "text": "Give us today our daily bread."
+          "text": "Give us today our daily bread.",
+          "textZh": "我们日用的饮食，今日赐给我们。"
         },
         {
           "verse": 12,
-          "text": "Forgive us our debts, as we also forgive our debtors."
+          "text": "Forgive us our debts, as we also forgive our debtors.",
+          "textZh": "免我们的债， 如同我们免了人的债。"
         },
         {
           "verse": 13,
-          "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+          "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’",
+          "textZh": "不叫我们遇见试探； 救我们脱离凶恶。 因为国度、权柄、荣耀，全是你的， 直到永远。阿们！"
         }
       ],
-      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also forgive our debtors. Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also forgive our debtors. Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’",
+      "textZh": "所以，你们祷告要这样说： 我们在天上的父： 愿人都尊你的名为圣。愿你的国降临； 愿你的旨意行在地上， 如同行在天上。我们日用的饮食，今日赐给我们。免我们的债， 如同我们免了人的债。不叫我们遇见试探； 救我们脱离凶恶。 因为国度、权柄、荣耀，全是你的， 直到永远。阿们！"
     },
     {
       "id": "passage-043",
@@ -920,6 +1086,7 @@
       "requestedAs": "来 12:2",
       "reference": "Hebrews 12:2",
       "book": "Hebrews",
+      "bookZh": "希伯来书",
       "chapter": 12,
       "verseStart": 2,
       "verseEnd": 2,
@@ -927,10 +1094,12 @@
       "verses": [
         {
           "verse": 2,
-          "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God."
+          "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God.",
+          "textZh": "仰望为我们信心创始成终的耶稣。他因那摆在前面的喜乐，就轻看羞辱，忍受了十字架[的苦难]，便坐在　神宝座的右边。"
         }
       ],
-      "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God."
+      "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God.",
+      "textZh": "仰望为我们信心创始成终的耶稣。他因那摆在前面的喜乐，就轻看羞辱，忍受了十字架[的苦难]，便坐在　神宝座的右边。"
     },
     {
       "id": "passage-044",
@@ -938,6 +1107,7 @@
       "requestedAs": "来 3:14",
       "reference": "Hebrews 3:14",
       "book": "Hebrews",
+      "bookZh": "希伯来书",
       "chapter": 3,
       "verseStart": 14,
       "verseEnd": 14,
@@ -945,10 +1115,12 @@
       "verses": [
         {
           "verse": 14,
-          "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,"
+          "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,",
+          "textZh": "我们若将起初确实的信心坚持到底，就在基督里有分了。"
         }
       ],
-      "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,"
+      "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,",
+      "textZh": "我们若将起初确实的信心坚持到底，就在基督里有分了。"
     },
     {
       "id": "passage-045",
@@ -956,6 +1128,7 @@
       "requestedAs": "罗 4:23-25",
       "reference": "Romans 4:23-25",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 4,
       "verseStart": 23,
       "verseEnd": 25,
@@ -963,18 +1136,22 @@
       "verses": [
         {
           "verse": 23,
-          "text": "Now it was not written that it was accounted to him for his sake alone,"
+          "text": "Now it was not written that it was accounted to him for his sake alone,",
+          "textZh": "「算为他义」的这句话不是单为他写的，"
         },
         {
           "verse": 24,
-          "text": "but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead,"
+          "text": "but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead,",
+          "textZh": "也是为我们将来得算为义之人写的，就是我们这信　神使我们的主耶稣从死里复活的人。"
         },
         {
           "verse": 25,
-          "text": "who was delivered up for our trespasses, and was raised for our justification."
+          "text": "who was delivered up for our trespasses, and was raised for our justification.",
+          "textZh": "耶稣被交给人，是为我们的过犯；复活，是为叫我们称义。"
         }
       ],
-      "text": "Now it was not written that it was accounted to him for his sake alone, but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead, who was delivered up for our trespasses, and was raised for our justification."
+      "text": "Now it was not written that it was accounted to him for his sake alone, but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead, who was delivered up for our trespasses, and was raised for our justification.",
+      "textZh": "「算为他义」的这句话不是单为他写的，也是为我们将来得算为义之人写的，就是我们这信　神使我们的主耶稣从死里复活的人。耶稣被交给人，是为我们的过犯；复活，是为叫我们称义。"
     },
     {
       "id": "passage-046",
@@ -982,6 +1159,7 @@
       "requestedAs": "罗 5:1-8",
       "reference": "Romans 5:1-8",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 5,
       "verseStart": 1,
       "verseEnd": 8,
@@ -989,38 +1167,47 @@
       "verses": [
         {
           "verse": 1,
-          "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;"
+          "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;",
+          "textZh": "我们既因信称义，就借着我们的主耶稣基督得与　神相和。"
         },
         {
           "verse": 2,
-          "text": "through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God."
+          "text": "through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God.",
+          "textZh": "我们又借着他，因信得进入现在所站的这恩典中，并且欢欢喜喜盼望　神的荣耀。"
         },
         {
           "verse": 3,
-          "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;"
+          "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;",
+          "textZh": "不但如此，就是在患难中也是欢欢喜喜的；因为知道患难生忍耐，"
         },
         {
           "verse": 4,
-          "text": "and perseverance, proven character; and proven character, hope;"
+          "text": "and perseverance, proven character; and proven character, hope;",
+          "textZh": "忍耐生老练，老练生盼望；"
         },
         {
           "verse": 5,
-          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us.",
+          "textZh": "盼望不至于羞耻，因为所赐给我们的圣灵将　神的爱浇灌在我们心里。"
         },
         {
           "verse": 6,
-          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly.",
+          "textZh": "因我们还软弱的时候，基督就按所定的日期为罪人死。"
         },
         {
           "verse": 7,
-          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die."
+          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die.",
+          "textZh": "为义人死，是少有的；为仁人死，或者有敢做的。"
         },
         {
           "verse": 8,
-          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us.",
+          "textZh": "惟有基督在我们还作罪人的时候为我们死，　神的爱就在此向我们显明了。"
         }
       ],
-      "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ; through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God. Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+      "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ; through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God. Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us.",
+      "textZh": "我们既因信称义，就借着我们的主耶稣基督得与　神相和。我们又借着他，因信得进入现在所站的这恩典中，并且欢欢喜喜盼望　神的荣耀。不但如此，就是在患难中也是欢欢喜喜的；因为知道患难生忍耐，忍耐生老练，老练生盼望；盼望不至于羞耻，因为所赐给我们的圣灵将　神的爱浇灌在我们心里。因我们还软弱的时候，基督就按所定的日期为罪人死。为义人死，是少有的；为仁人死，或者有敢做的。惟有基督在我们还作罪人的时候为我们死，　神的爱就在此向我们显明了。"
     },
     {
       "id": "passage-047",
@@ -1028,6 +1215,7 @@
       "requestedAs": "罗 6:1-4;",
       "reference": "Romans 6:1-4",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 6,
       "verseStart": 1,
       "verseEnd": 4,
@@ -1035,22 +1223,27 @@
       "verses": [
         {
           "verse": 1,
-          "text": "What shall we say then? Shall we continue in sin, that grace may abound?"
+          "text": "What shall we say then? Shall we continue in sin, that grace may abound?",
+          "textZh": "这样，怎么说呢？我们可以仍在罪中、叫恩典显多吗？"
         },
         {
           "verse": 2,
-          "text": "May it never be! We who died to sin, how could we live in it any longer?"
+          "text": "May it never be! We who died to sin, how could we live in it any longer?",
+          "textZh": "断乎不可！我们在罪上死了的人岂可仍在罪中活着呢？"
         },
         {
           "verse": 3,
-          "text": "Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?"
+          "text": "Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?",
+          "textZh": "岂不知我们这受洗归入基督耶稣的人是受洗归入他的死吗？"
         },
         {
           "verse": 4,
-          "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+          "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life.",
+          "textZh": "所以，我们借着洗礼归入死，和他一同埋葬，原是叫我们一举一动有新生的样式，像基督借着父的荣耀从死里复活一样。"
         }
       ],
-      "text": "What shall we say then? Shall we continue in sin, that grace may abound? May it never be! We who died to sin, how could we live in it any longer? Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death? We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+      "text": "What shall we say then? Shall we continue in sin, that grace may abound? May it never be! We who died to sin, how could we live in it any longer? Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death? We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life.",
+      "textZh": "这样，怎么说呢？我们可以仍在罪中、叫恩典显多吗？断乎不可！我们在罪上死了的人岂可仍在罪中活着呢？岂不知我们这受洗归入基督耶稣的人是受洗归入他的死吗？所以，我们借着洗礼归入死，和他一同埋葬，原是叫我们一举一动有新生的样式，像基督借着父的荣耀从死里复活一样。"
     },
     {
       "id": "passage-048",
@@ -1058,6 +1251,7 @@
       "requestedAs": "弗 2:1-2",
       "reference": "Ephesians 2:1-2",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 2,
       "verseStart": 1,
       "verseEnd": 2,
@@ -1065,14 +1259,17 @@
       "verses": [
         {
           "verse": 1,
-          "text": "You were made alive when you were dead in transgressions and sins,"
+          "text": "You were made alive when you were dead in transgressions and sins,",
+          "textZh": "你们死在过犯罪恶之中，[他叫你们活过来]。"
         },
         {
           "verse": 2,
-          "text": "in which you once walked according to the course of this world, according to the prince of the power of the air, the spirit who now works in the children of disobedience."
+          "text": "in which you once walked according to the course of this world, according to the prince of the power of the air, the spirit who now works in the children of disobedience.",
+          "textZh": "那时，你们在其中行事为人，随从今世的风俗，顺服空中掌权者的首领，就是现今在悖逆之子心中运行的[邪]灵。"
         }
       ],
-      "text": "You were made alive when you were dead in transgressions and sins, in which you once walked according to the course of this world, according to the prince of the power of the air, the spirit who now works in the children of disobedience."
+      "text": "You were made alive when you were dead in transgressions and sins, in which you once walked according to the course of this world, according to the prince of the power of the air, the spirit who now works in the children of disobedience.",
+      "textZh": "你们死在过犯罪恶之中，[他叫你们活过来]。那时，你们在其中行事为人，随从今世的风俗，顺服空中掌权者的首领，就是现今在悖逆之子心中运行的[邪]灵。"
     },
     {
       "id": "passage-049",
@@ -1080,6 +1277,7 @@
       "requestedAs": "约 3:5-6",
       "reference": "John 3:5-6",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 3,
       "verseStart": 5,
       "verseEnd": 6,
@@ -1087,14 +1285,17 @@
       "verses": [
         {
           "verse": 5,
-          "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom."
+          "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom.",
+          "textZh": "耶稣说：「我实实在在地告诉你，人若不是从水和[圣]灵生的，就不能进　神的国。"
         },
         {
           "verse": 6,
-          "text": "That which is born of the flesh is flesh. That which is born of the Spirit is spirit."
+          "text": "That which is born of the flesh is flesh. That which is born of the Spirit is spirit.",
+          "textZh": "从肉身生的就是肉身；从灵生的就是灵。"
         }
       ],
-      "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom. That which is born of the flesh is flesh. That which is born of the Spirit is spirit."
+      "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom. That which is born of the flesh is flesh. That which is born of the Spirit is spirit.",
+      "textZh": "耶稣说：「我实实在在地告诉你，人若不是从水和[圣]灵生的，就不能进　神的国。从肉身生的就是肉身；从灵生的就是灵。"
     },
     {
       "id": "passage-050",
@@ -1102,6 +1303,7 @@
       "requestedAs": "一粒麦子不落在地里",
       "reference": "John 12:24",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 12,
       "verseStart": 24,
       "verseEnd": 24,
@@ -1109,10 +1311,12 @@
       "verses": [
         {
           "verse": 24,
-          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit.",
+          "textZh": "我实实在在地告诉你们，一粒麦子不落在地里死了，仍旧是一粒，若是死了，就结出许多子粒来。"
         }
       ],
       "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit.",
+      "textZh": "我实实在在地告诉你们，一粒麦子不落在地里死了，仍旧是一粒，若是死了，就结出许多子粒来。",
       "matchNote": "Matched to Jesus' grain of wheat saying."
     },
     {
@@ -1121,6 +1325,7 @@
       "requestedAs": "约 3:7-8",
       "reference": "John 3:7-8",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 3,
       "verseStart": 7,
       "verseEnd": 8,
@@ -1128,14 +1333,17 @@
       "verses": [
         {
           "verse": 7,
-          "text": "Don’t marvel that I said to you, ‘You must all be born anew.’"
+          "text": "Don’t marvel that I said to you, ‘You must all be born anew.’",
+          "textZh": "我说：『你们必须重生』，你不要以为希奇。"
         },
         {
           "verse": 8,
-          "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+          "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”",
+          "textZh": "风随着意思吹，你听见风的响声，却不晓得从哪里来，往哪里去；凡从[圣]灵生的，也是如此。」"
         }
       ],
-      "text": "Don’t marvel that I said to you, ‘You must all be born anew.’ The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+      "text": "Don’t marvel that I said to you, ‘You must all be born anew.’ The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”",
+      "textZh": "我说：『你们必须重生』，你不要以为希奇。风随着意思吹，你听见风的响声，却不晓得从哪里来，往哪里去；凡从[圣]灵生的，也是如此。」"
     },
     {
       "id": "passage-052",
@@ -1143,6 +1351,7 @@
       "requestedAs": "林后 5:16-17",
       "reference": "2 Corinthians 5:16-17",
       "book": "2 Corinthians",
+      "bookZh": "哥林多后书",
       "chapter": 5,
       "verseStart": 16,
       "verseEnd": 17,
@@ -1150,14 +1359,17 @@
       "verses": [
         {
           "verse": 16,
-          "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more."
+          "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more.",
+          "textZh": "所以，我们从今以后，不凭着外貌认人了。虽然凭着外貌认过基督，如今却不再[这样]认他了。"
         },
         {
           "verse": 17,
-          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new.",
+          "textZh": "若有人在基督里，他就是新造的人，旧事已过，都变成新的了。"
         }
       ],
-      "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more. Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+      "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more. Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new.",
+      "textZh": "所以，我们从今以后，不凭着外貌认人了。虽然凭着外貌认过基督，如今却不再[这样]认他了。若有人在基督里，他就是新造的人，旧事已过，都变成新的了。"
     },
     {
       "id": "passage-053",
@@ -1165,6 +1377,7 @@
       "requestedAs": "约 3:3",
       "reference": "John 3:3",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 3,
       "verseStart": 3,
       "verseEnd": 3,
@@ -1172,10 +1385,12 @@
       "verses": [
         {
           "verse": 3,
-          "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”"
+          "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”",
+          "textZh": "耶稣回答说：「我实实在在地告诉你，人若不重生，就不能见　神的国。」"
         }
       ],
-      "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”"
+      "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”",
+      "textZh": "耶稣回答说：「我实实在在地告诉你，人若不重生，就不能见　神的国。」"
     },
     {
       "id": "passage-054",
@@ -1183,6 +1398,7 @@
       "requestedAs": "罗 4:2-3",
       "reference": "Romans 4:2-3",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 4,
       "verseStart": 2,
       "verseEnd": 3,
@@ -1190,14 +1406,17 @@
       "verses": [
         {
           "verse": 2,
-          "text": "For if Abraham was justified by works, he has something to boast about, but not toward God."
+          "text": "For if Abraham was justified by works, he has something to boast about, but not toward God.",
+          "textZh": "倘若亚伯拉罕是因行为称义，就有可夸的；只是在　神面前并无可夸。"
         },
         {
           "verse": 3,
-          "text": "For what does the Scripture say? “Abraham believed God, and it was accounted to him for righteousness.”"
+          "text": "For what does the Scripture say? “Abraham believed God, and it was accounted to him for righteousness.”",
+          "textZh": "经上说什么呢？说：「亚伯拉罕信　神，这就算为他的义。」"
         }
       ],
-      "text": "For if Abraham was justified by works, he has something to boast about, but not toward God. For what does the Scripture say? “Abraham believed God, and it was accounted to him for righteousness.”"
+      "text": "For if Abraham was justified by works, he has something to boast about, but not toward God. For what does the Scripture say? “Abraham believed God, and it was accounted to him for righteousness.”",
+      "textZh": "倘若亚伯拉罕是因行为称义，就有可夸的；只是在　神面前并无可夸。经上说什么呢？说：「亚伯拉罕信　神，这就算为他的义。」"
     },
     {
       "id": "passage-055",
@@ -1205,6 +1424,7 @@
       "requestedAs": "创 15:6",
       "reference": "Genesis 15:6",
       "book": "Genesis",
+      "bookZh": "创世记",
       "chapter": 15,
       "verseStart": 6,
       "verseEnd": 6,
@@ -1212,10 +1432,12 @@
       "verses": [
         {
           "verse": 6,
-          "text": "He believed in Yahweh, who credited it to him for righteousness."
+          "text": "He believed in Yahweh, who credited it to him for righteousness.",
+          "textZh": "亚伯兰信耶和华，耶和华就以此为他的义。"
         }
       ],
-      "text": "He believed in Yahweh, who credited it to him for righteousness."
+      "text": "He believed in Yahweh, who credited it to him for righteousness.",
+      "textZh": "亚伯兰信耶和华，耶和华就以此为他的义。"
     },
     {
       "id": "passage-056",
@@ -1223,6 +1445,7 @@
       "requestedAs": "罗 6:4",
       "reference": "Romans 6:4",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 6,
       "verseStart": 4,
       "verseEnd": 4,
@@ -1230,10 +1453,12 @@
       "verses": [
         {
           "verse": 4,
-          "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+          "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life.",
+          "textZh": "所以，我们借着洗礼归入死，和他一同埋葬，原是叫我们一举一动有新生的样式，像基督借着父的荣耀从死里复活一样。"
         }
       ],
-      "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+      "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life.",
+      "textZh": "所以，我们借着洗礼归入死，和他一同埋葬，原是叫我们一举一动有新生的样式，像基督借着父的荣耀从死里复活一样。"
     },
     {
       "id": "passage-057",
@@ -1241,6 +1466,7 @@
       "requestedAs": "罗 6:5",
       "reference": "Romans 6:5",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 6,
       "verseStart": 5,
       "verseEnd": 5,
@@ -1248,10 +1474,12 @@
       "verses": [
         {
           "verse": 5,
-          "text": "For if we have become united with him in the likeness of his death, we will also be part of his resurrection;"
+          "text": "For if we have become united with him in the likeness of his death, we will also be part of his resurrection;",
+          "textZh": "我们若在他死的形状上与他联合，也要在他复活的形状上与他联合；"
         }
       ],
-      "text": "For if we have become united with him in the likeness of his death, we will also be part of his resurrection;"
+      "text": "For if we have become united with him in the likeness of his death, we will also be part of his resurrection;",
+      "textZh": "我们若在他死的形状上与他联合，也要在他复活的形状上与他联合；"
     },
     {
       "id": "passage-058",
@@ -1259,6 +1487,7 @@
       "requestedAs": "岂不晓得他丰富的恩赐是领你们悔改",
       "reference": "Romans 2:4",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 2,
       "verseStart": 4,
       "verseEnd": 4,
@@ -1266,10 +1495,12 @@
       "verses": [
         {
           "verse": 4,
-          "text": "Or do you despise the riches of his goodness, forbearance, and patience, not knowing that the goodness of God leads you to repentance?"
+          "text": "Or do you despise the riches of his goodness, forbearance, and patience, not knowing that the goodness of God leads you to repentance?",
+          "textZh": "还是你藐视他丰富的恩慈、宽容、忍耐，不晓得他的恩慈是领你悔改呢？"
         }
       ],
       "text": "Or do you despise the riches of his goodness, forbearance, and patience, not knowing that the goodness of God leads you to repentance?",
+      "textZh": "还是你藐视他丰富的恩慈、宽容、忍耐，不晓得他的恩慈是领你悔改呢？",
       "matchNote": "Matched to God's goodness leading to repentance."
     },
     {
@@ -1278,6 +1509,7 @@
       "requestedAs": "罗马书3:25",
       "reference": "Romans 3:25",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 3,
       "verseStart": 25,
       "verseEnd": 25,
@@ -1285,10 +1517,12 @@
       "verses": [
         {
           "verse": 25,
-          "text": "whom God sent to be an atoning sacrifice through faith in his blood, for a demonstration of his righteousness through the passing over of prior sins, in God’s forbearance;"
+          "text": "whom God sent to be an atoning sacrifice through faith in his blood, for a demonstration of his righteousness through the passing over of prior sins, in God’s forbearance;",
+          "textZh": "神设立耶稣作挽回祭，是凭着耶稣的血，借着人的信，要显明　神的义；因为他用忍耐的心宽容人先时所犯的罪，"
         }
       ],
-      "text": "whom God sent to be an atoning sacrifice through faith in his blood, for a demonstration of his righteousness through the passing over of prior sins, in God’s forbearance;"
+      "text": "whom God sent to be an atoning sacrifice through faith in his blood, for a demonstration of his righteousness through the passing over of prior sins, in God’s forbearance;",
+      "textZh": "神设立耶稣作挽回祭，是凭着耶稣的血，借着人的信，要显明　神的义；因为他用忍耐的心宽容人先时所犯的罪，"
     },
     {
       "id": "passage-060",
@@ -1296,6 +1530,7 @@
       "requestedAs": "约 3:14-16",
       "reference": "John 3:14-16",
       "book": "John",
+      "bookZh": "约翰福音",
       "chapter": 3,
       "verseStart": 14,
       "verseEnd": 16,
@@ -1303,18 +1538,22 @@
       "verses": [
         {
           "verse": 14,
-          "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up,"
+          "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up,",
+          "textZh": "摩西在旷野怎样举蛇，人子也必照样被举起来，"
         },
         {
           "verse": 15,
-          "text": "that whoever believes in him should not perish, but have eternal life."
+          "text": "that whoever believes in him should not perish, but have eternal life.",
+          "textZh": "叫一切信他的都得永生。"
         },
         {
           "verse": 16,
-          "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+          "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life.",
+          "textZh": "「　神爱世人，甚至将他的独生子赐给[他们]，叫一切信他的，不致灭亡，反得永生。"
         }
       ],
-      "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up, that whoever believes in him should not perish, but have eternal life. For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+      "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up, that whoever believes in him should not perish, but have eternal life. For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life.",
+      "textZh": "摩西在旷野怎样举蛇，人子也必照样被举起来，叫一切信他的都得永生。「　神爱世人，甚至将他的独生子赐给[他们]，叫一切信他的，不致灭亡，反得永生。"
     },
     {
       "id": "passage-061",
@@ -1322,6 +1561,7 @@
       "requestedAs": "罗 6:14",
       "reference": "Romans 6:14",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 6,
       "verseStart": 14,
       "verseEnd": 14,
@@ -1329,10 +1569,12 @@
       "verses": [
         {
           "verse": 14,
-          "text": "For sin will not have dominion over you, for you are not under law, but under grace."
+          "text": "For sin will not have dominion over you, for you are not under law, but under grace.",
+          "textZh": "罪必不能作你们的主；因你们不在律法之下，乃在恩典之下。"
         }
       ],
-      "text": "For sin will not have dominion over you, for you are not under law, but under grace."
+      "text": "For sin will not have dominion over you, for you are not under law, but under grace.",
+      "textZh": "罪必不能作你们的主；因你们不在律法之下，乃在恩典之下。"
     },
     {
       "id": "passage-062",
@@ -1340,6 +1582,7 @@
       "requestedAs": "罗 7:18",
       "reference": "Romans 7:18",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 7,
       "verseStart": 18,
       "verseEnd": 18,
@@ -1347,10 +1590,12 @@
       "verses": [
         {
           "verse": 18,
-          "text": "For I know that in me, that is, in my flesh, dwells no good thing. For desire is present with me, but I don’t find it doing that which is good."
+          "text": "For I know that in me, that is, in my flesh, dwells no good thing. For desire is present with me, but I don’t find it doing that which is good.",
+          "textZh": "我也知道，在我里头，就是我肉体之中，没有良善。因为，立志为善由得我，只是行出来由不得我。"
         }
       ],
-      "text": "For I know that in me, that is, in my flesh, dwells no good thing. For desire is present with me, but I don’t find it doing that which is good."
+      "text": "For I know that in me, that is, in my flesh, dwells no good thing. For desire is present with me, but I don’t find it doing that which is good.",
+      "textZh": "我也知道，在我里头，就是我肉体之中，没有良善。因为，立志为善由得我，只是行出来由不得我。"
     },
     {
       "id": "passage-063",
@@ -1358,6 +1603,7 @@
       "requestedAs": "罗 7:23-24",
       "reference": "Romans 7:23-24",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 7,
       "verseStart": 23,
       "verseEnd": 24,
@@ -1365,14 +1611,17 @@
       "verses": [
         {
           "verse": 23,
-          "text": "but I see a different law in my members, warring against the law of my mind, and bringing me into captivity under the law of sin which is in my members."
+          "text": "but I see a different law in my members, warring against the law of my mind, and bringing me into captivity under the law of sin which is in my members.",
+          "textZh": "但我觉得肢体中另有个律和我心中的律交战，把我掳去，叫我附从那肢体中犯罪的律。"
         },
         {
           "verse": 24,
-          "text": "What a wretched man I am! Who will deliver me out of the body of this death?"
+          "text": "What a wretched man I am! Who will deliver me out of the body of this death?",
+          "textZh": "我真是苦啊！谁能救我脱离这取死的身体呢？"
         }
       ],
-      "text": "but I see a different law in my members, warring against the law of my mind, and bringing me into captivity under the law of sin which is in my members. What a wretched man I am! Who will deliver me out of the body of this death?"
+      "text": "but I see a different law in my members, warring against the law of my mind, and bringing me into captivity under the law of sin which is in my members. What a wretched man I am! Who will deliver me out of the body of this death?",
+      "textZh": "但我觉得肢体中另有个律和我心中的律交战，把我掳去，叫我附从那肢体中犯罪的律。我真是苦啊！谁能救我脱离这取死的身体呢？"
     },
     {
       "id": "passage-064",
@@ -1380,6 +1629,7 @@
       "requestedAs": "罗 7:25",
       "reference": "Romans 7:25",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 7,
       "verseStart": 25,
       "verseEnd": 25,
@@ -1387,10 +1637,12 @@
       "verses": [
         {
           "verse": 25,
-          "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law."
+          "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law.",
+          "textZh": "感谢　神，靠着我们的主耶稣基督[就能脱离了]。这样看来，我以内心顺服　神的律，我肉体却顺服罪的律了。"
         }
       ],
-      "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law."
+      "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law.",
+      "textZh": "感谢　神，靠着我们的主耶稣基督[就能脱离了]。这样看来，我以内心顺服　神的律，我肉体却顺服罪的律了。"
     },
     {
       "id": "passage-065",
@@ -1398,6 +1650,7 @@
       "requestedAs": "罗8：1",
       "reference": "Romans 8:1",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 8,
       "verseStart": 1,
       "verseEnd": 1,
@@ -1405,10 +1658,12 @@
       "verses": [
         {
           "verse": 1,
-          "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit."
+          "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit.",
+          "textZh": "如今，那些在基督耶稣里的就不定罪了。"
         }
       ],
-      "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit."
+      "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit.",
+      "textZh": "如今，那些在基督耶稣里的就不定罪了。"
     },
     {
       "id": "passage-066",
@@ -1416,6 +1671,7 @@
       "requestedAs": "罗 8:2",
       "reference": "Romans 8:2",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 8,
       "verseStart": 2,
       "verseEnd": 2,
@@ -1423,10 +1679,12 @@
       "verses": [
         {
           "verse": 2,
-          "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death."
+          "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death.",
+          "textZh": "因为赐生命[圣]灵的律，在基督耶稣里释放了我，使我脱离罪和死的律了。"
         }
       ],
-      "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death."
+      "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death.",
+      "textZh": "因为赐生命[圣]灵的律，在基督耶稣里释放了我，使我脱离罪和死的律了。"
     },
     {
       "id": "passage-067",
@@ -1434,6 +1692,7 @@
       "requestedAs": "罗 8:27-28",
       "reference": "Romans 8:27-28",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 8,
       "verseStart": 27,
       "verseEnd": 28,
@@ -1441,14 +1700,17 @@
       "verses": [
         {
           "verse": 27,
-          "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God."
+          "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God.",
+          "textZh": "鉴察人心的，晓得[圣]灵的意思，因为[圣]灵照着　神的[旨意]替圣徒祈求。"
         },
         {
           "verse": 28,
-          "text": "We know that all things work together for good for those who love God, for those who are called according to his purpose."
+          "text": "We know that all things work together for good for those who love God, for those who are called according to his purpose.",
+          "textZh": "我们晓得万事都互相效力，叫爱　神的人得益处，就是按他旨意被召的人。"
         }
       ],
-      "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God. We know that all things work together for good for those who love God, for those who are called according to his purpose."
+      "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God. We know that all things work together for good for those who love God, for those who are called according to his purpose.",
+      "textZh": "鉴察人心的，晓得[圣]灵的意思，因为[圣]灵照着　神的[旨意]替圣徒祈求。我们晓得万事都互相效力，叫爱　神的人得益处，就是按他旨意被召的人。"
     },
     {
       "id": "passage-068",
@@ -1456,6 +1718,7 @@
       "requestedAs": "罗 8:29-30",
       "reference": "Romans 8:29-30",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 8,
       "verseStart": 29,
       "verseEnd": 30,
@@ -1463,14 +1726,17 @@
       "verses": [
         {
           "verse": 29,
-          "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers."
+          "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers.",
+          "textZh": "因为他预先所知道的人，就预先定下效法他儿子的模样，使他儿子在许多弟兄中作长子。"
         },
         {
           "verse": 30,
-          "text": "Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified."
+          "text": "Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified.",
+          "textZh": "预先所定下的人又召他们来；所召来的人又称他们为义；所称为义的人又叫他们得荣耀。"
         }
       ],
-      "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers. Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified."
+      "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers. Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified.",
+      "textZh": "因为他预先所知道的人，就预先定下效法他儿子的模样，使他儿子在许多弟兄中作长子。预先所定下的人又召他们来；所召来的人又称他们为义；所称为义的人又叫他们得荣耀。"
     },
     {
       "id": "passage-069",
@@ -1478,6 +1744,7 @@
       "requestedAs": "罗 8:31-32",
       "reference": "Romans 8:31-32",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 8,
       "verseStart": 31,
       "verseEnd": 32,
@@ -1485,14 +1752,17 @@
       "verses": [
         {
           "verse": 31,
-          "text": "What then shall we say about these things? If God is for us, who can be against us?"
+          "text": "What then shall we say about these things? If God is for us, who can be against us?",
+          "textZh": "既是这样，还有什么说的呢？　神若帮助我们，谁能敌挡我们呢？"
         },
         {
           "verse": 32,
-          "text": "He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"
+          "text": "He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?",
+          "textZh": "神既不爱惜自己的儿子，为我们众人舍了，岂不也把万物和他一同白白地赐给我们吗？"
         }
       ],
-      "text": "What then shall we say about these things? If God is for us, who can be against us? He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"
+      "text": "What then shall we say about these things? If God is for us, who can be against us? He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?",
+      "textZh": "既是这样，还有什么说的呢？　神若帮助我们，谁能敌挡我们呢？神既不爱惜自己的儿子，为我们众人舍了，岂不也把万物和他一同白白地赐给我们吗？"
     },
     {
       "id": "passage-070",
@@ -1500,6 +1770,7 @@
       "requestedAs": "罗 8:33-34",
       "reference": "Romans 8:33-34",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 8,
       "verseStart": 33,
       "verseEnd": 34,
@@ -1507,14 +1778,17 @@
       "verses": [
         {
           "verse": 33,
-          "text": "Who could bring a charge against God’s chosen ones? It is God who justifies."
+          "text": "Who could bring a charge against God’s chosen ones? It is God who justifies.",
+          "textZh": "谁能控告　神所拣选的人呢？有　神称他们为义了。"
         },
         {
           "verse": 34,
-          "text": "Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us."
+          "text": "Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us.",
+          "textZh": "谁能定他们的罪呢？有基督耶稣已经死了，而且从死里复活，现今在　神的右边，也替我们祈求。"
         }
       ],
-      "text": "Who could bring a charge against God’s chosen ones? It is God who justifies. Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us."
+      "text": "Who could bring a charge against God’s chosen ones? It is God who justifies. Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us.",
+      "textZh": "谁能控告　神所拣选的人呢？有　神称他们为义了。谁能定他们的罪呢？有基督耶稣已经死了，而且从死里复活，现今在　神的右边，也替我们祈求。"
     },
     {
       "id": "passage-071",
@@ -1522,6 +1796,7 @@
       "requestedAs": "腓 1:9-11",
       "reference": "Philippians 1:9-11",
       "book": "Philippians",
+      "bookZh": "腓立比书",
       "chapter": 1,
       "verseStart": 9,
       "verseEnd": 11,
@@ -1529,18 +1804,22 @@
       "verses": [
         {
           "verse": 9,
-          "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment,"
+          "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment,",
+          "textZh": "我所祷告的，就是要你们的爱心在知识和各样见识上多而又多，"
         },
         {
           "verse": 10,
-          "text": "so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ,"
+          "text": "so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ,",
+          "textZh": "使你们能分别是非，作诚实无过的人，直到基督的日子；"
         },
         {
           "verse": 11,
-          "text": "being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God."
+          "text": "being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God.",
+          "textZh": "并靠着耶稣基督结满了仁义的果子，叫荣耀称赞归与　神。"
         }
       ],
-      "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment, so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ, being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God."
+      "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment, so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ, being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God.",
+      "textZh": "我所祷告的，就是要你们的爱心在知识和各样见识上多而又多，使你们能分别是非，作诚实无过的人，直到基督的日子；并靠着耶稣基督结满了仁义的果子，叫荣耀称赞归与　神。"
     },
     {
       "id": "passage-072",
@@ -1548,6 +1827,7 @@
       "requestedAs": "弗 4:1-12",
       "reference": "Ephesians 4:1-12",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 4,
       "verseStart": 1,
       "verseEnd": 12,
@@ -1555,54 +1835,67 @@
       "verses": [
         {
           "verse": 1,
-          "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called,"
+          "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called,",
+          "textZh": "我为主被囚的劝你们：既然蒙召，行事为人就当与蒙召的恩相称。"
         },
         {
           "verse": 2,
-          "text": "with all lowliness and humility, with patience, bearing with one another in love,"
+          "text": "with all lowliness and humility, with patience, bearing with one another in love,",
+          "textZh": "凡事谦虚、温柔、忍耐，用爱心互相宽容，"
         },
         {
           "verse": 3,
-          "text": "being eager to keep the unity of the Spirit in the bond of peace."
+          "text": "being eager to keep the unity of the Spirit in the bond of peace.",
+          "textZh": "用和平彼此联络，竭力保守[圣]灵所赐合而为一的心。"
         },
         {
           "verse": 4,
-          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
+          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,",
+          "textZh": "身体只有一个，[圣]灵只有一个，正如你们蒙召同有一个指望。"
         },
         {
           "verse": 5,
-          "text": "one Lord, one faith, one baptism,"
+          "text": "one Lord, one faith, one baptism,",
+          "textZh": "一主，一信，一洗，"
         },
         {
           "verse": 6,
-          "text": "one God and Father of all, who is over all and through all and in us all."
+          "text": "one God and Father of all, who is over all and through all and in us all.",
+          "textZh": "一　神，就是众人的父，超乎众人之上，贯乎众人之中，也住在众人之内。"
         },
         {
           "verse": 7,
-          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
+          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ.",
+          "textZh": "我们各人蒙恩，都是照基督所量给各人的恩赐。"
         },
         {
           "verse": 8,
-          "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.”"
+          "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.”",
+          "textZh": "所以[经上]说： 他升上高天的时候，掳掠了仇敌， 将各样的恩赐赏给人。 （"
         },
         {
           "verse": 9,
-          "text": "Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth?"
+          "text": "Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth?",
+          "textZh": "既说升上，岂不是先降在地下吗？"
         },
         {
           "verse": 10,
-          "text": "He who descended is the one who also ascended far above all the heavens, that he might fill all things."
+          "text": "He who descended is the one who also ascended far above all the heavens, that he might fill all things.",
+          "textZh": "那降下的，就是远升诸天之上要充满万有的。）"
         },
         {
           "verse": 11,
-          "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;"
+          "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;",
+          "textZh": "他所赐的，有使徒，有先知，有传福音的，有牧师和教师，"
         },
         {
           "verse": 12,
-          "text": "for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,"
+          "text": "for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,",
+          "textZh": "为要成全圣徒，各尽其职，建立基督的身体，"
         }
       ],
-      "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called, with all lowliness and humility, with patience, bearing with one another in love, being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ. Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.” Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth? He who descended is the one who also ascended far above all the heavens, that he might fill all things. He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers; for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,"
+      "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called, with all lowliness and humility, with patience, bearing with one another in love, being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ. Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.” Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth? He who descended is the one who also ascended far above all the heavens, that he might fill all things. He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers; for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,",
+      "textZh": "我为主被囚的劝你们：既然蒙召，行事为人就当与蒙召的恩相称。凡事谦虚、温柔、忍耐，用爱心互相宽容，用和平彼此联络，竭力保守[圣]灵所赐合而为一的心。身体只有一个，[圣]灵只有一个，正如你们蒙召同有一个指望。一主，一信，一洗，一　神，就是众人的父，超乎众人之上，贯乎众人之中，也住在众人之内。我们各人蒙恩，都是照基督所量给各人的恩赐。所以[经上]说： 他升上高天的时候，掳掠了仇敌， 将各样的恩赐赏给人。 （既说升上，岂不是先降在地下吗？那降下的，就是远升诸天之上要充满万有的。）他所赐的，有使徒，有先知，有传福音的，有牧师和教师，为要成全圣徒，各尽其职，建立基督的身体，"
     },
     {
       "id": "passage-073",
@@ -1610,6 +1903,7 @@
       "requestedAs": "腓 2:3",
       "reference": "Philippians 2:3",
       "book": "Philippians",
+      "bookZh": "腓立比书",
       "chapter": 2,
       "verseStart": 3,
       "verseEnd": 3,
@@ -1617,10 +1911,12 @@
       "verses": [
         {
           "verse": 3,
-          "text": "doing nothing through rivalry or through conceit, but in humility, each counting others better than himself;"
+          "text": "doing nothing through rivalry or through conceit, but in humility, each counting others better than himself;",
+          "textZh": "凡事不可结党，不可贪图虚浮的荣耀；只要存心谦卑，各人看别人比自己强。"
         }
       ],
-      "text": "doing nothing through rivalry or through conceit, but in humility, each counting others better than himself;"
+      "text": "doing nothing through rivalry or through conceit, but in humility, each counting others better than himself;",
+      "textZh": "凡事不可结党，不可贪图虚浮的荣耀；只要存心谦卑，各人看别人比自己强。"
     },
     {
       "id": "passage-074",
@@ -1628,6 +1924,7 @@
       "requestedAs": "赛 42:2-4",
       "reference": "Isaiah 42:2-4",
       "book": "Isaiah",
+      "bookZh": "以赛亚书",
       "chapter": 42,
       "verseStart": 2,
       "verseEnd": 4,
@@ -1635,18 +1932,22 @@
       "verses": [
         {
           "verse": 2,
-          "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street."
+          "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street.",
+          "textZh": "他不喧嚷，不扬声， 也不使街上听见他的声音。"
         },
         {
           "verse": 3,
-          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice.",
+          "textZh": "压伤的芦苇，他不折断； 将残的灯火，他不吹灭。 他凭真实将公理传开。"
         },
         {
           "verse": 4,
-          "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+          "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”",
+          "textZh": "他不灰心，也不丧胆， 直到他在地上设立公理； 海岛都等候他的训诲。"
         }
       ],
-      "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street. He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice. He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+      "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street. He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice. He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”",
+      "textZh": "他不喧嚷，不扬声， 也不使街上听见他的声音。压伤的芦苇，他不折断； 将残的灯火，他不吹灭。 他凭真实将公理传开。他不灰心，也不丧胆， 直到他在地上设立公理； 海岛都等候他的训诲。"
     },
     {
       "id": "passage-075",
@@ -1654,6 +1955,7 @@
       "requestedAs": "加 5:16",
       "reference": "Galatians 5:16",
       "book": "Galatians",
+      "bookZh": "加拉太书",
       "chapter": 5,
       "verseStart": 16,
       "verseEnd": 16,
@@ -1661,10 +1963,12 @@
       "verses": [
         {
           "verse": 16,
-          "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh."
+          "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh.",
+          "textZh": "我说，你们当顺着[圣]灵而行，就不放纵肉体的情欲了。"
         }
       ],
-      "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh."
+      "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh.",
+      "textZh": "我说，你们当顺着[圣]灵而行，就不放纵肉体的情欲了。"
     },
     {
       "id": "passage-076",
@@ -1672,6 +1976,7 @@
       "requestedAs": "腓 4:4-5",
       "reference": "Philippians 4:4-5",
       "book": "Philippians",
+      "bookZh": "腓立比书",
       "chapter": 4,
       "verseStart": 4,
       "verseEnd": 5,
@@ -1679,14 +1984,17 @@
       "verses": [
         {
           "verse": 4,
-          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”"
+          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”",
+          "textZh": "你们要靠主常常喜乐。我再说，你们要喜乐。"
         },
         {
           "verse": 5,
-          "text": "Let your gentleness be known to all men. The Lord is at hand."
+          "text": "Let your gentleness be known to all men. The Lord is at hand.",
+          "textZh": "当叫众人知道你们谦让的心。主已经近了。"
         }
       ],
-      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!” Let your gentleness be known to all men. The Lord is at hand."
+      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!” Let your gentleness be known to all men. The Lord is at hand.",
+      "textZh": "你们要靠主常常喜乐。我再说，你们要喜乐。当叫众人知道你们谦让的心。主已经近了。"
     },
     {
       "id": "passage-077",
@@ -1694,6 +2002,7 @@
       "requestedAs": "腓 4:4-7",
       "reference": "Philippians 4:4-7",
       "book": "Philippians",
+      "bookZh": "腓立比书",
       "chapter": 4,
       "verseStart": 4,
       "verseEnd": 7,
@@ -1701,22 +2010,27 @@
       "verses": [
         {
           "verse": 4,
-          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”"
+          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”",
+          "textZh": "你们要靠主常常喜乐。我再说，你们要喜乐。"
         },
         {
           "verse": 5,
-          "text": "Let your gentleness be known to all men. The Lord is at hand."
+          "text": "Let your gentleness be known to all men. The Lord is at hand.",
+          "textZh": "当叫众人知道你们谦让的心。主已经近了。"
         },
         {
           "verse": 6,
-          "text": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God."
+          "text": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God.",
+          "textZh": "应当一无挂虑，只要凡事借着祷告、祈求，和感谢，将你们所要的告诉　神。"
         },
         {
           "verse": 7,
-          "text": "And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus."
+          "text": "And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus.",
+          "textZh": "神所赐、出人意外的平安必在基督耶稣里保守你们的心怀意念。"
         }
       ],
-      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!” Let your gentleness be known to all men. The Lord is at hand. In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus."
+      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!” Let your gentleness be known to all men. The Lord is at hand. In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus.",
+      "textZh": "你们要靠主常常喜乐。我再说，你们要喜乐。当叫众人知道你们谦让的心。主已经近了。应当一无挂虑，只要凡事借着祷告、祈求，和感谢，将你们所要的告诉　神。神所赐、出人意外的平安必在基督耶稣里保守你们的心怀意念。"
     },
     {
       "id": "passage-078",
@@ -1724,6 +2038,7 @@
       "requestedAs": "弗 5:16",
       "reference": "Ephesians 5:16",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 5,
       "verseStart": 16,
       "verseEnd": 16,
@@ -1731,10 +2046,12 @@
       "verses": [
         {
           "verse": 16,
-          "text": "redeeming the time, because the days are evil."
+          "text": "redeeming the time, because the days are evil.",
+          "textZh": "要爱惜光阴，因为现今的世代邪恶。"
         }
       ],
-      "text": "redeeming the time, because the days are evil."
+      "text": "redeeming the time, because the days are evil.",
+      "textZh": "要爱惜光阴，因为现今的世代邪恶。"
     },
     {
       "id": "passage-079",
@@ -1742,6 +2059,7 @@
       "requestedAs": "弗 5:15-18",
       "reference": "Ephesians 5:15-18",
       "book": "Ephesians",
+      "bookZh": "以弗所书",
       "chapter": 5,
       "verseStart": 15,
       "verseEnd": 18,
@@ -1749,22 +2067,27 @@
       "verses": [
         {
           "verse": 15,
-          "text": "Therefore watch carefully how you walk, not as unwise, but as wise,"
+          "text": "Therefore watch carefully how you walk, not as unwise, but as wise,",
+          "textZh": "你们要谨慎行事，不要像愚昧人，当像智慧人。"
         },
         {
           "verse": 16,
-          "text": "redeeming the time, because the days are evil."
+          "text": "redeeming the time, because the days are evil.",
+          "textZh": "要爱惜光阴，因为现今的世代邪恶。"
         },
         {
           "verse": 17,
-          "text": "Therefore, don’t be foolish, but understand what the will of the Lord is."
+          "text": "Therefore, don’t be foolish, but understand what the will of the Lord is.",
+          "textZh": "不要作糊涂人，要明白主的旨意如何。"
         },
         {
           "verse": 18,
-          "text": "Don’t be drunken with wine, in which is dissipation, but be filled with the Spirit,"
+          "text": "Don’t be drunken with wine, in which is dissipation, but be filled with the Spirit,",
+          "textZh": "不要醉酒，酒能使人放荡；乃要被[圣]灵充满。"
         }
       ],
-      "text": "Therefore watch carefully how you walk, not as unwise, but as wise, redeeming the time, because the days are evil. Therefore, don’t be foolish, but understand what the will of the Lord is. Don’t be drunken with wine, in which is dissipation, but be filled with the Spirit,"
+      "text": "Therefore watch carefully how you walk, not as unwise, but as wise, redeeming the time, because the days are evil. Therefore, don’t be foolish, but understand what the will of the Lord is. Don’t be drunken with wine, in which is dissipation, but be filled with the Spirit,",
+      "textZh": "你们要谨慎行事，不要像愚昧人，当像智慧人。要爱惜光阴，因为现今的世代邪恶。不要作糊涂人，要明白主的旨意如何。不要醉酒，酒能使人放荡；乃要被[圣]灵充满。"
     },
     {
       "id": "passage-080",
@@ -1772,6 +2095,7 @@
       "requestedAs": "彼前 5:1-4",
       "reference": "1 Peter 5:1-4",
       "book": "1 Peter",
+      "bookZh": "彼得前书",
       "chapter": 5,
       "verseStart": 1,
       "verseEnd": 4,
@@ -1779,22 +2103,27 @@
       "verses": [
         {
           "verse": 1,
-          "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed:"
+          "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed:",
+          "textZh": "我这作长老、作基督受苦的见证、同享后来所要显现之荣耀的，劝你们中间与我同作长老的人："
         },
         {
           "verse": 2,
-          "text": "shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;"
+          "text": "shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;",
+          "textZh": "务要牧养在你们中间　神的群羊，按着　神[旨意]照管他们；不是出于勉强，乃是出于甘心；也不是因为贪财，乃是出于乐意；"
         },
         {
           "verse": 3,
-          "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock."
+          "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock.",
+          "textZh": "也不是辖制所托付你们的，乃是作群羊的榜样。"
         },
         {
           "verse": 4,
-          "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+          "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away.",
+          "textZh": "到了牧长显现的时候，你们必得那永不衰残的荣耀冠冕。"
         }
       ],
-      "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed: shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly; not as lording it over those entrusted to you, but making yourselves examples to the flock. When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+      "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed: shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly; not as lording it over those entrusted to you, but making yourselves examples to the flock. When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away.",
+      "textZh": "我这作长老、作基督受苦的见证、同享后来所要显现之荣耀的，劝你们中间与我同作长老的人：务要牧养在你们中间　神的群羊，按着　神[旨意]照管他们；不是出于勉强，乃是出于甘心；也不是因为贪财，乃是出于乐意；也不是辖制所托付你们的，乃是作群羊的榜样。到了牧长显现的时候，你们必得那永不衰残的荣耀冠冕。"
     },
     {
       "id": "passage-081",
@@ -1802,6 +2131,7 @@
       "requestedAs": "太 5:14",
       "reference": "Matthew 5:14",
       "book": "Matthew",
+      "bookZh": "马太福音",
       "chapter": 5,
       "verseStart": 14,
       "verseEnd": 14,
@@ -1809,10 +2139,12 @@
       "verses": [
         {
           "verse": 14,
-          "text": "“You are the light of the world. A city located on a hill can’t be hidden."
+          "text": "“You are the light of the world. A city located on a hill can’t be hidden.",
+          "textZh": "你们是世上的光。城造在山上是不能隐藏的。"
         }
       ],
-      "text": "“You are the light of the world. A city located on a hill can’t be hidden."
+      "text": "“You are the light of the world. A city located on a hill can’t be hidden.",
+      "textZh": "你们是世上的光。城造在山上是不能隐藏的。"
     },
     {
       "id": "passage-082",
@@ -1820,6 +2152,7 @@
       "requestedAs": "林前2:12-14",
       "reference": "1 Corinthians 2:12-14",
       "book": "1 Corinthians",
+      "bookZh": "哥林多前书",
       "chapter": 2,
       "verseStart": 12,
       "verseEnd": 14,
@@ -1827,18 +2160,22 @@
       "verses": [
         {
           "verse": 12,
-          "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God."
+          "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God.",
+          "textZh": "我们所领受的，并不是世上的灵，乃是从　神来的灵，叫我们能知道　神开恩赐给我们的事。"
         },
         {
           "verse": 13,
-          "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+          "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things.",
+          "textZh": "并且我们讲说这些事，不是用人智慧所指教的言语，乃是用[圣]灵所指教的言语，将属灵的话解释属灵的事。"
         },
         {
           "verse": 14,
-          "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+          "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned.",
+          "textZh": "然而，属血气的人不领会　神[圣]灵的事，反倒以为愚拙，并且不能知道，因为这些事惟有属灵的人才能看透。"
         }
       ],
-      "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God. We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things. Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+      "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God. We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things. Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned.",
+      "textZh": "我们所领受的，并不是世上的灵，乃是从　神来的灵，叫我们能知道　神开恩赐给我们的事。并且我们讲说这些事，不是用人智慧所指教的言语，乃是用[圣]灵所指教的言语，将属灵的话解释属灵的事。然而，属血气的人不领会　神[圣]灵的事，反倒以为愚拙，并且不能知道，因为这些事惟有属灵的人才能看透。"
     },
     {
       "id": "passage-083",
@@ -1846,6 +2183,7 @@
       "requestedAs": "彼前2:2-3",
       "reference": "1 Peter 2:2-3",
       "book": "1 Peter",
+      "bookZh": "彼得前书",
       "chapter": 2,
       "verseStart": 2,
       "verseEnd": 3,
@@ -1853,14 +2191,17 @@
       "verses": [
         {
           "verse": 2,
-          "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow,"
+          "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow,",
+          "textZh": "就要爱慕那纯净的灵奶，像才生的婴孩爱慕奶一样，叫你们因此渐长，以致得救。"
         },
         {
           "verse": 3,
-          "text": "if indeed you have tasted that the Lord is gracious."
+          "text": "if indeed you have tasted that the Lord is gracious.",
+          "textZh": "你们若尝过主恩的滋味，[就必如此]。"
         }
       ],
-      "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow, if indeed you have tasted that the Lord is gracious."
+      "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow, if indeed you have tasted that the Lord is gracious.",
+      "textZh": "就要爱慕那纯净的灵奶，像才生的婴孩爱慕奶一样，叫你们因此渐长，以致得救。你们若尝过主恩的滋味，[就必如此]。"
     },
     {
       "id": "passage-084",
@@ -1868,6 +2209,7 @@
       "requestedAs": "太5:13",
       "reference": "Matthew 5:13",
       "book": "Matthew",
+      "bookZh": "马太福音",
       "chapter": 5,
       "verseStart": 13,
       "verseEnd": 13,
@@ -1875,10 +2217,12 @@
       "verses": [
         {
           "verse": 13,
-          "text": "“You are the salt of the earth, but if the salt has lost its flavor, with what will it be salted? It is then good for nothing, but to be cast out and trodden under the feet of men."
+          "text": "“You are the salt of the earth, but if the salt has lost its flavor, with what will it be salted? It is then good for nothing, but to be cast out and trodden under the feet of men.",
+          "textZh": "「你们是世上的盐。盐若失了味，怎能叫它再咸呢？以后无用，不过丢在外面，被人践踏了。"
         }
       ],
-      "text": "“You are the salt of the earth, but if the salt has lost its flavor, with what will it be salted? It is then good for nothing, but to be cast out and trodden under the feet of men."
+      "text": "“You are the salt of the earth, but if the salt has lost its flavor, with what will it be salted? It is then good for nothing, but to be cast out and trodden under the feet of men.",
+      "textZh": "「你们是世上的盐。盐若失了味，怎能叫它再咸呢？以后无用，不过丢在外面，被人践踏了。"
     },
     {
       "id": "passage-085",
@@ -1886,6 +2230,7 @@
       "requestedAs": "路16:8",
       "reference": "Luke 16:8",
       "book": "Luke",
+      "bookZh": "路加福音",
       "chapter": 16,
       "verseStart": 8,
       "verseEnd": 8,
@@ -1893,10 +2238,12 @@
       "verses": [
         {
           "verse": 8,
-          "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light."
+          "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light.",
+          "textZh": "主人就夸奖这不义的管家做事聪明；因为今世之子，在世事之上，较比光明之子更加聪明。"
         }
       ],
-      "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light."
+      "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light.",
+      "textZh": "主人就夸奖这不义的管家做事聪明；因为今世之子，在世事之上，较比光明之子更加聪明。"
     },
     {
       "id": "passage-086",
@@ -1904,6 +2251,7 @@
       "requestedAs": "路16:9",
       "reference": "Luke 16:9",
       "book": "Luke",
+      "bookZh": "路加福音",
       "chapter": 16,
       "verseStart": 9,
       "verseEnd": 9,
@@ -1911,10 +2259,12 @@
       "verses": [
         {
           "verse": 9,
-          "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents."
+          "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents.",
+          "textZh": "我又告诉你们，要借着那不义的钱财结交朋友，到了钱财无用的时候，他们可以接你们到永存的帐幕里去。"
         }
       ],
-      "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents."
+      "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents.",
+      "textZh": "我又告诉你们，要借着那不义的钱财结交朋友，到了钱财无用的时候，他们可以接你们到永存的帐幕里去。"
     },
     {
       "id": "passage-087",
@@ -1922,6 +2272,7 @@
       "requestedAs": "罗12:1-2",
       "reference": "Romans 12:1-2",
       "book": "Romans",
+      "bookZh": "罗马书",
       "chapter": 12,
       "verseStart": 1,
       "verseEnd": 2,
@@ -1929,14 +2280,17 @@
       "verses": [
         {
           "verse": 1,
-          "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service."
+          "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service.",
+          "textZh": "所以，弟兄们，我以　神的慈悲劝你们，将身体献上，当作活祭，是圣洁的，是　神所喜悦的；你们如此事奉乃是理所当然的。"
         },
         {
           "verse": 2,
-          "text": "Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God."
+          "text": "Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God.",
+          "textZh": "不要效法这个世界，只要心意更新而变化，叫你们察验何为　神的善良、纯全、可喜悦的旨意。"
         }
       ],
-      "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service. Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God."
+      "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service. Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God.",
+      "textZh": "所以，弟兄们，我以　神的慈悲劝你们，将身体献上，当作活祭，是圣洁的，是　神所喜悦的；你们如此事奉乃是理所当然的。不要效法这个世界，只要心意更新而变化，叫你们察验何为　神的善良、纯全、可喜悦的旨意。"
     },
     {
       "id": "passage-088",
@@ -1944,6 +2298,7 @@
       "requestedAs": "加5:1",
       "reference": "Galatians 5:1",
       "book": "Galatians",
+      "bookZh": "加拉太书",
       "chapter": 5,
       "verseStart": 1,
       "verseEnd": 1,
@@ -1951,10 +2306,12 @@
       "verses": [
         {
           "verse": 1,
-          "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage."
+          "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage.",
+          "textZh": "基督释放了我们，叫我们得以自由。所以要站立得稳，不要再被奴仆的轭挟制。"
         }
       ],
-      "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage."
+      "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage.",
+      "textZh": "基督释放了我们，叫我们得以自由。所以要站立得稳，不要再被奴仆的轭挟制。"
     },
     {
       "id": "passage-089",
@@ -1962,6 +2319,7 @@
       "requestedAs": "何6:6",
       "reference": "Hosea 6:6",
       "book": "Hosea",
+      "bookZh": "何西阿书",
       "chapter": 6,
       "verseStart": 6,
       "verseEnd": 6,
@@ -1969,10 +2327,69 @@
       "verses": [
         {
           "verse": 6,
-          "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+          "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings.",
+          "textZh": "我喜爱良善，不喜爱祭祀； 喜爱认识　神，胜于燔祭。"
         }
       ],
-      "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+      "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings.",
+      "textZh": "我喜爱良善，不喜爱祭祀； 喜爱认识　神，胜于燔祭。"
+    },
+    {
+      "id": "passage-090",
+      "order": 90,
+      "requestedAs": "腓 2:4-11 基督的心",
+      "reference": "Philippians 2:4-11",
+      "book": "Philippians",
+      "bookZh": "腓立比书",
+      "chapter": 2,
+      "verseStart": 4,
+      "verseEnd": 11,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "each of you not just looking to his own things, but each of you also to the things of others.",
+          "textZh": "各人不要单顾自己的事，也要顾别人的事。"
+        },
+        {
+          "verse": 5,
+          "text": "Have this in your mind, which was also in Christ Jesus,",
+          "textZh": "你们当以基督耶稣的心为心："
+        },
+        {
+          "verse": 6,
+          "text": "who, existing in the form of God, didn’t consider equality with God a thing to be grasped,",
+          "textZh": "他本有　神的形象， 不以自己与　神同等为强夺的；"
+        },
+        {
+          "verse": 7,
+          "text": "but emptied himself, taking the form of a servant, being made in the likeness of men.",
+          "textZh": "反倒虚己， 取了奴仆的形象， 成为人的样式；"
+        },
+        {
+          "verse": 8,
+          "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross.",
+          "textZh": "既有人的样子，就自己卑微， 存心顺服，以至于死， 且死在十字架上。"
+        },
+        {
+          "verse": 9,
+          "text": "Therefore God also highly exalted him, and gave to him the name which is above every name,",
+          "textZh": "所以，　神将他升为至高， 又赐给他那超乎万名之上的名，"
+        },
+        {
+          "verse": 10,
+          "text": "that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,",
+          "textZh": "叫一切在天上的、地上的，和地底下的， 因耶稣的名无不屈膝，"
+        },
+        {
+          "verse": 11,
+          "text": "and that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father.",
+          "textZh": "无不口称「耶稣基督为主」， 使荣耀归与父　神。"
+        }
+      ],
+      "text": "each of you not just looking to his own things, but each of you also to the things of others. Have this in your mind, which was also in Christ Jesus, who, existing in the form of God, didn’t consider equality with God a thing to be grasped, but emptied himself, taking the form of a servant, being made in the likeness of men. And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross. Therefore God also highly exalted him, and gave to him the name which is above every name, that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth, and that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father.",
+      "textZh": "各人不要单顾自己的事，也要顾别人的事。你们当以基督耶稣的心为心：他本有　神的形象， 不以自己与　神同等为强夺的；反倒虚己， 取了奴仆的形象， 成为人的样式；既有人的样子，就自己卑微， 存心顺服，以至于死， 且死在十字架上。所以，　神将他升为至高， 又赐给他那超乎万名之上的名，叫一切在天上的、地上的，和地底下的， 因耶稣的名无不屈膝，无不口称「耶稣基督为主」， 使荣耀归与父　神。",
+      "matchNote": "Christ's humility and exaltation."
     }
   ]
 }

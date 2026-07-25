@@ -9,6 +9,8 @@ import rawData from '../../data/verses.json';
 export interface ScriptureVerse {
   verse: number;
   text: string;
+  /** Chinese Union Version (和合本) text for this verse. */
+  textZh?: string;
 }
 
 export interface Passage {
@@ -16,6 +18,8 @@ export interface Passage {
   order: number;
   reference: string;
   book: string;
+  /** Chinese book name (和合本), e.g. "约翰福音". */
+  bookZh?: string;
   chapter: number;
   verseStart: number;
   verseEnd: number;
@@ -23,6 +27,8 @@ export interface Passage {
   /** The full passage text — for multi-verse passages this equals the verse
    * texts joined by a single space. */
   text: string;
+  /** The full passage in Chinese (和合本), verses joined. */
+  textZh?: string;
   requestedAs?: string;
   matchNote?: string;
 }

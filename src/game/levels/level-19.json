@@ -1,0 +1,284 @@
+{
+  "level": 19,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "none",
+    "granularity": "words",
+    "sectionBy": "verse",
+    "distractorsPerSection": 7,
+    "memorizeSecondsPerWord": 1.4,
+    "memorizeMin": 34,
+    "memorizeMax": 116
+  },
+  "questions": [
+    {
+      "id": "L19-q00",
+      "reference": "Ephesians 4:2-7",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "with all lowliness and humility, with patience, bearing with one another in love,"
+        },
+        {
+          "verse": 3,
+          "text": "being eager to keep the unity of the Spirit in the bond of peace."
+        },
+        {
+          "verse": 4,
+          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
+        },
+        {
+          "verse": 5,
+          "text": "one Lord, one faith, one baptism,"
+        },
+        {
+          "verse": 6,
+          "text": "one God and Father of all, who is over all and through all and in us all."
+        },
+        {
+          "verse": 7,
+          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
+        }
+      ],
+      "text": "with all lowliness and humility, with patience, bearing with one another in love, being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ."
+    },
+    {
+      "id": "L19-q01",
+      "reference": "John 12:23-26",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+        },
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        },
+        {
+          "verse": 25,
+          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+        },
+        {
+          "verse": 26,
+          "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+        }
+      ],
+      "text": "Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life. If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+    },
+    {
+      "id": "L19-q02",
+      "reference": "Philippians 2:6-10",
+      "passageId": "passage-090",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "who, existing in the form of God, didn’t consider equality with God a thing to be grasped,"
+        },
+        {
+          "verse": 7,
+          "text": "but emptied himself, taking the form of a servant, being made in the likeness of men."
+        },
+        {
+          "verse": 8,
+          "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross."
+        },
+        {
+          "verse": 9,
+          "text": "Therefore God also highly exalted him, and gave to him the name which is above every name,"
+        },
+        {
+          "verse": 10,
+          "text": "that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,"
+        }
+      ],
+      "text": "who, existing in the form of God, didn’t consider equality with God a thing to be grasped, but emptied himself, taking the form of a servant, being made in the likeness of men. And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross. Therefore God also highly exalted him, and gave to him the name which is above every name, that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,"
+    },
+    {
+      "id": "L19-q03",
+      "reference": "Romans 5:1-6",
+      "passageId": "passage-046",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;"
+        },
+        {
+          "verse": 2,
+          "text": "through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God."
+        },
+        {
+          "verse": 3,
+          "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;"
+        },
+        {
+          "verse": 4,
+          "text": "and perseverance, proven character; and proven character, hope;"
+        },
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        },
+        {
+          "verse": 6,
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+        }
+      ],
+      "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ; through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God. Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly."
+    },
+    {
+      "id": "L19-q04",
+      "reference": "Ephesians 1:3-6",
+      "passageId": "passage-032",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,"
+        },
+        {
+          "verse": 4,
+          "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,"
+        },
+        {
+          "verse": 5,
+          "text": "having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire,"
+        },
+        {
+          "verse": 6,
+          "text": "to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+        }
+      ],
+      "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ, even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love, having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire, to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+    },
+    {
+      "id": "L19-q05",
+      "reference": "John 12:20-24",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 20,
+          "text": "Now there were certain Greeks among those who went up to worship at the feast."
+        },
+        {
+          "verse": 21,
+          "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”"
+        },
+        {
+          "verse": 22,
+          "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+        },
+        {
+          "verse": 23,
+          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+        },
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        }
+      ],
+      "text": "Now there were certain Greeks among those who went up to worship at the feast. Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.” Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus. Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+    },
+    {
+      "id": "L19-q06",
+      "reference": "Philippians 2:7-11",
+      "passageId": "passage-090",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "but emptied himself, taking the form of a servant, being made in the likeness of men."
+        },
+        {
+          "verse": 8,
+          "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross."
+        },
+        {
+          "verse": 9,
+          "text": "Therefore God also highly exalted him, and gave to him the name which is above every name,"
+        },
+        {
+          "verse": 10,
+          "text": "that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,"
+        },
+        {
+          "verse": 11,
+          "text": "and that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father."
+        }
+      ],
+      "text": "but emptied himself, taking the form of a servant, being made in the likeness of men. And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross. Therefore God also highly exalted him, and gave to him the name which is above every name, that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth, and that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father."
+    },
+    {
+      "id": "L19-q07",
+      "reference": "Romans 5:3-8",
+      "passageId": "passage-046",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;"
+        },
+        {
+          "verse": 4,
+          "text": "and perseverance, proven character; and proven character, hope;"
+        },
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        },
+        {
+          "verse": 6,
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+        },
+        {
+          "verse": 7,
+          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die."
+        },
+        {
+          "verse": 8,
+          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+        }
+      ],
+      "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+    },
+    {
+      "id": "L19-q08",
+      "reference": "Ephesians 4:1-6",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called,"
+        },
+        {
+          "verse": 2,
+          "text": "with all lowliness and humility, with patience, bearing with one another in love,"
+        },
+        {
+          "verse": 3,
+          "text": "being eager to keep the unity of the Spirit in the bond of peace."
+        },
+        {
+          "verse": 4,
+          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
+        },
+        {
+          "verse": 5,
+          "text": "one Lord, one faith, one baptism,"
+        },
+        {
+          "verse": 6,
+          "text": "one God and Father of all, who is over all and through all and in us all."
+        }
+      ],
+      "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called, with all lowliness and humility, with patience, bearing with one another in love, being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all."
+    }
+  ]
+}

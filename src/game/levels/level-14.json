@@ -1,0 +1,148 @@
+{
+  "level": 14,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "none",
+    "granularity": "words",
+    "sectionBy": "sentence",
+    "distractorsPerSection": 4,
+    "memorizeSecondsPerWord": 1.7,
+    "memorizeMin": 20,
+    "memorizeMax": 50
+  },
+  "questions": [
+    {
+      "id": "L14-q00",
+      "reference": "1 Peter 5:3-4",
+      "passageId": "passage-080",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock."
+        },
+        {
+          "verse": 4,
+          "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+        }
+      ],
+      "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock. When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+    },
+    {
+      "id": "L14-q01",
+      "reference": "2 Corinthians 3:18",
+      "passageId": "passage-022",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 18,
+          "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit."
+        }
+      ],
+      "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit."
+    },
+    {
+      "id": "L14-q02",
+      "reference": "Ecclesiastes 3:11",
+      "passageId": "passage-012",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end."
+        }
+      ],
+      "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end."
+    },
+    {
+      "id": "L14-q03",
+      "reference": "Ephesians 1:7-8",
+      "passageId": "passage-033",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace"
+        },
+        {
+          "verse": 8,
+          "text": "which he made to abound toward us in all wisdom and prudence,"
+        }
+      ],
+      "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace which he made to abound toward us in all wisdom and prudence,"
+    },
+    {
+      "id": "L14-q04",
+      "reference": "Hebrews 12:2",
+      "passageId": "passage-043",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God."
+        }
+      ],
+      "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God."
+    },
+    {
+      "id": "L14-q05",
+      "reference": "Isaiah 42:3-4",
+      "passageId": "passage-074",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+        },
+        {
+          "verse": 4,
+          "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+        }
+      ],
+      "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice. He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”"
+    },
+    {
+      "id": "L14-q06",
+      "reference": "John 3:8",
+      "passageId": "passage-051",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+        }
+      ],
+      "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+    },
+    {
+      "id": "L14-q07",
+      "reference": "Luke 11:11",
+      "passageId": "passage-040",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he?"
+        }
+      ],
+      "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he?"
+    },
+    {
+      "id": "L14-q08",
+      "reference": "Matthew 6:12-13",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "Forgive us our debts, as we also forgive our debtors."
+        },
+        {
+          "verse": 13,
+          "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+        }
+      ],
+      "text": "Forgive us our debts, as we also forgive our debtors. Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+    }
+  ]
+}

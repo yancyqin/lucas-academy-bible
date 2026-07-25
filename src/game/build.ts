@@ -1,8 +1,13 @@
-import { requirePassage } from '../data/scripture';
-import { chunkText } from './chunk';
+import { autoChunk, splitSentences, tokenize } from './chunk';
 import { pickDistractors } from './distractors';
-import type { HintLevel, LevelConfig } from './levels';
+import {
+  memorizeSeconds,
+  type HintLevel,
+  type LevelFile,
+  type Question,
+} from './levels';
 import { mulberry32, shuffle, type Rng } from './random';
+import { getPassage } from '../data/scripture';
 
 /** A single clickable tile. IDs are unique even when text repeats. */
 export interface Tile {
@@ -11,17 +16,13 @@ export interface Tile {
   isDistractor: boolean;
 }
 
-/** One recall section — the whole passage, or a single verse when sectioned. */
+/** One recall section — the whole question, a verse, or a sentence. */
 export interface RecallSection {
   index: number;
   total: number;
-  /** Human label like "Verse 3 of 12" (empty for single-section levels). */
+  /** Human label like "Verse 3 of 12" / "Part 2 of 4" (empty when single). */
   label: string;
-  /** Verse number this section maps to, when sectioned. */
-  verse?: number;
-  /** Ordered correct chunk texts. */
   correct: string[];
-  /** Shuffled bank of correct + distractor tiles. */
   bank: Tile[];
 }
 
@@ -29,15 +30,23 @@ export interface BuiltLevel {
   level: number;
   passageId: string;
   reference: string;
+  fragment: boolean;
   fullText: string;
+  /** Chinese Union Version (和合本) for the verse(s) this question covers. */
+  fullTextZh: string;
+  /** Chinese reference, e.g. "约翰福音 11:35" (empty if unavailable). */
+  referenceZh: string;
   verses: { verse: number; text: string }[];
   hearts: number;
   hintLevel: HintLevel;
   sectioned: boolean;
   sections: RecallSection[];
+  /** Seconds to memorize before recall (scaled to length + difficulty). */
+  memorizeSeconds: number;
+  /** The bank question that was drawn for this build. */
+  questionId: string;
 }
 
-/** True when the correct tiles already sit in target order (trivial round). */
 function isPreSolved(bank: Tile[], correct: string[]): boolean {
   const correctTexts = bank.filter((t) => !t.isDistractor).map((t) => t.text);
   return (
@@ -63,10 +72,8 @@ function buildBank(
     text,
     isDistractor: true,
   }));
-
   const all = [...correctTiles, ...distractorTiles];
   let bank = shuffle(all, rng);
-  // Avoid handing the player an already-ordered round.
   for (let attempt = 0; attempt < 24 && isPreSolved(bank, correct); attempt++) {
     bank = shuffle(all, rng);
   }
@@ -74,51 +81,107 @@ function buildBank(
   return bank;
 }
 
+/** The text units that become recall sections, per the level's sectionBy. */
+function sectionUnits(
+  question: Question,
+  sectionBy: LevelFile['policy']['sectionBy'],
+): { label: (i: number, n: number) => string; texts: string[] } {
+  if (sectionBy === 'verse' && question.verses.length > 1) {
+    return {
+      label: (i, n) => `Verse ${i + 1} of ${n}`,
+      texts: question.verses.map((v) => v.text),
+    };
+  }
+  if (sectionBy === 'sentence') {
+    const sentences = splitSentences(question.text);
+    if (sentences.length > 1) {
+      return {
+        label: (i, n) => `Part ${i + 1} of ${n}`,
+        texts: sentences,
+      };
+    }
+  }
+  return { label: () => '', texts: [question.text] };
+}
+
+/** Chinese (和合本) text + reference for the verse(s) a question covers. */
+function chineseFor(question: Question): { fullTextZh: string; referenceZh: string } {
+  const passage = getPassage(question.passageId);
+  if (!passage) return { fullTextZh: '', referenceZh: '' };
+  const zhByVerse = new Map<number, string>();
+  for (const v of passage.verses) zhByVerse.set(v.verse, v.textZh ?? '');
+  const nums = question.verses.map((v) => v.verse);
+  // Fragments show the whole source verse's Chinese (the CUV can't be split to
+  // match an English clause), which reads as a helpful translation.
+  const fullTextZh = nums.map((n) => zhByVerse.get(n) ?? '').join('');
+  const a = nums[0];
+  const b = nums[nums.length - 1];
+  const bookZh = passage.bookZh ?? '';
+  const referenceZh = bookZh
+    ? `${bookZh} ${passage.chapter}:${a === b ? a : `${a}-${b}`}`
+    : '';
+  return { fullTextZh, referenceZh };
+}
+
 export interface BuildOptions {
-  /** Seed for deterministic layout. Defaults to the level number. */
+  /** Seed for deterministic layout + question choice. Defaults to level number. */
   seed?: number;
+  /** Force a specific question (by index) instead of drawing from the bank. */
+  questionIndex?: number;
 }
 
 /**
- * Assemble a fully-built, ready-to-play level: sections, correct chunks, and
- * shuffled tile banks. Pure and deterministic given `seed`.
+ * Assemble a fully-built, ready-to-play level from a level file: draw a
+ * question from the bank, section + chunk it, build shuffled tile banks with
+ * distractors from OTHER passages. Pure and deterministic given `seed`.
  */
-export function buildLevel(config: LevelConfig, opts: BuildOptions = {}): BuiltLevel {
-  const passage = requirePassage(config.passageId);
-  const rng = mulberry32(opts.seed ?? config.level);
+export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel {
+  const rng = mulberry32(opts.seed ?? file.level);
+  const bank = file.questions;
+  if (bank.length === 0) throw new Error(`Level ${file.level} has no questions`);
 
-  const units: { verse: number; text: string }[] = config.sectioned
-    ? passage.verses.map((v) => ({ verse: v.verse, text: v.text }))
-    : [{ verse: passage.verses[0]?.verse ?? 0, text: passage.text }];
+  const qIndex =
+    opts.questionIndex !== undefined
+      ? ((opts.questionIndex % bank.length) + bank.length) % bank.length
+      : Math.floor(rng() * bank.length);
+  const question = bank[qIndex];
 
-  const sections: RecallSection[] = units.map((unit, si) => {
-    const correct = chunkText(unit.text, config.spec);
+  const { label, texts } = sectionUnits(question, file.policy.sectionBy);
+
+  const sections: RecallSection[] = texts.map((unitText, si) => {
+    const correct = autoChunk(unitText, file.policy.granularity);
     const distractors = pickDistractors({
-      excludeId: config.passageId,
+      excludeId: question.passageId,
       correctChunks: correct,
-      count: config.distractorsPerSection,
+      count: file.policy.distractorsPerSection,
       rng,
     });
-    const bank = buildBank(config.level, si, correct, distractors, rng);
+    const tiles = buildBank(file.level, si, correct, distractors, rng);
     return {
       index: si,
-      total: units.length,
-      label: config.sectioned ? `Verse ${si + 1} of ${units.length}` : '',
-      verse: config.sectioned ? unit.verse : undefined,
+      total: texts.length,
+      label: texts.length > 1 ? label(si, texts.length) : '',
       correct,
-      bank,
+      bank: tiles,
     };
   });
 
+  const zh = chineseFor(question);
+
   return {
-    level: config.level,
-    passageId: config.passageId,
-    reference: passage.reference,
-    fullText: passage.text,
-    verses: passage.verses.map((v) => ({ verse: v.verse, text: v.text })),
-    hearts: config.hearts,
-    hintLevel: config.hintLevel,
-    sectioned: config.sectioned,
+    level: file.level,
+    passageId: question.passageId,
+    reference: question.reference,
+    referenceZh: zh.referenceZh,
+    fragment: question.fragment,
+    fullText: question.text,
+    fullTextZh: zh.fullTextZh,
+    verses: question.verses,
+    hearts: file.policy.hearts,
+    hintLevel: file.policy.hintLevel,
+    sectioned: sections.length > 1,
     sections,
+    memorizeSeconds: memorizeSeconds(file.policy, tokenize(question.text).length),
+    questionId: question.id,
   };
 }

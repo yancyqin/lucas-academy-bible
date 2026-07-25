@@ -1,0 +1,232 @@
+{
+  "level": 18,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "none",
+    "granularity": "words",
+    "sectionBy": "verse",
+    "distractorsPerSection": 6,
+    "memorizeSecondsPerWord": 1.4,
+    "memorizeMin": 30,
+    "memorizeMax": 96
+  },
+  "questions": [
+    {
+      "id": "L18-q00",
+      "reference": "1 Corinthians 2:12-14",
+      "passageId": "passage-082",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God."
+        },
+        {
+          "verse": 13,
+          "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+        },
+        {
+          "verse": 14,
+          "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+        }
+      ],
+      "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God. We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things. Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+    },
+    {
+      "id": "L18-q01",
+      "reference": "1 Peter 5:1-4",
+      "passageId": "passage-080",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed:"
+        },
+        {
+          "verse": 2,
+          "text": "shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;"
+        },
+        {
+          "verse": 3,
+          "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock."
+        },
+        {
+          "verse": 4,
+          "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+        }
+      ],
+      "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed: shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly; not as lording it over those entrusted to you, but making yourselves examples to the flock. When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away."
+    },
+    {
+      "id": "L18-q02",
+      "reference": "Ephesians 4:8-11",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.”"
+        },
+        {
+          "verse": 9,
+          "text": "Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth?"
+        },
+        {
+          "verse": 10,
+          "text": "He who descended is the one who also ascended far above all the heavens, that he might fill all things."
+        },
+        {
+          "verse": 11,
+          "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;"
+        }
+      ],
+      "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.” Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth? He who descended is the one who also ascended far above all the heavens, that he might fill all things. He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;"
+    },
+    {
+      "id": "L18-q03",
+      "reference": "Hebrews 4:14-16",
+      "passageId": "passage-036",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession."
+        },
+        {
+          "verse": 15,
+          "text": "For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin."
+        },
+        {
+          "verse": 16,
+          "text": "Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+        }
+      ],
+      "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession. For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin. Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+    },
+    {
+      "id": "L18-q04",
+      "reference": "John 8:31-34",
+      "passageId": "passage-027",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+        },
+        {
+          "verse": 32,
+          "text": "You will know the truth, and the truth will make you free.”"
+        },
+        {
+          "verse": 33,
+          "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+        },
+        {
+          "verse": 34,
+          "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+        }
+      ],
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.” They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?” Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+    },
+    {
+      "id": "L18-q05",
+      "reference": "Philippians 2:7-10",
+      "passageId": "passage-090",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "but emptied himself, taking the form of a servant, being made in the likeness of men."
+        },
+        {
+          "verse": 8,
+          "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross."
+        },
+        {
+          "verse": 9,
+          "text": "Therefore God also highly exalted him, and gave to him the name which is above every name,"
+        },
+        {
+          "verse": 10,
+          "text": "that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,"
+        }
+      ],
+      "text": "but emptied himself, taking the form of a servant, being made in the likeness of men. And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross. Therefore God also highly exalted him, and gave to him the name which is above every name, that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,"
+    },
+    {
+      "id": "L18-q06",
+      "reference": "Romans 5:5-8",
+      "passageId": "passage-031",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        },
+        {
+          "verse": 6,
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+        },
+        {
+          "verse": 7,
+          "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die."
+        },
+        {
+          "verse": 8,
+          "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+        }
+      ],
+      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
+    },
+    {
+      "id": "L18-q07",
+      "reference": "Ephesians 4:3-7",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "being eager to keep the unity of the Spirit in the bond of peace."
+        },
+        {
+          "verse": 4,
+          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
+        },
+        {
+          "verse": 5,
+          "text": "one Lord, one faith, one baptism,"
+        },
+        {
+          "verse": 6,
+          "text": "one God and Father of all, who is over all and through all and in us all."
+        },
+        {
+          "verse": 7,
+          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
+        }
+      ],
+      "text": "being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ."
+    },
+    {
+      "id": "L18-q08",
+      "reference": "John 12:24-26",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        },
+        {
+          "verse": 25,
+          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+        },
+        {
+          "verse": 26,
+          "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+        }
+      ],
+      "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life. If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+    }
+  ]
+}

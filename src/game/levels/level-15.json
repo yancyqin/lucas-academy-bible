@@ -1,0 +1,172 @@
+{
+  "level": 15,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "none",
+    "granularity": "words",
+    "sectionBy": "sentence",
+    "distractorsPerSection": 5,
+    "memorizeSecondsPerWord": 1.6,
+    "memorizeMin": 22,
+    "memorizeMax": 58
+  },
+  "questions": [
+    {
+      "id": "L15-q00",
+      "reference": "1 Corinthians 2:13-14",
+      "passageId": "passage-082",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things."
+        },
+        {
+          "verse": 14,
+          "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+        }
+      ],
+      "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things. Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+    },
+    {
+      "id": "L15-q01",
+      "reference": "2 Corinthians 5:16-17",
+      "passageId": "passage-052",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more."
+        },
+        {
+          "verse": 17,
+          "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+        }
+      ],
+      "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more. Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new."
+    },
+    {
+      "id": "L15-q02",
+      "reference": "Ephesians 4:4-6",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
+        },
+        {
+          "verse": 5,
+          "text": "one Lord, one faith, one baptism,"
+        },
+        {
+          "verse": 6,
+          "text": "one God and Father of all, who is over all and through all and in us all."
+        }
+      ],
+      "text": "There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all."
+    },
+    {
+      "id": "L15-q03",
+      "reference": "Galatians 2:20",
+      "passageId": "passage-017",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 20,
+          "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me."
+        }
+      ],
+      "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me."
+    },
+    {
+      "id": "L15-q04",
+      "reference": "Hebrews 4:12",
+      "passageId": "passage-039",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart."
+        }
+      ],
+      "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart."
+    },
+    {
+      "id": "L15-q05",
+      "reference": "Joel 2:28-29",
+      "passageId": "passage-023",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 28,
+          "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions."
+        },
+        {
+          "verse": 29,
+          "text": "And also on the servants and on the handmaids in those days, I will pour out my Spirit."
+        }
+      ],
+      "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions. And also on the servants and on the handmaids in those days, I will pour out my Spirit."
+    },
+    {
+      "id": "L15-q06",
+      "reference": "John 8:33-34",
+      "passageId": "passage-027",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 33,
+          "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+        },
+        {
+          "verse": 34,
+          "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+        }
+      ],
+      "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?” Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+    },
+    {
+      "id": "L15-q07",
+      "reference": "Luke 11:12-13",
+      "passageId": "passage-040",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "Or if he asks for an egg, he won’t give him a scorpion, will he?"
+        },
+        {
+          "verse": 13,
+          "text": "If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+        }
+      ],
+      "text": "Or if he asks for an egg, he won’t give him a scorpion, will he? If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+    },
+    {
+      "id": "L15-q08",
+      "reference": "Matthew 6:9-12",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+        },
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        },
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        },
+        {
+          "verse": 12,
+          "text": "Forgive us our debts, as we also forgive our debtors."
+        }
+      ],
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also forgive our debtors."
+    }
+  ]
+}

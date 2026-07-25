@@ -1,0 +1,132 @@
+{
+  "level": 8,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "count",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 2,
+    "memorizeSecondsPerWord": 2.4,
+    "memorizeMin": 12,
+    "memorizeMax": 28
+  },
+  "questions": [
+    {
+      "id": "L08-q00",
+      "reference": "1 Corinthians 2:12c",
+      "passageId": "passage-082",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "that we might know the things that were freely given to us by God."
+        }
+      ],
+      "text": "that we might know the things that were freely given to us by God."
+    },
+    {
+      "id": "L08-q01",
+      "reference": "1 John 1:9b",
+      "passageId": "passage-003",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness."
+        }
+      ],
+      "text": "he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness."
+    },
+    {
+      "id": "L08-q02",
+      "reference": "1 Peter 5:3",
+      "passageId": "passage-080",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock."
+        }
+      ],
+      "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock."
+    },
+    {
+      "id": "L08-q03",
+      "reference": "2 Corinthians 3:17",
+      "passageId": "passage-021",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty."
+        }
+      ],
+      "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty."
+    },
+    {
+      "id": "L08-q04",
+      "reference": "Ecclesiastes 3:11a",
+      "passageId": "passage-012",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "He has made everything beautiful in its time. He has also set eternity in their hearts,"
+        }
+      ],
+      "text": "He has made everything beautiful in its time. He has also set eternity in their hearts,"
+    },
+    {
+      "id": "L08-q05",
+      "reference": "Ephesians 4:3",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "being eager to keep the unity of the Spirit in the bond of peace."
+        }
+      ],
+      "text": "being eager to keep the unity of the Spirit in the bond of peace."
+    },
+    {
+      "id": "L08-q06",
+      "reference": "Galatians 6:15",
+      "passageId": "passage-019",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 15,
+          "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation."
+        }
+      ],
+      "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation."
+    },
+    {
+      "id": "L08-q07",
+      "reference": "Hebrews 4:12b",
+      "passageId": "passage-039",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "piercing even to the dividing of soul and spirit, of both joints and marrow,"
+        }
+      ],
+      "text": "piercing even to the dividing of soul and spirit, of both joints and marrow,"
+    },
+    {
+      "id": "L08-q08",
+      "reference": "Hosea 6:6",
+      "passageId": "passage-089",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+        }
+      ],
+      "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+    }
+  ]
+}

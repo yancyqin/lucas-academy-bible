@@ -7,6 +7,7 @@ import {
   saveProgress,
   totalStars,
 } from '../progress';
+import { MAX_LEVEL } from '../levels';
 
 /** A minimal in-memory Storage stand-in for deterministic tests. */
 function fakeStore(initial: Record<string, string> = {}) {
@@ -18,18 +19,20 @@ function fakeStore(initial: Record<string, string> = {}) {
 }
 
 describe('progress persistence', () => {
-  it('starts locked to level 1', () => {
+  it('starts at the warm-up level 0', () => {
     const p = defaultProgress();
-    expect(p.highestUnlocked).toBe(1);
+    expect(p.highestUnlocked).toBe(0);
     expect(p.completed).toEqual([]);
   });
 
   // Requirement 8
   it('unlocks the next level only after completion', () => {
     let p = defaultProgress();
+    expect(p.highestUnlocked).toBe(0);
+    p = recordCompletion(p, 0, 3, 1);
+    expect(p.completed).toContain(0);
     expect(p.highestUnlocked).toBe(1);
     p = recordCompletion(p, 1, 3, 1);
-    expect(p.completed).toContain(1);
     expect(p.highestUnlocked).toBe(2);
     // Completing level 1 does NOT unlock level 5.
     expect(p.highestUnlocked).toBeLessThan(5);
@@ -84,13 +87,13 @@ describe('progress persistence', () => {
       soundEnabled: 'yes',
       introSeen: 1,
     });
-    expect(messy.highestUnlocked).toBeLessThanOrEqual(20);
-    expect(messy.highestUnlocked).toBeGreaterThanOrEqual(1);
-    expect(messy.completed.every((n) => n >= 1 && n <= 20)).toBe(true);
+    expect(messy.highestUnlocked).toBeLessThanOrEqual(MAX_LEVEL);
+    expect(messy.highestUnlocked).toBeGreaterThanOrEqual(0);
+    expect(messy.completed.every((n) => n >= 0 && n <= MAX_LEVEL)).toBe(true);
     expect(messy.completed).toEqual([...new Set(messy.completed)]); // deduped
     expect(messy.stars[1]).toBeLessThanOrEqual(3);
     expect(messy.stars[2]).toBeGreaterThanOrEqual(0);
-    expect(messy.currentLevel).toBeGreaterThanOrEqual(1);
+    expect(messy.currentLevel).toBeGreaterThanOrEqual(0);
     expect(typeof messy.soundEnabled).toBe('boolean');
     expect(typeof messy.introSeen).toBe('boolean');
   });

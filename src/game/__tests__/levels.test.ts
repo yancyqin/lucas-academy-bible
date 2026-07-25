@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { LEVELS, TOTAL_LEVELS } from '../levels';
+import { LEVELS, TOTAL_LEVELS, getLevelFile, memorizeSeconds } from '../levels';
 import { buildLevel } from '../build';
 import { chunksReproduce, tokenize } from '../chunk';
 import { getPassage, allPassages } from '../../data/scripture';
 
-/** Does `text` occur as a contiguous word-window inside `passage.text`? */
+/** Does `text` occur as a contiguous word-window inside `passageText`? */
 function isWindowOf(text: string, passageText: string): boolean {
   const needle = tokenize(text);
   const hay = tokenize(passageText);
@@ -21,78 +21,98 @@ function isWindowOf(text: string, passageText: string): boolean {
   return false;
 }
 
-describe('level configuration', () => {
-  it('defines exactly 20 levels in order 1..20', () => {
-    expect(TOTAL_LEVELS).toBe(20);
-    expect(LEVELS.map((l) => l.level)).toEqual(
-      Array.from({ length: 20 }, (_, i) => i + 1),
-    );
-  });
-
-  // Requirement 1
-  it('every configured passage id exists in verses.json', () => {
+describe('level bank files', () => {
+  it('levels are contiguous starting at 0, each with a non-empty bank', () => {
+    expect(LEVELS.length).toBeGreaterThan(1);
+    expect(TOTAL_LEVELS).toBe(LEVELS.length);
+    const nums = LEVELS.map((l) => l.level);
+    // auto-loaded and sorted; contiguous 0..N so unlock (level+1) always works
+    nums.forEach((n, i) => expect(n, `position ${i}`).toBe(i));
     for (const l of LEVELS) {
-      expect(getPassage(l.passageId), `${l.passageId} (level ${l.level})`).toBeDefined();
+      expect(l.questions.length, `level ${l.level}`).toBeGreaterThanOrEqual(1);
     }
   });
 
-  // Requirement 2
-  it('Level 1 is John 11:35', () => {
-    const l1 = LEVELS[0];
-    expect(l1.passageId).toBe('passage-001');
-    expect(getPassage(l1.passageId)?.reference).toBe('John 11:35');
-  });
-
-  // Requirement 3
-  it('Level 1 reconstructs exactly "Jesus wept."', () => {
-    const built = buildLevel(LEVELS[0], { seed: 1 });
-    expect(built.sections).toHaveLength(1);
-    expect(built.sections[0].correct).toEqual(['Jesus', 'wept.']);
-    expect(built.sections[0].correct.join(' ')).toBe('Jesus wept.');
-    expect(built.fullText).toBe('Jesus wept.');
-  });
-
-  it('Level 1 has zero distractors', () => {
-    const built = buildLevel(LEVELS[0], { seed: 1 });
-    expect(built.sections[0].bank.filter((t) => t.isDistractor)).toHaveLength(0);
-  });
-
-  // Requirement 4
-  it('correct chunks reproduce their source scripture for every level', () => {
+  // Requirement 1 — every referenced passage exists
+  it('every question references a passage that exists in verses.json', () => {
     for (const l of LEVELS) {
-      const built = buildLevel(l, { seed: 7 });
-      const passage = getPassage(l.passageId)!;
-      if (l.sectioned) {
-        expect(built.sections).toHaveLength(passage.verses.length);
-        built.sections.forEach((s, i) => {
-          const verseText = passage.verses[i].text;
-          expect(
-            chunksReproduce(verseText, s.correct),
-            `L${l.level} verse ${i + 1}`,
-          ).toBe(true);
-        });
-        // all sections joined reproduce the whole passage
-        const joined = built.sections.map((s) => s.correct.join(' ')).join(' ');
-        expect(joined).toBe(passage.text);
-      } else {
-        expect(built.sections).toHaveLength(1);
-        expect(
-          chunksReproduce(passage.text, built.sections[0].correct),
-          `L${l.level}`,
-        ).toBe(true);
+      for (const q of l.questions) {
+        expect(getPassage(q.passageId), `${q.id} -> ${q.passageId}`).toBeDefined();
       }
     }
   });
 
-  // Requirement 5
-  it('every distractor comes from a different passage', () => {
+  // Guards hand-edits: the stored text must be genuine WEB scripture
+  it('every question text is an exact contiguous window of its cited passage', () => {
     for (const l of LEVELS) {
-      const built = buildLevel(l, { seed: 3 });
+      for (const q of l.questions) {
+        const passage = getPassage(q.passageId)!;
+        expect(isWindowOf(q.text, passage.text), `${q.id}: "${q.text}"`).toBe(true);
+        // and its verses join back to its text
+        expect(q.verses.map((v) => v.text).join(' ')).toBe(q.text);
+      }
+    }
+  });
+
+  // Requirement 2 — Level 0 is the single fixed warm-up verse, John 11:35
+  it('Level 0 is a single "Jesus wept." (John 11:35) question', () => {
+    const l0 = getLevelFile(0)!;
+    expect(l0.questions).toHaveLength(1);
+    expect(l0.questions[0].reference).toBe('John 11:35');
+    expect(l0.questions[0].passageId).toBe('passage-001');
+    expect(l0.questions[0].text).toBe('Jesus wept.');
+    expect(l0.policy.distractorsPerSection).toBe(0);
+  });
+
+  it('Level 1 no longer contains "Jesus wept." (moved to Level 0)', () => {
+    const l1 = getLevelFile(1)!;
+    expect(l1.questions.some((q) => q.text === 'Jesus wept.')).toBe(false);
+  });
+
+  // Requirement 3 — Level 0 reconstructs exactly "Jesus wept."
+  it('build exposes Chinese text and a Chinese reference', () => {
+    const built = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 });
+    expect(built.fullTextZh).toBe('耶稣哭了。');
+    expect(built.referenceZh).toBe('约翰福音 11:35');
+  });
+
+  it('Level 0 reconstructs exactly "Jesus wept."', () => {
+    const built = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 });
+    expect(built.fullText).toBe('Jesus wept.');
+    expect(built.sections).toHaveLength(1);
+    expect(built.sections[0].correct).toEqual(['Jesus', 'wept.']);
+    expect(built.sections[0].correct.join(' ')).toBe('Jesus wept.');
+    expect(built.sections[0].bank.filter((t) => t.isDistractor)).toHaveLength(0);
+  });
+
+  // Requirement 4 — correct chunks reconstruct source for EVERY question in EVERY level
+  it('correct chunks reconstruct the source text for every question', () => {
+    for (const l of LEVELS) {
+      for (let qi = 0; qi < l.questions.length; qi++) {
+        const built = buildLevel(l, { seed: 5, questionIndex: qi });
+        // each section reproduces its unit; all sections joined reproduce fullText
+        const joined = built.sections.flatMap((s) => s.correct).join(' ');
+        expect(joined, `${built.reference}`).toBe(built.fullText);
+        for (const s of built.sections) {
+          expect(s.correct.every((c) => c.length > 0)).toBe(true); // no empty tiles
+        }
+        // and the assembled correct chunks are a faithful chunking
+        expect(chunksReproduce(built.fullText, built.sections.flatMap((s) => s.correct))).toBe(
+          true,
+        );
+      }
+    }
+  });
+
+  // Requirement 5 — distractors come from OTHER passages
+  it('every distractor is real text from a different passage', () => {
+    for (const l of LEVELS) {
+      const built = buildLevel(l, { seed: 3, questionIndex: 0 });
       for (const section of built.sections) {
         for (const tile of section.bank) {
           if (!tile.isDistractor) continue;
           const fromOther = allPassages.some(
-            (p) => p.id !== l.passageId && isWindowOf(tile.text, p.text),
+            (p) => p.id !== built.passageId && isWindowOf(tile.text, p.text),
           );
           expect(fromOther, `L${l.level} distractor "${tile.text}"`).toBe(true);
         }
@@ -102,51 +122,46 @@ describe('level configuration', () => {
 
   it('a distractor never equals a correct chunk in the same section', () => {
     for (const l of LEVELS) {
-      const built = buildLevel(l, { seed: 9 });
-      for (const section of built.sections) {
-        const correctSet = new Set(section.correct);
-        for (const tile of section.bank) {
-          if (tile.isDistractor) {
-            expect(correctSet.has(tile.text), `L${l.level} "${tile.text}"`).toBe(false);
+      for (let qi = 0; qi < l.questions.length; qi++) {
+        const built = buildLevel(l, { seed: 9, questionIndex: qi });
+        for (const section of built.sections) {
+          const correctSet = new Set(section.correct);
+          for (const tile of section.bank) {
+            if (tile.isDistractor) {
+              expect(correctSet.has(tile.text), `L${l.level} "${tile.text}"`).toBe(false);
+            }
           }
         }
       }
     }
   });
 
-  it('produces roughly the configured number of distractors per section', () => {
+  it('produces the configured number of distractors per section', () => {
     for (const l of LEVELS) {
-      const built = buildLevel(l, { seed: 5 });
+      const built = buildLevel(l, { seed: 5, questionIndex: 0 });
       for (const section of built.sections) {
         const d = section.bank.filter((t) => t.isDistractor).length;
-        expect(d, `L${l.level}`).toBe(l.distractorsPerSection);
+        expect(d, `L${l.level}`).toBe(l.policy.distractorsPerSection);
       }
     }
   });
 
-  // Requirement 6
+  // Requirement 6 — duplicate words get unique tile ids
   it('all tile ids are unique within a section, even for repeated words', () => {
     for (const l of LEVELS) {
-      const built = buildLevel(l, { seed: 2 });
-      for (const section of built.sections) {
-        const ids = section.bank.map((t) => t.id);
-        expect(new Set(ids).size, `L${l.level}`).toBe(ids.length);
+      for (let qi = 0; qi < l.questions.length; qi++) {
+        const built = buildLevel(l, { seed: 2, questionIndex: qi });
+        for (const section of built.sections) {
+          const ids = section.bank.map((t) => t.id);
+          expect(new Set(ids).size, `L${l.level}`).toBe(ids.length);
+        }
       }
     }
-  });
-
-  it('repeated visible words become separate tile instances (Ephesians 4)', () => {
-    // Level 20 verse 5 = "one Lord, one faith, one baptism," — "one" repeats.
-    const built = buildLevel(LEVELS[19], { seed: 1 });
-    const verse5 = built.sections.find((s) => s.verse === 5)!;
-    const ones = verse5.bank.filter((t) => t.text === 'one' && !t.isDistractor);
-    expect(ones.length).toBeGreaterThanOrEqual(3);
-    expect(new Set(ones.map((t) => t.id)).size).toBe(ones.length);
   });
 
   it('does not start a round already in the correct sequence', () => {
     for (const l of LEVELS) {
-      const built = buildLevel(l, { seed: 1 });
+      const built = buildLevel(l, { seed: 1, questionIndex: 0 });
       for (const section of built.sections) {
         const correctInBankOrder = section.bank
           .filter((t) => !t.isDistractor)
@@ -159,11 +174,43 @@ describe('level configuration', () => {
     }
   });
 
-  it('is deterministic for a given seed', () => {
-    const a = buildLevel(LEVELS[9], { seed: 42 });
-    const b = buildLevel(LEVELS[9], { seed: 42 });
+  it('is deterministic for a given seed + questionIndex', () => {
+    const a = buildLevel(getLevelFile(10)!, { seed: 42, questionIndex: 1 });
+    const b = buildLevel(getLevelFile(10)!, { seed: 42, questionIndex: 1 });
     expect(a.sections[0].bank.map((t) => t.id + t.text)).toEqual(
       b.sections[0].bank.map((t) => t.id + t.text),
     );
+  });
+
+  it('memorize time scales with length and respects the level bounds', () => {
+    for (const l of LEVELS) {
+      const short = memorizeSeconds(l.policy, 2);
+      const long = memorizeSeconds(l.policy, 500);
+      expect(short).toBeGreaterThanOrEqual(l.policy.memorizeMin);
+      expect(long).toBe(l.policy.memorizeMax);
+      expect(long).toBeGreaterThanOrEqual(short);
+    }
+  });
+
+  it('every level has 3 hearts, and distractors rise across the game', () => {
+    for (const l of LEVELS) {
+      expect(l.policy.hearts, `L${l.level}`).toBe(3);
+    }
+    const first = LEVELS[1].policy.distractorsPerSection;
+    const last = LEVELS[LEVELS.length - 1].policy.distractorsPerSection;
+    expect(last).toBeGreaterThan(first);
+  });
+
+  it('adds Chinese (和合本) for every passage the banks reference', () => {
+    for (const l of LEVELS) {
+      for (const q of l.questions) {
+        const passage = getPassage(q.passageId)!;
+        expect(passage.textZh, `${q.passageId}`).toBeTruthy();
+        for (const v of q.verses) {
+          const src = passage.verses.find((sv) => sv.verse === v.verse);
+          expect(src?.textZh, `${q.passageId} v${v.verse}`).toBeTruthy();
+        }
+      }
+    }
   });
 });

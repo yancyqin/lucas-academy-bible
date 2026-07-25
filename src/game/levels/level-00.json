@@ -1,0 +1,28 @@
+{
+  "level": 0,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "slots",
+    "granularity": "words",
+    "sectionBy": "none",
+    "distractorsPerSection": 0,
+    "memorizeSecondsPerWord": 3.5,
+    "memorizeMin": 8,
+    "memorizeMax": 14
+  },
+  "questions": [
+    {
+      "id": "L00-q00",
+      "reference": "John 11:35",
+      "passageId": "passage-001",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 35,
+          "text": "Jesus wept."
+        }
+      ],
+      "text": "Jesus wept."
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "level": 12,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "none",
+    "granularity": "short",
+    "sectionBy": "sentence",
+    "distractorsPerSection": 3,
+    "memorizeSecondsPerWord": 1.9,
+    "memorizeMin": 16,
+    "memorizeMax": 38
+  },
+  "questions": [
+    {
+      "id": "L12-q00",
+      "reference": "1 Corinthians 12:12",
+      "passageId": "passage-025",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ."
+        }
+      ],
+      "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ."
+    },
+    {
+      "id": "L12-q01",
+      "reference": "1 Peter 2:2-3",
+      "passageId": "passage-083",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow,"
+        },
+        {
+          "verse": 3,
+          "text": "if indeed you have tasted that the Lord is gracious."
+        }
+      ],
+      "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow, if indeed you have tasted that the Lord is gracious."
+    },
+    {
+      "id": "L12-q02",
+      "reference": "Ephesians 1:3",
+      "passageId": "passage-032",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,"
+        }
+      ],
+      "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,"
+    },
+    {
+      "id": "L12-q03",
+      "reference": "Galatians 5:22-23",
+      "passageId": "passage-018",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 22,
+          "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,"
+        },
+        {
+          "verse": 23,
+          "text": "gentleness, and self-control. Against such things there is no law."
+        }
+      ],
+      "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith, gentleness, and self-control. Against such things there is no law."
+    },
+    {
+      "id": "L12-q04",
+      "reference": "Hebrews 4:16",
+      "passageId": "passage-036",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+        }
+      ],
+      "text": "Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need."
+    },
+    {
+      "id": "L12-q05",
+      "reference": "Isaiah 50:6",
+      "passageId": "passage-038",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting."
+        }
+      ],
+      "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting."
+    },
+    {
+      "id": "L12-q06",
+      "reference": "John 8:33",
+      "passageId": "passage-027",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 33,
+          "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+        }
+      ],
+      "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+    },
+    {
+      "id": "L12-q07",
+      "reference": "Luke 16:9",
+      "passageId": "passage-086",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents."
+        }
+      ],
+      "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents."
+    },
+    {
+      "id": "L12-q08",
+      "reference": "Matthew 6:13",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 13,
+          "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+        }
+      ],
+      "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+    }
+  ]
+}

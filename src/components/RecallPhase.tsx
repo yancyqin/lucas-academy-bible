@@ -1,5 +1,4 @@
 import { useEffect, useReducer, useRef, useState } from 'react';
-import { TOTAL_LEVELS } from '../game/levels';
 import type { BuiltLevel } from '../game/build';
 import { initRecall, recallReducer } from '../game/recall';
 import type { SoundEngine } from '../audio/sound';
@@ -10,9 +9,12 @@ interface RecallPhaseProps {
   level: BuiltLevel;
   sound: SoundEngine;
   announce: (msg: string, assertive?: boolean) => void;
-  onComplete: (mistakes: number) => void;
-  onRetry: () => void;
-  onExit: () => void;
+  /** Level cleared: reports mistakes + hearts remaining (for the run score). */
+  onComplete: (mistakes: number, hearts: number) => void;
+  /** Ran out of hearts — the run ends. */
+  onFail: () => void;
+  /** Restart the whole run from Level 0. */
+  onStartOver: () => void;
 }
 
 export function RecallPhase({
@@ -20,15 +22,15 @@ export function RecallPhase({
   sound,
   announce,
   onComplete,
-  onRetry,
-  onExit,
+  onFail,
+  onStartOver,
 }: RecallPhaseProps) {
   const [state, dispatch] = useReducer(recallReducer, level, initRecall);
   const [wrongId, setWrongId] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<{ tone: 'correct' | 'wrong' | 'neutral'; text: string }>(
     { tone: 'neutral', text: '' },
   );
-  const completeFired = useRef(false);
+  const resolved = useRef(false);
   const wrongTimer = useRef<number | undefined>(undefined);
 
   const section = state.level.sections[state.sectionIndex];
@@ -50,9 +52,13 @@ export function RecallPhase({
         setWrongId(ev.tileId);
         window.clearTimeout(wrongTimer.current);
         wrongTimer.current = window.setTimeout(() => setWrongId(null), 480);
-        const heartWord = ev.heartsLeft === 1 ? 'heart' : 'hearts';
-        setFeedback({ tone: 'wrong', text: `Not this one. ${ev.heartsLeft} ${heartWord} left.` });
-        announce(`Not the next word. ${ev.heartsLeft} ${heartWord} remaining.`, true);
+        if (ev.belongsToVerse) {
+          setFeedback({ tone: 'wrong', text: 'Right word, wrong spot — half a heart.' });
+          announce('Right word, but out of order. Half a heart lost.', true);
+        } else {
+          setFeedback({ tone: 'wrong', text: 'That word isn’t in the verse — one heart.' });
+          announce('That word is not in the verse. One heart lost.', true);
+        }
         break;
       }
       case 'section-advance':
@@ -72,17 +78,23 @@ export function RecallPhase({
         break;
       case 'failed':
         sound.playWrong();
-        announce('Out of hearts. Study the passage again.', true);
+        announce('Out of hearts. The run is over.', true);
         break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.eventSeq]);
 
-  // Fire completion once, letting the complete chord play first.
+  // Resolve the level once — either cleared (report hearts) or failed (run ends).
   useEffect(() => {
-    if (state.status === 'complete' && !completeFired.current) {
-      completeFired.current = true;
-      const id = window.setTimeout(() => onComplete(state.mistakes), 650);
+    if (resolved.current) return;
+    if (state.status === 'complete') {
+      resolved.current = true;
+      const id = window.setTimeout(() => onComplete(state.mistakes, state.hearts), 650);
+      return () => window.clearTimeout(id);
+    }
+    if (state.status === 'failed') {
+      resolved.current = true;
+      const id = window.setTimeout(() => onFail(), 700);
       return () => window.clearTimeout(id);
     }
     return undefined;
@@ -96,26 +108,29 @@ export function RecallPhase({
     dispatch({ type: 'select', tileId: id });
   };
 
-  const failed = state.status === 'failed';
-
   return (
     <div className="stage" role="region" aria-label={`Rebuild ${level.reference}`}>
       <div className="recall">
         <div className="recall__top">
-          <span className="eyebrow">
-            Level {level.level} of {TOTAL_LEVELS} · Recall
-          </span>
+          <span className="eyebrow">Level {level.level} · Recall</span>
           <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
-            {level.sectioned && (
-              <span className="recall__sectionlabel">{section.label}</span>
-            )}
+            {level.sectioned && <span className="recall__sectionlabel">{section.label}</span>}
             <Hearts total={hearts} remaining={state.hearts} justLost={!!wrongId} />
           </span>
         </div>
 
         <p className="reference" style={{ display: 'block' }}>
           {level.reference}
+          {level.referenceZh && <span className="reference-zh"> · {level.referenceZh}</span>}
         </p>
+
+        {/* Chinese (和合本) shown as a meaning reference while you rebuild the
+            English. It won't line up word-for-word with the tiles — that's fine. */}
+        {level.fullTextZh && (
+          <p className="scripture-zh recall__zh" lang="zh-Hans">
+            {level.fullTextZh}
+          </p>
+        )}
 
         {/* Answer area — assembled sequence, always visible above the bank. */}
         <div className="answer" aria-label="Assembled passage so far" aria-live="off">
@@ -146,24 +161,14 @@ export function RecallPhase({
         </div>
 
         {/* Feedback line with reserved height (no layout shift). */}
-        <div
-          className={`feedback feedback--${feedback.tone}`}
-          role="status"
-          aria-hidden="true"
-        >
+        <div className={`feedback feedback--${feedback.tone}`} role="status" aria-hidden="true">
           {feedback.text}
         </div>
 
         {/* Tile bank */}
         <div className="bank" role="group" aria-label="Word tiles — choose the next one in the passage">
           {state.bank.map((t) => (
-            <Tile
-              key={t.id}
-              tile={t}
-              wrong={wrongId === t.id}
-              onSelect={select}
-              singleWord={singleWord}
-            />
+            <Tile key={t.id} tile={t} wrong={wrongId === t.id} onSelect={select} singleWord={singleWord} />
           ))}
         </div>
 
@@ -179,45 +184,13 @@ export function RecallPhase({
           <button
             type="button"
             className="btn btn--ghost btn--sm"
-            onClick={() => {
-              dispatch({ type: 'restart' });
-              setFeedback({ tone: 'neutral', text: 'Restarted this level.' });
-              announce('Level restarted.');
-            }}
+            onClick={onStartOver}
+            title="Start the whole run again from Level 0"
           >
-            ⟳ Restart level
-          </button>
-          <button type="button" className="btn btn--ghost btn--sm" onClick={onExit}>
-            Level map
+            ⟳ Restart from Level 0
           </button>
         </div>
       </div>
-
-      {/* Out-of-hearts overlay */}
-      {failed && (
-        <div className="overlay" role="dialog" aria-modal="true" aria-labelledby="fail-title">
-          <div className="card overlay__card center-col">
-            <p className="eyebrow" id="fail-title">
-              Out of hearts
-            </p>
-            <h2 className="title-xl" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)' }}>
-              Let&rsquo;s study it again
-            </h2>
-            <p className="reference" style={{ display: 'block' }}>
-              {level.reference}
-            </p>
-            <blockquote className="restored">{level.fullText}</blockquote>
-            <div className="btn-row">
-              <button type="button" className="btn btn--primary" onClick={onRetry}>
-                Study again
-              </button>
-              <button type="button" className="btn btn--ghost btn--sm" onClick={onExit}>
-                Level map
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

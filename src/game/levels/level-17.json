@@ -1,0 +1,220 @@
+{
+  "level": 17,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "none",
+    "granularity": "words",
+    "sectionBy": "verse",
+    "distractorsPerSection": 6,
+    "memorizeSecondsPerWord": 1.5,
+    "memorizeMin": 26,
+    "memorizeMax": 82
+  },
+  "questions": [
+    {
+      "id": "L17-q00",
+      "reference": "1 Peter 5:1-3",
+      "passageId": "passage-080",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed:"
+        },
+        {
+          "verse": 2,
+          "text": "shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;"
+        },
+        {
+          "verse": 3,
+          "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock."
+        }
+      ],
+      "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed: shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly; not as lording it over those entrusted to you, but making yourselves examples to the flock."
+    },
+    {
+      "id": "L17-q01",
+      "reference": "Ephesians 4:4-7",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
+        },
+        {
+          "verse": 5,
+          "text": "one Lord, one faith, one baptism,"
+        },
+        {
+          "verse": 6,
+          "text": "one God and Father of all, who is over all and through all and in us all."
+        },
+        {
+          "verse": 7,
+          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
+        }
+      ],
+      "text": "There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ."
+    },
+    {
+      "id": "L17-q02",
+      "reference": "John 12:22-24",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 22,
+          "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+        },
+        {
+          "verse": 23,
+          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+        },
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        }
+      ],
+      "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus. Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+    },
+    {
+      "id": "L17-q03",
+      "reference": "Luke 11:11-13",
+      "passageId": "passage-040",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he?"
+        },
+        {
+          "verse": 12,
+          "text": "Or if he asks for an egg, he won’t give him a scorpion, will he?"
+        },
+        {
+          "verse": 13,
+          "text": "If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+        }
+      ],
+      "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he? Or if he asks for an egg, he won’t give him a scorpion, will he? If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+    },
+    {
+      "id": "L17-q04",
+      "reference": "Matthew 6:9-13",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+        },
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        },
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        },
+        {
+          "verse": 12,
+          "text": "Forgive us our debts, as we also forgive our debtors."
+        },
+        {
+          "verse": 13,
+          "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+        }
+      ],
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also forgive our debtors. Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+    },
+    {
+      "id": "L17-q05",
+      "reference": "Philippians 2:8-10",
+      "passageId": "passage-090",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross."
+        },
+        {
+          "verse": 9,
+          "text": "Therefore God also highly exalted him, and gave to him the name which is above every name,"
+        },
+        {
+          "verse": 10,
+          "text": "that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,"
+        }
+      ],
+      "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross. Therefore God also highly exalted him, and gave to him the name which is above every name, that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,"
+    },
+    {
+      "id": "L17-q06",
+      "reference": "Romans 5:3-6",
+      "passageId": "passage-046",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;"
+        },
+        {
+          "verse": 4,
+          "text": "and perseverance, proven character; and proven character, hope;"
+        },
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        },
+        {
+          "verse": 6,
+          "text": "For while we were yet weak, at the right time Christ died for the ungodly."
+        }
+      ],
+      "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly."
+    },
+    {
+      "id": "L17-q07",
+      "reference": "Ephesians 1:4-6",
+      "passageId": "passage-032",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,"
+        },
+        {
+          "verse": 5,
+          "text": "having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire,"
+        },
+        {
+          "verse": 6,
+          "text": "to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+        }
+      ],
+      "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love, having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire, to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
+    },
+    {
+      "id": "L17-q08",
+      "reference": "John 12:23-25",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+        },
+        {
+          "verse": 24,
+          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
+        },
+        {
+          "verse": 25,
+          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+        }
+      ],
+      "text": "Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+    }
+  ]
+}

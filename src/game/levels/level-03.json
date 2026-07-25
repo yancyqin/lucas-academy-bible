@@ -1,0 +1,132 @@
+{
+  "level": 3,
+  "policy": {
+    "hearts": 3,
+    "hintLevel": "slots",
+    "granularity": "phrase",
+    "sectionBy": "none",
+    "distractorsPerSection": 0,
+    "memorizeSecondsPerWord": 3.0,
+    "memorizeMin": 9,
+    "memorizeMax": 18
+  },
+  "questions": [
+    {
+      "id": "L03-q00",
+      "reference": "1 Corinthians 12:12e",
+      "passageId": "passage-025",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "so also is Christ."
+        }
+      ],
+      "text": "so also is Christ."
+    },
+    {
+      "id": "L03-q01",
+      "reference": "1 Peter 5:2e",
+      "passageId": "passage-080",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "not for dishonest gain,"
+        }
+      ],
+      "text": "not for dishonest gain,"
+    },
+    {
+      "id": "L03-q02",
+      "reference": "2 Corinthians 3:18d",
+      "passageId": "passage-022",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 18,
+          "text": "even as from the Lord,"
+        }
+      ],
+      "text": "even as from the Lord,"
+    },
+    {
+      "id": "L03-q03",
+      "reference": "Ephesians 4:5",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "one Lord, one faith, one baptism,"
+        }
+      ],
+      "text": "one Lord, one faith, one baptism,"
+    },
+    {
+      "id": "L03-q04",
+      "reference": "Galatians 5:16b",
+      "passageId": "passage-075",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "walk by the Spirit,"
+        }
+      ],
+      "text": "walk by the Spirit,"
+    },
+    {
+      "id": "L03-q05",
+      "reference": "Genesis 2:24b",
+      "passageId": "passage-011",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "and will join with his wife,"
+        }
+      ],
+      "text": "and will join with his wife,"
+    },
+    {
+      "id": "L03-q06",
+      "reference": "Hebrews 4:14c",
+      "passageId": "passage-036",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "the Son of God,"
+        }
+      ],
+      "text": "the Son of God,"
+    },
+    {
+      "id": "L03-q07",
+      "reference": "Hosea 6:6a",
+      "passageId": "passage-089",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "For I desire mercy, and not sacrifice;"
+        }
+      ],
+      "text": "For I desire mercy, and not sacrifice;"
+    },
+    {
+      "id": "L03-q08",
+      "reference": "Isaiah 42:2b",
+      "passageId": "passage-074",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "nor raise his voice,"
+        }
+      ],
+      "text": "nor raise his voice,"
+    }
+  ]
+}
