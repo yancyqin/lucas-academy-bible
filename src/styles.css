@@ -344,16 +344,29 @@ body {
 .heart {
   width: 38px; height: 38px; display: inline-block;
   color: var(--terracotta);
+  transform-origin: center;
+  filter: drop-shadow(0 2px 1px rgba(120, 48, 35, 0.18));
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 .heart--full { color: var(--terracotta); }
 .heart--empty { color: var(--terracotta); }
-.heart--lost { animation: heart-pop 0.4s ease; }
+.heart--lost { animation: heart-damage 0.52s cubic-bezier(0.2, 0.85, 0.3, 1.2); }
 
-@keyframes heart-pop {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.35); }
-  100% { transform: scale(1); }
+@keyframes heart-damage {
+  0% {
+    transform: scale(1) rotate(0);
+    filter: drop-shadow(0 2px 1px rgba(120, 48, 35, 0.18));
+  }
+  20% {
+    transform: scale(1.5) rotate(-7deg);
+    filter: brightness(1.45) drop-shadow(0 0 10px rgba(227, 202, 127, 0.95));
+  }
+  43% { transform: scale(0.82) rotate(4deg); }
+  68% { transform: scale(1.16) rotate(-2deg); }
+  100% {
+    transform: scale(1) rotate(0);
+    filter: drop-shadow(0 2px 1px rgba(120, 48, 35, 0.18));
+  }
 }
 
 /* ---- Stars -------------------------------------------------------------- */
@@ -626,21 +639,6 @@ body {
   align-items: center;
   margin-top: 2px;
 }
-
-/* ---- Feedback line (reserved height to avoid layout shift) -------------- */
-.feedback {
-  min-height: 32px;
-  text-align: center;
-  font-size: 1.12rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-.feedback--correct { color: var(--sage-deep); }
-.feedback--wrong { color: var(--terracotta); }
-.feedback--neutral { color: var(--ink-soft); font-weight: 700; }
 
 /* ---- Overlays (fail / complete) ----------------------------------------- */
 .overlay {

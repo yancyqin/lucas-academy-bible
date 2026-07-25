@@ -1,9 +1,9 @@
 import { useId } from 'react';
 
 /**
- * Smooth, Zelda-style health heart with four discrete fill states.
- * The silhouette never changes: only its left-to-right fill becomes
- * empty, ¼, ½, ¾, or full.
+ * Smooth adventure-game health heart with four discrete fill states.
+ * The reference progression is quadrant-based rather than a straight bar:
+ * ¼ = upper-left, ½ = left half, ¾ = left half + lower-right, 1 = full.
  */
 export function HeartIcon({ fill }: { fill: number }) {
   const clipId = useId();
@@ -15,7 +15,16 @@ export function HeartIcon({ fill }: { fill: number }) {
     <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true" focusable="false">
       <defs>
         <clipPath id={clipId}>
-          <rect x="0" y="0" width={24 * fraction} height="24" />
+          {fraction === 0.75 ? (
+            <path d="M0 0h12v12h12v12H0z" />
+          ) : (
+            <rect
+              x="0"
+              y="0"
+              width={fraction >= 1 ? 24 : fraction > 0 ? 12 : 0}
+              height={fraction === 0.25 ? 12 : fraction > 0 ? 24 : 0}
+            />
+          )}
         </clipPath>
       </defs>
       <path d={path} fill="currentColor" opacity="0.16" />

@@ -90,6 +90,36 @@ export class SoundEngine {
     osc.stop(t0 + duration + release + 0.02);
   }
 
+  /** Short synthesized pitch glide for original game-like cues. */
+  private sweep(
+    from: number,
+    to: number,
+    startOffset: number,
+    duration: number,
+    opts: ToneOpts = {},
+  ): void {
+    if (!this.ready()) return;
+    const ctx = this.ctx as AudioContext;
+    const master = this.master as GainNode;
+    const t0 = ctx.currentTime + startOffset;
+    const { type = 'triangle', gain = 0.16, attack = 0.008, release = 0.1 } = opts;
+
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(from, t0);
+    osc.frequency.exponentialRampToValueAtTime(to, t0 + duration);
+
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(gain, t0 + attack);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + duration + release);
+
+    osc.connect(g);
+    g.connect(master);
+    osc.start(t0);
+    osc.stop(t0 + duration + release + 0.02);
+  }
+
   /** Soft cue when a study/level begins. */
   playStart(): void {
     this.tone(392.0, 0, 0.16, { type: 'sine', gain: 0.16 });
@@ -110,10 +140,17 @@ export class SoundEngine {
     this.tone(note * 2, 0.0, 0.1, { type: 'sine', gain: 0.05 });
   }
 
-  /** Soft low note for a wrong pick — mellow, not a buzzer. */
+  /** Original adventure-game damage cue — synthesized, with no sampled audio. */
   playWrong(): void {
-    this.tone(196.0, 0, 0.18, { type: 'sine', gain: 0.16, release: 0.12 });
-    this.tone(185.0, 0.05, 0.16, { type: 'sine', gain: 0.1 });
+    this.sweep(520, 155, 0, 0.14, { type: 'triangle', gain: 0.18, release: 0.08 });
+    this.tone(130.81, 0.035, 0.1, { type: 'sine', gain: 0.16, release: 0.09 });
+    this.tone(98, 0.11, 0.06, { type: 'triangle', gain: 0.09, release: 0.08 });
+  }
+
+  /** Lighter pulse for each quarter-heart lost during overtime. */
+  playHeartDrain(): void {
+    this.sweep(370, 220, 0, 0.09, { type: 'triangle', gain: 0.11, release: 0.06 });
+    this.tone(146.83, 0.035, 0.06, { type: 'sine', gain: 0.08, release: 0.06 });
   }
 
   /** Small lift when a verse/section is finished. */

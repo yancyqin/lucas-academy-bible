@@ -29,9 +29,7 @@ export function RecallPhase({
 }: RecallPhaseProps) {
   const [state, dispatch] = useReducer(recallReducer, level, initRecall);
   const [wrongId, setWrongId] = useState<string | null>(null);
-  const [feedback, setFeedback] = useState<{ tone: 'correct' | 'wrong' | 'neutral'; text: string }>(
-    { tone: 'neutral', text: '' },
-  );
+  const [heartLossSeq, setHeartLossSeq] = useState(0);
   const resolved = useRef(false);
   const wrongTimer = useRef<number | undefined>(undefined);
 
@@ -46,32 +44,29 @@ export function RecallPhase({
   const remainingSlots = section.correct.length - state.placed.length;
   const overtime = timeLeft <= 0 && state.status === 'playing';
 
-  // React to game events: sound + screen-reader announcements + visual feedback.
+  // React to game events: sound, heart/tile effects, and screen-reader announcements.
   useEffect(() => {
     const ev = state.lastEvent;
     if (!ev) return;
     switch (ev.kind) {
       case 'correct':
         sound.playCorrect(ev.streak);
-        setFeedback({ tone: 'correct', text: 'Yes — keep going.' });
         break;
       case 'wrong': {
         sound.playWrong();
+        setHeartLossSeq((seq) => seq + 1);
         setWrongId(ev.tileId);
         window.clearTimeout(wrongTimer.current);
         wrongTimer.current = window.setTimeout(() => setWrongId(null), 480);
         if (ev.belongsToVerse) {
-          setFeedback({ tone: 'wrong', text: 'Right word, wrong spot — half a heart.' });
           announce('Right word, but out of order. Half a heart lost.', true);
         } else {
-          setFeedback({ tone: 'wrong', text: 'That word isn’t in the verse — one heart.' });
           announce('That word is not in the verse. One heart lost.', true);
         }
         break;
       }
       case 'section-advance':
         sound.playSection();
-        setFeedback({ tone: 'correct', text: 'Verse complete!' });
         announce(
           `Verse complete. Now verse ${ev.sectionIndex + 1} of ${state.level.sections.length}.`,
         );
@@ -82,11 +77,10 @@ export function RecallPhase({
         break;
       case 'undo':
         sound.playClick();
-        setFeedback({ tone: 'neutral', text: 'Took back the last word.' });
         break;
       case 'drain':
-        sound.playWrong();
-        setFeedback({ tone: 'wrong', text: 'Time is up — hurry, hearts are draining!' });
+        sound.playHeartDrain();
+        setHeartLossSeq((seq) => seq + 1);
         break;
       case 'failed':
         sound.playWrong();
@@ -143,7 +137,7 @@ export function RecallPhase({
           <span className="eyebrow">Level {level.level} · Recall</span>
           <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
             {level.sectioned && <span className="recall__sectionlabel">{section.label}</span>}
-            <Hearts total={hearts} remaining={state.hearts} justLost={!!wrongId} />
+            <Hearts total={hearts} remaining={state.hearts} lossSeq={heartLossSeq} />
           </span>
         </div>
 
@@ -205,11 +199,6 @@ export function RecallPhase({
               {state.placed.length} of {section.correct.length} placed
             </p>
           )}
-        </div>
-
-        {/* Feedback line with reserved height (no layout shift). */}
-        <div className={`feedback feedback--${feedback.tone}`} role="status" aria-hidden="true">
-          {feedback.text}
         </div>
 
         {/* Tile bank */}

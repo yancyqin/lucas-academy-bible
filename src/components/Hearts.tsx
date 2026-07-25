@@ -3,23 +3,24 @@ import { HeartIcon } from './icons';
 interface HeartsProps {
   total: number;
   remaining: number; // may be fractional (½, ¼ hearts)
-  /** True to briefly animate the heart that just changed. */
-  justLost?: boolean;
+  /** Increment for every damage event so the loss animation reliably restarts. */
+  lossSeq?: number;
 }
 
 function label(remaining: number, total: number): string {
   return `${remaining} of ${total} ${total === 1 ? 'heart' : 'hearts'} remaining`;
 }
 
-export function Hearts({ total, remaining, justLost }: HeartsProps) {
+export function Hearts({ total, remaining, lossSeq = 0 }: HeartsProps) {
+  const lossIndex = Math.min(total - 1, Math.max(0, Math.floor(remaining)));
   return (
     <span className="hearts" role="img" aria-label={label(remaining, total)}>
       {Array.from({ length: total }, (_, i) => {
         const frac = Math.max(0, Math.min(1, remaining - i));
-        const edge = justLost && i === Math.floor(Math.max(0, remaining - 0.0001));
+        const edge = lossSeq > 0 && i === lossIndex;
         return (
           <span
-            key={i}
+            key={`${i}-${lossSeq}`}
             className={`heart ${frac > 0 ? 'heart--full' : 'heart--empty'} ${edge ? 'heart--lost' : ''}`}
             aria-hidden="true"
           >
