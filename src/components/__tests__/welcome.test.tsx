@@ -54,7 +54,7 @@ describe('welcome game tabs', () => {
     expect(screen.getByText('John 3:16')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeInTheDocument();
     expect(screen.queryByText(daily.text)).not.toBeInTheDocument();
-    expect(screen.getByText('Today')).toBeInTheDocument();
+    expect(screen.queryByText(/^today$/i)).not.toBeInTheDocument();
     expect(
       screen.queryByText(/one fresh challenge|build from a two-word verse/i),
     ).not.toBeInTheDocument();

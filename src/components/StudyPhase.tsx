@@ -29,11 +29,11 @@ function wordCount(text: string): number {
 function AnimatedWords({
   text,
   startIndex,
-  staggerMs,
+  wordTimeMs,
 }: {
   text: string;
   startIndex: number;
-  staggerMs: number;
+  wordTimeMs: number;
 }) {
   let wordOffset = 0;
   return text.split(/(\s+)/u).map((part, index) => {
@@ -44,7 +44,10 @@ function AnimatedWords({
       <span
         className="study__word"
         key={`${animationIndex}-${index}`}
-        style={{ animationDelay: `${animationIndex * staggerMs}ms` }}
+        style={{
+          animationDelay: `${animationIndex * wordTimeMs}ms`,
+          animationDuration: `${wordTimeMs}ms`,
+        }}
       >
         {part}
       </span>
@@ -121,7 +124,7 @@ export function StudyPhase({
   const pct = Math.max(0, Math.min(1, left / total));
   const urgent = pct <= 0.25;
   const totalWords = Math.max(1, wordCount(built.fullText));
-  const staggerMs = Math.min(220, Math.max(22, Math.floor(4500 / totalWords)));
+  const wordTimeMs = Math.floor((total * 1000 * 0.5) / totalWords);
   let verseWordOffset = 0;
 
   return (
@@ -172,7 +175,7 @@ export function StudyPhase({
                       <AnimatedWords
                         text={v.text}
                         startIndex={startIndex}
-                        staggerMs={staggerMs}
+                        wordTimeMs={wordTimeMs}
                       />
                       {i < built.verses.length - 1 ? ' ' : ''}
                     </span>
@@ -182,7 +185,7 @@ export function StudyPhase({
                 <AnimatedWords
                   text={built.fullText}
                   startIndex={0}
-                  staggerMs={staggerMs}
+                  wordTimeMs={wordTimeMs}
                 />
               )}
           </blockquote>

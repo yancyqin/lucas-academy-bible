@@ -115,7 +115,12 @@ body {
 }
 
 .stage--welcome > .card {
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.stage--welcome > .card::-webkit-scrollbar {
+  display: none;
 }
 
 .stage--recall {
@@ -665,7 +670,9 @@ body {
 .study__word {
   display: inline-block;
   transform-origin: 50% 78%;
-  animation: study-word-grow 680ms cubic-bezier(0.2, 0.8, 0.25, 1.25) both;
+  animation-name: study-word-grow;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.25, 1.25);
+  animation-fill-mode: both;
 }
 
 @keyframes study-word-grow {
@@ -1329,6 +1336,7 @@ body {
   .stage--fit .cert__seal { width: 60px; height: 60px; }
   .stage--fit .cert__level { font-size: clamp(2.35rem, 8vw, 3.5rem); }
   .stage--welcome .center-col { gap: 9px; }
+  .stage--welcome > .card { padding-top: 12px; padding-bottom: 12px; }
   .stage--welcome .center-col > div:first-child {
     width: 48px !important;
     height: 48px !important;

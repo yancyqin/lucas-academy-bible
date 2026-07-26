@@ -138,7 +138,6 @@ export function Welcome({
 
             {!dailyLoading && dailyVerse && (
               <>
-                <p className="eyebrow">Today</p>
                 <p className="daily-panel__reference">{dailyVerse.reference}</p>
                 <button type="button" className="btn btn--primary" onClick={onBeginDaily}>
                   Play today’s verse

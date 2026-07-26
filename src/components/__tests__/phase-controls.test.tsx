@@ -40,7 +40,11 @@ describe('phase controls', () => {
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
     const animatedWords = container.querySelectorAll('.study__word');
     expect(animatedWords).toHaveLength(2);
-    expect(animatedWords[1]).toHaveStyle({ animationDelay: '220ms' });
+    expect(animatedWords[0]).toHaveStyle({ animationDuration: '2000ms' });
+    expect(animatedWords[1]).toHaveStyle({
+      animationDelay: '2000ms',
+      animationDuration: '2000ms',
+    });
   });
 
   it('has neither undo nor quit controls during recall', () => {
