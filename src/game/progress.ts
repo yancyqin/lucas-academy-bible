@@ -29,7 +29,7 @@ export interface Progress {
   soundEnabled: boolean;
   /** Whether the Chinese (和合本) translation is shown. */
   showChinese: boolean;
-  /** English Bible translation used for Journey and Daily Verse. */
+  /** English Bible translation used for Challenge and Daily Verse. */
   translation: TranslationKey;
   introSeen: boolean;
 }

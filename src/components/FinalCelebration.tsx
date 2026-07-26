@@ -93,7 +93,7 @@ export function FinalCelebration({
         <p className="cert__kicker">Lucas Academy · Bible Sequence</p>
         <h1 className="cert__title">Certificate of Scripture Memory</h1>
 
-        {pass && <p className="verdict verdict--pass">Full journey complete</p>}
+        {pass && <p className="verdict verdict--pass">Full challenge complete</p>}
 
         <p className="cert__awarded-to">This certifies that you passed</p>
         <p className="cert__level">Level {certLevel}</p>

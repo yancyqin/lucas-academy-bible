@@ -147,7 +147,7 @@ export function renderCertificate(data: CertificateData): HTMLCanvasElement {
     ctx.fillStyle = C.sage;
     ctx.font = `700 16px ${SANS}`;
     if ('letterSpacing' in ctx) (ctx as unknown as { letterSpacing: string }).letterSpacing = '2px';
-    ctx.fillText('★ FULL JOURNEY COMPLETE ★', cx, 332);
+    ctx.fillText('★ FULL CHALLENGE COMPLETE ★', cx, 332);
     if ('letterSpacing' in ctx) (ctx as unknown as { letterSpacing: string }).letterSpacing = '0px';
   }
 

@@ -67,7 +67,7 @@ export function Welcome({
               className={`welcome-tab ${activeTab === 'journey' ? 'welcome-tab--active' : ''}`}
               onClick={() => onSelectTab('journey')}
             >
-              Journey
+              Challenge
             </button>
             <button
               type="button"
@@ -117,10 +117,10 @@ export function Welcome({
                 {journeyError}
               </p>
             )}
-            <p className="lede welcome-panel__copy">Travel from a two-word verse to the full twenty-level memory journey.</p>
+            <p className="lede welcome-panel__copy">Build from a two-word verse to the full twenty-level memory challenge.</p>
             <div className="btn-row">
               <button type="button" className="btn btn--primary" onClick={onBegin}>
-                Begin journey
+                Begin challenge
               </button>
             </div>
           </div>

@@ -49,6 +49,8 @@ describe('welcome game tabs', () => {
     );
 
     expect(screen.getByRole('tab', { name: 'Daily Verse' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: 'Challenge' })).toBeInTheDocument();
+    expect(screen.queryByRole('tab', { name: 'Journey' })).not.toBeInTheDocument();
     expect(screen.getByText('John 3:16')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeInTheDocument();
     expect(screen.queryByText(daily.text)).not.toBeInTheDocument();

@@ -18,7 +18,7 @@ final screen shows your score (percentage of hearts kept) and PASS / FAIL.
 The home screen also has a **Daily Verse** tab. The first request for each
 America/Los_Angeles calendar day asks YouVersion for that day's selection and
 turns it into a length-matched memory challenge. Players can keep the public-domain
-**WEB** or switch both Journey and Daily Verse to **NIV**, **NIrV**, or
+**WEB** or switch both Challenge and Daily Verse to **NIV**, **NIrV**, or
 **NASB 2020**. Licensed text is requested only when it is needed and is cached
 server-side by translation plus YouVersion passage ID.
 
@@ -99,7 +99,7 @@ never reaches browser JavaScript.
 
 ## Scripture data — `data/verses.json`
 
-The public-domain WEB Journey baseline comes from `data/verses.json`. Rebuild it
+The public-domain WEB Challenge baseline comes from `data/verses.json`. Rebuild it
 and its level banks with:
 
 ```bash
@@ -276,8 +276,8 @@ No audio files are shipped; everything is generated with browser-native APIs
 
 ## Progress & persistence
 
-**It's one arcade-style run.** Every Journey starts at **Level 0** and goes verse by
-verse; there's no level map, resume, or per-level jump. "Begin journey" and
+**It's one arcade-style run.** Every Challenge starts at **Level 0** and goes verse by
+verse; there's no level map, resume, or per-level jump. "Begin challenge" and
 "Play again" start a fresh run at Level 0. Clearing a level advances to the next;
 **running out of hearts ends the run**. Sound, Chinese visibility, and the
 selected English translation are persisted in `localStorage`
@@ -288,7 +288,7 @@ selected English translation are persisted in `localStorage`
 certificate level and the score — fail at Level 7 and the certificate is for Level 6,
 scored over Levels 0–6 only. The score is the **percentage of hearts kept** across the
 cleared levels (`heartPercent` in `scoring.ts`; a flawless run is 100%). A full run
-adds a "Full journey complete" mark; failing the very first level shows a "try again"
+adds a "Full challenge complete" mark; failing the very first level shows a "try again"
 screen instead of a certificate. The certificate shows the date + time and a cursive
 "Lucas Academy" signature, and can be **downloaded as a PNG** — drawn on a canvas with
 no external libraries (`src/game/certificate.ts`). Between levels, a quick screen shows 1–3 stars for that
@@ -305,7 +305,7 @@ scripts/build_level_banks.py  # regenerates the per-level question banks
 worker/index.js             # protected YouVersion proxy + KV caching
 src/
   translation-config.ts    # supported player-facing translation choices
-  youversion.ts            # runtime passage loading + translated Journey builder
+  youversion.ts            # runtime passage loading + translated Challenge builder
   daily.ts                 # Daily Verse loading + length-matched challenge
   data/scripture.ts         # typed loader for verses.json
   game/
