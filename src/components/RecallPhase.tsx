@@ -4,7 +4,6 @@ import { initRecall, recallReducer } from '../game/recall';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
 import { Tile } from './Tile';
-import { BibleAttribution } from './BibleAttribution';
 
 interface RecallPhaseProps {
   level: BuiltLevel;
@@ -211,7 +210,6 @@ export function RecallPhase({
           ))}
         </div>
 
-        <BibleAttribution attribution={level.attribution} />
       </div>
     </div>
   );

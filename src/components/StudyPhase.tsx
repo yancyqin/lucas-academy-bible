@@ -4,7 +4,6 @@ import type { Narrator } from '../audio/speech';
 import { shouldAutoNarrate } from '../audio/speech';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
-import { BibleAttribution } from './BibleAttribution';
 
 interface StudyPhaseProps {
   built: BuiltLevel;
@@ -149,7 +148,6 @@ export function StudyPhase({
               </p>
             </details>
           )}
-          <BibleAttribution attribution={built.attribution} />
         </div>
 
         <div className="divider" />

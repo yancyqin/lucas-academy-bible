@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './styles.css';
 
 import { getLevelFile, MAX_LEVEL, MIN_LEVEL } from './game/levels';
-import type { BuiltLevel } from './game/build';
+import type { BuiltLevel, ScriptureAttribution } from './game/build';
 import { computeStars, heartPercent } from './game/scoring';
 import { loadProgress, saveProgress, type Progress } from './game/progress';
 import { soundEngine } from './audio/sound';
@@ -17,6 +17,7 @@ import { FinalCelebration } from './components/FinalCelebration';
 import { SoundToggle } from './components/SoundToggle';
 import { ChineseToggle } from './components/ChineseToggle';
 import { BookMark } from './components/icons';
+import { BibleAttribution } from './components/BibleAttribution';
 import {
   buildDailyVerse,
   currentPacificDate,
@@ -30,7 +31,9 @@ import {
   type TranslationKey,
 } from './translation-config';
 import {
+  attributionFor,
   fetchBiblePassage,
+  fetchBibleTranslation,
   prepareJourneyLevel,
 } from './youversion';
 import { tokenize } from './game/chunk';
@@ -80,6 +83,35 @@ function freshSeed(): number {
   return Math.floor(Math.random() * 1_000_000_000);
 }
 
+const WEB_ATTRIBUTION: ScriptureAttribution = {
+  abbreviation: 'WEB',
+  title: 'World English Bible Classic',
+  copyright: 'Public Domain',
+  sourceLabel: 'eBible.org',
+  sourceUrl: 'https://ebible.org/details.php?id=eng-web',
+};
+
+const CUV_ATTRIBUTION: ScriptureAttribution = {
+  abbreviation: 'CUV',
+  title: 'Chinese Union Version (Simplified)',
+  copyright: 'Public Domain',
+  sourceLabel: 'eBible.org',
+  sourceUrl: 'https://ebible.org/details.php?id=cmn-cu89s',
+};
+
+function translationFallback(
+  translation: Exclude<TranslationKey, 'WEB'>,
+): ScriptureAttribution {
+  const configured = TRANSLATIONS[translation];
+  return {
+    abbreviation: configured.label,
+    title: configured.name,
+    copyright: '',
+    sourceLabel: 'YouVersion',
+    sourceUrl: 'https://www.bible.com/',
+  };
+}
+
 export default function App() {
   const dailyEnabled = import.meta.env.VITE_DAILY_VERSE_ENABLED !== 'false';
   const translationApiEnabled =
@@ -102,6 +134,10 @@ export default function App() {
   const [dailyRequest, setDailyRequest] = useState(0);
   const [journeyError, setJourneyError] = useState('');
   const [loadingLabel, setLoadingLabel] = useState('');
+  const [loadedAttribution, setLoadedAttribution] = useState<{
+    translation: TranslationKey;
+    attribution: ScriptureAttribution;
+  } | null>(null);
   const activeGameRequest = useRef<AbortController | null>(null);
 
   const soundEnabled = progress.soundEnabled;
@@ -111,6 +147,23 @@ export default function App() {
   useEffect(() => {
     soundEngine.setEnabled(soundEnabled);
   }, [soundEnabled]);
+
+  useEffect(() => {
+    if (!translationApiEnabled || translation === 'WEB') return undefined;
+
+    const controller = new AbortController();
+    fetchBibleTranslation(translation, controller.signal)
+      .then((metadata) => {
+        setLoadedAttribution({
+          translation,
+          attribution: attributionFor(metadata),
+        });
+      })
+      .catch(() => {
+        // The passage request will retry metadata when play begins.
+      });
+    return () => controller.abort();
+  }, [translation, translationApiEnabled]);
 
   useEffect(() => {
     if (!dailyEnabled || phase !== 'welcome' || welcomeTab !== 'daily') return undefined;
@@ -350,6 +403,30 @@ export default function App() {
     else void enterLevel(level + 1);
   };
 
+  const dailyAttribution =
+    dailyVerse?.translation.key === translation
+      ? attributionFor(dailyVerse.translation)
+      : null;
+  const exactLoadedAttribution =
+    loadedAttribution?.translation === translation
+      ? loadedAttribution.attribution
+      : null;
+  const activePassageAttribution =
+    built?.attribution &&
+    phase !== 'welcome'
+      ? built.attribution
+      : null;
+  const englishAttribution =
+    translation === 'WEB'
+      ? WEB_ATTRIBUTION
+      : activePassageAttribution ??
+        dailyAttribution ??
+        exactLoadedAttribution ??
+        translationFallback(translation);
+  const footerAttributions = showChinese
+    ? [englishAttribution, CUV_ATTRIBUTION]
+    : [englishAttribution];
+
   return (
     <div className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'}`}>
       <div className="visually-hidden" aria-live="polite" aria-atomic="true">
@@ -480,6 +557,8 @@ export default function App() {
           onHome={goWelcome}
         />
       )}
+
+      <BibleAttribution attributions={footerAttributions} />
     </div>
   );
 }

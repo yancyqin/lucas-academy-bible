@@ -1,26 +1,36 @@
 import type { ScriptureAttribution } from '../game/build';
 
 interface BibleAttributionProps {
-  attribution?: ScriptureAttribution;
+  attributions: ScriptureAttribution[];
 }
 
-export function BibleAttribution({ attribution }: BibleAttributionProps) {
-  if (!attribution) return null;
-
+export function BibleAttribution({ attributions }: BibleAttributionProps) {
   return (
     <footer className="bible-attribution" aria-label="Bible translation copyright">
-      <span>
-        {attribution.title} ({attribution.abbreviation})
-      </span>
-      {attribution.sourceLabel && attribution.sourceUrl && (
-        <>
-          {' · '}
-          <a href={attribution.sourceUrl} target="_blank" rel="noreferrer">
-            {attribution.sourceLabel}
-          </a>
-        </>
-      )}
-      {attribution.copyright && <span className="bible-attribution__copyright">{attribution.copyright}</span>}
+      {attributions.map((attribution) => (
+        <span
+          className="bible-attribution__item"
+          key={`${attribution.abbreviation}-${attribution.title}`}
+        >
+          <span>
+            {attribution.title} ({attribution.abbreviation})
+          </span>
+          {attribution.sourceLabel && attribution.sourceUrl && (
+            <>
+              {' · '}
+              <a href={attribution.sourceUrl} target="_blank" rel="noreferrer">
+                {attribution.sourceLabel}
+              </a>
+            </>
+          )}
+          {attribution.copyright && (
+            <span className="bible-attribution__copyright">
+              {' · '}
+              {attribution.copyright}
+            </span>
+          )}
+        </span>
+      ))}
     </footer>
   );
 }

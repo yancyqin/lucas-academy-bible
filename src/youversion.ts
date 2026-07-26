@@ -8,6 +8,7 @@ import type { LevelFile, Question } from './game/levels';
 import { mulberry32 } from './game/random';
 import {
   TRANSLATIONS,
+  isTranslationKey,
   type TranslationKey,
 } from './translation-config';
 
@@ -28,6 +29,11 @@ export interface YouVersionPassage {
   text: string;
   cache: 'HIT' | 'MISS';
   translation: YouVersionTranslation;
+}
+
+interface YouVersionTranslationResponse {
+  translation: YouVersionTranslation;
+  cache: 'HIT' | 'MISS';
 }
 
 const BOOK_CODES: Record<string, string> = {
@@ -71,6 +77,45 @@ function isPassage(value: unknown): value is YouVersionPassage {
     typeof passage.translation.label === 'string' &&
     typeof passage.translation.copyright === 'string'
   );
+}
+
+function isTranslationResponse(
+  value: unknown,
+): value is YouVersionTranslationResponse {
+  if (!value || typeof value !== 'object') return false;
+  const response = value as Partial<YouVersionTranslationResponse>;
+  const translation = response.translation;
+  return (
+    !!translation &&
+    isTranslationKey(translation.key) &&
+    typeof translation.label === 'string' &&
+    typeof translation.abbreviation === 'string' &&
+    typeof translation.title === 'string' &&
+    typeof translation.copyright === 'string' &&
+    typeof translation.youVersionDeepLink === 'string'
+  );
+}
+
+export async function fetchBibleTranslation(
+  translation: TranslationKey,
+  signal?: AbortSignal,
+): Promise<YouVersionTranslation> {
+  const params = new URLSearchParams({ translation });
+  const response = await fetch(`/api/translation?${params}`, {
+    method: 'GET',
+    headers: { Accept: 'application/json' },
+    signal,
+  });
+  const data: unknown = await response.json().catch(() => null);
+  if (!response.ok) {
+    throw new Error(
+      responseMessage(data, 'That Bible translation could not be loaded.'),
+    );
+  }
+  if (!isTranslationResponse(data)) {
+    throw new Error('The Bible translation response was incomplete.');
+  }
+  return data.translation;
 }
 
 export async function fetchBiblePassage(
@@ -156,7 +201,7 @@ function translatedFragment(question: Question, translatedText: string): string 
   return translatedClauses[translatedIndex] ?? translatedText.trim();
 }
 
-function attributionFor(
+export function attributionFor(
   translation: YouVersionTranslation,
 ): ScriptureAttribution {
   return {

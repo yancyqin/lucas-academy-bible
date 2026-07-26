@@ -88,7 +88,9 @@ repository.
 Daily Verse uses YouVersion's `verse_of_the_days` endpoint. Runtime passage text
 uses YouVersion Bible IDs WEB `206`, NIV `111`, NIrV `110`, and NASB 2020 `2692`.
 The API-returned title, abbreviation, copyright notice, and YouVersion link are
-displayed with every licensed passage.
+displayed in one app-wide footer below the rounded game card on every screen.
+WEB and the optional Chinese CUV display their public-domain status in that same
+footer.
 
 `DAILY_VERSE_KV` caches the daily selection separately from scripture text. The
 selection is shared across translations for that Pacific calendar date; passage

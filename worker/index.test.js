@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   dateInfo,
   getDailyVerse,
+  getTranslationMetadata,
   getTranslationPassage,
 } from './index.js';
 
@@ -131,5 +132,31 @@ describe('daily verse Worker', () => {
       getTranslationPassage(env, 'NIV', '../../secrets'),
     ).rejects.toThrow('Invalid YouVersion passage id');
     expect(api).toHaveBeenCalledTimes(2);
+  });
+
+  it('returns cached translation metadata without fetching a passage', async () => {
+    const kv = new MemoryKv();
+    const api = vi.fn(async (input) => {
+      if (String(input).endsWith('/bibles/111')) {
+        return Response.json({
+          id: 111,
+          abbreviation: 'NIV',
+          title: 'New International Version',
+          copyright: 'Required NIV copyright.',
+          youversion_deep_link: 'https://www.bible.com/versions/111',
+        });
+      }
+      return new Response(null, { status: 404 });
+    });
+    vi.stubGlobal('fetch', api);
+    const env = { YVP_APP_KEY: 'test-only', DAILY_VERSE_KV: kv };
+
+    const first = await getTranslationMetadata(env, 'NIV');
+    const second = await getTranslationMetadata(env, 'NIV');
+
+    expect(first.cache).toBe('MISS');
+    expect(second.cache).toBe('HIT');
+    expect(first.translation.copyright).toBe('Required NIV copyright.');
+    expect(api).toHaveBeenCalledTimes(1);
   });
 });

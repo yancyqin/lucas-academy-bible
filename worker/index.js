@@ -108,6 +108,16 @@ function translationPayload(translation, metadata) {
   };
 }
 
+export async function getTranslationMetadata(env, translationKey) {
+  assertConfigured(env);
+  const translation = requireTranslation(translationKey);
+  const metadata = await getBibleMetadata(env, translation);
+  return {
+    translation: translationPayload(translation, metadata.value),
+    cache: metadata.cache,
+  };
+}
+
 export async function getTranslationPassage(env, translationKey, passageId) {
   assertConfigured(env);
   const translation = requireTranslation(translationKey);
@@ -266,6 +276,42 @@ export default {
               : unavailable
                 ? 'Bible translations are not configured yet.'
                 : 'That passage could not be loaded. Please try again.',
+          },
+          { status: invalid ? 400 : unavailable ? 503 : 502 },
+        );
+      }
+    }
+
+    if (url.pathname === '/api/translation') {
+      if (request.method !== 'GET') {
+        return json(
+          { error: 'method_not_allowed' },
+          { status: 405, headers: { Allow: 'GET' } },
+        );
+      }
+
+      try {
+        const translation = url.searchParams.get('translation') ?? 'WEB';
+        const metadata = await getTranslationMetadata(env, translation);
+        return json(metadata, {
+          headers: {
+            'Cache-Control': 'private, max-age=300',
+            'X-Bible-Metadata-Cache': metadata.cache,
+          },
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : '';
+        const unavailable = message.includes('is not configured');
+        const invalid = message.includes('Unsupported Bible translation');
+        if (!invalid) console.error('bible-translation', error);
+        return json(
+          {
+            error: invalid ? 'invalid_translation' : 'translation_unavailable',
+            message: invalid
+              ? 'That Bible translation is not supported.'
+              : unavailable
+                ? 'Bible translations are not configured yet.'
+                : 'That Bible translation could not be loaded.',
           },
           { status: invalid ? 400 : unavailable ? 503 : 502 },
         );

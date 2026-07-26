@@ -1,5 +1,4 @@
 import type { BuiltLevel } from '../game/build';
-import { BibleAttribution } from './BibleAttribution';
 
 interface FailureRevealProps {
   level: BuiltLevel;
@@ -52,7 +51,6 @@ export function FailureReveal({
               </p>
             </details>
           )}
-          <BibleAttribution attribution={level.attribution} />
         </div>
 
         <div className="btn-row failure-reveal__actions">
