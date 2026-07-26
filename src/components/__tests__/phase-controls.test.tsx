@@ -40,10 +40,10 @@ describe('phase controls', () => {
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
     const animatedWords = container.querySelectorAll('.study__word');
     expect(animatedWords).toHaveLength(2);
-    expect(animatedWords[0]).toHaveStyle({ animationDuration: '2000ms' });
+    expect(animatedWords[0]).toHaveStyle({ animationDuration: '250ms' });
     expect(animatedWords[1]).toHaveStyle({
-      animationDelay: '2000ms',
-      animationDuration: '2000ms',
+      animationDelay: '250ms',
+      animationDuration: '250ms',
     });
   });
 

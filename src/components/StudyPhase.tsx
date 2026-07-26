@@ -16,6 +16,9 @@ interface StudyPhaseProps {
   modeLabel?: string;
 }
 
+/** About 240 words per minute, close to the average adult English silent-reading pace. */
+const WORD_READING_MS = 250;
+
 function clock(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
@@ -123,8 +126,7 @@ export function StudyPhase({
 
   const pct = Math.max(0, Math.min(1, left / total));
   const urgent = pct <= 0.25;
-  const totalWords = Math.max(1, wordCount(built.fullText));
-  const wordTimeMs = Math.floor((total * 1000 * 0.5) / totalWords);
+  const wordTimeMs = WORD_READING_MS;
   let verseWordOffset = 0;
 
   return (
