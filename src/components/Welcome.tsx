@@ -117,7 +117,6 @@ export function Welcome({
                 {journeyError}
               </p>
             )}
-            <p className="lede welcome-panel__copy">Build from a two-word verse to the full twenty-level memory challenge.</p>
             <div className="btn-row">
               <button type="button" className="btn btn--primary" onClick={onBegin}>
                 Begin challenge
@@ -139,11 +138,8 @@ export function Welcome({
 
             {!dailyLoading && dailyVerse && (
               <>
-                <p className="eyebrow">Today · {dailyVerse.translation.label}</p>
+                <p className="eyebrow">Today</p>
                 <p className="daily-panel__reference">{dailyVerse.reference}</p>
-                <p className="welcome-panel__copy">
-                  One fresh challenge, matched to the verse’s length.
-                </p>
                 <button type="button" className="btn btn--primary" onClick={onBeginDaily}>
                   Play today’s verse
                 </button>

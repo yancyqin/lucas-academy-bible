@@ -22,6 +22,36 @@ function clock(seconds: number): string {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
+function wordCount(text: string): number {
+  return text.trim().split(/\s+/u).filter(Boolean).length;
+}
+
+function AnimatedWords({
+  text,
+  startIndex,
+  staggerMs,
+}: {
+  text: string;
+  startIndex: number;
+  staggerMs: number;
+}) {
+  let wordOffset = 0;
+  return text.split(/(\s+)/u).map((part, index) => {
+    if (/^\s+$/u.test(part)) return part;
+    const animationIndex = startIndex + wordOffset;
+    wordOffset += 1;
+    return (
+      <span
+        className="study__word"
+        key={`${animationIndex}-${index}`}
+        style={{ animationDelay: `${animationIndex * staggerMs}ms` }}
+      >
+        {part}
+      </span>
+    );
+  });
+}
+
 export function StudyPhase({
   built,
   soundEnabled,
@@ -90,6 +120,9 @@ export function StudyPhase({
 
   const pct = Math.max(0, Math.min(1, left / total));
   const urgent = pct <= 0.25;
+  const totalWords = Math.max(1, wordCount(built.fullText));
+  const staggerMs = Math.min(220, Math.max(22, Math.floor(4500 / totalWords)));
+  let verseWordOffset = 0;
 
   return (
     <div className="stage stage--fit stage--study" role="region" aria-label={`Memorize ${built.reference}`}>
@@ -125,19 +158,33 @@ export function StudyPhase({
 
           <blockquote className="scripture study__scripture">
             {built.verses.length > 1
-              ? built.verses.map((v, i) => (
-                  <span key={`${v.verse}-${i}`}>
-                    <sup
-                      style={{ color: 'var(--gold-deep)', fontWeight: 700, marginRight: 3, fontSize: '0.6em' }}
-                      aria-hidden="true"
-                    >
-                      {v.verse}
-                    </sup>
-                    {v.text}
-                    {i < built.verses.length - 1 ? ' ' : ''}
-                  </span>
-                ))
-              : built.fullText}
+              ? built.verses.map((v, i) => {
+                  const startIndex = verseWordOffset;
+                  verseWordOffset += wordCount(v.text);
+                  return (
+                    <span key={`${v.verse}-${i}`}>
+                      <sup
+                        style={{ color: 'var(--gold-deep)', fontWeight: 700, marginRight: 3, fontSize: '0.6em' }}
+                        aria-hidden="true"
+                      >
+                        {v.verse}
+                      </sup>
+                      <AnimatedWords
+                        text={v.text}
+                        startIndex={startIndex}
+                        staggerMs={staggerMs}
+                      />
+                      {i < built.verses.length - 1 ? ' ' : ''}
+                    </span>
+                  );
+                })
+              : (
+                <AnimatedWords
+                  text={built.fullText}
+                  startIndex={0}
+                  staggerMs={staggerMs}
+                />
+              )}
           </blockquote>
 
           {showChinese && built.fullTextZh && (

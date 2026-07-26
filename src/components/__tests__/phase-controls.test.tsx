@@ -22,7 +22,7 @@ const noop = vi.fn();
 
 describe('phase controls', () => {
   it('collapses Chinese on study and has no quit control', () => {
-    render(
+    const { container } = render(
       <StudyPhase
         built={level}
         soundEnabled={false}
@@ -38,6 +38,9 @@ describe('phase controls', () => {
     expect(summary.closest('details')).not.toHaveAttribute('open');
     expect(screen.getByRole('button', { name: /start recall/i })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
+    const animatedWords = container.querySelectorAll('.study__word');
+    expect(animatedWords).toHaveLength(2);
+    expect(animatedWords[1]).toHaveStyle({ animationDelay: '220ms' });
   });
 
   it('has neither undo nor quit controls during recall', () => {

@@ -37,6 +37,7 @@ import {
   prepareJourneyLevel,
 } from './youversion';
 import { tokenize } from './game/chunk';
+import { BUILD_FEATURES } from './build-config';
 
 type Phase =
   | 'welcome'
@@ -113,9 +114,8 @@ function translationFallback(
 }
 
 export default function App() {
-  const dailyEnabled = import.meta.env.VITE_DAILY_VERSE_ENABLED !== 'false';
-  const translationApiEnabled =
-    import.meta.env.VITE_TRANSLATION_API_ENABLED !== 'false';
+  const dailyEnabled = BUILD_FEATURES.dailyVerse;
+  const translationApiEnabled = BUILD_FEATURES.licensedTranslations;
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
   const [phase, setPhase] = useState<Phase>('welcome');
   const [level, setLevel] = useState(MIN_LEVEL);
@@ -558,7 +558,9 @@ export default function App() {
         />
       )}
 
-      <BibleAttribution attributions={footerAttributions} />
+      {BUILD_FEATURES.translationFooter && (
+        <BibleAttribution attributions={footerAttributions} />
+      )}
     </div>
   );
 }

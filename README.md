@@ -67,7 +67,10 @@ This creates `lucas-academy-bible-itch.zip`. Its `index.html` is at the ZIP root
 and its asset URLs are relative, so itch.io can extract and run it in an iframe.
 The itch build has no paid assets, external runtime dependencies, or backend;
 its Daily Verse tab is omitted because itch cannot provide the protected
-same-origin API.
+same-origin API. A single `VITE_ITCH_BUILD=true` flag also removes licensed
+translation choices and the translation copyright footer while keeping the
+complete WEB Challenge game. Run the personal `$itch-zip` skill to rebuild and
+validate the upload-ready archive.
 
 Requirements: Node 18+ (developed on Node 20). The main game runs in the browser
 and progress is saved to `localStorage`. A small same-origin Cloudflare Worker

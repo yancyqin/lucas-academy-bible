@@ -8,7 +8,7 @@
     "dev": "vite",
     "dev:worker": "npm run build && npx wrangler dev",
     "build": "tsc -b && vite build",
-    "build:itch": "tsc -b && VITE_DAILY_VERSE_ENABLED=false VITE_TRANSLATION_API_ENABLED=false vite build --base=./ --outDir dist-itch",
+    "build:itch": "tsc -b && VITE_ITCH_BUILD=true vite build --base=./ --outDir dist-itch",
     "package:itch": "npm run build:itch && cd dist-itch && zip -FSrq ../lucas-academy-bible-itch.zip .",
     "preview": "vite preview",
     "test": "vitest run",
