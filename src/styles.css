@@ -115,6 +115,8 @@ body {
 }
 
 .stage--welcome > .card {
+  height: 100%;
+  max-height: 820px;
   overflow-y: auto;
   scrollbar-width: none;
 }
@@ -484,6 +486,11 @@ body {
   color: var(--ink-soft);
   font: 800 1.02rem/1.15 var(--font-ui);
   cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .translation-option--active {

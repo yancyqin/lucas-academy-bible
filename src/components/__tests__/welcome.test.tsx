@@ -63,4 +63,32 @@ describe('welcome game tabs', () => {
       'true',
     );
   });
+
+  it('keeps the Daily Verse panel stable while a new translation loads', () => {
+    render(
+      <Welcome
+        soundEnabled={false}
+        showChinese
+        onToggleSound={noop}
+        onToggleChinese={noop}
+        onBegin={noop}
+        activeTab="daily"
+        onSelectTab={noop}
+        dailyVerse={daily}
+        dailyLoading
+        dailyError=""
+        onRetryDaily={noop}
+        onBeginDaily={noop}
+        dailyEnabled
+        translation="NASB2020"
+        onSelectTranslation={noop}
+        journeyError=""
+        translationApiEnabled
+      />,
+    );
+
+    expect(screen.getByText('John 3:16')).toBeInTheDocument();
+    expect(screen.queryByText(/loading today’s verse/i)).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeDisabled();
+  });
 });

@@ -48,6 +48,9 @@ export function Welcome({
   journeyError,
   translationApiEnabled,
 }: WelcomeProps) {
+  const dailyReady =
+    dailyVerse !== null && dailyVerse.translation.key === translation;
+
   return (
     <div className="stage stage--fit stage--welcome" role="region" aria-label="Welcome">
       <div className="card center-col celebrate">
@@ -124,10 +127,17 @@ export function Welcome({
             </div>
           </div>
         ) : (
-          <div className="welcome-panel daily-panel" role="tabpanel" aria-live="polite">
-            {dailyLoading && <p className="lede welcome-panel__copy">Loading today’s verse…</p>}
+          <div
+            className="welcome-panel daily-panel"
+            role="tabpanel"
+            aria-live="polite"
+            aria-busy={dailyLoading}
+          >
+            {dailyLoading && !dailyVerse && (
+              <p className="lede welcome-panel__copy">Loading today’s verse…</p>
+            )}
 
-            {!dailyLoading && dailyError && (
+            {!dailyLoading && dailyError && !dailyVerse && (
               <>
                 <p className="daily-panel__error" role="alert">{dailyError}</p>
                 <button type="button" className="btn btn--ghost btn--sm" onClick={onRetryDaily}>
@@ -136,10 +146,15 @@ export function Welcome({
               </>
             )}
 
-            {!dailyLoading && dailyVerse && (
+            {dailyVerse && (
               <>
                 <p className="daily-panel__reference">{dailyVerse.reference}</p>
-                <button type="button" className="btn btn--primary" onClick={onBeginDaily}>
+                <button
+                  type="button"
+                  className="btn btn--primary"
+                  onClick={onBeginDaily}
+                  disabled={!dailyReady || dailyLoading}
+                >
                   Play today’s verse
                 </button>
               </>

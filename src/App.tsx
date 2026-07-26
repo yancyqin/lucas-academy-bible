@@ -229,7 +229,6 @@ export default function App() {
     const updated = { ...progress, translation: next };
     setProgress(updated);
     saveProgress(updated);
-    setDailyVerse(null);
     setDailyError('');
     setJourneyError('');
     announce(`${TRANSLATIONS[next].label} selected.`);
@@ -558,7 +557,7 @@ export default function App() {
         />
       )}
 
-      {BUILD_FEATURES.translationFooter && (
+      {BUILD_FEATURES.translationFooter && phase !== 'welcome' && (
         <BibleAttribution attributions={footerAttributions} />
       )}
     </div>
