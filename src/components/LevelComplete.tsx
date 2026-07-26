@@ -14,6 +14,8 @@ interface LevelCompleteProps {
   showChinese: boolean;
   narrator: Narrator;
   onContinue: () => void;
+  modeLabel?: string;
+  continueLabel?: string;
 }
 
 export function LevelComplete({
@@ -24,6 +26,8 @@ export function LevelComplete({
   showChinese,
   narrator,
   onContinue,
+  modeLabel,
+  continueLabel,
 }: LevelCompleteProps) {
   const started = useRef(false);
   const nextLevel = level.level + 1;
@@ -52,10 +56,10 @@ export function LevelComplete({
     <div
       className="stage stage--fit stage--complete"
       role="region"
-      aria-label={`Level ${level.level} complete`}
+      aria-label={`${modeLabel ?? `Level ${level.level}`} complete`}
     >
       <div className="card center-col celebrate">
-        <p className="eyebrow">Level {level.level} · Complete</p>
+        <p className="eyebrow">{modeLabel ?? `Level ${level.level}`} · Complete</p>
         <Stars value={stars} animate size={40} />
         <h1 className="title-xl" style={{ fontSize: 'clamp(1.8rem, 6vw, 2.6rem)' }}>
           {praise}
@@ -80,7 +84,11 @@ export function LevelComplete({
         </div>
 
         <div className="btn-row">
-          {level.level < MAX_LEVEL ? (
+          {continueLabel ? (
+            <button type="button" className="btn btn--primary" onClick={onContinue}>
+              {continueLabel}
+            </button>
+          ) : level.level < MAX_LEVEL ? (
             <button type="button" className="btn btn--primary" onClick={onContinue}>
               Continue to Level {nextLevel}
             </button>

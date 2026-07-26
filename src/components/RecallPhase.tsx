@@ -4,6 +4,7 @@ import { initRecall, recallReducer } from '../game/recall';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
 import { Tile } from './Tile';
+import { BibleAttribution } from './BibleAttribution';
 
 interface RecallPhaseProps {
   level: BuiltLevel;
@@ -14,6 +15,7 @@ interface RecallPhaseProps {
   onComplete: (mistakes: number, hearts: number) => void;
   /** Ran out of hearts — the run ends. */
   onFail: () => void;
+  modeLabel?: string;
 }
 
 export function RecallPhase({
@@ -23,6 +25,7 @@ export function RecallPhase({
   announce,
   onComplete,
   onFail,
+  modeLabel,
 }: RecallPhaseProps) {
   const [state, dispatch] = useReducer(recallReducer, level, initRecall);
   const [wrongId, setWrongId] = useState<string | null>(null);
@@ -131,7 +134,7 @@ export function RecallPhase({
     <div className="stage stage--recall" role="region" aria-label={`Rebuild ${level.reference}`}>
       <div className="recall">
         <div className="recall__top">
-          <span className="eyebrow">Level {level.level} · Recall</span>
+          <span className="eyebrow">{modeLabel ?? `Level ${level.level}`} · Recall</span>
           <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
             {level.sectioned && <span className="recall__sectionlabel">{section.label}</span>}
             <Hearts total={hearts} remaining={state.hearts} lossSeq={heartLossSeq} />
@@ -208,6 +211,7 @@ export function RecallPhase({
           ))}
         </div>
 
+        <BibleAttribution attribution={level.attribution} />
       </div>
     </div>
   );

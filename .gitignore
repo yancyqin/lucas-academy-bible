@@ -4,7 +4,10 @@ dist-ssr
 dist-itch
 lucas-academy-bible-itch.zip
 *.local
+.dev.vars
+.dev.vars.*
 .DS_Store
 coverage
 .vite
+.wrangler
 *.tsbuildinfo

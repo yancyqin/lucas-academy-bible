@@ -6,7 +6,8 @@ Reads data/verses.json (READ-ONLY) and slices every passage into candidate
 passages — then assigns each candidate to the level whose word-count range fits.
 The result is one reviewable JSON file per level in src/game/levels/, each
 holding the level's difficulty policy plus its bank of questions (with the exact
-WEB text pulled straight from verses.json, so nothing is invented or altered).
+configured translation pulled straight from verses.json, so nothing is invented
+or altered).
 
 Re-run this to regenerate the banks:  python3 scripts/build_level_banks.py
 (It OVERWRITES the level-*.json files — hand-edits to those files are replaced.)

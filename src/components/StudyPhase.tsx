@@ -4,6 +4,7 @@ import type { Narrator } from '../audio/speech';
 import { shouldAutoNarrate } from '../audio/speech';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
+import { BibleAttribution } from './BibleAttribution';
 
 interface StudyPhaseProps {
   built: BuiltLevel;
@@ -13,6 +14,7 @@ interface StudyPhaseProps {
   sound: SoundEngine;
   onReady: () => void;
   announce: (msg: string, assertive?: boolean) => void;
+  modeLabel?: string;
 }
 
 function clock(seconds: number): string {
@@ -29,6 +31,7 @@ export function StudyPhase({
   sound,
   onReady,
   announce,
+  modeLabel,
 }: StudyPhaseProps) {
   const total = built.memorizeSeconds;
   const [left, setLeft] = useState(total);
@@ -94,7 +97,7 @@ export function StudyPhase({
       <div className="card">
         <div className="study__scroll">
           <div className="study__meta">
-            <span className="eyebrow">Level {built.level} · Memorize</span>
+            <span className="eyebrow">{modeLabel ?? `Level ${built.level}`} · Memorize</span>
             <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
               <Hearts total={built.hearts} remaining={built.hearts} />
             </span>
@@ -146,6 +149,7 @@ export function StudyPhase({
               </p>
             </details>
           )}
+          <BibleAttribution attribution={built.attribution} />
         </div>
 
         <div className="divider" />

@@ -15,6 +15,13 @@ a level can serve a different verse of similar difficulty. It plays as one run: 
 game starts at Level 0 and continues until you finish or run out of hearts, then a
 final screen shows your score (percentage of hearts kept) and PASS / FAIL.
 
+The home screen also has a **Daily Verse** tab. The first request for each
+America/Los_Angeles calendar day asks YouVersion for that day's selection and
+turns it into a length-matched memory challenge. Players can keep the public-domain
+**WEB** or switch both Journey and Daily Verse to **NIV**, **NIrV**, or
+**NASB 2020**. Licensed text is requested only when it is needed and is cached
+server-side by translation plus YouVersion passage ID.
+
 The interaction loop is inspired by the focus and progression of Human Benchmark’s
 Sequence Memory test, but the look, feel, and content are entirely our own.
 
@@ -27,6 +34,7 @@ Production home: **https://bible.lucasacademy.org**.
 ```bash
 npm install
 npm run dev      # Vite dev server (default http://localhost:5173)
+npm run dev:worker # build + local Worker, including the protected Bible API proxy
 ```
 
 Other commands:
@@ -57,21 +65,56 @@ npm run package:itch
 
 This creates `lucas-academy-bible-itch.zip`. Its `index.html` is at the ZIP root
 and its asset URLs are relative, so itch.io can extract and run it in an iframe.
-The game has no paid assets, external runtime dependencies, or backend.
+The itch build has no paid assets, external runtime dependencies, or backend;
+its Daily Verse tab is omitted because itch cannot provide the protected
+same-origin API.
 
-Requirements: Node 18+ (developed on Node 20). The app is **frontend-only** — no
-backend, database, auth, ads, or analytics. Everything runs in the browser and
-progress is saved to `localStorage`.
+Requirements: Node 18+ (developed on Node 20). The main game runs in the browser
+and progress is saved to `localStorage`. A small same-origin Cloudflare Worker
+endpoint powers Daily Verse; there is no login, advertising, or user database.
+
+### YouVersion configuration
+
+The YouVersion App Key is server-only. Configure production with:
+
+```bash
+npx wrangler secret put YVP_APP_KEY
+```
+
+For local Worker testing, put `YVP_APP_KEY=...` in `.dev.vars`; that file is
+gitignored. Never expose the key through Vite variables or commit it to the
+repository.
+
+Daily Verse uses YouVersion's `verse_of_the_days` endpoint. Runtime passage text
+uses YouVersion Bible IDs WEB `206`, NIV `111`, NIrV `110`, and NASB 2020 `2692`.
+The API-returned title, abbreviation, copyright notice, and YouVersion link are
+displayed with every licensed passage.
+
+`DAILY_VERSE_KV` caches the daily selection separately from scripture text. The
+selection is shared across translations for that Pacific calendar date; passage
+text and translation metadata are cached by Bible ID and passage ID. The app key
+never reaches browser JavaScript.
 
 ---
 
 ## Scripture data — `data/verses.json`
 
-All scripture comes from `data/verses.json`, built by `scripts/build_scripture_json.py`
-from the **World English Bible (WEB) Classic** edition.
+The public-domain WEB Journey baseline comes from `data/verses.json`. Rebuild it
+and its level banks with:
 
-- **The WEB is public domain.** No license or attribution is required, and the text
-  may be used freely. See `metadata.translation` in the JSON.
+```bash
+python3 scripts/build_scripture_json.py
+python3 scripts/build_level_banks.py
+```
+
+The first step rebuilds the approved passage list from WEB plus Chinese CUV; the
+second regenerates the difficulty-matched question banks. NIV, NIrV, and NASB
+2020 are never written into the repository. The Worker requests the selected
+translation for the chosen question at play time and obtains distractors from a
+different passage in that same translation.
+
+- **The WEB baseline is public domain.** It is the default, works offline, and is
+  the reproducible source for references, progression, and Chinese pairings.
 - **A Chinese translation** is included alongside: the **Chinese Union Version
   (和合本, Simplified — CUV), also public domain**, fetched from the same source. Each
   passage carries `bookZh` + `textZh`, and each verse a `textZh`. The Chinese verse
@@ -233,12 +276,12 @@ No audio files are shipped; everything is generated with browser-native APIs
 
 ## Progress & persistence
 
-**It's one arcade-style run.** Every game starts at **Level 0** and goes verse by
-verse; there's no level map, resume, or per-level jump. "Begin", "Play again", and
-"Restart from Level 0" all start a fresh run at Level 0. Clearing a level advances to
-the next; **running out of hearts ends the run**. The only thing persisted to
-`localStorage` is the **sound preference** (`src/game/progress.ts`, validated so
-corrupt data can never crash the app).
+**It's one arcade-style run.** Every Journey starts at **Level 0** and goes verse by
+verse; there's no level map, resume, or per-level jump. "Begin journey" and
+"Play again" start a fresh run at Level 0. Clearing a level advances to the next;
+**running out of hearts ends the run**. Sound, Chinese visibility, and the
+selected English translation are persisted in `localStorage`
+(`src/game/progress.ts`, validated so corrupt data can never crash the app).
 
 **Certificate.** The run ends on a certificate (by Lucas Academy, dated) for the
 **highest level you fully passed**. The **failed level is excluded** from both the
@@ -256,10 +299,14 @@ level (3 = flawless). The whole UI runs full-screen and scales up on large displ
 ## Project layout
 
 ```
-data/verses.json            # scripture source (read-only, WEB Classic, public domain)
+data/verses.json            # public-domain WEB + CUV baseline
 scripts/build_scripture_json.py
 scripts/build_level_banks.py  # regenerates the per-level question banks
+worker/index.js             # protected YouVersion proxy + KV caching
 src/
+  translation-config.ts    # supported player-facing translation choices
+  youversion.ts            # runtime passage loading + translated Journey builder
+  daily.ts                 # Daily Verse loading + length-matched challenge
   data/scripture.ts         # typed loader for verses.json
   game/
     levels/level-01..20.json # per-level policy + question bank (editable, validated)
@@ -283,7 +330,7 @@ src/
 ## Tests
 
 `npm test` runs the Vitest suite covering the important game logic, including: every
-bank question references a real passage and its text is exact WEB scripture; Level 1
+bank question references a real passage and exactly matches the configured source; Level 1
 leads with John 11:35 and reconstructs exactly “Jesus wept.”; every question in every
 level chunks back to its source; distractors come only from other passages; duplicate
 words get unique IDs; the shuffle doesn’t mutate its input; the memorize timer scales

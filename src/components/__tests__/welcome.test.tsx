@@ -1,0 +1,60 @@
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import type { DailyVerse } from '../../daily';
+import { Welcome } from '../Welcome';
+
+const daily: DailyVerse = {
+  date: '2026-07-25',
+  dayOfYear: 206,
+  passageId: 'JHN.3.16',
+  reference: 'John 3:16',
+  text: 'For God so loved the world.',
+  cache: 'HIT',
+  translation: {
+    key: 'NIV',
+    label: 'NIV',
+    id: 111,
+    abbreviation: 'NIV',
+    title: 'New International Version',
+    copyright: 'Required NIV copyright.',
+    promotionalContent: '',
+    youVersionDeepLink: 'https://www.bible.com/versions/111',
+  },
+};
+
+const noop = vi.fn();
+
+describe('welcome game tabs', () => {
+  it('shows a ready Daily Verse challenge without revealing the verse text', () => {
+    render(
+      <Welcome
+        soundEnabled={false}
+        showChinese={false}
+        onToggleSound={noop}
+        onToggleChinese={noop}
+        onBegin={noop}
+        activeTab="daily"
+        onSelectTab={noop}
+        dailyVerse={daily}
+        dailyLoading={false}
+        dailyError=""
+        onRetryDaily={noop}
+        onBeginDaily={noop}
+        dailyEnabled
+        translation="NIV"
+        onSelectTranslation={noop}
+        journeyError=""
+        translationApiEnabled
+      />,
+    );
+
+    expect(screen.getByRole('tab', { name: 'Daily Verse' })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByText('John 3:16')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeInTheDocument();
+    expect(screen.queryByText(daily.text)).not.toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: 'NIV' })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+  });
+});

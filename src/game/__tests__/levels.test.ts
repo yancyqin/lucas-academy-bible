@@ -42,7 +42,7 @@ describe('level bank files', () => {
     }
   });
 
-  // Guards hand-edits: the stored text must be genuine WEB scripture
+  // Guards hand-edits: stored text must come from the configured scripture bank
   it('every question text is an exact contiguous window of its cited passage', () => {
     for (const l of LEVELS) {
       for (const q of l.questions) {

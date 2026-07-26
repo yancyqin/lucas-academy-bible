@@ -1,5 +1,8 @@
 import { autoChunk, splitSentences, tokenize } from './chunk';
-import { pickDistractors } from './distractors';
+import {
+  pickDistractors,
+  type DistractorPassage,
+} from './distractors';
 import {
   memorizeSeconds,
   type HintLevel,
@@ -7,7 +10,15 @@ import {
   type Question,
 } from './levels';
 import { mulberry32, shuffle, type Rng } from './random';
-import { getPassage } from '../data/scripture';
+import { getPassage, translationInfo } from '../data/scripture';
+
+export interface ScriptureAttribution {
+  abbreviation: string;
+  title: string;
+  copyright: string;
+  sourceLabel?: string;
+  sourceUrl?: string;
+}
 
 /** A single clickable tile. IDs are unique even when text repeats. */
 export interface Tile {
@@ -45,6 +56,8 @@ export interface BuiltLevel {
   memorizeSeconds: number;
   /** The bank question that was drawn for this build. */
   questionId: string;
+  /** Required publisher/source notice for licensed translations. */
+  attribution?: ScriptureAttribution;
 }
 
 function isPreSolved(bank: Tile[], correct: string[]): boolean {
@@ -123,11 +136,38 @@ function chineseFor(question: Question): { fullTextZh: string; referenceZh: stri
   return { fullTextZh, referenceZh };
 }
 
+function configuredAttribution(): ScriptureAttribution | undefined {
+  const copyright = translationInfo.copyright;
+  if (typeof copyright !== 'string' || !copyright) return undefined;
+  const abbreviation =
+    typeof translationInfo.abbreviation === 'string'
+      ? translationInfo.abbreviation
+      : translationInfo.id;
+  const sourceUrl =
+    typeof translationInfo.youVersionDeepLink === 'string'
+      ? translationInfo.youVersionDeepLink
+      : undefined;
+
+  return {
+    abbreviation,
+    title: translationInfo.name,
+    copyright,
+    sourceLabel: sourceUrl ? 'YouVersion' : undefined,
+    sourceUrl,
+  };
+}
+
 export interface BuildOptions {
   /** Seed for deterministic layout + question choice. Defaults to level number. */
   seed?: number;
   /** Force a specific question (by index) instead of drawing from the bank. */
   questionIndex?: number;
+  /** Replace the chosen question text with a runtime-loaded translation. */
+  questionOverride?: Question;
+  /** Same-translation sources for distractor chunks. */
+  distractorPassages?: DistractorPassage[];
+  /** Publisher/source notice attached to a runtime-loaded translation. */
+  attribution?: ScriptureAttribution;
 }
 
 /**
@@ -144,7 +184,7 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
     opts.questionIndex !== undefined
       ? ((opts.questionIndex % bank.length) + bank.length) % bank.length
       : Math.floor(rng() * bank.length);
-  const question = bank[qIndex];
+  const question = opts.questionOverride ?? bank[qIndex];
 
   const { label, texts } = sectionUnits(question, file.policy.sectionBy);
 
@@ -155,6 +195,7 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
       correctChunks: correct,
       count: file.policy.distractorsPerSection,
       rng,
+      passages: opts.distractorPassages,
     });
     const tiles = buildBank(file.level, si, correct, distractors, rng);
     return {
@@ -183,5 +224,6 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
     sections,
     memorizeSeconds: memorizeSeconds(file.policy, tokenize(question.text).length),
     questionId: question.id,
+    attribution: opts.attribution ?? configuredAttribution(),
   };
 }

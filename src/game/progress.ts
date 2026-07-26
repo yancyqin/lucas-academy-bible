@@ -1,4 +1,9 @@
 import { MAX_LEVEL, MIN_LEVEL } from './levels';
+import {
+  DEFAULT_TRANSLATION,
+  isTranslationKey,
+  type TranslationKey,
+} from '../translation-config';
 
 /**
  * Local progress persistence. Frontend-only: everything lives in localStorage.
@@ -24,6 +29,8 @@ export interface Progress {
   soundEnabled: boolean;
   /** Whether the Chinese (和合本) translation is shown. */
   showChinese: boolean;
+  /** English Bible translation used for Journey and Daily Verse. */
+  translation: TranslationKey;
   introSeen: boolean;
 }
 
@@ -37,6 +44,7 @@ export function defaultProgress(): Progress {
     currentLevel: MIN_LEVEL,
     soundEnabled: true,
     showChinese: true,
+    translation: DEFAULT_TRANSLATION,
     introSeen: false,
   };
 }
@@ -101,6 +109,9 @@ export function sanitizeProgress(raw: unknown): Progress {
     currentLevel: clampLevel(obj.currentLevel, MIN_LEVEL),
     soundEnabled: typeof obj.soundEnabled === 'boolean' ? obj.soundEnabled : true,
     showChinese: typeof obj.showChinese === 'boolean' ? obj.showChinese : true,
+    translation: isTranslationKey(obj.translation)
+      ? obj.translation
+      : DEFAULT_TRANSLATION,
     introSeen: typeof obj.introSeen === 'boolean' ? obj.introSeen : false,
   };
 }

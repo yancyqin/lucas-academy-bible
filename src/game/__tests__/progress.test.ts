@@ -63,6 +63,7 @@ describe('progress persistence', () => {
     expect(reloaded.highestUnlocked).toBe(3);
     expect(reloaded.stars[1]).toBe(3);
     expect(reloaded.soundEnabled).toBe(false);
+    expect(reloaded.translation).toBe('WEB');
     expect(totalStars(reloaded)).toBe(5);
   });
 
@@ -85,6 +86,7 @@ describe('progress persistence', () => {
       bestAttempts: { '1': 0, '2': 'x', '3': 4 },
       currentLevel: -5,
       soundEnabled: 'yes',
+      translation: 'NOT_A_TRANSLATION',
       introSeen: 1,
     });
     expect(messy.highestUnlocked).toBeLessThanOrEqual(MAX_LEVEL);
@@ -95,6 +97,7 @@ describe('progress persistence', () => {
     expect(messy.stars[2]).toBeGreaterThanOrEqual(0);
     expect(messy.currentLevel).toBeGreaterThanOrEqual(0);
     expect(typeof messy.soundEnabled).toBe('boolean');
+    expect(messy.translation).toBe('WEB');
     expect(typeof messy.introSeen).toBe('boolean');
   });
 

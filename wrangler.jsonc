@@ -1,10 +1,18 @@
 {
   "name": "lucas-academy-bible",
+  "main": "./worker/index.js",
   "compatibility_date": "2026-07-24",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   },
+  "kv_namespaces": [
+    {
+      "binding": "DAILY_VERSE_KV",
+      "id": "29250a00195f4037b9257b18f4cded2b"
+    }
+  ],
   "routes": [
     {
       "pattern": "bible.lucasacademy.org",

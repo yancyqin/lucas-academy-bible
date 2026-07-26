@@ -1,15 +1,18 @@
 import type { BuiltLevel } from '../game/build';
+import { BibleAttribution } from './BibleAttribution';
 
 interface FailureRevealProps {
   level: BuiltLevel;
   showChinese: boolean;
   onContinue: () => void;
+  modeLabel?: string;
 }
 
 export function FailureReveal({
   level,
   showChinese,
   onContinue,
+  modeLabel,
 }: FailureRevealProps) {
   return (
     <div
@@ -18,7 +21,7 @@ export function FailureReveal({
       aria-label={`Review ${level.reference}`}
     >
       <div className="card center-col failure-reveal">
-        <p className="eyebrow">Level {level.level} · Review</p>
+        <p className="eyebrow">{modeLabel ?? `Level ${level.level}`} · Review</p>
         <h1 className="title-xl failure-reveal__title">Here is the verse</h1>
 
         <p className="reference" style={{ display: 'block' }}>
@@ -49,6 +52,7 @@ export function FailureReveal({
               </p>
             </details>
           )}
+          <BibleAttribution attribution={level.attribution} />
         </div>
 
         <div className="btn-row failure-reveal__actions">

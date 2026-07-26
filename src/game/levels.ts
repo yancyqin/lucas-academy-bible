@@ -1,8 +1,9 @@
 /**
  * Level definitions are fully data-driven: one JSON file per level in
  * `src/game/levels/` (`level-00.json`, `level-01.json`, …), each carrying the
- * level's difficulty policy plus a BANK of curated questions (real WEB scripture
- * segments). Regenerate with `python3 scripts/build_level_banks.py`.
+ * level's difficulty policy plus a BANK of curated questions (real scripture
+ * segments from the configured translation). Regenerate with
+ * `python3 scripts/build_level_banks.py`.
  *
  * The app ADAPTS to whatever files exist: every `level-*.json` is auto-loaded and
  * sorted by its `level` field, and MIN/MAX/TOTAL derive from that set. To add,

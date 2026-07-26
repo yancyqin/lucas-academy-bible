@@ -3,8 +3,8 @@ import rawData from '../../data/verses.json';
 /**
  * Types describing the shape of data/verses.json.
  * The file is READ-ONLY from this app's perspective — we never rewrite,
- * modernize, or normalize the scripture text. World English Bible (WEB)
- * Classic is public domain.
+ * modernize, or normalize the scripture text. Translation and licensing
+ * metadata travel with the generated collection.
  */
 export interface ScriptureVerse {
   verse: number;

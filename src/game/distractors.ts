@@ -5,7 +5,8 @@ import { shuffle, type Rng } from './random';
 /**
  * Distractor tiles are believable-but-wrong fragments drawn ONLY from other
  * passages in data/verses.json — never invented. We take real contiguous word
- * windows from other passages so every distractor is genuine WEB text.
+ * windows from other passages so every distractor is genuine scripture text
+ * from the collection's configured translation.
  *
  * We prefer distractors that:
  *   - match the word-length of the correct chunks in the current section, and
@@ -15,10 +16,19 @@ import { shuffle, type Rng } from './random';
 
 const letters = (s: string): number => s.replace(/[^\p{L}\p{N}]/gu, '').length;
 
-/** All contiguous `size`-word windows from every passage except `excludeId`. */
-function buildWindows(excludeId: string, size: number): string[] {
+export interface DistractorPassage {
+  id: string;
+  text: string;
+}
+
+/** All contiguous `size`-word windows from the supplied passage pool. */
+function buildWindows(
+  passages: DistractorPassage[],
+  excludeId: string,
+  size: number,
+): string[] {
   const out: string[] = [];
-  for (const p of allPassages) {
+  for (const p of passages) {
     if (p.id === excludeId) continue;
     const toks = tokenize(p.text);
     for (let i = 0; i + size <= toks.length; i++) {
@@ -36,6 +46,8 @@ export interface DistractorRequest {
   /** How many distractors to produce. */
   count: number;
   rng: Rng;
+  /** Optional same-translation passage pool for API-loaded Bible editions. */
+  passages?: DistractorPassage[];
 }
 
 /**
@@ -44,7 +56,13 @@ export interface DistractorRequest {
  * (never happens with real data at our sizes).
  */
 export function pickDistractors(req: DistractorRequest): string[] {
-  const { excludeId, correctChunks, count, rng } = req;
+  const {
+    excludeId,
+    correctChunks,
+    count,
+    rng,
+    passages = allPassages,
+  } = req;
   if (count <= 0) return [];
 
   const correctSet = new Set(correctChunks);
@@ -54,7 +72,7 @@ export function pickDistractors(req: DistractorRequest): string[] {
 
   // Shuffled, filtered candidate list per target size.
   const lists: string[][] = sizes.map((size) => {
-    let windows = buildWindows(excludeId, size)
+    let windows = buildWindows(passages, excludeId, size)
       .filter((w) => !correctSet.has(w))
       // Every decoy must carry a content word — no confusing lone 虚词 decoys.
       .filter((w) => w.split(' ').some(isContentWord));

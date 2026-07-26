@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './styles.css';
 
 import { getLevelFile, MAX_LEVEL, MIN_LEVEL } from './game/levels';
-import { buildLevel, type BuiltLevel } from './game/build';
+import type { BuiltLevel } from './game/build';
 import { computeStars, heartPercent } from './game/scoring';
 import { loadProgress, saveProgress, type Progress } from './game/progress';
 import { soundEngine } from './audio/sound';
@@ -17,8 +17,33 @@ import { FinalCelebration } from './components/FinalCelebration';
 import { SoundToggle } from './components/SoundToggle';
 import { ChineseToggle } from './components/ChineseToggle';
 import { BookMark } from './components/icons';
+import {
+  buildDailyVerse,
+  currentPacificDate,
+  dailyLevelFile,
+  fetchDailyVerse,
+  type DailyVerse,
+} from './daily';
+import type { WelcomeTab } from './components/Welcome';
+import {
+  TRANSLATIONS,
+  type TranslationKey,
+} from './translation-config';
+import {
+  fetchBiblePassage,
+  prepareJourneyLevel,
+} from './youversion';
+import { tokenize } from './game/chunk';
 
-type Phase = 'welcome' | 'study' | 'recall' | 'success' | 'failure-reveal' | 'final';
+type Phase =
+  | 'welcome'
+  | 'loading'
+  | 'study'
+  | 'recall'
+  | 'success'
+  | 'failure-reveal'
+  | 'final';
+type GameMode = 'journey' | 'daily';
 
 /** Score accumulated across a single run (which always starts at Level 0). */
 interface Run {
@@ -56,6 +81,9 @@ function freshSeed(): number {
 }
 
 export default function App() {
+  const dailyEnabled = import.meta.env.VITE_DAILY_VERSE_ENABLED !== 'false';
+  const translationApiEnabled =
+    import.meta.env.VITE_TRANSLATION_API_ENABLED !== 'false';
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
   const [phase, setPhase] = useState<Phase>('welcome');
   const [level, setLevel] = useState(MIN_LEVEL);
@@ -66,13 +94,58 @@ export default function App() {
   const [final, setFinal] = useState<FinalState | null>(null);
   const [polite, setPolite] = useState<LiveMsg>({ text: '', id: 0 });
   const [assertive, setAssertive] = useState<LiveMsg>({ text: '', id: 0 });
+  const [gameMode, setGameMode] = useState<GameMode>('journey');
+  const [welcomeTab, setWelcomeTab] = useState<WelcomeTab>('journey');
+  const [dailyVerse, setDailyVerse] = useState<DailyVerse | null>(null);
+  const [dailyLoading, setDailyLoading] = useState(false);
+  const [dailyError, setDailyError] = useState('');
+  const [dailyRequest, setDailyRequest] = useState(0);
+  const [journeyError, setJourneyError] = useState('');
+  const [loadingLabel, setLoadingLabel] = useState('');
+  const activeGameRequest = useRef<AbortController | null>(null);
 
   const soundEnabled = progress.soundEnabled;
   const showChinese = progress.showChinese;
+  const translation = translationApiEnabled ? progress.translation : 'WEB';
 
   useEffect(() => {
     soundEngine.setEnabled(soundEnabled);
   }, [soundEnabled]);
+
+  useEffect(() => {
+    if (!dailyEnabled || phase !== 'welcome' || welcomeTab !== 'daily') return undefined;
+
+    const today = currentPacificDate();
+    if (
+      dailyVerse?.date === today &&
+      dailyVerse.translation.key === translation
+    ) {
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    setDailyLoading(true);
+    setDailyError('');
+    fetchDailyVerse(translation, controller.signal)
+      .then((verse) => setDailyVerse(verse))
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        setDailyError(error instanceof Error ? error.message : 'Today’s verse could not be loaded.');
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setDailyLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [
+    dailyEnabled,
+    dailyRequest,
+    dailyVerse?.date,
+    dailyVerse?.translation.key,
+    phase,
+    translation,
+    welcomeTab,
+  ]);
 
   const announce = (text: string, isAssertive = false) => {
     if (isAssertive) setAssertive((m) => ({ text, id: m.id + 1 }));
@@ -86,7 +159,7 @@ export default function App() {
     else narrator.stop();
     const updated = { ...progress, soundEnabled: next };
     setProgress(updated);
-    saveProgress(updated); // sound + Chinese preferences are what we persist
+    saveProgress(updated);
     announce(next ? 'Sound on.' : 'Sound off.');
   };
 
@@ -98,27 +171,122 @@ export default function App() {
     announce(next ? '中文 on.' : '中文 off.');
   };
 
+  const selectTranslation = (next: TranslationKey) => {
+    if (next === translation) return;
+    const updated = { ...progress, translation: next };
+    setProgress(updated);
+    saveProgress(updated);
+    setDailyVerse(null);
+    setDailyError('');
+    setJourneyError('');
+    announce(`${TRANSLATIONS[next].label} selected.`);
+  };
+
   // Enter one level of the current run (does not touch the run score).
-  const enterLevel = (lvl: number) => {
+  const enterLevel = async (lvl: number) => {
     const file = getLevelFile(lvl);
     if (!file) return;
+    activeGameRequest.current?.abort();
+    const controller = new AbortController();
+    activeGameRequest.current = controller;
+    const seed = freshSeed();
     setLevel(lvl);
     setResult(null);
+    setJourneyError('');
     narrator.stop();
-    setBuilt(buildLevel(file, { seed: freshSeed() }));
-    setPlayId((p) => p + 1);
     if (soundEnabled) soundEngine.resume(); // the tap into a level is our gesture
-    setPhase('study');
+    setBuilt(null);
+    setLoadingLabel(
+      translation === 'WEB'
+        ? `Preparing Level ${lvl}…`
+        : `Loading Level ${lvl} in ${TRANSLATIONS[translation].label}…`,
+    );
+    setPhase('loading');
+
+    try {
+      const next = await prepareJourneyLevel(
+        file,
+        translation,
+        seed,
+        controller.signal,
+      );
+      if (controller.signal.aborted) return;
+      setBuilt(next);
+      setPlayId((p) => p + 1);
+      setPhase('study');
+    } catch (error: unknown) {
+      if (controller.signal.aborted) return;
+      setJourneyError(
+        error instanceof Error
+          ? error.message
+          : 'That translation could not be loaded.',
+      );
+      setWelcomeTab('journey');
+      setPhase('welcome');
+    }
   };
 
   // Start (or restart) a whole run from Level 0.
   const startRun = () => {
+    setGameMode('journey');
     setRun({ levelsAttempted: 0, heartsKept: 0, top: null });
     setFinal(null);
-    enterLevel(MIN_LEVEL);
+    void enterLevel(MIN_LEVEL);
+  };
+
+  const startDaily = async () => {
+    if (!dailyVerse) return;
+    activeGameRequest.current?.abort();
+    const controller = new AbortController();
+    activeGameRequest.current = controller;
+    const seed = freshSeed();
+    setGameMode('daily');
+    setRun({ levelsAttempted: 0, heartsKept: 0, top: null });
+    setFinal(null);
+    setResult(null);
+    setBuilt(null);
+    narrator.stop();
+    if (soundEnabled) soundEngine.resume();
+    setLoadingLabel(`Preparing today’s verse in ${TRANSLATIONS[translation].label}…`);
+    setPhase('loading');
+
+    try {
+      const file = dailyLevelFile(tokenize(dailyVerse.text).length);
+      let distractor;
+      if (file.policy.distractorsPerSection > 0) {
+        const distractorId =
+          dailyVerse.passageId === 'PSA.23.1' ? 'JHN.1.1' : 'PSA.23.1';
+        distractor = await fetchBiblePassage(
+          translation,
+          distractorId,
+          controller.signal,
+        );
+      }
+      if (controller.signal.aborted) return;
+      const daily = buildDailyVerse(dailyVerse, seed, distractor);
+      setLevel(daily.level);
+      setBuilt(daily);
+      setPlayId((p) => p + 1);
+      setPhase('study');
+    } catch (error: unknown) {
+      if (controller.signal.aborted) return;
+      setDailyError(
+        error instanceof Error
+          ? error.message
+          : 'Today’s verse could not be prepared.',
+      );
+      setWelcomeTab('daily');
+      setPhase('welcome');
+    }
   };
 
   const handleComplete = (mistakes: number, hearts: number) => {
+    if (gameMode === 'daily') {
+      setResult({ stars: computeStars(mistakes, 0), mistakes });
+      setPhase('success');
+      return;
+    }
+
     const top = {
       level,
       reference: built?.reference ?? '',
@@ -146,6 +314,11 @@ export default function App() {
   };
 
   const handleFail = () => {
+    if (gameMode === 'daily') {
+      setPhase('failure-reveal');
+      return;
+    }
+
     // The failed level is NOT counted — the certificate is for the last level
     // cleared, and the score is over the cleared levels only.
     const clearedCount = run.levelsAttempted;
@@ -161,14 +334,20 @@ export default function App() {
   };
 
   const goWelcome = () => {
+    activeGameRequest.current?.abort();
     narrator.stop();
+    setWelcomeTab(gameMode === 'daily' ? 'daily' : 'journey');
     setPhase('welcome');
   };
 
   const continueNext = () => {
     narrator.stop();
+    if (gameMode === 'daily') {
+      goWelcome();
+      return;
+    }
     if (level >= MAX_LEVEL) setPhase('final');
-    else enterLevel(level + 1);
+    else void enterLevel(level + 1);
   };
 
   return (
@@ -208,7 +387,29 @@ export default function App() {
           onToggleSound={toggleSound}
           onToggleChinese={toggleChinese}
           onBegin={startRun}
+          activeTab={welcomeTab}
+          onSelectTab={setWelcomeTab}
+          dailyVerse={dailyVerse}
+          dailyLoading={dailyLoading}
+          dailyError={dailyError}
+          onRetryDaily={() => setDailyRequest((request) => request + 1)}
+          onBeginDaily={startDaily}
+          dailyEnabled={dailyEnabled}
+          translation={translation}
+          onSelectTranslation={selectTranslation}
+          journeyError={journeyError}
+          translationApiEnabled={translationApiEnabled}
         />
+      )}
+
+      {phase === 'loading' && (
+        <main className="stage stage--fit" aria-live="polite" aria-busy="true">
+          <div className="card center-col">
+            <p className="eyebrow">{TRANSLATIONS[translation].label}</p>
+            <h1 className="title-xl">One moment</h1>
+            <p className="lede">{loadingLabel}</p>
+          </div>
+        </main>
       )}
 
       {phase === 'study' && built && (
@@ -221,6 +422,7 @@ export default function App() {
           sound={soundEngine}
           onReady={() => setPhase('recall')}
           announce={announce}
+          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
         />
       )}
 
@@ -233,6 +435,7 @@ export default function App() {
           announce={announce}
           onComplete={handleComplete}
           onFail={handleFail}
+          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
         />
       )}
 
@@ -245,18 +448,24 @@ export default function App() {
           showChinese={showChinese}
           narrator={narrator}
           onContinue={continueNext}
+          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
+          continueLabel={gameMode === 'daily' ? 'Done for today' : undefined}
         />
       )}
 
-      {phase === 'failure-reveal' && built && final && (
+      {phase === 'failure-reveal' && built && (
         <FailureReveal
           level={built}
           showChinese={showChinese}
-          onContinue={() => setPhase('final')}
+          onContinue={() => {
+            if (gameMode === 'daily') goWelcome();
+            else setPhase('final');
+          }}
+          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
         />
       )}
 
-      {phase === 'final' && final && (
+      {phase === 'final' && final && gameMode === 'journey' && (
         <FinalCelebration
           pass={final.pass}
           certLevel={final.certLevel}
