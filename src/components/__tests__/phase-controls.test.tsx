@@ -71,5 +71,8 @@ describe('phase controls', () => {
 
     expect(screen.getByRole('button', { name: /continue to level/i })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /hear|stop|quit/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /level 0 complete/i })).toHaveClass(
+      'stage--complete',
+    );
   });
 });

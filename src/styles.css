@@ -110,6 +110,10 @@ body {
   overscroll-behavior: contain;
 }
 
+.stage--complete > .card {
+  overflow: hidden;
+}
+
 .stage--recall {
   flex: none;
   justify-content: flex-start;

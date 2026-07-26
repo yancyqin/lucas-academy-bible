@@ -49,7 +49,11 @@ export function LevelComplete({
   const praise = stars === 3 ? 'Beautifully done!' : stars === 2 ? 'Well restored!' : 'You made it!';
 
   return (
-    <div className="stage stage--fit" role="region" aria-label={`Level ${level.level} complete`}>
+    <div
+      className="stage stage--fit stage--complete"
+      role="region"
+      aria-label={`Level ${level.level} complete`}
+    >
       <div className="card center-col celebrate">
         <p className="eyebrow">Level {level.level} · Complete</p>
         <Stars value={stars} animate size={40} />
