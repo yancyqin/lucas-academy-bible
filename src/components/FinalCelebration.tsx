@@ -132,6 +132,9 @@ export function FinalCelebration({
         </div>
 
         <div className="btn-row">
+          <button type="button" className="btn btn--primary" onClick={onPlayAgain}>
+            Play again
+          </button>
           <button
             type="button"
             className="btn btn--ghost"
@@ -151,9 +154,6 @@ export function FinalCelebration({
               <DownloadIcon />
             </span>
             Download
-          </button>
-          <button type="button" className="btn btn--primary" onClick={onPlayAgain}>
-            Play again
           </button>
           <button type="button" className="btn btn--ghost" onClick={onHome}>
             Home
