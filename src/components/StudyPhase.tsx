@@ -165,11 +165,11 @@ export function StudyPhase({
           </div>
 
           <div className="btn-row">
-            <button type="button" className="btn btn--ghost btn--sm" onClick={onBack}>
-              Quit
-            </button>
             <button type="button" className="btn btn--primary" onClick={startRecall}>
               Start recall
+            </button>
+            <button type="button" className="btn btn--ghost btn--sm" onClick={onBack}>
+              Quit
             </button>
           </div>
         </div>
