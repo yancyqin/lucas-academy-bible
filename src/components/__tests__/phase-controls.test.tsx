@@ -35,6 +35,7 @@ describe('phase controls', () => {
 
     const summary = screen.getByText('中文经文');
     expect(summary.closest('details')).not.toHaveAttribute('open');
+    expect(screen.getByRole('button', { name: /start recall/i })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
   });
 
@@ -47,13 +48,12 @@ describe('phase controls', () => {
         announce={noop}
         onComplete={noop}
         onFail={noop}
-        onStartOver={noop}
       />,
     );
 
     expect(screen.queryByRole('button', { name: /undo/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /restart from level 0/i })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /restart from level 0/i })).not.toBeInTheDocument();
   });
 
   it('shows only the continue action on the level-complete screen', () => {

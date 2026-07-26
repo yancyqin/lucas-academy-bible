@@ -232,7 +232,6 @@ export default function App() {
           announce={announce}
           onComplete={handleComplete}
           onFail={handleFail}
-          onStartOver={startRun}
         />
       )}
 

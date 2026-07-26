@@ -14,8 +14,6 @@ interface RecallPhaseProps {
   onComplete: (mistakes: number, hearts: number) => void;
   /** Ran out of hearts — the run ends. */
   onFail: () => void;
-  /** Restart the whole run from Level 0. */
-  onStartOver: () => void;
 }
 
 export function RecallPhase({
@@ -25,7 +23,6 @@ export function RecallPhase({
   announce,
   onComplete,
   onFail,
-  onStartOver,
 }: RecallPhaseProps) {
   const [state, dispatch] = useReducer(recallReducer, level, initRecall);
   const [wrongId, setWrongId] = useState<string | null>(null);
@@ -211,16 +208,6 @@ export function RecallPhase({
           ))}
         </div>
 
-        <div className="recall__controls">
-          <button
-            type="button"
-            className="btn btn--ghost btn--sm"
-            onClick={onStartOver}
-            title="Start the whole run again from Level 0"
-          >
-            ⟳ Restart from Level 0
-          </button>
-        </div>
       </div>
     </div>
   );

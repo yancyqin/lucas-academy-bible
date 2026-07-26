@@ -494,13 +494,26 @@ body {
 }
 
 .stage--study .study__scripture {
-  max-height: min(42dvh, 440px);
+  margin-bottom: 10px;
+}
+
+.stage--study > .card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.study__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  padding: 2px 4px 8px;
 }
 
 .study__actions {
   flex: none;
+  padding-top: 8px;
 }
 
 .study__hint {
@@ -694,15 +707,6 @@ body {
   40% { transform: translateX(6px); }
   60% { transform: translateX(-4px); }
   80% { transform: translateX(4px); }
-}
-
-.recall__controls {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2px;
 }
 
 /* ---- Overlays (fail / complete) ----------------------------------------- */
@@ -1026,8 +1030,7 @@ body {
   }
   .btn--sm { min-height: 62px; font-size: 1.18rem; }
   .btn-row { width: 100%; }
-  .recall__controls { width: 100%; }
-  .recall__controls .btn { flex: 1 1 100%; }
+  .study__start { order: -1; }
   .heart { width: 34px; height: 34px; }
 }
 
@@ -1045,7 +1048,6 @@ body {
     margin-top: 12px;
     font-size: clamp(1.55rem, 5.2vw, 2.6rem);
     line-height: 1.42;
-    max-height: 34dvh;
   }
   .stage--fit .title-xl { font-size: clamp(2rem, 8vw, 3rem); }
   .stage--fit .btn { min-height: 58px; padding-top: 13px; padding-bottom: 13px; }

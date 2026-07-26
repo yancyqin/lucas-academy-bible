@@ -92,64 +92,66 @@ export function StudyPhase({
   return (
     <div className="stage stage--fit stage--study" role="region" aria-label={`Memorize ${built.reference}`}>
       <div className="card">
-        <div className="study__meta">
-          <span className="eyebrow">Level {built.level} · Memorize</span>
-          <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
-            <Hearts total={built.hearts} remaining={built.hearts} />
-          </span>
-        </div>
-
-        {/* Countdown */}
-        <div
-          className={`memo ${urgent ? 'memo--urgent' : ''}`}
-          role="timer"
-          aria-label={`${left} seconds left to memorize`}
-        >
-          <div className="memo__track">
-            <div className="memo__fill" style={{ width: `${pct * 100}%` }} />
+        <div className="study__scroll">
+          <div className="study__meta">
+            <span className="eyebrow">Level {built.level} · Memorize</span>
+            <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
+              <Hearts total={built.hearts} remaining={built.hearts} />
+            </span>
           </div>
-          <span className="memo__digits" aria-hidden="true">
-            {clock(left)}
-          </span>
-        </div>
 
-        <p className="reference" style={{ display: 'block', marginTop: 12 }}>
-          {built.reference}
-          {showChinese && built.referenceZh && (
-            <span className="reference-zh"> · {built.referenceZh}</span>
+          {/* Countdown */}
+          <div
+            className={`memo ${urgent ? 'memo--urgent' : ''}`}
+            role="timer"
+            aria-label={`${left} seconds left to memorize`}
+          >
+            <div className="memo__track">
+              <div className="memo__fill" style={{ width: `${pct * 100}%` }} />
+            </div>
+            <span className="memo__digits" aria-hidden="true">
+              {clock(left)}
+            </span>
+          </div>
+
+          <p className="reference" style={{ display: 'block', marginTop: 12 }}>
+            {built.reference}
+            {showChinese && built.referenceZh && (
+              <span className="reference-zh"> · {built.referenceZh}</span>
+            )}
+          </p>
+
+          <blockquote className="scripture study__scripture">
+            {built.verses.length > 1
+              ? built.verses.map((v, i) => (
+                  <span key={`${v.verse}-${i}`}>
+                    <sup
+                      style={{ color: 'var(--gold-deep)', fontWeight: 700, marginRight: 3, fontSize: '0.6em' }}
+                      aria-hidden="true"
+                    >
+                      {v.verse}
+                    </sup>
+                    {v.text}
+                    {i < built.verses.length - 1 ? ' ' : ''}
+                  </span>
+                ))
+              : built.fullText}
+          </blockquote>
+
+          {showChinese && built.fullTextZh && (
+            <details className="zh-disclosure">
+              <summary lang="zh-Hans">中文经文</summary>
+              <p className="scripture-zh zh-disclosure__text" lang="zh-Hans">
+                {built.fullTextZh}
+              </p>
+            </details>
           )}
-        </p>
-
-        <blockquote className="scripture study__scripture">
-          {built.verses.length > 1
-            ? built.verses.map((v, i) => (
-                <span key={`${v.verse}-${i}`}>
-                  <sup
-                    style={{ color: 'var(--gold-deep)', fontWeight: 700, marginRight: 3, fontSize: '0.6em' }}
-                    aria-hidden="true"
-                  >
-                    {v.verse}
-                  </sup>
-                  {v.text}
-                  {i < built.verses.length - 1 ? ' ' : ''}
-                </span>
-              ))
-            : built.fullText}
-        </blockquote>
-
-        {showChinese && built.fullTextZh && (
-          <details className="zh-disclosure">
-            <summary lang="zh-Hans">中文经文</summary>
-            <p className="scripture-zh zh-disclosure__text" lang="zh-Hans">
-              {built.fullTextZh}
-            </p>
-          </details>
-        )}
+        </div>
 
         <div className="divider" />
 
         <div className="btn-row study__actions" style={{ justifyContent: 'space-between' }}>
-          <div className="btn-row" style={{ justifyContent: 'flex-start' }}>
+          <div className="btn-row study__listen" style={{ justifyContent: 'flex-start' }}>
             {narrator.supported ? (
               speaking ? (
                 <button type="button" className="btn btn--ghost btn--sm" onClick={stopReading}>
@@ -165,7 +167,7 @@ export function StudyPhase({
             )}
           </div>
 
-          <div className="btn-row">
+          <div className="btn-row study__start">
             <button type="button" className="btn btn--primary" onClick={startRecall}>
               Start recall
             </button>
