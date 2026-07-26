@@ -84,6 +84,11 @@ body {
     calc(24px + var(--pad-safe-b));
 }
 
+.app--fit {
+  height: 100dvh;
+  overflow: hidden;
+}
+
 .stage {
   width: 100%;
   max-width: var(--maxw);
@@ -92,6 +97,22 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center; /* centre the card in the space below the brand bar */
+}
+
+.stage--fit {
+  min-height: 0;
+}
+
+.stage--fit > .card {
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.stage--recall {
+  flex: none;
+  justify-content: flex-start;
 }
 
 .brandbar {
@@ -237,16 +258,15 @@ body {
   overflow-y: auto;
 }
 
-/* Chinese meaning reference on the recall card — collapsed by default so the
-   exam stays focused and compact on a phone. */
-.recall__zh-disclosure {
+/* Chinese translation disclosure — collapsed by default on study and recall. */
+.zh-disclosure {
   margin: 0;
   border: 2px solid rgba(169, 132, 47, 0.32);
   border-radius: 16px;
   background: rgba(251, 246, 234, 0.72);
   overflow: hidden;
 }
-.recall__zh-disclosure summary {
+.zh-disclosure summary {
   min-height: 56px;
   padding: 12px 18px;
   display: flex;
@@ -259,20 +279,20 @@ body {
   font-weight: 800;
   list-style: none;
 }
-.recall__zh-disclosure summary::-webkit-details-marker { display: none; }
-.recall__zh-disclosure summary::after {
+.zh-disclosure summary::-webkit-details-marker { display: none; }
+.zh-disclosure summary::after {
   content: '＋';
   margin-left: auto;
   font-family: var(--font-ui);
   font-size: 1.4rem;
   line-height: 1;
 }
-.recall__zh-disclosure[open] summary::after { content: '−'; }
-.recall__zh-disclosure summary:focus-visible {
+.zh-disclosure[open] summary::after { content: '−'; }
+.zh-disclosure summary:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 3px var(--gold-deep);
 }
-.recall__zh {
+.zh-disclosure__text {
   font-size: 1.2rem;
   line-height: 1.6;
   color: var(--ink-soft);
@@ -473,6 +493,16 @@ body {
   font-weight: 600;
 }
 
+.stage--study .study__scripture {
+  max-height: min(42dvh, 440px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.study__actions {
+  flex: none;
+}
+
 .study__hint {
   font-size: 0.92rem;
   color: var(--ink-soft);
@@ -530,6 +560,7 @@ body {
   gap: 14px;
   flex: 1;
   min-height: 0;
+  padding-bottom: max(24px, var(--pad-safe-b));
 }
 
 .recall__top {
@@ -625,9 +656,9 @@ body {
   flex-wrap: wrap;
   gap: 14px;
   align-content: flex-start;
-  padding: 4px;
-  overflow-y: auto;
-  max-height: 44vh;
+  padding: 4px 4px 18px;
+  overflow: visible;
+  max-height: none;
 }
 
 .tile {
@@ -952,14 +983,31 @@ body {
     justify-content: space-between;
   }
   .brandbar__mark { width: 34px; height: 34px; }
+  .app--fit .brandbar {
+    flex-wrap: nowrap;
+  }
+  .app--fit .brandbar__title {
+    width: auto;
+    justify-content: flex-start;
+  }
+  .app--fit .brandbar > span {
+    width: auto;
+  }
+  .app--fit .brandbar .icon-btn {
+    min-width: 54px;
+    padding-inline: 12px;
+  }
+  .app--fit .brandbar .icon-btn > span:last-child {
+    display: none;
+  }
   .card { padding: 24px 20px; border-radius: 20px; }
   .center-col { gap: 20px; }
   .title-xl { font-size: clamp(2.65rem, 14vw, 3.4rem); }
   .reference { font-size: 1.05rem; line-height: 1.55; }
   .study__scripture { font-size: 1.85rem; line-height: 1.55; }
   .scripture-zh { font-size: 1.48rem; line-height: 1.75; }
-  .recall__zh-disclosure summary { min-height: 60px; font-size: 1.2rem; }
-  .recall__zh { font-size: 1.32rem; padding: 0 16px 18px; }
+  .zh-disclosure summary { min-height: 60px; font-size: 1.2rem; }
+  .zh-disclosure__text { font-size: 1.32rem; padding: 0 16px 18px; }
   .tile {
     font-size: 1.48rem;
     font-weight: 700;
@@ -981,4 +1029,27 @@ body {
   .recall__controls { width: 100%; }
   .recall__controls .btn { flex: 1 1 100%; }
   .heart { width: 34px; height: 34px; }
+}
+
+/* Fit non-exam screens into short phone viewports. Content still scrolls
+   inside its card as a fallback for exceptionally long passages or large text. */
+@media (max-height: 760px) {
+  .app--fit {
+    padding-top: calc(8px + var(--pad-safe-t));
+    padding-bottom: calc(10px + var(--pad-safe-b));
+  }
+  .app--fit .brandbar { margin-bottom: 8px; }
+  .stage--fit > .card { padding-top: 18px; padding-bottom: 18px; }
+  .stage--fit .center-col { gap: 12px; }
+  .stage--fit .study__scripture {
+    margin-top: 12px;
+    font-size: clamp(1.55rem, 5.2vw, 2.6rem);
+    line-height: 1.42;
+    max-height: 34dvh;
+  }
+  .stage--fit .title-xl { font-size: clamp(2rem, 8vw, 3rem); }
+  .stage--fit .btn { min-height: 58px; padding-top: 13px; padding-bottom: 13px; }
+  .stage--fit .certificate { gap: 9px; }
+  .stage--fit .cert__seal { width: 60px; height: 60px; }
+  .stage--fit .cert__level { font-size: clamp(2.35rem, 8vw, 3.5rem); }
 }

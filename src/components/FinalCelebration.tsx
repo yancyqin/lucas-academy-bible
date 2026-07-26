@@ -54,7 +54,7 @@ export function FinalCelebration({
   // Cleared nothing (failed the very first level) — no certificate to award.
   if (!hasCert) {
     return (
-      <div className="stage" role="region" aria-label="Run over">
+      <div className="stage stage--fit" role="region" aria-label="Run over">
         <div className="card center-col">
           <div style={{ width: 64, height: 64 }} aria-hidden="true">
             <BookMark />
@@ -82,7 +82,7 @@ export function FinalCelebration({
   const levelWord = clearedCount === 1 ? 'level' : 'levels';
 
   return (
-    <div className="stage" role="region" aria-label="Certificate">
+    <div className="stage stage--fit" role="region" aria-label="Certificate">
       <div className={`card certificate center-col ${pass ? 'certificate--gold' : ''}`}>
         <div className="cert__seal" aria-hidden="true">
           <div style={{ width: 46, height: 46 }}>

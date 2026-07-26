@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { MAX_LEVEL } from '../game/levels';
 import type { BuiltLevel } from '../game/build';
 // MAX_LEVEL is used only to decide the final "Finish" vs "Continue" label.
@@ -14,7 +14,6 @@ interface LevelCompleteProps {
   showChinese: boolean;
   narrator: Narrator;
   onContinue: () => void;
-  onQuit: () => void;
 }
 
 export function LevelComplete({
@@ -25,16 +24,13 @@ export function LevelComplete({
   showChinese,
   narrator,
   onContinue,
-  onQuit,
 }: LevelCompleteProps) {
-  const [speaking, setSpeaking] = useState(false);
   const started = useRef(false);
   const nextLevel = level.level + 1;
 
   const readAloud = () => {
     if (!narrator.supported) return;
-    setSpeaking(true);
-    narrator.speak(level.fullText, { slow: true, onend: () => setSpeaking(false) });
+    narrator.speak(level.fullText, { slow: true });
   };
 
   useEffect(() => {
@@ -53,7 +49,7 @@ export function LevelComplete({
   const praise = stars === 3 ? 'Beautifully done!' : stars === 2 ? 'Well restored!' : 'You made it!';
 
   return (
-    <div className="stage" role="region" aria-label={`Level ${level.level} complete`}>
+    <div className="stage stage--fit" role="region" aria-label={`Level ${level.level} complete`}>
       <div className="card center-col celebrate">
         <p className="eyebrow">Level {level.level} · Complete</p>
         <Stars value={stars} animate size={40} />
@@ -80,15 +76,6 @@ export function LevelComplete({
         </div>
 
         <div className="btn-row">
-          {narrator.supported && (
-            <button
-              type="button"
-              className="btn btn--ghost btn--sm"
-              onClick={speaking ? () => { narrator.stop(); setSpeaking(false); } : readAloud}
-            >
-              {speaking ? '⏹ Stop' : '▶ Hear it'}
-            </button>
-          )}
           {level.level < MAX_LEVEL ? (
             <button type="button" className="btn btn--primary" onClick={onContinue}>
               Continue to Level {nextLevel}
@@ -98,9 +85,6 @@ export function LevelComplete({
               Finish
             </button>
           )}
-          <button type="button" className="btn btn--ghost btn--sm" onClick={onQuit}>
-            Quit
-          </button>
         </div>
       </div>
     </div>

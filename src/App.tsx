@@ -171,7 +171,7 @@ export default function App() {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'}`}>
       <div className="visually-hidden" aria-live="polite" aria-atomic="true">
         <span key={polite.id}>{polite.text}</span>
       </div>
@@ -186,7 +186,7 @@ export default function App() {
             className="brandbar__title"
             onClick={goWelcome}
             style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-            aria-label="Bible Sequence — quit to start"
+            aria-label="Bible Sequence — go to start screen"
           >
             <span className="brandbar__mark" aria-hidden="true">
               <BookMark />
@@ -219,7 +219,6 @@ export default function App() {
           narrator={narrator}
           sound={soundEngine}
           onReady={() => setPhase('recall')}
-          onBack={goWelcome}
           announce={announce}
         />
       )}
@@ -246,7 +245,6 @@ export default function App() {
           showChinese={showChinese}
           narrator={narrator}
           onContinue={continueNext}
-          onQuit={goWelcome}
         />
       )}
 

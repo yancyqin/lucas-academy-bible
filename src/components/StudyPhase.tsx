@@ -12,7 +12,6 @@ interface StudyPhaseProps {
   narrator: Narrator;
   sound: SoundEngine;
   onReady: () => void;
-  onBack: () => void;
   announce: (msg: string, assertive?: boolean) => void;
 }
 
@@ -29,7 +28,6 @@ export function StudyPhase({
   narrator,
   sound,
   onReady,
-  onBack,
   announce,
 }: StudyPhaseProps) {
   const total = built.memorizeSeconds;
@@ -92,7 +90,7 @@ export function StudyPhase({
   const urgent = pct <= 0.25;
 
   return (
-    <div className="stage" role="region" aria-label={`Memorize ${built.reference}`}>
+    <div className="stage stage--fit stage--study" role="region" aria-label={`Memorize ${built.reference}`}>
       <div className="card">
         <div className="study__meta">
           <span className="eyebrow">Level {built.level} · Memorize</span>
@@ -140,14 +138,17 @@ export function StudyPhase({
         </blockquote>
 
         {showChinese && built.fullTextZh && (
-          <p className="scripture-zh" lang="zh-Hans">
-            {built.fullTextZh}
-          </p>
+          <details className="zh-disclosure">
+            <summary lang="zh-Hans">中文经文</summary>
+            <p className="scripture-zh zh-disclosure__text" lang="zh-Hans">
+              {built.fullTextZh}
+            </p>
+          </details>
         )}
 
         <div className="divider" />
 
-        <div className="btn-row" style={{ justifyContent: 'space-between' }}>
+        <div className="btn-row study__actions" style={{ justifyContent: 'space-between' }}>
           <div className="btn-row" style={{ justifyContent: 'flex-start' }}>
             {narrator.supported ? (
               speaking ? (
@@ -167,9 +168,6 @@ export function StudyPhase({
           <div className="btn-row">
             <button type="button" className="btn btn--primary" onClick={startRecall}>
               Start recall
-            </button>
-            <button type="button" className="btn btn--ghost btn--sm" onClick={onBack}>
-              Quit
             </button>
           </div>
         </div>

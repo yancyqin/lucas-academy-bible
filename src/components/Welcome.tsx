@@ -18,7 +18,7 @@ export function Welcome({
   onBegin,
 }: WelcomeProps) {
   return (
-    <div className="stage" role="region" aria-label="Welcome">
+    <div className="stage stage--fit" role="region" aria-label="Welcome">
       <div className="card center-col celebrate">
         <div style={{ width: 72, height: 72 }} aria-hidden="true">
           <BookMark />

@@ -1,0 +1,75 @@
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import type { Narrator } from '../../audio/speech';
+import type { SoundEngine } from '../../audio/sound';
+import { buildLevel } from '../../game/build';
+import { getLevelFile } from '../../game/levels';
+import { LevelComplete } from '../LevelComplete';
+import { RecallPhase } from '../RecallPhase';
+import { StudyPhase } from '../StudyPhase';
+
+const level = buildLevel(getLevelFile(0)!, { seed: 1 });
+const narrator = {
+  supported: false,
+  speak: vi.fn(),
+  stop: vi.fn(),
+} as unknown as Narrator;
+const sound = {
+  resume: vi.fn(),
+} as unknown as SoundEngine;
+const noop = vi.fn();
+
+describe('phase controls', () => {
+  it('collapses Chinese on study and has no quit control', () => {
+    render(
+      <StudyPhase
+        built={level}
+        soundEnabled={false}
+        showChinese
+        narrator={narrator}
+        sound={sound}
+        onReady={noop}
+        announce={noop}
+      />,
+    );
+
+    const summary = screen.getByText('中文经文');
+    expect(summary.closest('details')).not.toHaveAttribute('open');
+    expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
+  });
+
+  it('has neither undo nor quit controls during recall', () => {
+    render(
+      <RecallPhase
+        level={level}
+        showChinese
+        sound={sound}
+        announce={noop}
+        onComplete={noop}
+        onFail={noop}
+        onStartOver={noop}
+      />,
+    );
+
+    expect(screen.queryByRole('button', { name: /undo/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /restart from level 0/i })).toBeInTheDocument();
+  });
+
+  it('shows only the continue action on the level-complete screen', () => {
+    render(
+      <LevelComplete
+        level={level}
+        stars={3}
+        mistakes={0}
+        soundEnabled={false}
+        showChinese
+        narrator={narrator}
+        onContinue={noop}
+      />,
+    );
+
+    expect(screen.getByRole('button', { name: /continue to level/i })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /hear|stop|quit/i })).not.toBeInTheDocument();
+  });
+});

@@ -131,7 +131,7 @@ export function RecallPhase({
   };
 
   return (
-    <div className="stage" role="region" aria-label={`Rebuild ${level.reference}`}>
+    <div className="stage stage--recall" role="region" aria-label={`Rebuild ${level.reference}`}>
       <div className="recall">
         <div className="recall__top">
           <span className="eyebrow">Level {level.level} · Recall</span>
@@ -151,9 +151,9 @@ export function RecallPhase({
         {/* Optional Chinese meaning hint. Native details keeps it collapsed on
             every new exam while remaining keyboard/screen-reader accessible. */}
         {showChinese && level.fullTextZh && (
-          <details className="recall__zh-disclosure">
+          <details className="zh-disclosure">
             <summary lang="zh-Hans">中文提示</summary>
-            <p className="scripture-zh recall__zh" lang="zh-Hans">
+            <p className="scripture-zh zh-disclosure__text" lang="zh-Hans">
               {level.fullTextZh}
             </p>
           </details>
@@ -212,14 +212,6 @@ export function RecallPhase({
         </div>
 
         <div className="recall__controls">
-          <button
-            type="button"
-            className="btn btn--ghost btn--sm"
-            onClick={() => dispatch({ type: 'undo' })}
-            disabled={state.placed.length === 0}
-          >
-            ↩ Undo
-          </button>
           <button
             type="button"
             className="btn btn--ghost btn--sm"
