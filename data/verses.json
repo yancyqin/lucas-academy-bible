@@ -4,7 +4,7 @@
     "repositoryName": "lucas-academy-bible",
     "siteUrl": "https://bible.lucasacademy.org",
     "createdDate": "2026-07-24",
-    "entryCount": 92,
+    "entryCount": 93,
     "duplicatesPreserved": true,
     "translation": {
       "id": "WEB",
@@ -2463,6 +2463,27 @@
       ],
       "text": "“For my thoughts are not your thoughts, and your ways are not my ways,” says Yahweh. “For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts.",
       "textZh": "耶和华说：我的意念非同你们的意念； 我的道路非同你们的道路。天怎样高过地， 照样，我的道路高过你们的道路； 我的意念高过你们的意念。"
+    },
+    {
+      "id": "passage-093",
+      "order": 93,
+      "requestedAs": "诗篇 103:11",
+      "reference": "Psalm 103:11",
+      "book": "Psalm",
+      "bookZh": "诗篇",
+      "chapter": 103,
+      "verseStart": 11,
+      "verseEnd": 11,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "For as the heavens are high above the earth, so great is his loving kindness toward those who fear him.",
+          "textZh": "天离地何等的高， 他的慈爱向敬畏他的人也是何等的大！"
+        }
+      ],
+      "text": "For as the heavens are high above the earth, so great is his loving kindness toward those who fear him.",
+      "textZh": "天离地何等的高， 他的慈爱向敬畏他的人也是何等的大！"
     }
   ]
 }

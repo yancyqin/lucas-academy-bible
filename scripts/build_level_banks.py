@@ -86,6 +86,12 @@ LEVELS = [
 
 # Level 0 is a single fixed warm-up verse: "Jesus wept." (John 11:35).
 PIN_LEVEL_0 = "passage-001"
+# Whole passages explicitly guaranteed a place in their matching word band.
+# Add here only when the post-generation audit shows that the normal diversified
+# cap omitted a user-requested passage.
+FEATURED_WHOLE_REFERENCES = {
+    "Psalm 103:11",
+}
 CAP_PER_LEVEL = 9
 MIN_PER_LEVEL = 4
 
@@ -248,7 +254,19 @@ def main() -> None:
             level_picks[lvl] = picks
             continue
         in_range = [c for c in candidates if c["text"] not in used and lo <= c["words"] <= hi]
-        picks = diversified(in_range, [], CAP_PER_LEVEL)
+        featured = sorted(
+            (
+                c
+                for c in in_range
+                if not c["fragment"] and c["reference"] in FEATURED_WHOLE_REFERENCES
+            ),
+            key=lambda c: c["reference"],
+        )
+        if len(featured) > CAP_PER_LEVEL:
+            raise ValueError(
+                f"Level {lvl} has {len(featured)} featured passages but a cap of {CAP_PER_LEVEL}"
+            )
+        picks = diversified(in_range, featured, CAP_PER_LEVEL)
         for c in picks:
             used.add(c["text"])
         level_picks[lvl] = picks

@@ -13,6 +13,19 @@
   "questions": [
     {
       "id": "L10-q00",
+      "reference": "Psalm 103:11",
+      "passageId": "passage-093",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "For as the heavens are high above the earth, so great is his loving kindness toward those who fear him."
+        }
+      ],
+      "text": "For as the heavens are high above the earth, so great is his loving kindness toward those who fear him."
+    },
+    {
+      "id": "L10-q01",
       "reference": "1 Corinthians 2:13a",
       "passageId": "passage-082",
       "fragment": true,
@@ -25,7 +38,7 @@
       "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches,"
     },
     {
-      "id": "L10-q01",
+      "id": "L10-q02",
       "reference": "1 John 1:9",
       "passageId": "passage-003",
       "fragment": false,
@@ -38,7 +51,7 @@
       "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness."
     },
     {
-      "id": "L10-q02",
+      "id": "L10-q03",
       "reference": "1 Peter 5:1a",
       "passageId": "passage-080",
       "fragment": true,
@@ -51,7 +64,7 @@
       "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ,"
     },
     {
-      "id": "L10-q03",
+      "id": "L10-q04",
       "reference": "2 Corinthians 5:16b",
       "passageId": "passage-052",
       "fragment": true,
@@ -64,7 +77,7 @@
       "text": "Even though we have known Christ according to the flesh, yet now we know him so no more."
     },
     {
-      "id": "L10-q04",
+      "id": "L10-q05",
       "reference": "Ecclesiastes 3:11c",
       "passageId": "passage-012",
       "fragment": true,
@@ -77,7 +90,7 @@
       "text": "yet so that man can’t find out the work that God has done from the beginning even to the end."
     },
     {
-      "id": "L10-q05",
+      "id": "L10-q06",
       "reference": "Ephesians 1:6",
       "passageId": "passage-032",
       "fragment": false,
@@ -90,7 +103,7 @@
       "text": "to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
     },
     {
-      "id": "L10-q06",
+      "id": "L10-q07",
       "reference": "Galatians 2:20c",
       "passageId": "passage-017",
       "fragment": true,
@@ -103,7 +116,7 @@
       "text": "I live by faith in the Son of God, who loved me and gave himself up for me."
     },
     {
-      "id": "L10-q07",
+      "id": "L10-q08",
       "reference": "Genesis 2:24",
       "passageId": "passage-011",
       "fragment": false,
@@ -114,19 +127,6 @@
         }
       ],
       "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh."
-    },
-    {
-      "id": "L10-q08",
-      "reference": "Hebrews 12:2a",
-      "passageId": "passage-043",
-      "fragment": true,
-      "verses": [
-        {
-          "verse": 2,
-          "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross,"
-        }
-      ],
-      "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross,"
     }
   ]
 }
