@@ -23,7 +23,14 @@ export type RecallEvent =
   | { kind: 'level-complete' }
   /** Time ran out — hearts are bleeding away. */
   | { kind: 'drain'; heartsLeft: number }
-  | { kind: 'failed' };
+  | {
+      kind: 'failed';
+      cause: 'wrong';
+      tileId: string;
+      penalty: number;
+      belongsToVerse: boolean;
+    }
+  | { kind: 'failed'; cause: 'drain' };
 
 export interface RecallState {
   level: BuiltLevel;
@@ -83,7 +90,7 @@ export function recallReducer(state: RecallState, action: RecallAction): RecallS
           ...state,
           hearts: 0,
           status: 'failed',
-          lastEvent: { kind: 'failed' },
+          lastEvent: { kind: 'failed', cause: 'drain' },
           eventSeq: seq,
         };
       }
@@ -132,7 +139,13 @@ export function recallReducer(state: RecallState, action: RecallAction): RecallS
             hearts: 0,
             mistakes,
             status: 'failed',
-            lastEvent: { kind: 'failed' },
+            lastEvent: {
+              kind: 'failed',
+              cause: 'wrong',
+              tileId: tile.id,
+              penalty,
+              belongsToVerse,
+            },
             eventSeq: seq,
           };
         }

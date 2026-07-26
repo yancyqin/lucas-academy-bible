@@ -62,6 +62,7 @@ describe('recall state machine (bank model)', () => {
     }
     expect(s.hearts).toBe(0);
     expect(s.status).toBe('failed');
+    expect(s.lastEvent).toMatchObject({ kind: 'failed', cause: 'drain' });
   });
 
   it('running out of hearts (3 distractor taps) moves to failed', () => {
@@ -74,6 +75,11 @@ describe('recall state machine (bank model)', () => {
     s = recallReducer(s, { type: 'select', tileId: distractor.id }); // 1 -> 0
     expect(s.hearts).toBe(0);
     expect(s.status).toBe('failed');
+    expect(s.lastEvent).toMatchObject({
+      kind: 'failed',
+      cause: 'wrong',
+      tileId: distractor.id,
+    });
   });
 
   it('a correct selection moves the tile from bank to placed', () => {

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { Narrator } from '../../audio/speech';
 import type { SoundEngine } from '../../audio/sound';
@@ -62,6 +62,47 @@ describe('phase controls', () => {
     expect(screen.queryByRole('button', { name: /undo/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /restart from level 0/i })).not.toBeInTheDocument();
+  });
+
+  it('restarts damage sound and heart visuals for every wrong tap, including failure', () => {
+    const damageSound = {
+      resume: vi.fn(),
+      playWrong: vi.fn(),
+      playCorrect: vi.fn(),
+      playSection: vi.fn(),
+      playComplete: vi.fn(),
+      playClick: vi.fn(),
+      playHeartDrain: vi.fn(),
+    } as unknown as SoundEngine;
+    const { container } = render(
+      <RecallPhase
+        level={level}
+        showChinese={false}
+        sound={damageSound}
+        announce={noop}
+        onComplete={noop}
+        onFail={noop}
+      />,
+    );
+    const wrongWord = screen.getByRole('button', { name: 'Word: wept.' });
+
+    fireEvent.click(wrongWord);
+    const firstDamageHeart = container.querySelector('.heart--lost');
+    expect(firstDamageHeart).toBeInTheDocument();
+
+    fireEvent.click(wrongWord);
+    expect(container.querySelector('.heart--lost')).not.toBe(firstDamageHeart);
+
+    for (let tap = 0; tap < 4; tap += 1) fireEvent.click(wrongWord);
+    fireEvent.click(wrongWord);
+
+    expect(damageSound.resume).toHaveBeenCalledTimes(6);
+    expect(damageSound.playWrong).toHaveBeenCalledTimes(6);
+    expect(screen.getByRole('img', { name: '0 of 3 hearts remaining' })).toHaveAttribute(
+      'data-loss-seq',
+      '6',
+    );
+    expect(container.querySelector('.heart--lost')).toBeInTheDocument();
   });
 
   it('shows only the continue action on the level-complete screen', () => {

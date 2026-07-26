@@ -14,7 +14,12 @@ function label(remaining: number, total: number): string {
 export function Hearts({ total, remaining, lossSeq = 0 }: HeartsProps) {
   const lossIndex = Math.min(total - 1, Math.max(0, Math.floor(remaining)));
   return (
-    <span className="hearts" role="img" aria-label={label(remaining, total)}>
+    <span
+      className="hearts"
+      role="img"
+      aria-label={label(remaining, total)}
+      data-loss-seq={lossSeq}
+    >
       {Array.from({ length: total }, (_, i) => {
         const frac = Math.max(0, Math.min(1, remaining - i));
         const edge = lossSeq > 0 && i === lossIndex;

@@ -53,7 +53,13 @@ export class SoundEngine {
         this.master.gain.value = 0.9;
         this.master.connect(this.ctx.destination);
       }
-      if (this.ctx.state === 'suspended') void this.ctx.resume();
+      // Safari may report a non-standard "interrupted" state after the app
+      // backgrounds. Resume every non-running context from the next gesture.
+      if (this.ctx.state !== 'running') {
+        void this.ctx.resume().catch(() => {
+          // A later user gesture can retry; audio never blocks gameplay.
+        });
+      }
     } catch {
       this.ctx = null;
       this.master = null;

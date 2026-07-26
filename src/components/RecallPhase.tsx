@@ -52,11 +52,6 @@ export function RecallPhase({
         sound.playCorrect(ev.streak);
         break;
       case 'wrong': {
-        sound.playWrong();
-        setHeartLossSeq((seq) => seq + 1);
-        setWrongId(ev.tileId);
-        window.clearTimeout(wrongTimer.current);
-        wrongTimer.current = window.setTimeout(() => setWrongId(null), 480);
         if (ev.belongsToVerse) {
           announce('Right word, but out of order. Half a heart lost.', true);
         } else {
@@ -82,7 +77,10 @@ export function RecallPhase({
         setHeartLossSeq((seq) => seq + 1);
         break;
       case 'failed':
-        sound.playWrong();
+        if (ev.cause === 'drain') {
+          sound.playHeartDrain();
+          setHeartLossSeq((seq) => seq + 1);
+        }
         announce('Out of hearts. The run is over.', true);
         break;
     }
@@ -125,7 +123,18 @@ export function RecallPhase({
   useEffect(() => () => window.clearTimeout(wrongTimer.current), []);
 
   const select = (id: string) => {
+    if (state.status !== 'playing') return;
     sound.resume();
+    const tile = state.bank.find((candidate) => candidate.id === id);
+    const isWrong = tile !== undefined && tile.text !== section.correct[state.placed.length];
+    if (isWrong) {
+      // Keep damage audio inside the user gesture for reliable mobile playback.
+      sound.playWrong();
+      setHeartLossSeq((seq) => seq + 1);
+      setWrongId(id);
+      window.clearTimeout(wrongTimer.current);
+      wrongTimer.current = window.setTimeout(() => setWrongId(null), 480);
+    }
     dispatch({ type: 'select', tileId: id });
   };
 
