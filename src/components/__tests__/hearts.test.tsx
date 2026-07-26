@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Hearts } from '../Hearts';
 import { HeartIcon } from '../icons';
 
@@ -37,5 +37,35 @@ describe('Hearts', () => {
     expect(
       [clipRect()?.getAttribute('width'), clipRect()?.getAttribute('height')],
     ).toEqual(['24', '24']);
+  });
+
+  it('force-restarts heart and group animations for every loss sequence', () => {
+    const originalAnimate = Object.getOwnPropertyDescriptor(
+      HTMLElement.prototype,
+      'animate',
+    );
+    const animate = vi.fn(
+      () => ({ cancel: vi.fn() }) as unknown as Animation,
+    );
+    Object.defineProperty(HTMLElement.prototype, 'animate', {
+      configurable: true,
+      value: animate,
+    });
+
+    try {
+      const { rerender } = render(
+        <Hearts total={3} remaining={2.5} lossSeq={1} />,
+      );
+      expect(animate).toHaveBeenCalledTimes(2);
+
+      rerender(<Hearts total={3} remaining={2} lossSeq={2} />);
+      expect(animate).toHaveBeenCalledTimes(4);
+    } finally {
+      if (originalAnimate) {
+        Object.defineProperty(HTMLElement.prototype, 'animate', originalAnimate);
+      } else {
+        delete (HTMLElement.prototype as { animate?: unknown }).animate;
+      }
+    }
   });
 });

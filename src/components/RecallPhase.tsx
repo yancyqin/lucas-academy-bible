@@ -130,6 +130,7 @@ export function RecallPhase({
     if (isWrong) {
       // Keep damage audio inside the user gesture for reliable mobile playback.
       sound.playWrong();
+      navigator.vibrate?.(55);
       setHeartLossSeq((seq) => seq + 1);
       setWrongId(id);
       window.clearTimeout(wrongTimer.current);

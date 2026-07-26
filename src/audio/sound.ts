@@ -1,5 +1,5 @@
 /**
- * Interaction sound via the Web Audio API — no audio files required.
+ * Interaction sound via Web Audio plus one original, locally hosted damage cue.
  *
  * Design goals from the spec: soft, warm, never a harsh buzzer. All tones are
  * gentle sine/triangle waves with short envelopes. The engine:
@@ -20,19 +20,24 @@ interface ToneOpts {
 export class SoundEngine {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
+  private damageAudio: HTMLAudioElement | null = null;
   private enabled = true;
   readonly supported: boolean;
 
   constructor() {
     this.supported =
       typeof window !== 'undefined' &&
-      !!(window.AudioContext ||
-        (window as unknown as { webkitAudioContext?: unknown }).webkitAudioContext);
+      (!!(window.AudioContext ||
+        (window as unknown as { webkitAudioContext?: unknown }).webkitAudioContext) ||
+        typeof Audio !== 'undefined');
   }
 
   setEnabled(value: boolean): void {
     this.enabled = value;
-    if (!value) this.stopContextGain();
+    if (!value) {
+      this.stopContextGain();
+      this.damageAudio?.pause();
+    }
   }
 
   isEnabled(): boolean {
@@ -42,12 +47,14 @@ export class SoundEngine {
   /** Create/resume the AudioContext. Call from within a user-gesture handler. */
   resume(): void {
     if (!this.supported || !this.enabled) return;
+    this.prepareDamageAudio();
     try {
+      const Ctor =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext?: typeof AudioContext })
+          .webkitAudioContext;
+      if (!Ctor) return;
       if (!this.ctx) {
-        const Ctor =
-          window.AudioContext ||
-          (window as unknown as { webkitAudioContext: typeof AudioContext })
-            .webkitAudioContext;
         this.ctx = new Ctor();
         this.master = this.ctx.createGain();
         this.master.gain.value = 0.9;
@@ -63,6 +70,38 @@ export class SoundEngine {
     } catch {
       this.ctx = null;
       this.master = null;
+    }
+  }
+
+  private prepareDamageAudio(): void {
+    if (this.damageAudio || typeof Audio === 'undefined') return;
+    try {
+      const src = new URL('audio/damage.wav', document.baseURI).href;
+      this.damageAudio = new Audio(src);
+      this.damageAudio.preload = 'auto';
+      this.damageAudio.volume = 1;
+      this.damageAudio.load();
+    } catch {
+      this.damageAudio = null;
+    }
+  }
+
+  private playDamageAudio(volume: number): boolean {
+    if (!this.enabled) return false;
+    this.prepareDamageAudio();
+    const audio = this.damageAudio;
+    if (!audio) return false;
+    try {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.volume = volume;
+      const playback = audio.play();
+      if (playback) {
+        void playback.catch(() => this.playWrongSynth());
+      }
+      return true;
+    } catch {
+      return false;
     }
   }
 
@@ -146,17 +185,23 @@ export class SoundEngine {
     this.tone(note * 2, 0.0, 0.1, { type: 'sine', gain: 0.05 });
   }
 
-  /** Original adventure-game damage cue — synthesized, with no sampled audio. */
-  playWrong(): void {
-    this.sweep(520, 155, 0, 0.14, { type: 'triangle', gain: 0.18, release: 0.08 });
-    this.tone(130.81, 0.035, 0.1, { type: 'sine', gain: 0.16, release: 0.09 });
-    this.tone(98, 0.11, 0.06, { type: 'triangle', gain: 0.09, release: 0.08 });
+  private playWrongSynth(): void {
+    this.sweep(720, 210, 0, 0.16, { type: 'triangle', gain: 0.26, release: 0.1 });
+    this.tone(330, 0.025, 0.12, { type: 'square', gain: 0.16, release: 0.1 });
+    this.tone(196, 0.11, 0.09, { type: 'triangle', gain: 0.18, release: 0.1 });
   }
 
-  /** Lighter pulse for each quarter-heart lost during overtime. */
+  /** Loud original adventure-game damage cue, optimized for phone speakers. */
+  playWrong(): void {
+    if (!this.playDamageAudio(1)) this.playWrongSynth();
+  }
+
+  /** Clear but slightly lighter cue for each quarter-heart lost during overtime. */
   playHeartDrain(): void {
-    this.sweep(370, 220, 0, 0.09, { type: 'triangle', gain: 0.11, release: 0.06 });
-    this.tone(146.83, 0.035, 0.06, { type: 'sine', gain: 0.08, release: 0.06 });
+    if (!this.playDamageAudio(0.82)) {
+      this.sweep(520, 240, 0, 0.12, { type: 'triangle', gain: 0.2, release: 0.08 });
+      this.tone(293.66, 0.04, 0.08, { type: 'sine', gain: 0.14, release: 0.08 });
+    }
   }
 
   /** Small lift when a verse/section is finished. */
