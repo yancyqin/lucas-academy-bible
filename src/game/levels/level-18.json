@@ -155,6 +155,27 @@
     },
     {
       "id": "L18-q06",
+      "reference": "Psalm 23:4-6",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+        },
+        {
+          "verse": 5,
+          "text": "You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over."
+        },
+        {
+          "verse": 6,
+          "text": "Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever."
+        }
+      ],
+      "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me. You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over. Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever."
+    },
+    {
+      "id": "L18-q07",
       "reference": "Romans 5:5-8",
       "passageId": "passage-031",
       "fragment": false,
@@ -179,7 +200,7 @@
       "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
     },
     {
-      "id": "L18-q07",
+      "id": "L18-q08",
       "reference": "Ephesians 4:3-7",
       "passageId": "passage-072",
       "fragment": false,
@@ -206,27 +227,6 @@
         }
       ],
       "text": "being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ."
-    },
-    {
-      "id": "L18-q08",
-      "reference": "John 12:24-26",
-      "passageId": "passage-028",
-      "fragment": false,
-      "verses": [
-        {
-          "verse": 24,
-          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
-        },
-        {
-          "verse": 25,
-          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
-        },
-        {
-          "verse": 26,
-          "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
-        }
-      ],
-      "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life. If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
     }
   ]
 }

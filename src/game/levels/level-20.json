@@ -108,6 +108,39 @@
     },
     {
       "id": "L20-q03",
+      "reference": "Psalm 23:1-6",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "A Psalm by David. Yahweh is my shepherd; I shall lack nothing."
+        },
+        {
+          "verse": 2,
+          "text": "He makes me lie down in green pastures. He leads me beside still waters."
+        },
+        {
+          "verse": 3,
+          "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake."
+        },
+        {
+          "verse": 4,
+          "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+        },
+        {
+          "verse": 5,
+          "text": "You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over."
+        },
+        {
+          "verse": 6,
+          "text": "Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever."
+        }
+      ],
+      "text": "A Psalm by David. Yahweh is my shepherd; I shall lack nothing. He makes me lie down in green pastures. He leads me beside still waters. He restores my soul. He guides me in the paths of righteousness for his name’s sake. Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me. You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over. Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever."
+    },
+    {
+      "id": "L20-q04",
       "reference": "Romans 5:2-7",
       "passageId": "passage-046",
       "fragment": false,
@@ -140,7 +173,7 @@
       "text": "through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God. Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die."
     },
     {
-      "id": "L20-q04",
+      "id": "L20-q05",
       "reference": "Ephesians 4:7-12",
       "passageId": "passage-072",
       "fragment": false,
@@ -173,7 +206,7 @@
       "text": "But to each one of us, the grace was given according to the measure of the gift of Christ. Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.” Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth? He who descended is the one who also ascended far above all the heavens, that he might fill all things. He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers; for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,"
     },
     {
-      "id": "L20-q05",
+      "id": "L20-q06",
       "reference": "John 12:20-25",
       "passageId": "passage-028",
       "fragment": false,
@@ -206,7 +239,7 @@
       "text": "Now there were certain Greeks among those who went up to worship at the feast. Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.” Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus. Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
     },
     {
-      "id": "L20-q06",
+      "id": "L20-q07",
       "reference": "Philippians 2:6-11",
       "passageId": "passage-090",
       "fragment": false,
@@ -239,7 +272,7 @@
       "text": "who, existing in the form of God, didn’t consider equality with God a thing to be grasped, but emptied himself, taking the form of a servant, being made in the likeness of men. And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross. Therefore God also highly exalted him, and gave to him the name which is above every name, that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth, and that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father."
     },
     {
-      "id": "L20-q07",
+      "id": "L20-q08",
       "reference": "Romans 5:1-8",
       "passageId": "passage-046",
       "fragment": false,
@@ -278,63 +311,6 @@
         }
       ],
       "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ; through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God. Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly. For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die. But God commends his own love toward us, in that while we were yet sinners, Christ died for us."
-    },
-    {
-      "id": "L20-q08",
-      "reference": "Ephesians 4:1-12",
-      "passageId": "passage-072",
-      "fragment": false,
-      "verses": [
-        {
-          "verse": 1,
-          "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called,"
-        },
-        {
-          "verse": 2,
-          "text": "with all lowliness and humility, with patience, bearing with one another in love,"
-        },
-        {
-          "verse": 3,
-          "text": "being eager to keep the unity of the Spirit in the bond of peace."
-        },
-        {
-          "verse": 4,
-          "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,"
-        },
-        {
-          "verse": 5,
-          "text": "one Lord, one faith, one baptism,"
-        },
-        {
-          "verse": 6,
-          "text": "one God and Father of all, who is over all and through all and in us all."
-        },
-        {
-          "verse": 7,
-          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
-        },
-        {
-          "verse": 8,
-          "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.”"
-        },
-        {
-          "verse": 9,
-          "text": "Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth?"
-        },
-        {
-          "verse": 10,
-          "text": "He who descended is the one who also ascended far above all the heavens, that he might fill all things."
-        },
-        {
-          "verse": 11,
-          "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;"
-        },
-        {
-          "verse": 12,
-          "text": "for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,"
-        }
-      ],
-      "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called, with all lowliness and humility, with patience, bearing with one another in love, being eager to keep the unity of the Spirit in the bond of peace. There is one body and one Spirit, even as you also were called in one hope of your calling, one Lord, one faith, one baptism, one God and Father of all, who is over all and through all and in us all. But to each one of us, the grace was given according to the measure of the gift of Christ. Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.” Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth? He who descended is the one who also ascended far above all the heavens, that he might fill all things. He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers; for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,"
     }
   ]
 }

@@ -4,7 +4,7 @@
     "repositoryName": "lucas-academy-bible",
     "siteUrl": "https://bible.lucasacademy.org",
     "createdDate": "2026-07-24",
-    "entryCount": 90,
+    "entryCount": 92,
     "duplicatesPreserved": true,
     "translation": {
       "id": "WEB",
@@ -2390,6 +2390,79 @@
       "text": "each of you not just looking to his own things, but each of you also to the things of others. Have this in your mind, which was also in Christ Jesus, who, existing in the form of God, didn’t consider equality with God a thing to be grasped, but emptied himself, taking the form of a servant, being made in the likeness of men. And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross. Therefore God also highly exalted him, and gave to him the name which is above every name, that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth, and that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father.",
       "textZh": "各人不要单顾自己的事，也要顾别人的事。你们当以基督耶稣的心为心：他本有　神的形象， 不以自己与　神同等为强夺的；反倒虚己， 取了奴仆的形象， 成为人的样式；既有人的样子，就自己卑微， 存心顺服，以至于死， 且死在十字架上。所以，　神将他升为至高， 又赐给他那超乎万名之上的名，叫一切在天上的、地上的，和地底下的， 因耶稣的名无不屈膝，无不口称「耶稣基督为主」， 使荣耀归与父　神。",
       "matchNote": "Christ's humility and exaltation."
+    },
+    {
+      "id": "passage-091",
+      "order": 91,
+      "requestedAs": "plasm 23",
+      "reference": "Psalm 23:1-6",
+      "book": "Psalm",
+      "bookZh": "诗篇",
+      "chapter": 23,
+      "verseStart": 1,
+      "verseEnd": 6,
+      "matchedFromDescription": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "A Psalm by David. Yahweh is my shepherd; I shall lack nothing.",
+          "textZh": "大卫的诗。 耶和华是我的牧者， 我必不致缺乏。"
+        },
+        {
+          "verse": 2,
+          "text": "He makes me lie down in green pastures. He leads me beside still waters.",
+          "textZh": "他使我躺卧在青草地上， 领我在可安歇的水边。"
+        },
+        {
+          "verse": 3,
+          "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake.",
+          "textZh": "他使我的灵魂苏醒， 为自己的名引导我走义路。"
+        },
+        {
+          "verse": 4,
+          "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me.",
+          "textZh": "我虽然行过死荫的[幽]谷， 也不怕遭害， 因为你与我同在； 你的杖，你的竿，都安慰我。"
+        },
+        {
+          "verse": 5,
+          "text": "You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over.",
+          "textZh": "在我敌人面前，你为我摆设筵席； 你用油膏了我的头，使我的[福]杯满溢。"
+        },
+        {
+          "verse": 6,
+          "text": "Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever.",
+          "textZh": "我一生一世必有恩惠慈爱随着我； 我且要住在耶和华的殿中，直到永远。"
+        }
+      ],
+      "text": "A Psalm by David. Yahweh is my shepherd; I shall lack nothing. He makes me lie down in green pastures. He leads me beside still waters. He restores my soul. He guides me in the paths of righteousness for his name’s sake. Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me. You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over. Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever.",
+      "textZh": "大卫的诗。 耶和华是我的牧者， 我必不致缺乏。他使我躺卧在青草地上， 领我在可安歇的水边。他使我的灵魂苏醒， 为自己的名引导我走义路。我虽然行过死荫的[幽]谷， 也不怕遭害， 因为你与我同在； 你的杖，你的竿，都安慰我。在我敌人面前，你为我摆设筵席； 你用油膏了我的头，使我的[福]杯满溢。我一生一世必有恩惠慈爱随着我； 我且要住在耶和华的殿中，直到永远。",
+      "matchNote": "Normalized the supplied 'plasm' typo to Psalm."
+    },
+    {
+      "id": "passage-092",
+      "order": 92,
+      "requestedAs": "以赛亚书55: 8-9",
+      "reference": "Isaiah 55:8-9",
+      "book": "Isaiah",
+      "bookZh": "以赛亚书",
+      "chapter": 55,
+      "verseStart": 8,
+      "verseEnd": 9,
+      "matchedFromDescription": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "“For my thoughts are not your thoughts, and your ways are not my ways,” says Yahweh.",
+          "textZh": "耶和华说：我的意念非同你们的意念； 我的道路非同你们的道路。"
+        },
+        {
+          "verse": 9,
+          "text": "“For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts.",
+          "textZh": "天怎样高过地， 照样，我的道路高过你们的道路； 我的意念高过你们的意念。"
+        }
+      ],
+      "text": "“For my thoughts are not your thoughts, and your ways are not my ways,” says Yahweh. “For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts.",
+      "textZh": "耶和华说：我的意念非同你们的意念； 我的道路非同你们的道路。天怎样高过地， 照样，我的道路高过你们的道路； 我的意念高过你们的意念。"
     }
   ]
 }

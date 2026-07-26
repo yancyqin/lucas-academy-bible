@@ -157,6 +157,8 @@ PASSAGE_REQUESTS = [
     ("加5:1", "Galatians 5:1", "GAL", 5, 1, 1, None),
     ("何6:6", "Hosea 6:6", "HOS", 6, 6, 6, None),
     ("腓 2:4-11 基督的心", "Philippians 2:4-11", "PHI", 2, 4, 11, "Christ's humility and exaltation."),
+    ("plasm 23", "Psalm 23:1-6", "PSA", 23, 1, 6, "Normalized the supplied 'plasm' typo to Psalm."),
+    ("以赛亚书55: 8-9", "Isaiah 55:8-9", "ISA", 55, 8, 9, None),
 ]
 
 

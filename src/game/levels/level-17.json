@@ -151,6 +151,27 @@
     },
     {
       "id": "L17-q06",
+      "reference": "Psalm 23:2-4",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He makes me lie down in green pastures. He leads me beside still waters."
+        },
+        {
+          "verse": 3,
+          "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake."
+        },
+        {
+          "verse": 4,
+          "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+        }
+      ],
+      "text": "He makes me lie down in green pastures. He leads me beside still waters. He restores my soul. He guides me in the paths of righteousness for his name’s sake. Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+    },
+    {
+      "id": "L17-q07",
       "reference": "Romans 5:3-6",
       "passageId": "passage-046",
       "fragment": false,
@@ -175,7 +196,7 @@
       "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us. For while we were yet weak, at the right time Christ died for the ungodly."
     },
     {
-      "id": "L17-q07",
+      "id": "L17-q08",
       "reference": "Ephesians 1:4-6",
       "passageId": "passage-032",
       "fragment": false,
@@ -194,27 +215,6 @@
         }
       ],
       "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love, having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire, to the praise of the glory of his grace, by which he freely gave us favor in the Beloved."
-    },
-    {
-      "id": "L17-q08",
-      "reference": "John 12:23-25",
-      "passageId": "passage-028",
-      "fragment": false,
-      "verses": [
-        {
-          "verse": 23,
-          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
-        },
-        {
-          "verse": 24,
-          "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit."
-        },
-        {
-          "verse": 25,
-          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
-        }
-      ],
-      "text": "Jesus answered them, “The time has come for the Son of Man to be glorified. Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit. He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
     }
   ]
 }
