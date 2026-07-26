@@ -16,8 +16,8 @@ interface StudyPhaseProps {
   modeLabel?: string;
 }
 
-/** About 240 words per minute, close to the average adult English silent-reading pace. */
-const WORD_READING_MS = 250;
+/** About 171 words per minute: a deliberate pace for attentive memorization. */
+const WORD_READING_MS = 350;
 
 function clock(seconds: number): string {
   const m = Math.floor(seconds / 60);
