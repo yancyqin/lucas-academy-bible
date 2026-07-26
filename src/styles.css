@@ -739,6 +739,52 @@ body {
 }
 
 /* ---- Complete / celebration -------------------------------------------- */
+.stage--failure-reveal > .card {
+  overflow: hidden;
+}
+
+.failure-reveal {
+  max-height: 100%;
+}
+
+.failure-reveal__title {
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+}
+
+.failure-reveal__scroll {
+  width: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.failure-reveal__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.failure-reveal__verse {
+  width: 100%;
+  margin: 0;
+}
+
+.failure-reveal__verse sup {
+  color: var(--gold-deep);
+  font-family: var(--font-ui);
+  font-size: 0.62em;
+  font-weight: 800;
+  margin-right: 4px;
+}
+
+.failure-reveal__zh {
+  margin-top: 14px;
+}
+
+.failure-reveal__actions {
+  flex: none;
+  width: 100%;
+}
+
 .restored {
   font-family: var(--font-scripture);
   font-size: clamp(1.5rem, 4.5vw, 2.1rem);

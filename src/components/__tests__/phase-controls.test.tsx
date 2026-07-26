@@ -4,6 +4,7 @@ import type { Narrator } from '../../audio/speech';
 import type { SoundEngine } from '../../audio/sound';
 import { buildLevel } from '../../game/build';
 import { getLevelFile } from '../../game/levels';
+import { FailureReveal } from '../FailureReveal';
 import { LevelComplete } from '../LevelComplete';
 import { RecallPhase } from '../RecallPhase';
 import { StudyPhase } from '../StudyPhase';
@@ -74,5 +75,20 @@ describe('phase controls', () => {
     expect(screen.getByRole('region', { name: /level 0 complete/i })).toHaveClass(
       'stage--complete',
     );
+  });
+
+  it('reveals the failed verse before continuing', () => {
+    render(
+      <FailureReveal
+        level={level}
+        showChinese
+        onContinue={noop}
+      />,
+    );
+
+    expect(screen.getByRole('heading', { name: /here is the verse/i })).toBeInTheDocument();
+    expect(screen.getByText(level.fullText)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^continue$/i })).toBeInTheDocument();
+    expect(screen.getByText('中文经文').closest('details')).not.toHaveAttribute('open');
   });
 });

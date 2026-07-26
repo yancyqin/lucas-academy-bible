@@ -12,12 +12,13 @@ import { Welcome } from './components/Welcome';
 import { StudyPhase } from './components/StudyPhase';
 import { RecallPhase } from './components/RecallPhase';
 import { LevelComplete } from './components/LevelComplete';
+import { FailureReveal } from './components/FailureReveal';
 import { FinalCelebration } from './components/FinalCelebration';
 import { SoundToggle } from './components/SoundToggle';
 import { ChineseToggle } from './components/ChineseToggle';
 import { BookMark } from './components/icons';
 
-type Phase = 'welcome' | 'study' | 'recall' | 'success' | 'final';
+type Phase = 'welcome' | 'study' | 'recall' | 'success' | 'failure-reveal' | 'final';
 
 /** Score accumulated across a single run (which always starts at Level 0). */
 interface Run {
@@ -156,7 +157,7 @@ export default function App() {
       reference: run.top?.reference ?? '',
       referenceZh: run.top?.referenceZh ?? '',
     });
-    setPhase('final');
+    setPhase('failure-reveal');
   };
 
   const goWelcome = () => {
@@ -244,6 +245,14 @@ export default function App() {
           showChinese={showChinese}
           narrator={narrator}
           onContinue={continueNext}
+        />
+      )}
+
+      {phase === 'failure-reveal' && built && final && (
+        <FailureReveal
+          level={built}
+          showChinese={showChinese}
+          onContinue={() => setPhase('final')}
         />
       )}
 
