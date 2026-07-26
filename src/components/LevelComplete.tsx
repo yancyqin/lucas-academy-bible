@@ -67,12 +67,6 @@ export function LevelComplete({
             <span className="reference-zh"> · {level.referenceZh}</span>
           )}
         </p>
-        <blockquote className="restored">
-          {level.fullText}
-          {showChinese && level.fullTextZh && (
-            <span className="restored__zh">{level.fullTextZh}</span>
-          )}
-        </blockquote>
 
         <div className="stat-row">
           <div className="stat">

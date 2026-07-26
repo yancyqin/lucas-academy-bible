@@ -148,12 +148,15 @@ export function RecallPhase({
           )}
         </p>
 
-        {/* Chinese (和合本) shown as a meaning reference while you rebuild the
-            English. It won't line up word-for-word with the tiles — that's fine. */}
+        {/* Optional Chinese meaning hint. Native details keeps it collapsed on
+            every new exam while remaining keyboard/screen-reader accessible. */}
         {showChinese && level.fullTextZh && (
-          <p className="scripture-zh recall__zh" lang="zh-Hans">
-            {level.fullTextZh}
-          </p>
+          <details className="recall__zh-disclosure">
+            <summary lang="zh-Hans">中文提示</summary>
+            <p className="scripture-zh recall__zh" lang="zh-Hans">
+              {level.fullTextZh}
+            </p>
+          </details>
         )}
 
         {/* Challenge timer — 2× the memorize time; overtime bleeds hearts. */}
