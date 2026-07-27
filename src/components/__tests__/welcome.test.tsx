@@ -32,6 +32,8 @@ describe('welcome game tabs', () => {
         soundEnabled
         onToggleSound={noop}
         onBegin={noop}
+        practiceMode={false}
+        onTogglePracticeMode={noop}
         activeTab="journey"
         onSelectTab={noop}
         dailyVerse={daily}
@@ -60,12 +62,47 @@ describe('welcome game tabs', () => {
     expect(selectTranslation).toHaveBeenCalledWith('CUV');
   });
 
+  it('offers an accessible no-timer Practice Mode option for Challenge', () => {
+    const togglePracticeMode = vi.fn();
+    render(
+      <Welcome
+        soundEnabled
+        onToggleSound={noop}
+        onBegin={noop}
+        practiceMode={false}
+        onTogglePracticeMode={togglePracticeMode}
+        activeTab="journey"
+        onSelectTab={noop}
+        dailyVerse={daily}
+        dailyLoading={false}
+        dailyError=""
+        onRetryDaily={noop}
+        onBeginDaily={noop}
+        onBeginScrabble={noop}
+        onBeginWordSearch={noop}
+        dailyEnabled
+        translation="WEB"
+        onSelectTranslation={noop}
+        journeyError=""
+        translationApiEnabled
+      />,
+    );
+
+    const option = screen.getByRole('switch', { name: /practice mode/i });
+    expect(option).toHaveAttribute('aria-checked', 'false');
+    expect(screen.getByText('No timer')).toBeInTheDocument();
+    fireEvent.click(option);
+    expect(togglePracticeMode).toHaveBeenCalledTimes(1);
+  });
+
   it('shows a ready Daily Verse challenge without revealing the verse text', () => {
     render(
       <Welcome
         soundEnabled={false}
         onToggleSound={noop}
         onBegin={noop}
+        practiceMode={false}
+        onTogglePracticeMode={noop}
         activeTab="daily"
         onSelectTab={noop}
         dailyVerse={daily}
@@ -107,6 +144,8 @@ describe('welcome game tabs', () => {
         soundEnabled={false}
         onToggleSound={noop}
         onBegin={noop}
+        practiceMode={false}
+        onTogglePracticeMode={noop}
         activeTab="daily"
         onSelectTab={noop}
         dailyVerse={daily}
@@ -135,6 +174,8 @@ describe('welcome game tabs', () => {
         soundEnabled
         onToggleSound={noop}
         onBegin={noop}
+        practiceMode={false}
+        onTogglePracticeMode={noop}
         activeTab="scrabble"
         onSelectTab={noop}
         dailyVerse={daily}
@@ -167,6 +208,8 @@ describe('welcome game tabs', () => {
         soundEnabled
         onToggleSound={noop}
         onBegin={noop}
+        practiceMode={false}
+        onTogglePracticeMode={noop}
         activeTab="word-search"
         onSelectTab={noop}
         dailyVerse={daily}

@@ -403,6 +403,87 @@ body {
   flex: none;
 }
 
+.practice-option {
+  width: min(100%, 390px);
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 10px 18px;
+  border: 2px solid rgba(169, 132, 47, 0.32);
+  border-radius: 18px;
+  color: var(--ink-soft);
+  background: rgba(243, 236, 219, 0.7);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  text-align: left;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.practice-option--active {
+  color: var(--ink);
+  background: rgba(227, 202, 127, 0.24);
+  border-color: var(--gold);
+  box-shadow: 0 6px 14px -11px rgba(80, 57, 9, 0.95);
+}
+
+.practice-option:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+.practice-option__control {
+  width: 56px;
+  height: 32px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(85, 77, 64, 0.28);
+  transition: background-color 160ms ease;
+}
+
+.practice-option--active .practice-option__control {
+  background: var(--sage);
+}
+
+.practice-option__thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--ivory);
+  box-shadow: 0 2px 5px rgba(43, 38, 32, 0.3);
+  transform: translateX(0);
+  transition: transform 160ms ease;
+}
+
+.practice-option--active .practice-option__thumb {
+  transform: translateX(24px);
+}
+
+.practice-option__copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.practice-option__copy strong {
+  font-size: 1.12rem;
+  line-height: 1.15;
+}
+
+.practice-option__copy small {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
 .translation-selector {
   width: min(100%, 620px);
   display: flex;
@@ -1236,6 +1317,32 @@ body {
 }
 .memo--urgent .memo__digits { color: var(--terracotta); }
 
+.memo--practice {
+  width: fit-content;
+  min-height: 42px;
+  gap: 9px;
+  padding: 7px 14px;
+  border: 2px solid rgba(111, 145, 99, 0.42);
+  border-radius: 999px;
+  color: var(--sage-deep);
+  background: var(--sage-tint);
+}
+
+.memo__practice-mark {
+  font: 800 1.45rem/1 var(--font-ui);
+}
+
+.memo__practice-label {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.memo--practice-recall {
+  align-self: flex-start;
+  margin-top: 0;
+}
+
 /* ---- Recall phase ------------------------------------------------------- */
 
 .recall {
@@ -1531,6 +1638,11 @@ body {
   color: var(--terracotta);
   background: var(--terracotta-tint);
   border: 1px solid var(--terracotta);
+}
+.verdict--practice {
+  color: var(--gold-deep);
+  background: rgba(227, 202, 127, 0.2);
+  border: 1px solid var(--gold);
 }
 
 /* ---- Certificate -------------------------------------------------------- */

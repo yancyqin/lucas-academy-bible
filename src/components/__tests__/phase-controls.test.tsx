@@ -45,6 +45,30 @@ describe('phase controls', () => {
     });
   });
 
+  it('does not count down or auto-advance during Practice Mode study', () => {
+    vi.useFakeTimers();
+    const onReady = vi.fn();
+    const { unmount } = render(
+      <StudyPhase
+        built={level}
+        soundEnabled={false}
+        narrator={narrator}
+        sound={sound}
+        onReady={onReady}
+        announce={noop}
+        practiceMode
+      />,
+    );
+
+    expect(screen.queryByRole('timer')).not.toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent(/practice mode · no timer/i);
+    vi.advanceTimersByTime((level.memorizeSeconds + 10) * 1_000);
+    expect(onReady).not.toHaveBeenCalled();
+
+    unmount();
+    vi.useRealTimers();
+  });
+
   it('has neither undo nor quit controls during recall', () => {
     render(
       <RecallPhase
@@ -59,6 +83,30 @@ describe('phase controls', () => {
     expect(screen.queryByRole('button', { name: /undo/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /restart from level 0/i })).not.toBeInTheDocument();
+  });
+
+  it('does not count down or drain hearts during Practice Mode recall', () => {
+    vi.useFakeTimers();
+    const onFail = vi.fn();
+    const { unmount } = render(
+      <RecallPhase
+        level={level}
+        sound={sound}
+        announce={noop}
+        onComplete={noop}
+        onFail={onFail}
+        practiceMode
+      />,
+    );
+
+    expect(screen.queryByRole('timer')).not.toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent(/practice mode · no timer/i);
+    vi.advanceTimersByTime(level.memorizeSeconds * 10_000);
+    expect(onFail).not.toHaveBeenCalled();
+    expect(screen.getByRole('img', { name: '3 of 3 hearts remaining' })).toBeInTheDocument();
+
+    unmount();
+    vi.useRealTimers();
   });
 
   it('restarts damage sound and heart visuals for every wrong tap, including failure', () => {

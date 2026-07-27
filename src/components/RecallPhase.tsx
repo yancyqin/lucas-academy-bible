@@ -15,6 +15,7 @@ interface RecallPhaseProps {
   /** Ran out of hearts — the run ends. */
   onFail: () => void;
   modeLabel?: string;
+  practiceMode?: boolean;
 }
 
 export function RecallPhase({
@@ -24,6 +25,7 @@ export function RecallPhase({
   onComplete,
   onFail,
   modeLabel,
+  practiceMode = false,
 }: RecallPhaseProps) {
   const [state, dispatch] = useReducer(recallReducer, level, initRecall);
   const [wrongId, setWrongId] = useState<string | null>(null);
@@ -40,7 +42,8 @@ export function RecallPhase({
   const singleWord = level.sections.every((s) => s.correct.every((c) => !c.includes(' ')));
   const hearts = level.hearts;
   const remainingSlots = section.correct.length - state.placed.length;
-  const overtime = timeLeft <= 0 && state.status === 'playing';
+  const overtime =
+    !practiceMode && timeLeft <= 0 && state.status === 'playing';
 
   // React to game events: sound, heart/tile effects, and screen-reader announcements.
   useEffect(() => {
@@ -88,10 +91,10 @@ export function RecallPhase({
 
   // Challenge countdown (1s tick). Stops once the level resolves.
   useEffect(() => {
-    if (state.status !== 'playing') return undefined;
+    if (practiceMode || state.status !== 'playing') return undefined;
     const id = window.setInterval(() => setTimeLeft((s) => Math.max(0, s - 1)), 1000);
     return () => window.clearInterval(id);
-  }, [state.status]);
+  }, [practiceMode, state.status]);
 
   // Overtime: once the clock hits zero, bleed ¼ heart every 1.5s.
   useEffect(() => {
@@ -153,22 +156,28 @@ export function RecallPhase({
           {level.reference}
         </p>
 
-        {/* Challenge timer — 2× the memorize time; overtime bleeds hearts. */}
-        <div
-          className={`memo ${overtime ? 'memo--urgent' : timeLeft / timeBudget <= 0.25 ? 'memo--urgent' : ''}`}
-          role="timer"
-          aria-label={overtime ? 'Time is up, hearts draining' : `${timeLeft} seconds left`}
-        >
-          <div className="memo__track">
-            <div
-              className="memo__fill"
-              style={{ width: `${Math.max(0, Math.min(1, timeLeft / timeBudget)) * 100}%` }}
-            />
+        {practiceMode ? (
+          <div className="memo memo--practice memo--practice-recall" role="status">
+            <span className="memo__practice-mark" aria-hidden="true">∞</span>
+            <span className="memo__practice-label">Practice Mode · No timer</span>
           </div>
-          <span className="memo__digits" aria-hidden="true">
-            {overtime ? "Time's up!" : `${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`}
-          </span>
-        </div>
+        ) : (
+          <div
+            className={`memo ${overtime ? 'memo--urgent' : timeLeft / timeBudget <= 0.25 ? 'memo--urgent' : ''}`}
+            role="timer"
+            aria-label={overtime ? 'Time is up, hearts draining' : `${timeLeft} seconds left`}
+          >
+            <div className="memo__track">
+              <div
+                className="memo__fill"
+                style={{ width: `${Math.max(0, Math.min(1, timeLeft / timeBudget)) * 100}%` }}
+              />
+            </div>
+            <span className="memo__digits" aria-hidden="true">
+              {overtime ? "Time's up!" : `${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`}
+            </span>
+          </div>
+        )}
 
         {/* Answer area — assembled sequence, always visible above the bank. */}
         <div className="answer" aria-label="Assembled passage so far" aria-live="off">

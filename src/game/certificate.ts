@@ -12,6 +12,7 @@ export interface CertificateData {
   scorePercent: number;
   reference: string;
   awarded: string; // date + time string
+  practiceMode: boolean;
 }
 
 const C = {
@@ -142,27 +143,33 @@ export function renderCertificate(data: CertificateData): HTMLCanvasElement {
   ctx.font = `600 46px ${SERIF}`;
   ctx.fillText('Certificate of Scripture Memory', cx, 300);
 
-  if (data.pass) {
-    ctx.fillStyle = C.sage;
+  const hasVerdict = data.pass || data.practiceMode;
+  if (hasVerdict) {
+    ctx.fillStyle = data.practiceMode ? C.goldDeep : C.sage;
     ctx.font = `700 16px ${SANS}`;
     if ('letterSpacing' in ctx) (ctx as unknown as { letterSpacing: string }).letterSpacing = '2px';
-    ctx.fillText('★ FULL CHALLENGE COMPLETE ★', cx, 332);
+    const verdict = data.practiceMode
+      ? data.pass
+        ? '★ PRACTICE MODE · FULL CHALLENGE COMPLETE ★'
+        : '★ PRACTICE MODE ★'
+      : '★ FULL CHALLENGE COMPLETE ★';
+    ctx.fillText(verdict, cx, 332);
     if ('letterSpacing' in ctx) (ctx as unknown as { letterSpacing: string }).letterSpacing = '0px';
   }
 
   // "This certifies that you passed"
   ctx.fillStyle = C.inkSoft;
   ctx.font = `400 21px ${SANS}`;
-  ctx.fillText('This certifies that you passed', cx, data.pass ? 372 : 360);
+  ctx.fillText('This certifies that you passed', cx, hasVerdict ? 372 : 360);
 
   // Level
   ctx.fillStyle = C.goldDeep;
   ctx.font = `700 84px ${SERIF}`;
-  ctx.fillText(`Level ${data.certLevel}`, cx, data.pass ? 452 : 444);
+  ctx.fillText(`Level ${data.certLevel}`, cx, hasVerdict ? 452 : 444);
 
   // Score bar
   const barW = 380;
-  const barY = data.pass ? 480 : 472;
+  const barY = hasVerdict ? 480 : 472;
   ctx.fillStyle = 'rgba(85,77,64,0.16)';
   roundRect(ctx, cx - barW / 2, barY, barW, 12, 6);
   ctx.fill();
@@ -188,7 +195,8 @@ export function renderCertificate(data: CertificateData): HTMLCanvasElement {
   ctx.fillStyle = C.inkSoft;
   ctx.font = `400 21px ${SERIF}`;
   const ref = data.reference ? ` — up to ${data.reference}` : '';
-  const body = `Having studied and restored the Word of God through Level ${data.certLevel} of Bible Sequence${ref}.`;
+  const practice = data.practiceMode ? ' in Practice Mode' : '';
+  const body = `Having studied and restored the Word of God through Level ${data.certLevel} of Bible Sequence${practice}${ref}.`;
   const lines = wrap(ctx, body, 780);
   let by = barY + 78;
   for (const line of lines) {
@@ -239,7 +247,8 @@ export function renderCertificate(data: CertificateData): HTMLCanvasElement {
 export function downloadCertificate(data: CertificateData): void {
   try {
     const canvas = renderCertificate(data);
-    const filename = `bible-sequence-certificate-level-${data.certLevel}.png`;
+    const mode = data.practiceMode ? '-practice' : '';
+    const filename = `bible-sequence${mode}-certificate-level-${data.certLevel}.png`;
     canvas.toBlob((blob) => {
       if (!blob) return;
       const url = URL.createObjectURL(blob);

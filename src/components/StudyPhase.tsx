@@ -14,6 +14,7 @@ interface StudyPhaseProps {
   onReady: () => void;
   announce: (msg: string, assertive?: boolean) => void;
   modeLabel?: string;
+  practiceMode?: boolean;
 }
 
 /** About 171 words per minute: a deliberate pace for attentive memorization. */
@@ -68,6 +69,7 @@ export function StudyPhase({
   onReady,
   announce,
   modeLabel,
+  practiceMode = false,
 }: StudyPhaseProps) {
   const total = built.memorizeSeconds;
   const [left, setLeft] = useState(total);
@@ -90,25 +92,30 @@ export function StudyPhase({
 
   // Countdown: the interval only decrements (a pure state update).
   useEffect(() => {
+    if (practiceMode) return undefined;
     const id = window.setInterval(() => setLeft((s) => Math.max(0, s - 1)), 1000);
     return () => window.clearInterval(id);
-  }, []);
+  }, [practiceMode]);
 
   // When it hits zero, announce + advance — in an effect, never inside a
   // setState updater (which would setState during render).
   useEffect(() => {
-    if (left > 0) return;
+    if (practiceMode || left > 0) return undefined;
     announce('Time is up. Rebuild the verse now.', true);
     const id = window.setTimeout(() => onReadyRef.current(), 0);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [left]);
+  }, [left, practiceMode]);
 
   // Auto-narrate once (slow) when memorize opens — only if sound is on.
   useEffect(() => {
     if (startedNarration.current) return;
     startedNarration.current = true;
-    announce(`Memorize ${built.reference}. ${total} seconds.`);
+    announce(
+      practiceMode
+        ? `Practice mode. Memorize ${built.reference}. Take as much time as you need.`
+        : `Memorize ${built.reference}. ${total} seconds.`,
+    );
     if (shouldAutoNarrate(soundEnabled, narrator.supported)) {
       const id = window.setTimeout(readAloud, 350);
       return () => window.clearTimeout(id);
@@ -141,19 +148,25 @@ export function StudyPhase({
             </span>
           </div>
 
-          {/* Countdown */}
-          <div
-            className={`memo ${urgent ? 'memo--urgent' : ''}`}
-            role="timer"
-            aria-label={`${left} seconds left to memorize`}
-          >
-            <div className="memo__track">
-              <div className="memo__fill" style={{ width: `${pct * 100}%` }} />
+          {practiceMode ? (
+            <div className="memo memo--practice" role="status">
+              <span className="memo__practice-mark" aria-hidden="true">∞</span>
+              <span className="memo__practice-label">Practice Mode · No timer</span>
             </div>
-            <span className="memo__digits" aria-hidden="true">
-              {clock(left)}
-            </span>
-          </div>
+          ) : (
+            <div
+              className={`memo ${urgent ? 'memo--urgent' : ''}`}
+              role="timer"
+              aria-label={`${left} seconds left to memorize`}
+            >
+              <div className="memo__track">
+                <div className="memo__fill" style={{ width: `${pct * 100}%` }} />
+              </div>
+              <span className="memo__digits" aria-hidden="true">
+                {clock(left)}
+              </span>
+            </div>
+          )}
 
           <p className="reference" style={{ display: 'block', marginTop: 12 }}>
             {built.reference}

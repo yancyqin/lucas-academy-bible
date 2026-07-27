@@ -10,6 +10,7 @@ interface FinalCelebrationProps {
   clearedCount: number;
   scorePercent: number;
   reference: string;
+  practiceMode: boolean;
   soundEnabled: boolean;
   sound: SoundEngine;
   onPlayAgain: () => void;
@@ -22,6 +23,7 @@ export function FinalCelebration({
   clearedCount,
   scorePercent,
   reference,
+  practiceMode,
   soundEnabled,
   sound,
   onPlayAgain,
@@ -75,6 +77,13 @@ export function FinalCelebration({
   }
 
   const levelWord = clearedCount === 1 ? 'level' : 'levels';
+  const verdict = practiceMode
+    ? pass
+      ? 'Practice Mode · Full challenge complete'
+      : 'Practice Mode'
+    : pass
+      ? 'Full challenge complete'
+      : '';
 
   return (
     <div className="stage stage--fit" role="region" aria-label="Certificate">
@@ -88,7 +97,15 @@ export function FinalCelebration({
         <p className="cert__kicker">Lucas Academy · Bible Sequence</p>
         <h1 className="cert__title">Certificate of Scripture Memory</h1>
 
-        {pass && <p className="verdict verdict--pass">Full challenge complete</p>}
+        {verdict && (
+          <p
+            className={`verdict ${
+              practiceMode ? 'verdict--practice' : 'verdict--pass'
+            }`}
+          >
+            {verdict}
+          </p>
+        )}
 
         <p className="cert__awarded-to">This certifies that you passed</p>
         <p className="cert__level">Level {certLevel}</p>
@@ -105,6 +122,11 @@ export function FinalCelebration({
         <p className="cert__body">
           Having studied and restored the Word of God through{' '}
           <strong>Level {certLevel}</strong> of Bible Sequence
+          {practiceMode ? (
+            <>
+              {' '}in <strong>Practice Mode</strong>
+            </>
+          ) : null}
           {reference ? (
             <>
               {' '}— up to <em>{reference}</em>
@@ -140,6 +162,7 @@ export function FinalCelebration({
                 scorePercent,
                 reference,
                 awarded,
+                practiceMode,
               })
             }
           >

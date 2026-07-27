@@ -74,6 +74,7 @@ interface FinalState {
   /** Percentage of hearts kept across the cleared levels (excludes the fail). */
   scorePercent: number;
   reference: string;
+  practiceMode: boolean;
 }
 
 interface LiveMsg {
@@ -129,6 +130,7 @@ export default function App() {
   const [polite, setPolite] = useState<LiveMsg>({ text: '', id: 0 });
   const [assertive, setAssertive] = useState<LiveMsg>({ text: '', id: 0 });
   const [gameMode, setGameMode] = useState<GameMode>('journey');
+  const [practiceMode, setPracticeMode] = useState(false);
   const [welcomeTab, setWelcomeTab] = useState<WelcomeTab>('journey');
   const [dailyVerse, setDailyVerse] = useState<DailyVerse | null>(null);
   const [dailyLoading, setDailyLoading] = useState(false);
@@ -393,6 +395,7 @@ export default function App() {
         clearedCount: levelsAttempted,
         scorePercent: heartPercent(heartsKept, levelsAttempted),
         reference: top.reference,
+        practiceMode,
       });
       setPhase('final');
     } else {
@@ -415,6 +418,7 @@ export default function App() {
       clearedCount,
       scorePercent: clearedCount > 0 ? heartPercent(run.heartsKept, clearedCount) : 0,
       reference: run.top?.reference ?? '',
+      practiceMode,
     });
     setPhase('failure-reveal');
   };
@@ -514,6 +518,13 @@ export default function App() {
         exactLoadedAttribution ??
         translationFallback(translation);
   const footerAttributions = [activeAttribution];
+  const practiceRunActive = gameMode === 'journey' && practiceMode;
+  const phaseModeLabel =
+    gameMode === 'daily'
+      ? 'Daily Verse'
+      : practiceRunActive && built
+        ? `Practice · Level ${built.level}`
+        : undefined;
 
   return (
     <div className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'}`}>
@@ -547,6 +558,12 @@ export default function App() {
           soundEnabled={soundEnabled}
           onToggleSound={toggleSound}
           onBegin={startRun}
+          practiceMode={practiceMode}
+          onTogglePracticeMode={() => {
+            const next = !practiceMode;
+            setPracticeMode(next);
+            announce(next ? 'Practice mode on. Timers disabled.' : 'Practice mode off.');
+          }}
           activeTab={welcomeTab}
           onSelectTab={setWelcomeTab}
           dailyVerse={dailyVerse}
@@ -583,7 +600,8 @@ export default function App() {
           sound={soundEngine}
           onReady={() => setPhase('recall')}
           announce={announce}
-          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
+          modeLabel={phaseModeLabel}
+          practiceMode={practiceRunActive}
         />
       )}
 
@@ -595,7 +613,8 @@ export default function App() {
           announce={announce}
           onComplete={handleComplete}
           onFail={handleFail}
-          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
+          modeLabel={phaseModeLabel}
+          practiceMode={practiceRunActive}
         />
       )}
 
@@ -607,7 +626,7 @@ export default function App() {
           soundEnabled={soundEnabled}
           narrator={narrator}
           onContinue={continueNext}
-          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
+          modeLabel={phaseModeLabel}
           continueLabel={gameMode === 'daily' ? 'Done for today' : undefined}
         />
       )}
@@ -619,7 +638,7 @@ export default function App() {
             if (gameMode === 'daily') goWelcome();
             else setPhase('final');
           }}
-          modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
+          modeLabel={phaseModeLabel}
         />
       )}
 
@@ -650,6 +669,7 @@ export default function App() {
           clearedCount={final.clearedCount}
           scorePercent={final.scorePercent}
           reference={final.reference}
+          practiceMode={final.practiceMode}
           soundEnabled={soundEnabled}
           sound={soundEngine}
           onPlayAgain={startRun}

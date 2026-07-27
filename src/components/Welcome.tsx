@@ -14,6 +14,8 @@ interface WelcomeProps {
   soundEnabled: boolean;
   onToggleSound: () => void;
   onBegin: () => void;
+  practiceMode: boolean;
+  onTogglePracticeMode: () => void;
   activeTab: WelcomeTab;
   onSelectTab: (tab: WelcomeTab) => void;
   dailyVerse: DailyVerse | null;
@@ -34,6 +36,8 @@ export function Welcome({
   soundEnabled,
   onToggleSound,
   onBegin,
+  practiceMode,
+  onTogglePracticeMode,
   activeTab,
   onSelectTab,
   dailyVerse,
@@ -183,6 +187,23 @@ export function Welcome({
                 {journeyError}
               </p>
             )}
+            <button
+              type="button"
+              className={`practice-option ${
+                practiceMode ? 'practice-option--active' : ''
+              }`}
+              role="switch"
+              aria-checked={practiceMode}
+              onClick={onTogglePracticeMode}
+            >
+              <span className="practice-option__control" aria-hidden="true">
+                <span className="practice-option__thumb" />
+              </span>
+              <span className="practice-option__copy">
+                <strong>Practice Mode</strong>
+                <small>No timer</small>
+              </span>
+            </button>
             <div className="btn-row">
               <button type="button" className="btn btn--primary" onClick={onBegin}>
                 Begin challenge
