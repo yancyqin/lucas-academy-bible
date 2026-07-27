@@ -18,6 +18,8 @@ import { SoundToggle } from './components/SoundToggle';
 import { ChineseToggle } from './components/ChineseToggle';
 import { BookMark } from './components/icons';
 import { BibleAttribution } from './components/BibleAttribution';
+import { DailyScrabble } from './components/DailyScrabble';
+import { DailyWordSearch } from './components/DailyWordSearch';
 import {
   buildDailyVerse,
   currentPacificDate,
@@ -46,8 +48,10 @@ type Phase =
   | 'recall'
   | 'success'
   | 'failure-reveal'
+  | 'scrabble'
+  | 'word-search'
   | 'final';
-type GameMode = 'journey' | 'daily';
+type GameMode = 'journey' | 'daily' | 'daily-scrabble' | 'daily-word-search';
 
 /** Score accumulated across a single run (which always starts at Level 0). */
 interface Run {
@@ -139,10 +143,15 @@ export default function App() {
     attribution: ScriptureAttribution;
   } | null>(null);
   const activeGameRequest = useRef<AbortController | null>(null);
+  const phaseRef = useRef<Phase>('welcome');
+  const gameHistoryActive = useRef(false);
+  const ignoreNextPopState = useRef(false);
+  const goWelcomeRef = useRef<() => void>(() => undefined);
 
   const soundEnabled = progress.soundEnabled;
   const showChinese = progress.showChinese;
   const translation = translationApiEnabled ? progress.translation : 'WEB';
+  phaseRef.current = phase;
 
   useEffect(() => {
     soundEngine.setEnabled(soundEnabled);
@@ -166,7 +175,17 @@ export default function App() {
   }, [translation, translationApiEnabled]);
 
   useEffect(() => {
-    if (!dailyEnabled || phase !== 'welcome' || welcomeTab !== 'daily') return undefined;
+    if (
+      !dailyEnabled ||
+      phase !== 'welcome' ||
+      (
+        welcomeTab !== 'daily' &&
+        welcomeTab !== 'scrabble' &&
+        welcomeTab !== 'word-search'
+      )
+    ) {
+      return undefined;
+    }
 
     const today = currentPacificDate();
     if (
@@ -332,6 +351,30 @@ export default function App() {
     }
   };
 
+  const startDailyScrabble = () => {
+    if (!dailyVerse || dailyVerse.translation.key !== translation) return;
+    activeGameRequest.current?.abort();
+    setGameMode('daily-scrabble');
+    setBuilt(null);
+    setResult(null);
+    setFinal(null);
+    narrator.stop();
+    if (soundEnabled) soundEngine.resume();
+    setPhase('scrabble');
+  };
+
+  const startDailyWordSearch = () => {
+    if (!dailyVerse || dailyVerse.translation.key !== translation) return;
+    activeGameRequest.current?.abort();
+    setGameMode('daily-word-search');
+    setBuilt(null);
+    setResult(null);
+    setFinal(null);
+    narrator.stop();
+    if (soundEnabled) soundEngine.resume();
+    setPhase('word-search');
+  };
+
   const handleComplete = (mistakes: number, hearts: number) => {
     if (gameMode === 'daily') {
       setResult({ stars: computeStars(mistakes, 0), mistakes });
@@ -388,9 +431,64 @@ export default function App() {
   const goWelcome = () => {
     activeGameRequest.current?.abort();
     narrator.stop();
-    setWelcomeTab(gameMode === 'daily' ? 'daily' : 'journey');
+    setWelcomeTab(
+      gameMode === 'daily'
+        ? 'daily'
+        : gameMode === 'daily-scrabble'
+          ? 'scrabble'
+          : gameMode === 'daily-word-search'
+            ? 'word-search'
+          : 'journey',
+    );
     setPhase('welcome');
   };
+  goWelcomeRef.current = goWelcome;
+
+  // Add one same-page history entry while a game is open. Browser Back consumes
+  // that entry and returns to Welcome; Back from Welcome remains browser-native.
+  useEffect(() => {
+    const handlePopState = () => {
+      if (ignoreNextPopState.current) {
+        ignoreNextPopState.current = false;
+        return;
+      }
+      if (phaseRef.current === 'welcome' || !gameHistoryActive.current) return;
+      gameHistoryActive.current = false;
+      goWelcomeRef.current();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (phase !== 'welcome' && !gameHistoryActive.current) {
+      const existingState =
+        window.history.state &&
+        typeof window.history.state === 'object'
+          ? window.history.state as Record<string, unknown>
+          : {};
+      try {
+        window.history.pushState(
+          { ...existingState, bibleSequenceGame: true },
+          '',
+          window.location.href,
+        );
+        gameHistoryActive.current = true;
+      } catch {
+        // Sandboxed or embedded browsers may disallow History API writes.
+      }
+      return;
+    }
+
+    // A visible in-app Home action already changed React state; remove the
+    // matching game entry without handling the resulting popstate twice.
+    if (phase === 'welcome' && gameHistoryActive.current) {
+      gameHistoryActive.current = false;
+      ignoreNextPopState.current = true;
+      window.history.back();
+    }
+  }, [phase]);
 
   const continueNext = () => {
     narrator.stop();
@@ -422,7 +520,8 @@ export default function App() {
         dailyAttribution ??
         exactLoadedAttribution ??
         translationFallback(translation);
-  const footerAttributions = showChinese
+  const footerAttributions =
+    showChinese && phase !== 'scrabble' && phase !== 'word-search'
     ? [englishAttribution, CUV_ATTRIBUTION]
     : [englishAttribution];
 
@@ -450,7 +549,9 @@ export default function App() {
             Bible Sequence
           </button>
           <span style={{ display: 'inline-flex', gap: 10 }}>
-            <ChineseToggle enabled={showChinese} onToggle={toggleChinese} />
+            {phase !== 'scrabble' && phase !== 'word-search' && (
+              <ChineseToggle enabled={showChinese} onToggle={toggleChinese} />
+            )}
             <SoundToggle enabled={soundEnabled} onToggle={toggleSound} />
           </span>
         </header>
@@ -470,6 +571,8 @@ export default function App() {
           dailyError={dailyError}
           onRetryDaily={() => setDailyRequest((request) => request + 1)}
           onBeginDaily={startDaily}
+          onBeginScrabble={startDailyScrabble}
+          onBeginWordSearch={startDailyWordSearch}
           dailyEnabled={dailyEnabled}
           translation={translation}
           onSelectTranslation={selectTranslation}
@@ -538,6 +641,26 @@ export default function App() {
             else setPhase('final');
           }}
           modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
+        />
+      )}
+
+      {phase === 'scrabble' && dailyVerse && (
+        <DailyScrabble
+          key={`${dailyVerse.date}-${dailyVerse.translation.key}`}
+          verse={dailyVerse}
+          sound={soundEngine}
+          announce={announce}
+          onDone={goWelcome}
+        />
+      )}
+
+      {phase === 'word-search' && dailyVerse && (
+        <DailyWordSearch
+          key={`${dailyVerse.date}-${dailyVerse.translation.key}`}
+          verse={dailyVerse}
+          sound={soundEngine}
+          announce={announce}
+          onDone={goWelcome}
         />
       )}
 

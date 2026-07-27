@@ -40,6 +40,8 @@ describe('welcome game tabs', () => {
         dailyError=""
         onRetryDaily={noop}
         onBeginDaily={noop}
+        onBeginScrabble={noop}
+        onBeginWordSearch={noop}
         dailyEnabled
         translation="NIV"
         onSelectTranslation={noop}
@@ -50,6 +52,8 @@ describe('welcome game tabs', () => {
 
     expect(screen.getByRole('tab', { name: 'Daily Verse' })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('tab', { name: 'Challenge' })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: 'Daily Scrabble' })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: 'Word Search' })).toBeInTheDocument();
     expect(screen.queryByRole('tab', { name: 'Journey' })).not.toBeInTheDocument();
     expect(screen.getByText('John 3:16')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeInTheDocument();
@@ -79,6 +83,8 @@ describe('welcome game tabs', () => {
         dailyError=""
         onRetryDaily={noop}
         onBeginDaily={noop}
+        onBeginScrabble={noop}
+        onBeginWordSearch={noop}
         dailyEnabled
         translation="NASB2020"
         onSelectTranslation={noop}
@@ -90,5 +96,72 @@ describe('welcome game tabs', () => {
     expect(screen.getByText('John 3:16')).toBeInTheDocument();
     expect(screen.queryByText(/loading today’s verse/i)).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeDisabled();
+  });
+
+  it('offers the same loaded passage in the Daily Scrabble tab', () => {
+    render(
+      <Welcome
+        soundEnabled
+        showChinese={false}
+        onToggleSound={noop}
+        onToggleChinese={noop}
+        onBegin={noop}
+        activeTab="scrabble"
+        onSelectTab={noop}
+        dailyVerse={daily}
+        dailyLoading={false}
+        dailyError=""
+        onRetryDaily={noop}
+        onBeginDaily={noop}
+        onBeginScrabble={noop}
+        onBeginWordSearch={noop}
+        dailyEnabled
+        translation="NIV"
+        onSelectTranslation={noop}
+        journeyError=""
+        translationApiEnabled
+      />,
+    );
+
+    expect(screen.getByRole('tab', { name: 'Daily Scrabble' })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    expect(screen.getByText('John 3:16')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Play Daily Scrabble' })).toBeEnabled();
+    expect(screen.queryByText(daily.text)).not.toBeInTheDocument();
+  });
+
+  it('offers the loaded passage in the Word Search tab', () => {
+    render(
+      <Welcome
+        soundEnabled
+        showChinese={false}
+        onToggleSound={noop}
+        onToggleChinese={noop}
+        onBegin={noop}
+        activeTab="word-search"
+        onSelectTab={noop}
+        dailyVerse={daily}
+        dailyLoading={false}
+        dailyError=""
+        onRetryDaily={noop}
+        onBeginDaily={noop}
+        onBeginScrabble={noop}
+        onBeginWordSearch={noop}
+        dailyEnabled
+        translation="NIV"
+        onSelectTranslation={noop}
+        journeyError=""
+        translationApiEnabled
+      />,
+    );
+
+    expect(screen.getByRole('tab', { name: 'Word Search' })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    expect(screen.getByText('John 3:16')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Play Daily Word Search' })).toBeEnabled();
   });
 });

@@ -7,7 +7,7 @@ import {
   type TranslationKey,
 } from '../translation-config';
 
-export type WelcomeTab = 'journey' | 'daily';
+export type WelcomeTab = 'journey' | 'daily' | 'scrabble' | 'word-search';
 
 interface WelcomeProps {
   soundEnabled: boolean;
@@ -22,6 +22,8 @@ interface WelcomeProps {
   dailyError: string;
   onRetryDaily: () => void;
   onBeginDaily: () => void;
+  onBeginScrabble: () => void;
+  onBeginWordSearch: () => void;
   dailyEnabled: boolean;
   translation: TranslationKey;
   onSelectTranslation: (translation: TranslationKey) => void;
@@ -42,6 +44,8 @@ export function Welcome({
   dailyError,
   onRetryDaily,
   onBeginDaily,
+  onBeginScrabble,
+  onBeginWordSearch,
   dailyEnabled,
   translation,
   onSelectTranslation,
@@ -62,7 +66,11 @@ export function Welcome({
         <p className="subtitle">Remember the Word. Restore the Verse.</p>
 
         {dailyEnabled && (
-          <div className="welcome-tabs" role="tablist" aria-label="Choose a Bible Sequence game">
+          <div
+            className="welcome-tabs welcome-tabs--four"
+            role="tablist"
+            aria-label="Choose a Bible Sequence game"
+          >
             <button
               type="button"
               role="tab"
@@ -80,6 +88,24 @@ export function Welcome({
               onClick={() => onSelectTab('daily')}
             >
               Daily Verse
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'scrabble'}
+              className={`welcome-tab ${activeTab === 'scrabble' ? 'welcome-tab--active' : ''}`}
+              onClick={() => onSelectTab('scrabble')}
+            >
+              Daily Scrabble
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'word-search'}
+              className={`welcome-tab ${activeTab === 'word-search' ? 'welcome-tab--active' : ''}`}
+              onClick={() => onSelectTab('word-search')}
+            >
+              Word Search
             </button>
           </div>
         )}
@@ -152,10 +178,20 @@ export function Welcome({
                 <button
                   type="button"
                   className="btn btn--primary"
-                  onClick={onBeginDaily}
+                  onClick={
+                    activeTab === 'daily'
+                      ? onBeginDaily
+                      : activeTab === 'scrabble'
+                        ? onBeginScrabble
+                        : onBeginWordSearch
+                  }
                   disabled={!dailyReady || dailyLoading}
                 >
-                  Play today’s verse
+                  {activeTab === 'daily'
+                    ? 'Play today’s verse'
+                    : activeTab === 'scrabble'
+                      ? 'Play Daily Scrabble'
+                      : 'Play Daily Word Search'}
                 </button>
               </>
             )}
