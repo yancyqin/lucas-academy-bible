@@ -13,7 +13,7 @@ describe('browser Back navigation', () => {
     render(<App />);
 
     fireEvent.click(
-      screen.getByRole('button', { name: 'Sound is on. Turn sound off.' }),
+      screen.getByRole('switch', { name: 'Sound is on. Turn sound off.' }),
     );
     fireEvent.click(screen.getByRole('button', { name: 'Begin challenge' }));
     await waitFor(() => expect(pushState).toHaveBeenCalledTimes(1));
@@ -41,7 +41,7 @@ describe('browser Back navigation', () => {
     render(<App />);
 
     fireEvent.click(
-      screen.getByRole('button', { name: 'Sound is on. Turn sound off.' }),
+      screen.getByRole('switch', { name: 'Sound is on. Turn sound off.' }),
     );
     fireEvent.click(screen.getByRole('button', { name: 'Begin challenge' }));
     const home = await screen.findByRole('button', {

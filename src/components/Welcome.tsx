@@ -116,8 +116,40 @@ export function Welcome({
           </div>
         )}
 
-        <div className="btn-row" role="group" aria-label="Options">
-          <SoundToggle enabled={soundEnabled} onToggle={onToggleSound} />
+        <div
+          className={`btn-row welcome-options ${
+            activeTab === 'journey' ? 'welcome-options--practice' : ''
+          }`}
+          role="group"
+          aria-label="Options"
+        >
+          <SoundToggle
+            enabled={soundEnabled}
+            onToggle={onToggleSound}
+            variant="switch"
+          />
+          {activeTab === 'journey' && (
+            <button
+              type="button"
+              className={`welcome-switch welcome-switch--practice ${
+                practiceMode ? 'welcome-switch--active' : ''
+              }`}
+              role="switch"
+              aria-checked={practiceMode}
+              aria-label={`Practice mode is ${
+                practiceMode ? 'on. Turn practice mode off.' : 'off. Turn practice mode on.'
+              }`}
+              title={practiceMode ? 'Practice mode on — no timer' : 'Practice mode off'}
+              onClick={onTogglePracticeMode}
+            >
+              <span className="welcome-switch__label">
+                <span>Practice</span>
+              </span>
+              <span className="welcome-switch__track" aria-hidden="true">
+                <span className="welcome-switch__thumb" />
+              </span>
+            </button>
+          )}
         </div>
 
         {translationApiEnabled && (
@@ -187,23 +219,6 @@ export function Welcome({
                 {journeyError}
               </p>
             )}
-            <button
-              type="button"
-              className={`practice-option ${
-                practiceMode ? 'practice-option--active' : ''
-              }`}
-              role="switch"
-              aria-checked={practiceMode}
-              onClick={onTogglePracticeMode}
-            >
-              <span className="practice-option__control" aria-hidden="true">
-                <span className="practice-option__thumb" />
-              </span>
-              <span className="practice-option__copy">
-                <strong>Practice Mode</strong>
-                <small>No timer</small>
-              </span>
-            </button>
             <div className="btn-row">
               <button type="button" className="btn btn--primary" onClick={onBegin}>
                 Begin challenge

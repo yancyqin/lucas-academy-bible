@@ -89,8 +89,13 @@ describe('welcome game tabs', () => {
     );
 
     const option = screen.getByRole('switch', { name: /practice mode/i });
+    const sound = screen.getByRole('switch', { name: /sound is on/i });
     expect(option).toHaveAttribute('aria-checked', 'false');
-    expect(screen.getByText('No timer')).toBeInTheDocument();
+    expect(sound).toHaveAttribute('aria-checked', 'true');
+    expect(option).toHaveTextContent('Practice');
+    expect(option.closest('[aria-label="Options"]')).toContainElement(
+      sound,
+    );
     fireEvent.click(option);
     expect(togglePracticeMode).toHaveBeenCalledTimes(1);
   });

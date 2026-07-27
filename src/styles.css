@@ -403,42 +403,68 @@ body {
   flex: none;
 }
 
-.practice-option {
+.welcome-options--practice {
   width: min(100%, 390px);
-  min-height: 64px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.welcome-options > .welcome-switch {
+  width: min(100%, 188px);
+}
+
+.welcome-options--practice .welcome-switch {
+  width: 100%;
+  min-width: 0;
+}
+
+.welcome-switch {
+  min-height: 56px;
+  padding: 8px 11px;
+  border: 2px solid rgba(85, 77, 64, 0.36);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 10px 18px;
-  border: 2px solid rgba(169, 132, 47, 0.32);
-  border-radius: 18px;
-  color: var(--ink-soft);
-  background: rgba(243, 236, 219, 0.7);
-  cursor: pointer;
+  justify-content: space-between;
+  gap: 8px;
   font-family: var(--font-ui);
-  text-align: left;
+  font-size: 1rem;
+  font-weight: 800;
   transition:
-    background-color 160ms ease,
     border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
     box-shadow 160ms ease;
 }
 
-.practice-option--active {
-  color: var(--ink);
-  background: rgba(227, 202, 127, 0.24);
-  border-color: var(--gold);
-  box-shadow: 0 6px 14px -11px rgba(80, 57, 9, 0.95);
+.welcome-switch:hover {
+  border-color: var(--gold-deep);
 }
 
-.practice-option:focus-visible {
+.welcome-switch:focus-visible {
   outline: none;
   box-shadow: var(--focus);
 }
 
-.practice-option__control {
-  width: 56px;
-  height: 32px;
+.welcome-switch--active {
+  border-color: var(--gold-deep);
+  color: var(--gold-deep);
+  background: rgba(200, 162, 76, 0.1);
+}
+
+.welcome-switch__label {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.welcome-switch__track {
+  width: 48px;
+  height: 28px;
   flex: none;
   display: flex;
   align-items: center;
@@ -448,40 +474,26 @@ body {
   transition: background-color 160ms ease;
 }
 
-.practice-option--active .practice-option__control {
+.welcome-switch--active .welcome-switch__track {
+  background: var(--gold);
+}
+
+.welcome-switch--practice.welcome-switch--active .welcome-switch__track {
   background: var(--sage);
 }
 
-.practice-option__thumb {
-  width: 26px;
-  height: 26px;
+.welcome-switch__thumb {
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--ivory);
   box-shadow: 0 2px 5px rgba(43, 38, 32, 0.3);
   transform: translateX(0);
-  transition: transform 160ms ease;
+  transition: transform 180ms cubic-bezier(0.2, 0.75, 0.3, 1);
 }
 
-.practice-option--active .practice-option__thumb {
-  transform: translateX(24px);
-}
-
-.practice-option__copy {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.practice-option__copy strong {
-  font-size: 1.12rem;
-  line-height: 1.15;
-}
-
-.practice-option__copy small {
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-  font-weight: 700;
+.welcome-switch--active .welcome-switch__thumb {
+  transform: translateX(20px);
 }
 
 .translation-selector {
