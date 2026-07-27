@@ -1,0 +1,18 @@
+{
+  "name": "Lucas Academy — Bible Sequence",
+  "short_name": "Bible Sequence",
+  "description": "A calm scripture memory game from Lucas Academy.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6efe0",
+  "theme_color": "#f6efe0",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
