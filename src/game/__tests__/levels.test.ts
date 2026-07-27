@@ -69,13 +69,33 @@ describe('level bank files', () => {
     expect(l1.questions.some((q) => q.text === 'Jesus wept.')).toBe(false);
   });
 
-  // Requirement 3 — Level 0 reconstructs exactly "Jesus wept."
-  it('build exposes Chinese text and a Chinese reference', () => {
-    const built = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 });
-    expect(built.fullTextZh).toBe('耶稣哭了。');
-    expect(built.referenceZh).toBe('约翰福音 11:35');
+  it('keeps the audited per-level bank sizes', () => {
+    for (const level of LEVELS) {
+      const expected =
+        level.level === 0
+          ? 1
+          : level.level <= 16
+            ? 15
+            : level.level === 17
+              ? 11
+              : level.level === 18
+                ? 13
+                : 9;
+      expect(level.questions, `Level ${level.level}`).toHaveLength(expected);
+    }
+    expect(
+      LEVELS.reduce((total, level) => total + level.questions.length, 0),
+    ).toBe(283);
   });
 
+  it('does not reuse the same question text across different levels', () => {
+    const allQuestions = LEVELS.flatMap((level) => level.questions);
+    expect(new Set(allQuestions.map((question) => question.text)).size).toBe(
+      allQuestions.length,
+    );
+  });
+
+  // Requirement 3 — Level 0 reconstructs exactly "Jesus wept."
   it('Level 0 reconstructs exactly "Jesus wept."', () => {
     const built = buildLevel(getLevelFile(0)!, { seed: 1, questionIndex: 0 });
     expect(built.fullText).toBe('Jesus wept.');

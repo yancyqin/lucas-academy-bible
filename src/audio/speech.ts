@@ -1,5 +1,5 @@
 /**
- * Scripture narration via the browser SpeechSynthesis API. English only.
+ * Scripture narration via the browser SpeechSynthesis API.
  * Degrades gracefully: if speech synthesis is unavailable, every method is a
  * safe no-op and `supported` is false so callers can hide the Listen button.
  *
@@ -29,6 +29,12 @@ export function shouldAutoNarrate(
 
 /** Break text into clause-sized segments for gap-paced narration. */
 export function segmentForSpeech(text: string): string[] {
+  if (/\p{Script=Han}/u.test(text)) {
+    return (
+      text.match(/[^，；：。！？]+[，；：。！？]+[”’"」』】）)]*|[^，；：。！？]+$/gu) ??
+      [text]
+    );
+  }
   const tokens = text.split(' ');
   const segments: string[] = [];
   let cur: string[] = [];
@@ -44,21 +50,30 @@ export function segmentForSpeech(text: string): string[] {
   return segments.length ? segments : [text];
 }
 
-function scoreVoice(v: SpeechSynthesisVoice): number {
+function scoreVoice(v: SpeechSynthesisVoice, language: 'en' | 'zh'): number {
   let score = 0;
   const name = v.name.toLowerCase();
   const lang = (v.lang || '').toLowerCase();
-  if (lang.startsWith('en')) score += 5;
-  if (lang === 'en-us' || lang === 'en_us') score += 2;
+  if (lang.startsWith(language)) score += 5;
+  if (language === 'en' && (lang === 'en-us' || lang === 'en_us')) score += 2;
+  if (language === 'zh' && /zh-(cn|tw|hans|hant)/.test(lang)) score += 2;
   if (/natural|neural|premium|enhanced/.test(name)) score += 4;
-  if (/samantha|aria|jenny|google us english|daniel|serena|allison|ava/.test(name)) score += 3;
+  if (
+    language === 'en' &&
+    /samantha|aria|jenny|google us english|daniel|serena|allison|ava/.test(name)
+  ) {
+    score += 3;
+  }
+  if (language === 'zh' && /ting|mei|xiaoxiao|yunxi|google.*中文|mandarin/.test(name)) {
+    score += 3;
+  }
   if (v.localService) score += 1;
   return score;
 }
 
 export class Narrator {
   readonly supported: boolean;
-  private voice: SpeechSynthesisVoice | null = null;
+  private voices: SpeechSynthesisVoice[] = [];
   private sessionId = 0;
   private active = false;
 
@@ -83,16 +98,28 @@ export class Narrator {
     try {
       const voices = window.speechSynthesis.getVoices();
       if (!voices || voices.length === 0) return;
-      const english = voices.filter((v) => (v.lang || '').toLowerCase().startsWith('en'));
-      const pool = english.length ? english : voices;
-      this.voice = pool.slice().sort((a, b) => scoreVoice(b) - scoreVoice(a))[0] ?? null;
+      this.voices = [...voices];
     } catch {
-      this.voice = null;
+      this.voices = [];
     }
   }
 
   getVoiceName(): string | null {
-    return this.voice?.name ?? null;
+    return this.bestVoice('en')?.name ?? null;
+  }
+
+  private bestVoice(language: 'en' | 'zh'): SpeechSynthesisVoice | null {
+    const matching = this.voices.filter((voice) =>
+      (voice.lang || '').toLowerCase().startsWith(language),
+    );
+    const pool = matching.length ? matching : this.voices;
+    return (
+      pool
+        .slice()
+        .sort((first, second) =>
+          scoreVoice(second, language) - scoreVoice(first, language),
+        )[0] ?? null
+    );
   }
 
   /**
@@ -111,6 +138,8 @@ export class Narrator {
     const rate = slow ? 0.7 : 0.95;
     const gapMs = slow ? 320 : 60;
     const segments = slow ? segmentForSpeech(text) : [text];
+    const language = /\p{Script=Han}/u.test(text) ? 'zh' : 'en';
+    const voice = this.bestVoice(language);
 
     try {
       window.speechSynthesis.cancel();
@@ -138,8 +167,8 @@ export class Narrator {
       const chunk = segments[i++];
       try {
         const u = new SpeechSynthesisUtterance(chunk);
-        if (this.voice) u.voice = this.voice;
-        u.lang = this.voice?.lang || 'en-US';
+        if (voice) u.voice = voice;
+        u.lang = voice?.lang || (language === 'zh' ? 'zh-CN' : 'en-US');
         u.rate = rate;
         u.pitch = 1.0;
         u.volume = 1.0;

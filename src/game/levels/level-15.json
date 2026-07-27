@@ -167,6 +167,116 @@
         }
       ],
       "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread. Forgive us our debts, as we also forgive our debtors."
+    },
+    {
+      "id": "L15-q09",
+      "reference": "John 12:20-22",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 20,
+          "text": "Now there were certain Greeks among those who went up to worship at the feast."
+        },
+        {
+          "verse": 21,
+          "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”"
+        },
+        {
+          "verse": 22,
+          "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+        }
+      ],
+      "text": "Now there were certain Greeks among those who went up to worship at the feast. Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.” Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+    },
+    {
+      "id": "L15-q10",
+      "reference": "Ephesians 1:11-12",
+      "passageId": "passage-034",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will,"
+        },
+        {
+          "verse": 12,
+          "text": "to the end that we should be to the praise of his glory, we who had before hoped in Christ."
+        }
+      ],
+      "text": "We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will, to the end that we should be to the praise of his glory, we who had before hoped in Christ."
+    },
+    {
+      "id": "L15-q11",
+      "reference": "John 3:7-8",
+      "passageId": "passage-051",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "Don’t marvel that I said to you, ‘You must all be born anew.’"
+        },
+        {
+          "verse": 8,
+          "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+        }
+      ],
+      "text": "Don’t marvel that I said to you, ‘You must all be born anew.’ The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”"
+    },
+    {
+      "id": "L15-q12",
+      "reference": "Psalm 23:3-4",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake."
+        },
+        {
+          "verse": 4,
+          "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+        }
+      ],
+      "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake. Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me."
+    },
+    {
+      "id": "L15-q13",
+      "reference": "Romans 5:3-5",
+      "passageId": "passage-046",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;"
+        },
+        {
+          "verse": 4,
+          "text": "and perseverance, proven character; and proven character, hope;"
+        },
+        {
+          "verse": 5,
+          "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+        }
+      ],
+      "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance; and perseverance, proven character; and proven character, hope; and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us."
+    },
+    {
+      "id": "L15-q14",
+      "reference": "Romans 8:27-28",
+      "passageId": "passage-067",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 27,
+          "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God."
+        },
+        {
+          "verse": 28,
+          "text": "We know that all things work together for good for those who love God, for those who are called according to his purpose."
+        }
+      ],
+      "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God. We know that all things work together for good for those who love God, for those who are called according to his purpose."
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { isContentWord } from './chunk';
+import { isCjkText, isContentWord, tokenize } from './chunk';
 
 const MAX_TARGETS = 5;
 const MIN_WORD_LETTERS = 3;
@@ -154,8 +154,8 @@ function candidatesFor(tokens: string[], minimum: number, maximum: number): Cand
     const word = wordFromToken(token);
     const normalized = word.toLocaleLowerCase('en-US');
     if (
-      word.length < minimum ||
-      word.length > maximum ||
+      Array.from(word).length < minimum ||
+      Array.from(word).length > maximum ||
       !isContentWord(token) ||
       SCRABBLE_FUNCTION_WORDS.has(normalized) ||
       seen.has(normalized)
@@ -173,16 +173,23 @@ function candidatesFor(tokens: string[], minimum: number, maximum: number): Cand
 export function buildDailyScrabble(text: string, puzzleKey = text): DailyScrabblePuzzle {
   // Some API passages omit a space after punctuation (for example "One,to").
   // Repair that display-only boundary before creating words and blanks.
-  const tokens = text
-    .trim()
-    .replace(/([,;:!?])(?=\p{L})/gu, '$1 ')
-    .split(/\s+/)
-    .filter(Boolean);
-  let candidates = candidatesFor(tokens, MIN_WORD_LETTERS, MAX_WORD_LETTERS);
+  const chinese = isCjkText(text);
+  const tokens = chinese
+    ? tokenize(text.trim())
+    : text
+        .trim()
+        .replace(/([,;:!?])(?=\p{L})/gu, '$1 ')
+        .split(/\s+/)
+        .filter(Boolean);
+  let candidates = candidatesFor(
+    tokens,
+    chinese ? 2 : MIN_WORD_LETTERS,
+    chinese ? 4 : MAX_WORD_LETTERS,
+  );
 
   // Very short passages still deserve a puzzle; relax length only when needed.
   if (candidates.length < 2) {
-    candidates = candidatesFor(tokens, 2, MAX_WORD_LETTERS);
+    candidates = candidatesFor(tokens, chinese ? 1 : 2, chinese ? 4 : MAX_WORD_LETTERS);
   }
 
   const selected = evenlySpaced(candidates, Math.min(MAX_TARGETS, candidates.length));

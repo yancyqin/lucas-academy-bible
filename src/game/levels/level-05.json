@@ -127,6 +127,84 @@
         }
       ],
       "text": "He will not shout, nor raise his voice,"
+    },
+    {
+      "id": "L05-q09",
+      "reference": "Matthew 6:12",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 12,
+          "text": "Forgive us our debts, as we also forgive our debtors."
+        }
+      ],
+      "text": "Forgive us our debts, as we also forgive our debtors."
+    },
+    {
+      "id": "L05-q10",
+      "reference": "Philippians 4:4",
+      "passageId": "passage-076",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”"
+        }
+      ],
+      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”"
+    },
+    {
+      "id": "L05-q11",
+      "reference": "Philippians 2:5",
+      "passageId": "passage-090",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Have this in your mind, which was also in Christ Jesus,"
+        }
+      ],
+      "text": "Have this in your mind, which was also in Christ Jesus,"
+    },
+    {
+      "id": "L05-q12",
+      "reference": "Hebrews 4:14b",
+      "passageId": "passage-036",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "Jesus, the Son of God, let’s hold tightly to our confession."
+        }
+      ],
+      "text": "Jesus, the Son of God, let’s hold tightly to our confession."
+    },
+    {
+      "id": "L05-q13",
+      "reference": "Joshua 1:9a",
+      "passageId": "passage-015",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid."
+        }
+      ],
+      "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid."
+    },
+    {
+      "id": "L05-q14",
+      "reference": "Psalm 56:4b",
+      "passageId": "passage-016",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "I will not be afraid. What can flesh do to me?"
+        }
+      ],
+      "text": "I will not be afraid. What can flesh do to me?"
     }
   ]
 }

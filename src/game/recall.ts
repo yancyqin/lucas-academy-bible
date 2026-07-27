@@ -1,4 +1,5 @@
 import type { BuiltLevel, Tile } from './build';
+import { joinChunks } from './chunk';
 
 /**
  * Pure runtime state machine for one recall attempt. No React, no DOM — fully
@@ -180,7 +181,10 @@ export function recallReducer(state: RecallState, action: RecallAction): RecallS
       }
 
       // Section finished.
-      const completedSections = [...state.completedSections, section.correct.join(' ')];
+      const completedSections = [
+        ...state.completedSections,
+        joinChunks(section.correct),
+      ];
       const isLastSection = state.sectionIndex === state.level.sections.length - 1;
 
       if (isLastSection) {

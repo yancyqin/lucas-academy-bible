@@ -127,6 +127,84 @@
         }
       ],
       "text": "that I will pour out my Spirit on all flesh;"
+    },
+    {
+      "id": "L06-q09",
+      "reference": "John 3:7",
+      "passageId": "passage-051",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "Don’t marvel that I said to you, ‘You must all be born anew.’"
+        }
+      ],
+      "text": "Don’t marvel that I said to you, ‘You must all be born anew.’"
+    },
+    {
+      "id": "L06-q10",
+      "reference": "Matthew 6:9",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+        }
+      ],
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+    },
+    {
+      "id": "L06-q11",
+      "reference": "Philippians 4:5",
+      "passageId": "passage-076",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Let your gentleness be known to all men. The Lord is at hand."
+        }
+      ],
+      "text": "Let your gentleness be known to all men. The Lord is at hand."
+    },
+    {
+      "id": "L06-q12",
+      "reference": "John 8:32",
+      "passageId": "passage-004",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 32,
+          "text": "You will know the truth, and the truth will make you free.”"
+        }
+      ],
+      "text": "You will know the truth, and the truth will make you free.”"
+    },
+    {
+      "id": "L06-q13",
+      "reference": "Ephesians 5:17",
+      "passageId": "passage-079",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "Therefore, don’t be foolish, but understand what the will of the Lord is."
+        }
+      ],
+      "text": "Therefore, don’t be foolish, but understand what the will of the Lord is."
+    },
+    {
+      "id": "L06-q14",
+      "reference": "Romans 4:25",
+      "passageId": "passage-045",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 25,
+          "text": "who was delivered up for our trespasses, and was raised for our justification."
+        }
+      ],
+      "text": "who was delivered up for our trespasses, and was raised for our justification."
     }
   ]
 }

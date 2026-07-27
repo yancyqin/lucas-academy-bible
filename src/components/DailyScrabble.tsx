@@ -5,6 +5,7 @@ import {
   buildDailyScrabble,
   type ScrabbleLetter,
 } from '../game/daily-scrabble';
+import { isCjkText } from '../game/chunk';
 
 interface DailyScrabbleProps {
   verse: DailyVerse;
@@ -42,6 +43,7 @@ export function DailyScrabble({
   const targetByToken = new Map(
     puzzle.targets.map((candidate) => [candidate.tokenIndex, candidate]),
   );
+  const tokenSeparator = isCjkText(verse.text) ? '' : ' ';
 
   useEffect(() => () => window.clearTimeout(wrongTimer.current), []);
 
@@ -151,14 +153,15 @@ export function DailyScrabble({
             if (!tokenTarget) {
               return (
                 <Fragment key={`${tokenIndex}-${token}`}>
-                  <span>{token}</span>{' '}
+                  <span>{token}</span>{tokenSeparator}
                 </Fragment>
               );
             }
             if (solvedIds.includes(tokenTarget.id)) {
               return (
                 <Fragment key={tokenTarget.id}>
-                  <span className="scrabble__restored-word">{token}</span>{' '}
+                  <span className="scrabble__restored-word">{token}</span>
+                  {tokenSeparator}
                 </Fragment>
               );
             }
@@ -179,7 +182,7 @@ export function DailyScrabble({
                   </span>
                   {trailingPunctuation}
                 </span>
-                {' '}
+                {tokenSeparator}
               </Fragment>
             );
           })}

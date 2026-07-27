@@ -3,11 +3,11 @@ import {
   type BuiltLevel,
   type ScriptureAttribution,
 } from './game/build';
-import { requirePassage } from './data/scripture';
+import { allPassages, requirePassage } from './data/scripture';
 import type { LevelFile, Question } from './game/levels';
 import { mulberry32 } from './game/random';
+import { joinChunks } from './game/chunk';
 import {
-  TRANSLATIONS,
   isTranslationKey,
   type TranslationKey,
 } from './translation-config';
@@ -161,7 +161,7 @@ function passageIdForQuestion(
 function splitClauses(text: string): string[] {
   return (
     text
-      .match(/[^,;:.!?]+[,;:.!?]+(?:["”’']+)?|[^,;:.!?]+$/g)
+      .match(/[^,;:.!?，；：。！？]+[,;:.!?，；：。！？]+(?:["”’'」』]+)?|[^,;:.!?，；：。！？]+$/g)
       ?.map((part) => part.trim())
       .filter(Boolean) ?? [text.trim()]
   );
@@ -204,12 +204,53 @@ function translatedFragment(question: Question, translatedText: string): string 
 export function attributionFor(
   translation: YouVersionTranslation,
 ): ScriptureAttribution {
+  if (translation.key === 'CUV') return CUV_ATTRIBUTION;
   return {
     abbreviation: translation.abbreviation,
     title: translation.title,
     copyright: translation.copyright,
     sourceLabel: 'YouVersion',
     sourceUrl: translation.youVersionDeepLink,
+  };
+}
+
+const CUV_ATTRIBUTION: ScriptureAttribution = {
+  abbreviation: 'CUV',
+  title: 'Chinese Union Version (Simplified)',
+  copyright: 'Public Domain',
+  sourceLabel: 'eBible.org',
+  sourceUrl: 'https://ebible.org/details.php?id=cmn-cu89s',
+};
+
+function localCuvQuestion(question: Question): Question {
+  const source = requirePassage(question.passageId);
+  const selected = question.verses.map((verse) => {
+    const local = source.verses.find(
+      (candidate) => candidate.verse === verse.verse,
+    )?.textZh;
+    if (!local) {
+      throw new Error(`CUV text is unavailable for ${question.reference}`);
+    }
+    return { verse: verse.verse, text: local };
+  });
+  const first = selected[0]?.verse;
+  const last = selected[selected.length - 1]?.verse;
+  const reference =
+    source.bookZh && first !== undefined
+      ? `${source.bookZh} ${source.chapter}:${first === last ? first : `${first}-${last}`}`
+      : question.reference;
+  const fullText = joinChunks(selected.map((verse) => verse.text));
+  const text = question.fragment
+    ? translatedFragment(question, fullText)
+    : fullText;
+
+  return {
+    ...question,
+    reference,
+    verses: question.fragment
+      ? [{ verse: first ?? 0, text }]
+      : selected,
+    text,
   };
 }
 
@@ -233,7 +274,7 @@ async function translatedQuestion(
         ),
       ),
     );
-    const text = passages.map((passage) => passage.text).join(' ');
+    const text = joinChunks(passages.map((passage) => passage.text));
     const firstReference = passages[0]?.reference ?? question.reference;
     const lastVerse = question.verses[question.verses.length - 1]?.verse;
     const reference =
@@ -282,7 +323,7 @@ export async function prepareJourneyLevel(
   seed: number,
   signal?: AbortSignal,
 ): Promise<BuiltLevel> {
-  if (!TRANSLATIONS[translation].requiresApi) {
+  if (translation === 'WEB') {
     return buildLevel(file, { seed });
   }
   if (file.questions.length === 0) {
@@ -292,6 +333,23 @@ export async function prepareJourneyLevel(
   const rng = mulberry32(seed);
   const questionIndex = Math.floor(rng() * file.questions.length);
   const sourceQuestion = file.questions[questionIndex];
+
+  if (translation === 'CUV') {
+    const question = localCuvQuestion(sourceQuestion);
+    return buildLevel(file, {
+      seed,
+      questionIndex,
+      questionOverride: question,
+      distractorPassages: allPassages
+        .filter((passage) => passage.textZh)
+        .map((passage) => ({
+          id: passage.id,
+          text: passage.textZh as string,
+        })),
+      attribution: CUV_ATTRIBUTION,
+    });
+  }
+
   const translated = await translatedQuestion(
     file,
     sourceQuestion,

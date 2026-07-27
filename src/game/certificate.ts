@@ -11,7 +11,6 @@ export interface CertificateData {
   clearedCount: number;
   scorePercent: number;
   reference: string;
-  referenceZh: string;
   awarded: string; // date + time string
 }
 
@@ -188,9 +187,7 @@ export function renderCertificate(data: CertificateData): HTMLCanvasElement {
   // Body
   ctx.fillStyle = C.inkSoft;
   ctx.font = `400 21px ${SERIF}`;
-  const ref = data.reference
-    ? ` — up to ${data.reference}${data.referenceZh ? ` · ${data.referenceZh}` : ''}`
-    : '';
+  const ref = data.reference ? ` — up to ${data.reference}` : '';
   const body = `Having studied and restored the Word of God through Level ${data.certLevel} of Bible Sequence${ref}.`;
   const lines = wrap(ctx, body, 780);
   let by = barY + 78;

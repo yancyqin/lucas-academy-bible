@@ -127,6 +127,84 @@
         }
       ],
       "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings."
+    },
+    {
+      "id": "L08-q09",
+      "reference": "Isaiah 42:2",
+      "passageId": "passage-074",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street."
+        }
+      ],
+      "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street."
+    },
+    {
+      "id": "L08-q10",
+      "reference": "John 8:34",
+      "passageId": "passage-027",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 34,
+          "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+        }
+      ],
+      "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin."
+    },
+    {
+      "id": "L08-q11",
+      "reference": "Romans 6:2",
+      "passageId": "passage-047",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "May it never be! We who died to sin, how could we live in it any longer?"
+        }
+      ],
+      "text": "May it never be! We who died to sin, how could we live in it any longer?"
+    },
+    {
+      "id": "L08-q12",
+      "reference": "Romans 7:24",
+      "passageId": "passage-063",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 24,
+          "text": "What a wretched man I am! Who will deliver me out of the body of this death?"
+        }
+      ],
+      "text": "What a wretched man I am! Who will deliver me out of the body of this death?"
+    },
+    {
+      "id": "L08-q13",
+      "reference": "Matthew 5:14",
+      "passageId": "passage-081",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "“You are the light of the world. A city located on a hill can’t be hidden."
+        }
+      ],
+      "text": "“You are the light of the world. A city located on a hill can’t be hidden."
+    },
+    {
+      "id": "L08-q14",
+      "reference": "Matthew 6:10",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        }
+      ],
+      "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
     }
   ]
 }

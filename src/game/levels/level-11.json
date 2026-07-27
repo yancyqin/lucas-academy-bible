@@ -127,6 +127,88 @@
         }
       ],
       "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”"
+    },
+    {
+      "id": "L11-q09",
+      "reference": "Romans 8:1",
+      "passageId": "passage-065",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit."
+        }
+      ],
+      "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit."
+    },
+    {
+      "id": "L11-q10",
+      "reference": "Romans 7:25",
+      "passageId": "passage-064",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 25,
+          "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law."
+        }
+      ],
+      "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law."
+    },
+    {
+      "id": "L11-q11",
+      "reference": "Philippians 4:4-5",
+      "passageId": "passage-076",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”"
+        },
+        {
+          "verse": 5,
+          "text": "Let your gentleness be known to all men. The Lord is at hand."
+        }
+      ],
+      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!” Let your gentleness be known to all men. The Lord is at hand."
+    },
+    {
+      "id": "L11-q12",
+      "reference": "John 3:5",
+      "passageId": "passage-049",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom."
+        }
+      ],
+      "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom."
+    },
+    {
+      "id": "L11-q13",
+      "reference": "John 3:16",
+      "passageId": "passage-030",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 16,
+          "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+        }
+      ],
+      "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life."
+    },
+    {
+      "id": "L11-q14",
+      "reference": "Isaiah 55:9",
+      "passageId": "passage-092",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "“For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts."
+        }
+      ],
+      "text": "“For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts."
     }
   ]
 }

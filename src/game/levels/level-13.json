@@ -135,6 +135,104 @@
         }
       ],
       "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light."
+    },
+    {
+      "id": "L13-q09",
+      "reference": "Matthew 6:9-11",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+        },
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        },
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        }
+      ],
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread."
+    },
+    {
+      "id": "L13-q10",
+      "reference": "John 8:31-32",
+      "passageId": "passage-004",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+        },
+        {
+          "verse": 32,
+          "text": "You will know the truth, and the truth will make you free.”"
+        }
+      ],
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.”"
+    },
+    {
+      "id": "L13-q11",
+      "reference": "Philippians 4:5-6",
+      "passageId": "passage-077",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Let your gentleness be known to all men. The Lord is at hand."
+        },
+        {
+          "verse": 6,
+          "text": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God."
+        }
+      ],
+      "text": "Let your gentleness be known to all men. The Lord is at hand. In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God."
+    },
+    {
+      "id": "L13-q12",
+      "reference": "Romans 6:4",
+      "passageId": "passage-047",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+        }
+      ],
+      "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life."
+    },
+    {
+      "id": "L13-q13",
+      "reference": "Psalm 23:2-3",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He makes me lie down in green pastures. He leads me beside still waters."
+        },
+        {
+          "verse": 3,
+          "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake."
+        }
+      ],
+      "text": "He makes me lie down in green pastures. He leads me beside still waters. He restores my soul. He guides me in the paths of righteousness for his name’s sake."
+    },
+    {
+      "id": "L13-q14",
+      "reference": "Romans 12:2",
+      "passageId": "passage-087",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God."
+        }
+      ],
+      "text": "Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God."
     }
   ]
 }

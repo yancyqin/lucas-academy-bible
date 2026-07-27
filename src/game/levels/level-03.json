@@ -127,6 +127,84 @@
         }
       ],
       "text": "nor raise his voice,"
+    },
+    {
+      "id": "L03-q09",
+      "reference": "Matthew 6:11",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        }
+      ],
+      "text": "Give us today our daily bread."
+    },
+    {
+      "id": "L03-q10",
+      "reference": "Galatians 5:23c",
+      "passageId": "passage-018",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Against such things there is no law."
+        }
+      ],
+      "text": "Against such things there is no law."
+    },
+    {
+      "id": "L03-q11",
+      "reference": "Genesis 1:1b",
+      "passageId": "passage-010",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "God created the heavens and the earth."
+        }
+      ],
+      "text": "God created the heavens and the earth."
+    },
+    {
+      "id": "L03-q12",
+      "reference": "Isaiah 42:3b",
+      "passageId": "passage-037",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He won’t quench a dimly burning wick."
+        }
+      ],
+      "text": "He won’t quench a dimly burning wick."
+    },
+    {
+      "id": "L03-q13",
+      "reference": "Psalm 19:1c",
+      "passageId": "passage-013",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The heavens declare the glory of God."
+        }
+      ],
+      "text": "The heavens declare the glory of God."
+    },
+    {
+      "id": "L03-q14",
+      "reference": "2 Corinthians 5:17c",
+      "passageId": "passage-020",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 17,
+          "text": "The old things have passed away."
+        }
+      ],
+      "text": "The old things have passed away."
     }
   ]
 }

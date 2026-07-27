@@ -78,4 +78,19 @@ describe('Daily Scrabble puzzle builder', () => {
     expect(indexes[0]).toBe(0);
     expect(indexes[indexes.length - 1]).toBe(13);
   });
+
+  it('selects Chinese words and scrambles their characters', () => {
+    const puzzle = buildDailyScrabble(
+      '上帝爱世人，甚至赐下他的独生子。',
+      'ccb-john-3-16',
+    );
+
+    expect(puzzle.targets.length).toBeGreaterThanOrEqual(2);
+    expect(puzzle.targets.length).toBeLessThanOrEqual(DAILY_SCRABBLE_MAX_TARGETS);
+    expect(puzzle.targets.some((target) => target.word === '世人')).toBe(true);
+    for (const target of puzzle.targets) {
+      expect(target.answer.join('')).toBe(target.word);
+      expect(target.answer.length).toBeLessThanOrEqual(4);
+    }
+  });
 });

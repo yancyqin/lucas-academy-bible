@@ -127,6 +127,88 @@
         }
       ],
       "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus."
+    },
+    {
+      "id": "L09-q09",
+      "reference": "Isaiah 42:3",
+      "passageId": "passage-037",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+        }
+      ],
+      "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice."
+    },
+    {
+      "id": "L09-q10",
+      "reference": "John 3:3",
+      "passageId": "passage-053",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”"
+        }
+      ],
+      "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”"
+    },
+    {
+      "id": "L09-q11",
+      "reference": "Romans 8:31",
+      "passageId": "passage-069",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "What then shall we say about these things? If God is for us, who can be against us?"
+        }
+      ],
+      "text": "What then shall we say about these things? If God is for us, who can be against us?"
+    },
+    {
+      "id": "L09-q12",
+      "reference": "Matthew 6:11-12",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        },
+        {
+          "verse": 12,
+          "text": "Forgive us our debts, as we also forgive our debtors."
+        }
+      ],
+      "text": "Give us today our daily bread. Forgive us our debts, as we also forgive our debtors."
+    },
+    {
+      "id": "L09-q13",
+      "reference": "Psalm 23:3",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake."
+        }
+      ],
+      "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake."
+    },
+    {
+      "id": "L09-q14",
+      "reference": "Ephesians 4:7",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 7,
+          "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
+        }
+      ],
+      "text": "But to each one of us, the grace was given according to the measure of the gift of Christ."
     }
   ]
 }

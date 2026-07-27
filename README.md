@@ -17,10 +17,11 @@ final screen shows your score (percentage of hearts kept) and PASS / FAIL.
 
 The home screen also has a **Daily Verse** tab. The first request for each
 America/Los_Angeles calendar day asks YouVersion for that day's selection and
-turns it into a length-matched memory challenge. Players can keep the public-domain
-**WEB** or switch both Challenge and Daily Verse to **NIV**, **NIrV**, or
-**NASB 2020**. Licensed text is requested only when it is needed and is cached
-server-side by translation plus YouVersion passage ID.
+turns it into a length-matched memory challenge. Players can keep the
+public-domain **WEB**, switch to **NIV**, **NIrV**, or **NASB 2020**, or play in
+Chinese with local public-domain **CUV**, YouVersion **CCB** (当代译本), or
+**CCBT** (當代譯本). Licensed text is requested only when it is needed and is
+cached server-side by translation plus passage ID.
 
 The interaction loop is inspired by the focus and progression of Human Benchmark’s
 Sequence Memory test, but the look, feel, and content are entirely our own.
@@ -89,11 +90,11 @@ gitignored. Never expose the key through Vite variables or commit it to the
 repository.
 
 Daily Verse uses YouVersion's `verse_of_the_days` endpoint. Runtime passage text
-uses YouVersion Bible IDs WEB `206`, NIV `111`, NIrV `110`, and NASB 2020 `2692`.
+uses YouVersion Bible IDs WEB `206`, NIV `111`, NIrV `110`, NASB 2020 `2692`,
+CCB `36`, and CCBT `1392`.
 The API-returned title, abbreviation, copyright notice, and YouVersion link are
 displayed in one app-wide footer below the rounded game card on every screen.
-WEB and the optional Chinese CUV display their public-domain status in that same
-footer.
+WEB and CUV display their public-domain status in that same footer.
 
 `DAILY_VERSE_KV` caches the daily selection separately from scripture text. The
 selection is shared across translations for that Pacific calendar date; passage
@@ -112,21 +113,26 @@ python3 scripts/build_scripture_json.py
 python3 scripts/build_level_banks.py
 ```
 
-The first step rebuilds the approved passage list from WEB plus Chinese CUV; the
-second regenerates the difficulty-matched question banks. NIV, NIrV, and NASB
-2020 are never written into the repository. The Worker requests the selected
-translation for the chosen question at play time and obtains distractors from a
-different passage in that same translation.
+The first step rebuilds the approved passage list from WEB plus local Chinese
+CUV; the second regenerates the difficulty-matched question banks. Rebuild the local
+per-book CUV assets used for arbitrary Daily Verse references with:
+
+```bash
+python3 scripts/build_cuv_assets.py
+```
+
+NIV, NIrV, NASB 2020, CCB, and CCBT are never written into the repository. The
+Worker requests the selected licensed translation for the chosen question at
+play time and obtains distractors from a different passage in that same
+translation. Chinese text is segmented into word-like terms with
+`Intl.Segmenter`, with particles and punctuation attached to neighboring terms.
 
 - **The WEB baseline is public domain.** It is the default, works offline, and is
-  the reproducible source for references, progression, and Chinese pairings.
-- **A Chinese translation** is included alongside: the **Chinese Union Version
-  (和合本, Simplified — CUV), also public domain**, fetched from the same source. Each
-  passage carries `bookZh` + `textZh`, and each verse a `textZh`. The Chinese verse
-  and reference are shown under the English on the memorize / recall / complete /
-  certificate cards (English narration only — there is no Chinese audio). It is a
-  persisted **toggle** (中文): the welcome screen shows Sound + 中文 options above
-  Begin, and both are also in the in-game brand bar. See `metadata.translationZh`.
+  the reproducible source for references and progression.
+- **CUV is a playable local translation**, not a secondary hint. The approved
+  passage collection carries `bookZh` + `textZh`, and the per-book assets under
+  `public/cuv/` let Daily Verse resolve any CUV reference without a licensed-text
+  request.
 - The text is treated as **read-only**. The app never rewrites, modernizes,
   paraphrases, corrects, or silently normalizes scripture — punctuation and
   capitalization are preserved exactly (including curly quotes `“ ” ‘ ’` and the
@@ -148,7 +154,11 @@ Neither `data/verses.json` nor `scripts/build_scripture_json.py` is modified by 
 Each level is a JSON file in [`src/game/levels/`](src/game/levels) —
 `level-00.json` … `level-20.json` — holding the level’s **policy** plus a **bank** of
 questions. **Level 0** is a single fixed warm-up verse (“Jesus wept.”); levels 1–20
-each draw from a bank of similar-difficulty segments. The files are the source of truth and are meant to be read and hand-edited
+each draw from a bank of similar-difficulty segments. Levels 1–12 contain 15
+questions each through Level 16. Level 17 contains 11, Level 18 contains 13,
+and Levels 19–20 remain at 9 because no additional unused source passages fit
+their length bands. There are 283 questions total. The files are the source of
+truth and are meant to be read and hand-edited
 (a test validates every question against `verses.json`, so a bad edit fails loudly).
 Open any file to check the verses chosen for that level.
 
@@ -284,8 +294,8 @@ No audio files are shipped; everything is generated with browser-native APIs
 **It's one arcade-style run.** Every Challenge starts at **Level 0** and goes verse by
 verse; there's no level map, resume, or per-level jump. "Begin challenge" and
 "Play again" start a fresh run at Level 0. Clearing a level advances to the next;
-**running out of hearts ends the run**. Sound, Chinese visibility, and the
-selected English translation are persisted in `localStorage`
+**running out of hearts ends the run**. Sound and the
+selected translation are persisted in `localStorage`
 (`src/game/progress.ts`, validated so corrupt data can never crash the app).
 
 **Certificate.** The run ends on a certificate (by Lucas Academy, dated) for the

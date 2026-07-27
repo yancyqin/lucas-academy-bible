@@ -127,6 +127,84 @@
         }
       ],
       "text": "“It will happen afterward,"
+    },
+    {
+      "id": "L02-q09",
+      "reference": "Isaiah 42:3c",
+      "passageId": "passage-037",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He will faithfully bring justice."
+        }
+      ],
+      "text": "He will faithfully bring justice."
+    },
+    {
+      "id": "L02-q10",
+      "reference": "Philippians 4:4a",
+      "passageId": "passage-076",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Rejoice in the Lord always!"
+        }
+      ],
+      "text": "Rejoice in the Lord always!"
+    },
+    {
+      "id": "L02-q11",
+      "reference": "Philippians 4:4b",
+      "passageId": "passage-076",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "Again I will say, “Rejoice!”"
+        }
+      ],
+      "text": "Again I will say, “Rejoice!”"
+    },
+    {
+      "id": "L02-q12",
+      "reference": "Psalm 19:1d",
+      "passageId": "passage-013",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "The expanse shows his handiwork."
+        }
+      ],
+      "text": "The expanse shows his handiwork."
+    },
+    {
+      "id": "L02-q13",
+      "reference": "Psalm 56:4e",
+      "passageId": "passage-016",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "I will not be afraid."
+        }
+      ],
+      "text": "I will not be afraid."
+    },
+    {
+      "id": "L02-q14",
+      "reference": "Romans 6:1a",
+      "passageId": "passage-047",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What shall we say then?"
+        }
+      ],
+      "text": "What shall we say then?"
     }
   ]
 }

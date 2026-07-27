@@ -11,7 +11,6 @@ interface LevelCompleteProps {
   stars: number;
   mistakes: number;
   soundEnabled: boolean;
-  showChinese: boolean;
   narrator: Narrator;
   onContinue: () => void;
   modeLabel?: string;
@@ -23,7 +22,6 @@ export function LevelComplete({
   stars,
   mistakes,
   soundEnabled,
-  showChinese,
   narrator,
   onContinue,
   modeLabel,
@@ -67,9 +65,6 @@ export function LevelComplete({
 
         <p className="reference" style={{ display: 'block' }}>
           {level.reference}
-          {showChinese && level.referenceZh && (
-            <span className="reference-zh"> · {level.referenceZh}</span>
-          )}
         </p>
 
         <div className="stat-row">

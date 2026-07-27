@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { autoChunk, chunksReproduce, isContentWord, splitSentences } from '../chunk';
+import {
+  autoChunk,
+  chunksReproduce,
+  isContentWord,
+  joinChunks,
+  splitSentences,
+  tokenize,
+} from '../chunk';
 
 describe('autoChunk (content-word tiles)', () => {
   it('keeps content words as their own tiles', () => {
@@ -47,6 +54,26 @@ describe('autoChunk (content-word tiles)', () => {
       expect(c.trim().length).toBeGreaterThan(0);
     }
   });
+
+  it('segments Chinese into readable word tiles and preserves every character', () => {
+    const text = '耶稣哭了。';
+    const chunks = autoChunk(text);
+
+    expect(tokenize(text)).toEqual(['耶稣', '哭了。']);
+    expect(chunks).toEqual(['耶稣', '哭了。']);
+    expect(joinChunks(chunks)).toBe(text);
+    expect(chunksReproduce(text, chunks)).toBe(true);
+  });
+
+  it('groups Chinese terms into larger phrases for easier levels', () => {
+    const text = '神爱世人，甚至赐下独生子。';
+    const words = autoChunk(text, 'words');
+    const phrases = autoChunk(text, 'phrase');
+
+    expect(phrases.length).toBeLessThan(words.length);
+    expect(joinChunks(phrases)).toBe(text);
+    expect(phrases).toHaveLength(2);
+  });
 });
 
 describe('splitSentences', () => {
@@ -60,5 +87,13 @@ describe('splitSentences', () => {
   it('returns the whole text when there is a single sentence', () => {
     const text = 'looking to Jesus, the author and perfecter of faith';
     expect(splitSentences(text)).toEqual([text]);
+  });
+
+  it('splits Chinese sentence punctuation without adding spaces', () => {
+    const text = '神说：「要有光。」就有了光。神看光是好的。';
+    const sentences = splitSentences(text);
+
+    expect(sentences.length).toBeGreaterThan(1);
+    expect(sentences.join('')).toBe(text);
   });
 });

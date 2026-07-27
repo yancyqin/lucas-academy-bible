@@ -127,6 +127,84 @@
         }
       ],
       "text": "Your old men will dream dreams. Your young men will see visions."
+    },
+    {
+      "id": "L07-q09",
+      "reference": "John 12:20",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 20,
+          "text": "Now there were certain Greeks among those who went up to worship at the feast."
+        }
+      ],
+      "text": "Now there were certain Greeks among those who went up to worship at the feast."
+    },
+    {
+      "id": "L07-q10",
+      "reference": "John 12:23",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+        }
+      ],
+      "text": "Jesus answered them, “The time has come for the Son of Man to be glorified."
+    },
+    {
+      "id": "L07-q11",
+      "reference": "Proverbs 4:23",
+      "passageId": "passage-029",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Keep your heart with all diligence, for out of it is the wellspring of life."
+        }
+      ],
+      "text": "Keep your heart with all diligence, for out of it is the wellspring of life."
+    },
+    {
+      "id": "L07-q12",
+      "reference": "Psalm 119:105",
+      "passageId": "passage-002",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 105,
+          "text": "Your word is a lamp to my feet, and a light for my path."
+        }
+      ],
+      "text": "Your word is a lamp to my feet, and a light for my path."
+    },
+    {
+      "id": "L07-q13",
+      "reference": "Psalm 23:2",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "He makes me lie down in green pastures. He leads me beside still waters."
+        }
+      ],
+      "text": "He makes me lie down in green pastures. He leads me beside still waters."
+    },
+    {
+      "id": "L07-q14",
+      "reference": "Romans 6:1",
+      "passageId": "passage-047",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What shall we say then? Shall we continue in sin, that grace may abound?"
+        }
+      ],
+      "text": "What shall we say then? Shall we continue in sin, that grace may abound?"
     }
   ]
 }

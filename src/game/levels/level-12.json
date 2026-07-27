@@ -135,6 +135,88 @@
         }
       ],
       "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’"
+    },
+    {
+      "id": "L12-q09",
+      "reference": "Matthew 6:9-10",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy."
+        },
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        }
+      ],
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy. Let your Kingdom come. Let your will be done on earth as it is in heaven."
+    },
+    {
+      "id": "L12-q10",
+      "reference": "1 Corinthians 2:14",
+      "passageId": "passage-082",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+        }
+      ],
+      "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned."
+    },
+    {
+      "id": "L12-q11",
+      "reference": "Romans 8:32",
+      "passageId": "passage-069",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 32,
+          "text": "He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"
+        }
+      ],
+      "text": "He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"
+    },
+    {
+      "id": "L12-q12",
+      "reference": "John 12:26",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 26,
+          "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+        }
+      ],
+      "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him."
+    },
+    {
+      "id": "L12-q13",
+      "reference": "Romans 12:1",
+      "passageId": "passage-087",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service."
+        }
+      ],
+      "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service."
+    },
+    {
+      "id": "L12-q14",
+      "reference": "Ephesians 1:10",
+      "passageId": "passage-034",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him."
+        }
+      ],
+      "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him."
     }
   ]
 }

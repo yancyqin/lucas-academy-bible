@@ -10,7 +10,7 @@ import {
   type Question,
 } from './levels';
 import { mulberry32, shuffle, type Rng } from './random';
-import { getPassage, translationInfo } from '../data/scripture';
+import { translationInfo } from '../data/scripture';
 
 export interface ScriptureAttribution {
   abbreviation: string;
@@ -43,10 +43,6 @@ export interface BuiltLevel {
   reference: string;
   fragment: boolean;
   fullText: string;
-  /** Chinese Union Version (和合本) for the verse(s) this question covers. */
-  fullTextZh: string;
-  /** Chinese reference, e.g. "约翰福音 11:35" (empty if unavailable). */
-  referenceZh: string;
   verses: { verse: number; text: string }[];
   hearts: number;
   hintLevel: HintLevel;
@@ -117,25 +113,6 @@ function sectionUnits(
   return { label: () => '', texts: [question.text] };
 }
 
-/** Chinese (和合本) text + reference for the verse(s) a question covers. */
-function chineseFor(question: Question): { fullTextZh: string; referenceZh: string } {
-  const passage = getPassage(question.passageId);
-  if (!passage) return { fullTextZh: '', referenceZh: '' };
-  const zhByVerse = new Map<number, string>();
-  for (const v of passage.verses) zhByVerse.set(v.verse, v.textZh ?? '');
-  const nums = question.verses.map((v) => v.verse);
-  // Fragments show the whole source verse's Chinese (the CUV can't be split to
-  // match an English clause), which reads as a helpful translation.
-  const fullTextZh = nums.map((n) => zhByVerse.get(n) ?? '').join('');
-  const a = nums[0];
-  const b = nums[nums.length - 1];
-  const bookZh = passage.bookZh ?? '';
-  const referenceZh = bookZh
-    ? `${bookZh} ${passage.chapter}:${a === b ? a : `${a}-${b}`}`
-    : '';
-  return { fullTextZh, referenceZh };
-}
-
 function configuredAttribution(): ScriptureAttribution | undefined {
   const copyright = translationInfo.copyright;
   if (typeof copyright !== 'string' || !copyright) return undefined;
@@ -189,7 +166,7 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
   const { label, texts } = sectionUnits(question, file.policy.sectionBy);
 
   const sections: RecallSection[] = texts.map((unitText, si) => {
-    const correct = autoChunk(unitText);
+    const correct = autoChunk(unitText, file.policy.granularity);
     const distractors = pickDistractors({
       excludeId: question.passageId,
       correctChunks: correct,
@@ -207,16 +184,12 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
     };
   });
 
-  const zh = chineseFor(question);
-
   return {
     level: file.level,
     passageId: question.passageId,
     reference: question.reference,
-    referenceZh: zh.referenceZh,
     fragment: question.fragment,
     fullText: question.text,
-    fullTextZh: zh.fullTextZh,
     verses: question.verses,
     hearts: file.policy.hearts,
     hintLevel: file.policy.hintLevel,

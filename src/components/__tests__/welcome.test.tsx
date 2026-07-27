@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { DailyVerse } from '../../daily';
 import { Welcome } from '../Welcome';
@@ -25,13 +25,46 @@ const daily: DailyVerse = {
 const noop = vi.fn();
 
 describe('welcome game tabs', () => {
+  it('switches between English and playable Chinese Bible editions', () => {
+    const selectTranslation = vi.fn();
+    render(
+      <Welcome
+        soundEnabled
+        onToggleSound={noop}
+        onBegin={noop}
+        activeTab="journey"
+        onSelectTab={noop}
+        dailyVerse={daily}
+        dailyLoading={false}
+        dailyError=""
+        onRetryDaily={noop}
+        onBeginDaily={noop}
+        onBeginScrabble={noop}
+        onBeginWordSearch={noop}
+        dailyEnabled
+        translation="NIV"
+        onSelectTranslation={selectTranslation}
+        journeyError=""
+        translationApiEnabled
+      />,
+    );
+
+    expect(screen.getByRole('radiogroup', { name: 'Bible language' })).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: 'English' })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+    expect(screen.queryByRole('button', { name: /中文 translation/i })).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('radio', { name: '中文' }));
+    expect(selectTranslation).toHaveBeenCalledWith('CUV');
+  });
+
   it('shows a ready Daily Verse challenge without revealing the verse text', () => {
     render(
       <Welcome
         soundEnabled={false}
-        showChinese={false}
         onToggleSound={noop}
-        onToggleChinese={noop}
         onBegin={noop}
         activeTab="daily"
         onSelectTab={noop}
@@ -72,9 +105,7 @@ describe('welcome game tabs', () => {
     render(
       <Welcome
         soundEnabled={false}
-        showChinese
         onToggleSound={noop}
-        onToggleChinese={noop}
         onBegin={noop}
         activeTab="daily"
         onSelectTab={noop}
@@ -102,9 +133,7 @@ describe('welcome game tabs', () => {
     render(
       <Welcome
         soundEnabled
-        showChinese={false}
         onToggleSound={noop}
-        onToggleChinese={noop}
         onBegin={noop}
         activeTab="scrabble"
         onSelectTab={noop}
@@ -136,9 +165,7 @@ describe('welcome game tabs', () => {
     render(
       <Welcome
         soundEnabled
-        showChinese={false}
         onToggleSound={noop}
-        onToggleChinese={noop}
         onBegin={noop}
         activeTab="word-search"
         onSelectTab={noop}

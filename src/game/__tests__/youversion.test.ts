@@ -1,6 +1,9 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { LevelFile } from '../levels';
 import { prepareJourneyLevel } from '../../youversion';
+import { getLevelFile, LEVELS } from '../levels';
+import { joinChunks } from '../chunk';
+import { mulberry32 } from '../random';
 
 const policy: LevelFile['policy'] = {
   hearts: 3,
@@ -29,6 +32,50 @@ afterEach(() => {
 });
 
 describe('runtime YouVersion journey levels', () => {
+  it('builds the CUV challenge entirely from local public-domain text', async () => {
+    const api = vi.fn();
+    vi.stubGlobal('fetch', api);
+
+    const built = await prepareJourneyLevel(getLevelFile(0)!, 'CUV', 1);
+
+    expect(api).not.toHaveBeenCalled();
+    expect(built.reference).toBe('约翰福音 11:35');
+    expect(built.fullText).toBe('耶稣哭了。');
+    expect(joinChunks(built.sections[0].correct)).toBe(built.fullText);
+    expect(built.sections[0].correct).toEqual(['耶稣', '哭了。']);
+    expect(built.attribution?.copyright).toBe('Public Domain');
+  });
+
+  it('builds every newly added question in local CUV', async () => {
+    const api = vi.fn();
+    vi.stubGlobal('fetch', api);
+
+    for (const file of LEVELS.filter(
+      (level) => level.level >= 1 && level.level <= 18,
+    )) {
+      for (
+        let questionIndex = 9;
+        questionIndex < file.questions.length;
+        questionIndex += 1
+      ) {
+        let seed = 0;
+        while (
+          Math.floor(mulberry32(seed)() * file.questions.length) !==
+          questionIndex
+        ) {
+          seed += 1;
+        }
+        const built = await prepareJourneyLevel(file, 'CUV', seed);
+        expect(built.questionId).toBe(file.questions[questionIndex].id);
+        expect(joinChunks(built.sections.flatMap((section) => section.correct))).toBe(
+          built.fullText,
+        );
+      }
+    }
+
+    expect(api).not.toHaveBeenCalled();
+  });
+
   it('uses API text for both the answer and its distractors', async () => {
     const file: LevelFile = {
       level: 8,
@@ -124,5 +171,45 @@ describe('runtime YouVersion journey levels', () => {
     ]).toContain(built.fullText);
     expect(built.reference).toBe('1 Corinthians 12:12');
     expect(built.fullText).not.toBe(file.questions[0].text);
+  });
+
+  it('uses API Chinese text as the playable answer without inserted spaces', async () => {
+    const file: LevelFile = {
+      level: 0,
+      policy: { ...policy, distractorsPerSection: 0 },
+      questions: [
+        {
+          id: 'ccb-q',
+          reference: 'John 11:35',
+          passageId: 'passage-001',
+          fragment: false,
+          verses: [{ verse: 35, text: 'Jesus wept.' }],
+          text: 'Jesus wept.',
+        },
+      ],
+    };
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () =>
+        Response.json({
+          passageId: 'JHN.11.35',
+          reference: '约翰福音 11:35',
+          text: '耶稣哭了。',
+          cache: 'MISS',
+          translation: {
+            ...translation,
+            key: 'CCB',
+            label: 'CCB',
+            id: 36,
+            abbreviation: 'CCB',
+          },
+        }),
+      ),
+    );
+
+    const built = await prepareJourneyLevel(file, 'CCB', 2);
+
+    expect(built.reference).toBe('约翰福音 11:35');
+    expect(joinChunks(built.sections[0].correct)).toBe('耶稣哭了。');
   });
 });

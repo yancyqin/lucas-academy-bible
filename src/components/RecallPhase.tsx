@@ -4,10 +4,10 @@ import { initRecall, recallReducer } from '../game/recall';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
 import { Tile } from './Tile';
+import { joinChunks } from '../game/chunk';
 
 interface RecallPhaseProps {
   level: BuiltLevel;
-  showChinese: boolean;
   sound: SoundEngine;
   announce: (msg: string, assertive?: boolean) => void;
   /** Level cleared: reports mistakes + hearts remaining (for the run score). */
@@ -19,7 +19,6 @@ interface RecallPhaseProps {
 
 export function RecallPhase({
   level,
-  showChinese,
   sound,
   announce,
   onComplete,
@@ -152,21 +151,7 @@ export function RecallPhase({
 
         <p className="reference" style={{ display: 'block' }}>
           {level.reference}
-          {showChinese && level.referenceZh && (
-            <span className="reference-zh"> · {level.referenceZh}</span>
-          )}
         </p>
-
-        {/* Optional Chinese meaning hint. Native details keeps it collapsed on
-            every new exam while remaining keyboard/screen-reader accessible. */}
-        {showChinese && level.fullTextZh && (
-          <details className="zh-disclosure">
-            <summary lang="zh-Hans">中文提示</summary>
-            <p className="scripture-zh zh-disclosure__text" lang="zh-Hans">
-              {level.fullTextZh}
-            </p>
-          </details>
-        )}
 
         {/* Challenge timer — 2× the memorize time; overtime bleeds hearts. */}
         <div
@@ -188,7 +173,7 @@ export function RecallPhase({
         {/* Answer area — assembled sequence, always visible above the bank. */}
         <div className="answer" aria-label="Assembled passage so far" aria-live="off">
           {state.completedSections.length > 0 && (
-            <p className="answer__prior">{state.completedSections.join(' ')}</p>
+            <p className="answer__prior">{joinChunks(state.completedSections)}</p>
           )}
           <div className="answer__tiles">
             {state.placed.length === 0 && remainingSlots > 0 && level.hintLevel !== 'slots' && (

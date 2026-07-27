@@ -93,8 +93,18 @@ PIN_LEVEL_0 = "passage-001"
 FEATURED_WHOLE_REFERENCES = {
     "Psalm 103:11",
 }
-CAP_PER_LEVEL = 9
+BASE_CAP_PER_LEVEL = 9
+EXPANDED_THROUGH_LEVEL = 12
+EXTRA_QUESTIONS_PER_EARLY_LEVEL = 6
+UPPER_LEVEL_START = 13
+EXTRA_QUESTIONS_PER_UPPER_LEVEL = 6
 MIN_PER_LEVEL = 4
+EXTRA_CONTINUATION_STARTS = {
+    "and", "as", "at", "because", "but", "by", "even", "for", "from", "if",
+    "in", "into", "of", "on", "or", "so", "than", "that", "then", "therefore",
+    "though", "through", "to", "unless", "until", "upon", "when", "where",
+    "which", "while", "who", "whom", "whose", "with", "yet",
+}
 
 
 def words(text: str) -> int:
@@ -238,6 +248,95 @@ def main() -> None:
                     picks.append(by_book[b].pop(0))
         return picks
 
+    def extra_quality_key(candidate: dict) -> tuple:
+        """Prefer complete, self-contained additions over dangling clauses."""
+        text = candidate["text"].strip()
+        unquoted = text.lstrip("\"'“‘")
+        first_match = re.match(r"[A-Za-z’'-]+", unquoted)
+        first_word = first_match.group(0).lower() if first_match else ""
+        speech_intro = bool(
+            re.search(r"\b(?:answered|asked|cried|said|says),?$", text, re.I)
+        )
+        complete_sentence = bool(SENTENCE_END.search(text))
+        starts_lowercase = bool(unquoted[:1].islower())
+        psalm_superscription = bool(
+            re.match(r"(?:A Psalm|For the Chief Musician)\b", unquoted)
+        )
+        unbalanced_double_quote = (
+            candidate["fragment"] and text.count("“") != text.count("”")
+        )
+        dangling_whole_verse = (
+            not candidate["fragment"] and starts_lowercase and not complete_sentence
+        )
+        return (
+            dangling_whole_verse,
+            candidate["fragment"],
+            psalm_superscription,
+            unbalanced_double_quote,
+            not complete_sentence,
+            speech_intro,
+            starts_lowercase,
+            first_word in EXTRA_CONTINUATION_STARTS,
+            -candidate["words"],
+            candidate["reference"],
+        )
+
+    def diversified_extras(
+        pool_list: list[dict], already: list[dict], cap: int
+    ) -> list[dict]:
+        """Add the strongest unused candidates, with at most two extras per book."""
+        have = {candidate["text"] for candidate in already}
+        candidates_by_quality = sorted(
+            (candidate for candidate in pool_list if candidate["text"] not in have),
+            key=extra_quality_key,
+        )
+        picks = list(already)
+        extras_by_book: dict[str, int] = {}
+        deferred: list[dict] = []
+        for candidate in candidates_by_quality:
+            if len(picks) >= cap:
+                break
+            book = candidate["book"]
+            if extras_by_book.get(book, 0) >= 2:
+                deferred.append(candidate)
+                continue
+            picks.append(candidate)
+            extras_by_book[book] = extras_by_book.get(book, 0) + 1
+        for candidate in deferred:
+            if len(picks) >= cap:
+                break
+            picks.append(candidate)
+        return picks
+
+    def diversified_upper_extras(
+        pool_list: list[dict], already: list[dict], cap: int
+    ) -> list[dict]:
+        """Add at most one upper-level question from each new source passage."""
+        already_texts = {candidate["text"] for candidate in already}
+        used_passage_ids = {candidate["passageId"] for candidate in already}
+        candidates_by_quality = sorted(
+            (
+                candidate
+                for candidate in pool_list
+                if candidate["text"] not in already_texts
+                and candidate["passageId"] not in used_passage_ids
+            ),
+            key=extra_quality_key,
+        )
+        picks = list(already)
+        extras_by_book: dict[str, int] = {}
+        for candidate in candidates_by_quality:
+            if len(picks) >= cap:
+                break
+            passage_id = candidate["passageId"]
+            book = candidate["book"]
+            if passage_id in used_passage_ids or extras_by_book.get(book, 0) >= 2:
+                continue
+            picks.append(candidate)
+            used_passage_ids.add(passage_id)
+            extras_by_book[book] = extras_by_book.get(book, 0) + 1
+        return picks
+
     used: set[str] = set()
     level_picks: dict[int, list[dict]] = {}
 
@@ -263,22 +362,59 @@ def main() -> None:
             ),
             key=lambda c: c["reference"],
         )
-        if len(featured) > CAP_PER_LEVEL:
+        if len(featured) > BASE_CAP_PER_LEVEL:
             raise ValueError(
-                f"Level {lvl} has {len(featured)} featured passages but a cap of {CAP_PER_LEVEL}"
+                f"Level {lvl} has {len(featured)} featured passages but a base cap "
+                f"of {BASE_CAP_PER_LEVEL}"
             )
-        picks = diversified(in_range, featured, CAP_PER_LEVEL)
+        picks = diversified(in_range, featured, BASE_CAP_PER_LEVEL)
         for c in picks:
             used.add(c["text"])
         level_picks[lvl] = picks
 
-    # Pass 2 — top up any level below the minimum, allowing reuse (the very long
+    # Pass 2 — expand Levels 1–12 only after every level has received its original
+    # nine-question bank. This preserves the existing selections and adds unused
+    # candidates instead of taking questions away from adjacent levels.
+    expanded_cap = BASE_CAP_PER_LEVEL + EXTRA_QUESTIONS_PER_EARLY_LEVEL
+    for (lvl, _h, _hint, _g, _s, _d, lo, hi, _spw, _tmin, _tmax) in LEVELS:
+        if lvl < 1 or lvl > EXPANDED_THROUGH_LEVEL:
+            continue
+        in_range = [
+            c for c in candidates
+            if c["text"] not in used and lo <= c["words"] <= hi
+        ]
+        picks = diversified_extras(in_range, level_picks[lvl], expanded_cap)
+        for c in picks:
+            used.add(c["text"])
+        level_picks[lvl] = picks
+
+    # Pass 3 — expand the upper levels from longest to shortest. Working
+    # backwards protects the scarce Level 20 candidates; unlike the early band,
+    # these additions may stop below the cap when no unused passage fits.
+    upper_cap = BASE_CAP_PER_LEVEL + EXTRA_QUESTIONS_PER_UPPER_LEVEL
+    for (lvl, _h, _hint, _g, _s, _d, lo, hi, _spw, _tmin, _tmax) in reversed(
+        LEVELS
+    ):
+        if lvl < UPPER_LEVEL_START:
+            continue
+        in_range = [
+            c for c in candidates
+            if c["text"] not in used and lo <= c["words"] <= hi
+        ]
+        picks = diversified_upper_extras(in_range, level_picks[lvl], upper_cap)
+        for c in picks:
+            used.add(c["text"])
+        level_picks[lvl] = picks
+
+    # Pass 4 — top up any level below the minimum, allowing reuse (the very long
     # passages are scarce, so upper levels may share a few).
     for (lvl, _h, _hint, _g, _s, _d, lo, hi, _spw, _tmin, _tmax) in LEVELS:
         if lvl == 0 or len(level_picks[lvl]) >= MIN_PER_LEVEL:
             continue
         in_range = [c for c in candidates if lo <= c["words"] <= hi]
-        level_picks[lvl] = diversified(in_range, level_picks[lvl], CAP_PER_LEVEL)
+        level_picks[lvl] = diversified(
+            in_range, level_picks[lvl], BASE_CAP_PER_LEVEL
+        )
 
     # Remove stale level files so shrinking the LEVELS table can't leave orphans
     # (the app globs whatever is present).

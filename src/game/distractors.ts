@@ -1,5 +1,5 @@
 import { allPassages } from '../data/scripture';
-import { isContentWord, tokenize } from './chunk';
+import { isContentWord, joinChunks, tokenize } from './chunk';
 import { shuffle, type Rng } from './random';
 
 /**
@@ -32,7 +32,7 @@ function buildWindows(
     if (p.id === excludeId) continue;
     const toks = tokenize(p.text);
     for (let i = 0; i + size <= toks.length; i++) {
-      out.push(toks.slice(i, i + size).join(' '));
+      out.push(joinChunks(toks.slice(i, i + size)));
     }
   }
   return out;
@@ -75,7 +75,7 @@ export function pickDistractors(req: DistractorRequest): string[] {
     let windows = buildWindows(passages, excludeId, size)
       .filter((w) => !correctSet.has(w))
       // Every decoy must carry a content word — no confusing lone 虚词 decoys.
-      .filter((w) => w.split(' ').some(isContentWord));
+      .filter((w) => tokenize(w).some(isContentWord));
     // For single-word distractors, prefer meatier words.
     if (size === 1) {
       const meaty = windows.filter((w) => letters(w) >= 3);

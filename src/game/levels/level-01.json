@@ -127,6 +127,84 @@
         }
       ],
       "text": "says Yahweh."
+    },
+    {
+      "id": "L01-q09",
+      "reference": "Joshua 1:9a",
+      "passageId": "passage-015",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Haven’t I commanded you?"
+        }
+      ],
+      "text": "Haven’t I commanded you?"
+    },
+    {
+      "id": "L01-q10",
+      "reference": "Joshua 1:9b",
+      "passageId": "passage-015",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "Be strong and courageous."
+        }
+      ],
+      "text": "Be strong and courageous."
+    },
+    {
+      "id": "L01-q11",
+      "reference": "Matthew 6:10a",
+      "passageId": "passage-042",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come."
+        }
+      ],
+      "text": "Let your Kingdom come."
+    },
+    {
+      "id": "L01-q12",
+      "reference": "Psalm 23:1c",
+      "passageId": "passage-091",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "I shall lack nothing."
+        }
+      ],
+      "text": "I shall lack nothing."
+    },
+    {
+      "id": "L01-q13",
+      "reference": "Psalm 23:3a",
+      "passageId": "passage-091",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 3,
+          "text": "He restores my soul."
+        }
+      ],
+      "text": "He restores my soul."
+    },
+    {
+      "id": "L01-q14",
+      "reference": "Romans 5:8c",
+      "passageId": "passage-031",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "Christ died for us."
+        }
+      ],
+      "text": "Christ died for us."
     }
   ]
 }

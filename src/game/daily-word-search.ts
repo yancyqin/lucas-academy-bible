@@ -2,6 +2,7 @@ import {
   buildDailyScrabble,
   type ScrabbleTarget,
 } from './daily-scrabble';
+import { isCjkText } from './chunk';
 
 const MIN_GRID_SIZE = 7;
 const MAX_GRID_SIZE = 10;
@@ -245,12 +246,17 @@ export function buildDailyWordSearch(
   }
 
   const fillerRandom = randomFrom(seed ^ 0xa5a5a5a5);
+  // Drawing Chinese fillers from the verse itself keeps simplified and
+  // traditional boards consistent without maintaining two fragile alphabets.
+  const fillerCharacters = isCjkText(text)
+    ? Array.from(text).filter((character) => /\p{Script=Han}/u.test(character))
+    : Array.from(FILLER_ALPHABET);
   const grid = placement.grid.map((row) =>
     row.map(
       (cell) =>
         cell ??
-        FILLER_ALPHABET[
-          Math.floor(fillerRandom() * FILLER_ALPHABET.length)
+        fillerCharacters[
+          Math.floor(fillerRandom() * fillerCharacters.length)
         ],
     ),
   );

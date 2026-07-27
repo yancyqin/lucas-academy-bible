@@ -9,6 +9,23 @@ export const TRANSLATIONS = Object.freeze({
   NIV: { key: 'NIV', label: 'NIV', bibleId: 111 },
   NIRV: { key: 'NIRV', label: 'NIrV', bibleId: 110 },
   NASB2020: { key: 'NASB2020', label: 'NASB 2020', bibleId: 2692 },
+  CUV: {
+    key: 'CUV',
+    label: 'CUV',
+    bibleId: 0,
+    local: true,
+    metadata: {
+      id: 0,
+      abbreviation: 'CUV',
+      title: 'Chinese Union Version (Simplified)',
+      localized_title: '和合本',
+      copyright: 'Public Domain',
+      promotional_content: '',
+      youversion_deep_link: 'https://ebible.org/details.php?id=cmn-cu89s',
+    },
+  },
+  CCB: { key: 'CCB', label: 'CCB', bibleId: 36 },
+  CCBT: { key: 'CCBT', label: 'CCBT', bibleId: 1392 },
 });
 
 const PASSAGE_ID_PATTERN = /^[1-3]?[A-Z]{2,3}\.\d+\.\d+(?:-\d+)?$/;
@@ -79,6 +96,9 @@ function assertConfigured(env) {
 }
 
 async function getBibleMetadata(env, translation) {
+  if (translation.local) {
+    return { value: translation.metadata, cache: 'HIT' };
+  }
   const cacheKey = `bible:${translation.bibleId}:metadata`;
   const cached = await env.DAILY_VERSE_KV.get(cacheKey, 'json');
   if (cached) return { value: cached, cache: 'HIT' };
@@ -91,6 +111,40 @@ async function getBibleMetadata(env, translation) {
     expirationTtl: VERSION_TTL_SECONDS,
   });
   return { value: metadata, cache: 'MISS' };
+}
+
+async function getLocalCuvPassage(env, passageId) {
+  if (!env.ASSETS) {
+    throw new Error('Local CUV assets are not configured');
+  }
+  const match = passageId.match(
+    /^([1-3]?[A-Z]{2,3})\.(\d+)\.(\d+)(?:-(\d+))?$/,
+  );
+  if (!match) throw new Error('Invalid YouVersion passage id');
+  const [, book, chapter, firstText, lastText] = match;
+  const first = Number(firstText);
+  const last = Number(lastText ?? firstText);
+  const response = await env.ASSETS.fetch(
+    new Request(`https://local-assets.invalid/cuv/${book}.json`),
+  );
+  if (!response.ok) {
+    throw new Error(`Local CUV book ${book} is unavailable`);
+  }
+  const data = await response.json();
+  const chapterData = data?.chapters?.[chapter];
+  const verses = [];
+  for (let verse = first; verse <= last; verse += 1) {
+    const text = chapterData?.[String(verse)];
+    if (typeof text !== 'string' || !text) {
+      throw new Error(`Local CUV passage ${passageId} is unavailable`);
+    }
+    verses.push(text);
+  }
+  return {
+    id: passageId,
+    reference: `${data.book ?? book} ${chapter}:${first === last ? first : `${first}-${last}`}`,
+    content: verses.join(''),
+  };
 }
 
 function translationPayload(translation, metadata) {
@@ -127,10 +181,12 @@ export async function getTranslationPassage(env, translationKey, passageId) {
   if (cached) return { ...cached, cache: 'HIT' };
 
   const [passage, versionResult] = await Promise.all([
-    youVersionJson(
-      `/bibles/${translation.bibleId}/passages/${encodeURIComponent(validPassageId)}?format=text&include_headings=false&include_notes=false`,
-      env.YVP_APP_KEY,
-    ),
+    translation.local
+      ? getLocalCuvPassage(env, validPassageId)
+      : youVersionJson(
+          `/bibles/${translation.bibleId}/passages/${encodeURIComponent(validPassageId)}?format=text&include_headings=false&include_notes=false`,
+          env.YVP_APP_KEY,
+        ),
     getBibleMetadata(env, translation),
   ]);
 

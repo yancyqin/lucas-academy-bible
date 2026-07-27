@@ -27,4 +27,12 @@ describe('segmentForSpeech (slow, gap-paced narration)', () => {
   it('handles a short text as a single segment', () => {
     expect(segmentForSpeech('Jesus wept.')).toEqual(['Jesus wept.']);
   });
+
+  it('segments Chinese clauses without inserting spaces', () => {
+    const text = '神爱世人，甚至赐下独生子。信他的人有永生。';
+    const segments = segmentForSpeech(text);
+
+    expect(segments.length).toBeGreaterThan(1);
+    expect(segments.join('')).toBe(text);
+  });
 });

@@ -127,6 +127,84 @@
         }
       ],
       "text": "and the knowledge of God more than burnt offerings."
+    },
+    {
+      "id": "L04-q09",
+      "reference": "Isaiah 50:6c",
+      "passageId": "passage-038",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "I didn’t hide my face from shame and spitting."
+        }
+      ],
+      "text": "I didn’t hide my face from shame and spitting."
+    },
+    {
+      "id": "L04-q10",
+      "reference": "Matthew 5:14b",
+      "passageId": "passage-081",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 14,
+          "text": "A city located on a hill can’t be hidden."
+        }
+      ],
+      "text": "A city located on a hill can’t be hidden."
+    },
+    {
+      "id": "L04-q11",
+      "reference": "Psalm 56:4b",
+      "passageId": "passage-016",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 4,
+          "text": "I put my trust. I will not be afraid."
+        }
+      ],
+      "text": "I put my trust. I will not be afraid."
+    },
+    {
+      "id": "L04-q12",
+      "reference": "Romans 5:2b",
+      "passageId": "passage-046",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 2,
+          "text": "We rejoice in hope of the glory of God."
+        }
+      ],
+      "text": "We rejoice in hope of the glory of God."
+    },
+    {
+      "id": "L04-q13",
+      "reference": "Romans 6:1b",
+      "passageId": "passage-047",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "Shall we continue in sin, that grace may abound?"
+        }
+      ],
+      "text": "Shall we continue in sin, that grace may abound?"
+    },
+    {
+      "id": "L04-q14",
+      "reference": "John 12:22b",
+      "passageId": "passage-028",
+      "fragment": true,
+      "verses": [
+        {
+          "verse": 22,
+          "text": "Andrew came with Philip, and they told Jesus."
+        }
+      ],
+      "text": "Andrew came with Philip, and they told Jesus."
     }
   ]
 }

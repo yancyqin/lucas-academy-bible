@@ -237,42 +237,6 @@ body {
   font-weight: 600;
 }
 
-/* Chinese (和合本) */
-:root {
-  --font-zh: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC',
-    'Songti SC', serif;
-}
-.reference-zh {
-  font-family: var(--font-zh);
-  color: var(--gold-deep);
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: none;
-}
-.scripture-zh {
-  font-family: var(--font-zh);
-  font-size: clamp(1.35rem, 4vw, 1.95rem);
-  line-height: 1.8;
-  color: var(--ink-soft);
-  margin: 8px 0 0;
-  text-align: left;
-  font-weight: 600;
-}
-.restored__zh {
-  display: block;
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 1px dashed rgba(169, 132, 47, 0.3);
-  font-family: var(--font-zh);
-  font-size: 0.98em;
-  line-height: 1.7;
-  color: var(--ink-soft);
-}
-.restored--clamp {
-  max-height: 34vh;
-  overflow-y: auto;
-}
-
 .bible-attribution {
   width: 100%;
   max-width: var(--maxw);
@@ -310,51 +274,6 @@ body {
 
 .bible-attribution__copyright {
   display: inline;
-}
-
-/* Chinese translation disclosure — collapsed by default on study and recall. */
-.zh-disclosure {
-  margin: 0;
-  border: 2px solid rgba(169, 132, 47, 0.32);
-  border-radius: 16px;
-  background: rgba(251, 246, 234, 0.72);
-  overflow: hidden;
-}
-.zh-disclosure summary {
-  min-height: 56px;
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--gold-deep);
-  cursor: pointer;
-  font-family: var(--font-zh);
-  font-size: 1.12rem;
-  font-weight: 800;
-  list-style: none;
-}
-.zh-disclosure summary::-webkit-details-marker { display: none; }
-.zh-disclosure summary::after {
-  content: '＋';
-  margin-left: auto;
-  font-family: var(--font-ui);
-  font-size: 1.4rem;
-  line-height: 1;
-}
-.zh-disclosure[open] summary::after { content: '−'; }
-.zh-disclosure summary:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 3px var(--gold-deep);
-}
-.zh-disclosure__text {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  opacity: 0.9;
-  margin: 0;
-  padding: 0 18px 18px;
-  max-height: 4.8em;
-  overflow-y: auto;
 }
 
 /* ---- Buttons ------------------------------------------------------------ */
@@ -484,8 +403,47 @@ body {
   flex: none;
 }
 
-.translation-picker {
+.translation-selector {
   width: min(100%, 620px);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: none;
+}
+
+.translation-languages {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 5px;
+  border-radius: 18px;
+  background: rgba(243, 236, 219, 0.7);
+  border: 2px solid rgba(169, 132, 47, 0.25);
+}
+
+.translation-language {
+  min-height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: 800 1rem/1 var(--font-ui);
+  cursor: pointer;
+}
+
+.translation-language--active {
+  color: #302407;
+  background: rgba(255, 252, 243, 0.92);
+  box-shadow: 0 5px 13px -11px rgba(80, 57, 9, 0.95);
+}
+
+.translation-language:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+.translation-picker {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
@@ -493,7 +451,10 @@ body {
   border-radius: 20px;
   background: rgba(243, 236, 219, 0.8);
   border: 2px solid rgba(169, 132, 47, 0.3);
-  flex: none;
+}
+
+.translation-picker--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .translation-option {
@@ -569,6 +530,10 @@ body {
 
   .translation-picker {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .translation-picker--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .translation-option {
@@ -1764,9 +1729,6 @@ body {
   .title-xl { font-size: clamp(2.65rem, 14vw, 3.4rem); }
   .reference { font-size: 1.05rem; line-height: 1.55; }
   .study__scripture { font-size: 1.85rem; line-height: 1.55; }
-  .scripture-zh { font-size: 1.48rem; line-height: 1.75; }
-  .zh-disclosure summary { min-height: 60px; font-size: 1.2rem; }
-  .zh-disclosure__text { font-size: 1.32rem; padding: 0 16px 18px; }
   .tile {
     font-size: 1.48rem;
     font-weight: 700;

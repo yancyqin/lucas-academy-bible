@@ -179,6 +179,136 @@
         }
       ],
       "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me. You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over."
+    },
+    {
+      "id": "L16-q09",
+      "reference": "Philippians 2:5-8",
+      "passageId": "passage-090",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "Have this in your mind, which was also in Christ Jesus,"
+        },
+        {
+          "verse": 6,
+          "text": "who, existing in the form of God, didn’t consider equality with God a thing to be grasped,"
+        },
+        {
+          "verse": 7,
+          "text": "but emptied himself, taking the form of a servant, being made in the likeness of men."
+        },
+        {
+          "verse": 8,
+          "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross."
+        }
+      ],
+      "text": "Have this in your mind, which was also in Christ Jesus, who, existing in the form of God, didn’t consider equality with God a thing to be grasped, but emptied himself, taking the form of a servant, being made in the likeness of men. And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross."
+    },
+    {
+      "id": "L16-q10",
+      "reference": "Philippians 1:9-11",
+      "passageId": "passage-071",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 9,
+          "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment,"
+        },
+        {
+          "verse": 10,
+          "text": "so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ,"
+        },
+        {
+          "verse": 11,
+          "text": "being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God."
+        }
+      ],
+      "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment, so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ, being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God."
+    },
+    {
+      "id": "L16-q11",
+      "reference": "John 8:31-33",
+      "passageId": "passage-027",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+        },
+        {
+          "verse": 32,
+          "text": "You will know the truth, and the truth will make you free.”"
+        },
+        {
+          "verse": 33,
+          "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+        }
+      ],
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples. You will know the truth, and the truth will make you free.” They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”"
+    },
+    {
+      "id": "L16-q12",
+      "reference": "Romans 4:23-25",
+      "passageId": "passage-045",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 23,
+          "text": "Now it was not written that it was accounted to him for his sake alone,"
+        },
+        {
+          "verse": 24,
+          "text": "but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead,"
+        },
+        {
+          "verse": 25,
+          "text": "who was delivered up for our trespasses, and was raised for our justification."
+        }
+      ],
+      "text": "Now it was not written that it was accounted to him for his sake alone, but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead, who was delivered up for our trespasses, and was raised for our justification."
+    },
+    {
+      "id": "L16-q13",
+      "reference": "Romans 6:1-3",
+      "passageId": "passage-047",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 1,
+          "text": "What shall we say then? Shall we continue in sin, that grace may abound?"
+        },
+        {
+          "verse": 2,
+          "text": "May it never be! We who died to sin, how could we live in it any longer?"
+        },
+        {
+          "verse": 3,
+          "text": "Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?"
+        }
+      ],
+      "text": "What shall we say then? Shall we continue in sin, that grace may abound? May it never be! We who died to sin, how could we live in it any longer? Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?"
+    },
+    {
+      "id": "L16-q14",
+      "reference": "Ephesians 4:8-10",
+      "passageId": "passage-072",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 8,
+          "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.”"
+        },
+        {
+          "verse": 9,
+          "text": "Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth?"
+        },
+        {
+          "verse": 10,
+          "text": "He who descended is the one who also ascended far above all the heavens, that he might fill all things."
+        }
+      ],
+      "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.” Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth? He who descended is the one who also ascended far above all the heavens, that he might fill all things."
     }
   ]
 }

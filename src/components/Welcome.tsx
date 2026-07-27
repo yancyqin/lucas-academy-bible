@@ -1,8 +1,9 @@
 import { BookMark } from './icons';
 import { SoundToggle } from './SoundToggle';
-import { ChineseToggle } from './ChineseToggle';
 import type { DailyVerse } from '../daily';
 import {
+  CHINESE_TRANSLATIONS,
+  ENGLISH_TRANSLATIONS,
   TRANSLATIONS,
   type TranslationKey,
 } from '../translation-config';
@@ -11,9 +12,7 @@ export type WelcomeTab = 'journey' | 'daily' | 'scrabble' | 'word-search';
 
 interface WelcomeProps {
   soundEnabled: boolean;
-  showChinese: boolean;
   onToggleSound: () => void;
-  onToggleChinese: () => void;
   onBegin: () => void;
   activeTab: WelcomeTab;
   onSelectTab: (tab: WelcomeTab) => void;
@@ -33,9 +32,7 @@ interface WelcomeProps {
 
 export function Welcome({
   soundEnabled,
-  showChinese,
   onToggleSound,
-  onToggleChinese,
   onBegin,
   activeTab,
   onSelectTab,
@@ -54,6 +51,11 @@ export function Welcome({
 }: WelcomeProps) {
   const dailyReady =
     dailyVerse !== null && dailyVerse.translation.key === translation;
+  const selectedLanguage = TRANSLATIONS[translation].language;
+  const visibleTranslations =
+    selectedLanguage === 'zh'
+      ? CHINESE_TRANSLATIONS
+      : ENGLISH_TRANSLATIONS;
 
   return (
     <div className="stage stage--fit stage--welcome" role="region" aria-label="Welcome">
@@ -112,30 +114,65 @@ export function Welcome({
 
         <div className="btn-row" role="group" aria-label="Options">
           <SoundToggle enabled={soundEnabled} onToggle={onToggleSound} />
-          <ChineseToggle enabled={showChinese} onToggle={onToggleChinese} />
         </div>
 
         {translationApiEnabled && (
-          <div
-            className="translation-picker"
-            role="radiogroup"
-            aria-label="English Bible translation"
-          >
-            {Object.values(TRANSLATIONS).map((option) => (
+          <div className="translation-selector">
+            <div
+              className="translation-languages"
+              role="radiogroup"
+              aria-label="Bible language"
+            >
               <button
-                key={option.key}
                 type="button"
                 role="radio"
-                aria-checked={translation === option.key}
-                className={`translation-option ${
-                  translation === option.key ? 'translation-option--active' : ''
+                aria-checked={selectedLanguage === 'en'}
+                className={`translation-language ${
+                  selectedLanguage === 'en'
+                    ? 'translation-language--active'
+                    : ''
                 }`}
-                onClick={() => onSelectTranslation(option.key)}
-                title={option.name}
+                onClick={() => onSelectTranslation('WEB')}
               >
-                {option.label}
+                English
               </button>
-            ))}
+              <button
+                type="button"
+                role="radio"
+                aria-checked={selectedLanguage === 'zh'}
+                className={`translation-language ${
+                  selectedLanguage === 'zh'
+                    ? 'translation-language--active'
+                    : ''
+                }`}
+                onClick={() => onSelectTranslation('CUV')}
+                lang="zh-Hans"
+              >
+                中文
+              </button>
+            </div>
+
+            <div
+              className={`translation-picker translation-picker--${visibleTranslations.length}`}
+              role="radiogroup"
+              aria-label={`${selectedLanguage === 'zh' ? 'Chinese' : 'English'} Bible translation`}
+            >
+              {visibleTranslations.map((option) => (
+                <button
+                  key={option.key}
+                  type="button"
+                  role="radio"
+                  aria-checked={translation === option.key}
+                  className={`translation-option ${
+                    translation === option.key ? 'translation-option--active' : ''
+                  }`}
+                  onClick={() => onSelectTranslation(option.key)}
+                  title={option.name}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 

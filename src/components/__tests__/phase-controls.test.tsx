@@ -21,12 +21,11 @@ const sound = {
 const noop = vi.fn();
 
 describe('phase controls', () => {
-  it('collapses Chinese on study and has no quit control', () => {
+  it('animates the study text and has no quit control', () => {
     const { container } = render(
       <StudyPhase
         built={level}
         soundEnabled={false}
-        showChinese
         narrator={narrator}
         sound={sound}
         onReady={noop}
@@ -34,8 +33,7 @@ describe('phase controls', () => {
       />,
     );
 
-    const summary = screen.getByText('中文经文');
-    expect(summary.closest('details')).not.toHaveAttribute('open');
+    expect(screen.queryByText('中文经文')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: /start recall/i })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /quit/i })).not.toBeInTheDocument();
     const animatedWords = container.querySelectorAll('.study__word');
@@ -51,7 +49,6 @@ describe('phase controls', () => {
     render(
       <RecallPhase
         level={level}
-        showChinese
         sound={sound}
         announce={noop}
         onComplete={noop}
@@ -77,7 +74,6 @@ describe('phase controls', () => {
     const { container } = render(
       <RecallPhase
         level={level}
-        showChinese={false}
         sound={damageSound}
         announce={noop}
         onComplete={noop}
@@ -112,7 +108,6 @@ describe('phase controls', () => {
         stars={3}
         mistakes={0}
         soundEnabled={false}
-        showChinese
         narrator={narrator}
         onContinue={noop}
       />,
@@ -129,7 +124,6 @@ describe('phase controls', () => {
     render(
       <FailureReveal
         level={level}
-        showChinese
         onContinue={noop}
       />,
     );
@@ -137,6 +131,6 @@ describe('phase controls', () => {
     expect(screen.getByRole('heading', { name: /here is the verse/i })).toBeInTheDocument();
     expect(screen.getByText(level.fullText)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /^continue$/i })).toBeInTheDocument();
-    expect(screen.getByText('中文经文').closest('details')).not.toHaveAttribute('open');
+    expect(screen.queryByText('中文经文')).not.toBeInTheDocument();
   });
 });

@@ -4,11 +4,11 @@ import type { Narrator } from '../audio/speech';
 import { shouldAutoNarrate } from '../audio/speech';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
+import { isCjkText, tokenize } from '../game/chunk';
 
 interface StudyPhaseProps {
   built: BuiltLevel;
   soundEnabled: boolean;
-  showChinese: boolean;
   narrator: Narrator;
   sound: SoundEngine;
   onReady: () => void;
@@ -26,7 +26,7 @@ function clock(seconds: number): string {
 }
 
 function wordCount(text: string): number {
-  return text.trim().split(/\s+/u).filter(Boolean).length;
+  return tokenize(text.trim()).filter(Boolean).length;
 }
 
 function AnimatedWords({
@@ -38,21 +38,23 @@ function AnimatedWords({
   startIndex: number;
   wordTimeMs: number;
 }) {
+  const chinese = isCjkText(text);
   let wordOffset = 0;
-  return text.split(/(\s+)/u).map((part, index) => {
-    if (/^\s+$/u.test(part)) return part;
+  return tokenize(text).map((part, index) => {
     const animationIndex = startIndex + wordOffset;
     wordOffset += 1;
     return (
-      <span
-        className="study__word"
-        key={`${animationIndex}-${index}`}
-        style={{
-          animationDelay: `${animationIndex * wordTimeMs}ms`,
-          animationDuration: `${wordTimeMs}ms`,
-        }}
-      >
-        {part}
+      <span key={`${animationIndex}-${index}`}>
+        {!chinese && index > 0 ? ' ' : ''}
+        <span
+          className="study__word"
+          style={{
+            animationDelay: `${animationIndex * wordTimeMs}ms`,
+            animationDuration: `${wordTimeMs}ms`,
+          }}
+        >
+          {part}
+        </span>
       </span>
     );
   });
@@ -61,7 +63,6 @@ function AnimatedWords({
 export function StudyPhase({
   built,
   soundEnabled,
-  showChinese,
   narrator,
   sound,
   onReady,
@@ -156,9 +157,6 @@ export function StudyPhase({
 
           <p className="reference" style={{ display: 'block', marginTop: 12 }}>
             {built.reference}
-            {showChinese && built.referenceZh && (
-              <span className="reference-zh"> · {built.referenceZh}</span>
-            )}
           </p>
 
           <blockquote className="scripture study__scripture">
@@ -192,14 +190,6 @@ export function StudyPhase({
               )}
           </blockquote>
 
-          {showChinese && built.fullTextZh && (
-            <details className="zh-disclosure">
-              <summary lang="zh-Hans">中文经文</summary>
-              <p className="scripture-zh zh-disclosure__text" lang="zh-Hans">
-                {built.fullTextZh}
-              </p>
-            </details>
-          )}
         </div>
 
         <div className="divider" />

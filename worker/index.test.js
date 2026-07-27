@@ -4,6 +4,7 @@ import {
   getDailyVerse,
   getTranslationMetadata,
   getTranslationPassage,
+  TRANSLATIONS,
 } from './index.js';
 
 class MemoryKv {
@@ -25,6 +26,12 @@ afterEach(() => {
 });
 
 describe('daily verse Worker', () => {
+  it('configures the approved simplified and traditional Chinese editions', () => {
+    expect(TRANSLATIONS.CCB.bibleId).toBe(36);
+    expect(TRANSLATIONS.CCBT.bibleId).toBe(1392);
+    expect(TRANSLATIONS.CUV.local).toBe(true);
+  });
+
   it('uses the America/Los_Angeles calendar day', () => {
     expect(dateInfo(new Date('2026-01-01T07:30:00Z'))).toEqual({
       date: '2025-12-31',
@@ -158,5 +165,36 @@ describe('daily verse Worker', () => {
     expect(second.cache).toBe('HIT');
     expect(first.translation.copyright).toBe('Required NIV copyright.');
     expect(api).toHaveBeenCalledTimes(1);
+  });
+
+  it('reads CUV passage text from local public-domain assets', async () => {
+    const kv = new MemoryKv();
+    const api = vi.fn();
+    vi.stubGlobal('fetch', api);
+    const assets = {
+      fetch: vi.fn(async () =>
+        Response.json({
+          book: '约翰福音',
+          chapters: {
+            11: {
+              35: '耶稣哭了。',
+            },
+          },
+        }),
+      ),
+    };
+    const env = {
+      YVP_APP_KEY: 'test-only',
+      DAILY_VERSE_KV: kv,
+      ASSETS: assets,
+    };
+
+    const passage = await getTranslationPassage(env, 'CUV', 'JHN.11.35');
+
+    expect(passage.reference).toBe('约翰福音 11:35');
+    expect(passage.text).toBe('耶稣哭了。');
+    expect(passage.translation.copyright).toBe('Public Domain');
+    expect(assets.fetch).toHaveBeenCalledTimes(1);
+    expect(api).not.toHaveBeenCalled();
   });
 });

@@ -15,7 +15,6 @@ import { LevelComplete } from './components/LevelComplete';
 import { FailureReveal } from './components/FailureReveal';
 import { FinalCelebration } from './components/FinalCelebration';
 import { SoundToggle } from './components/SoundToggle';
-import { ChineseToggle } from './components/ChineseToggle';
 import { BookMark } from './components/icons';
 import { BibleAttribution } from './components/BibleAttribution';
 import { DailyScrabble } from './components/DailyScrabble';
@@ -58,7 +57,7 @@ interface Run {
   levelsAttempted: number;
   heartsKept: number;
   /** The highest level fully cleared so far (for the certificate). */
-  top: { level: number; reference: string; referenceZh: string } | null;
+  top: { level: number; reference: string } | null;
 }
 
 interface Result {
@@ -75,7 +74,6 @@ interface FinalState {
   /** Percentage of hearts kept across the cleared levels (excludes the fail). */
   scorePercent: number;
   reference: string;
-  referenceZh: string;
 }
 
 interface LiveMsg {
@@ -105,7 +103,7 @@ const CUV_ATTRIBUTION: ScriptureAttribution = {
 };
 
 function translationFallback(
-  translation: Exclude<TranslationKey, 'WEB'>,
+  translation: Exclude<TranslationKey, 'WEB' | 'CUV'>,
 ): ScriptureAttribution {
   const configured = TRANSLATIONS[translation];
   return {
@@ -149,7 +147,6 @@ export default function App() {
   const goWelcomeRef = useRef<() => void>(() => undefined);
 
   const soundEnabled = progress.soundEnabled;
-  const showChinese = progress.showChinese;
   const translation = translationApiEnabled ? progress.translation : 'WEB';
   phaseRef.current = phase;
 
@@ -158,7 +155,12 @@ export default function App() {
   }, [soundEnabled]);
 
   useEffect(() => {
-    if (!translationApiEnabled || translation === 'WEB') return undefined;
+    if (
+      !translationApiEnabled ||
+      !TRANSLATIONS[translation].requiresApi
+    ) {
+      return undefined;
+    }
 
     const controller = new AbortController();
     fetchBibleTranslation(translation, controller.signal)
@@ -235,14 +237,6 @@ export default function App() {
     announce(next ? 'Sound on.' : 'Sound off.');
   };
 
-  const toggleChinese = () => {
-    const next = !showChinese;
-    const updated = { ...progress, showChinese: next };
-    setProgress(updated);
-    saveProgress(updated);
-    announce(next ? '中文 on.' : '中文 off.');
-  };
-
   const selectTranslation = (next: TranslationKey) => {
     if (next === translation) return;
     const updated = { ...progress, translation: next };
@@ -268,9 +262,9 @@ export default function App() {
     if (soundEnabled) soundEngine.resume(); // the tap into a level is our gesture
     setBuilt(null);
     setLoadingLabel(
-      translation === 'WEB'
-        ? `Preparing Level ${lvl}…`
-        : `Loading Level ${lvl} in ${TRANSLATIONS[translation].label}…`,
+      TRANSLATIONS[translation].requiresApi
+        ? `Loading Level ${lvl} in ${TRANSLATIONS[translation].label}…`
+        : `Preparing Level ${lvl} in ${TRANSLATIONS[translation].label}…`,
     );
     setPhase('loading');
 
@@ -385,7 +379,6 @@ export default function App() {
     const top = {
       level,
       reference: built?.reference ?? '',
-      referenceZh: built?.referenceZh ?? '',
     };
     const levelsAttempted = run.levelsAttempted + 1;
     const heartsKept = run.heartsKept + hearts;
@@ -400,7 +393,6 @@ export default function App() {
         clearedCount: levelsAttempted,
         scorePercent: heartPercent(heartsKept, levelsAttempted),
         reference: top.reference,
-        referenceZh: top.referenceZh,
       });
       setPhase('final');
     } else {
@@ -423,7 +415,6 @@ export default function App() {
       clearedCount,
       scorePercent: clearedCount > 0 ? heartPercent(run.heartsKept, clearedCount) : 0,
       reference: run.top?.reference ?? '',
-      referenceZh: run.top?.referenceZh ?? '',
     });
     setPhase('failure-reveal');
   };
@@ -513,17 +504,16 @@ export default function App() {
     phase !== 'welcome'
       ? built.attribution
       : null;
-  const englishAttribution =
+  const activeAttribution =
     translation === 'WEB'
       ? WEB_ATTRIBUTION
+      : translation === 'CUV'
+        ? CUV_ATTRIBUTION
       : activePassageAttribution ??
         dailyAttribution ??
         exactLoadedAttribution ??
         translationFallback(translation);
-  const footerAttributions =
-    showChinese && phase !== 'scrabble' && phase !== 'word-search'
-    ? [englishAttribution, CUV_ATTRIBUTION]
-    : [englishAttribution];
+  const footerAttributions = [activeAttribution];
 
   return (
     <div className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'}`}>
@@ -548,21 +538,14 @@ export default function App() {
             </span>
             Bible Sequence
           </button>
-          <span style={{ display: 'inline-flex', gap: 10 }}>
-            {phase !== 'scrabble' && phase !== 'word-search' && (
-              <ChineseToggle enabled={showChinese} onToggle={toggleChinese} />
-            )}
-            <SoundToggle enabled={soundEnabled} onToggle={toggleSound} />
-          </span>
+          <SoundToggle enabled={soundEnabled} onToggle={toggleSound} />
         </header>
       )}
 
       {phase === 'welcome' && (
         <Welcome
           soundEnabled={soundEnabled}
-          showChinese={showChinese}
           onToggleSound={toggleSound}
-          onToggleChinese={toggleChinese}
           onBegin={startRun}
           activeTab={welcomeTab}
           onSelectTab={setWelcomeTab}
@@ -596,7 +579,6 @@ export default function App() {
           key={`study-${playId}`}
           built={built}
           soundEnabled={soundEnabled}
-          showChinese={showChinese}
           narrator={narrator}
           sound={soundEngine}
           onReady={() => setPhase('recall')}
@@ -609,7 +591,6 @@ export default function App() {
         <RecallPhase
           key={`recall-${playId}`}
           level={built}
-          showChinese={showChinese}
           sound={soundEngine}
           announce={announce}
           onComplete={handleComplete}
@@ -624,7 +605,6 @@ export default function App() {
           stars={result.stars}
           mistakes={result.mistakes}
           soundEnabled={soundEnabled}
-          showChinese={showChinese}
           narrator={narrator}
           onContinue={continueNext}
           modeLabel={gameMode === 'daily' ? 'Daily Verse' : undefined}
@@ -635,7 +615,6 @@ export default function App() {
       {phase === 'failure-reveal' && built && (
         <FailureReveal
           level={built}
-          showChinese={showChinese}
           onContinue={() => {
             if (gameMode === 'daily') goWelcome();
             else setPhase('final');
@@ -671,8 +650,6 @@ export default function App() {
           clearedCount={final.clearedCount}
           scorePercent={final.scorePercent}
           reference={final.reference}
-          referenceZh={final.referenceZh}
-          showChinese={showChinese}
           soundEnabled={soundEnabled}
           sound={soundEngine}
           onPlayAgain={startRun}

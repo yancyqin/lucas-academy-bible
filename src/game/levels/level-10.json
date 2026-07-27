@@ -127,6 +127,88 @@
         }
       ],
       "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh."
+    },
+    {
+      "id": "L10-q09",
+      "reference": "John 12:25",
+      "passageId": "passage-028",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 25,
+          "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+        }
+      ],
+      "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life."
+    },
+    {
+      "id": "L10-q10",
+      "reference": "John 8:31",
+      "passageId": "passage-004",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 31,
+          "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+        }
+      ],
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples."
+    },
+    {
+      "id": "L10-q11",
+      "reference": "Matthew 6:10-11",
+      "passageId": "passage-042",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 10,
+          "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven."
+        },
+        {
+          "verse": 11,
+          "text": "Give us today our daily bread."
+        }
+      ],
+      "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven. Give us today our daily bread."
+    },
+    {
+      "id": "L10-q12",
+      "reference": "Psalm 23:5",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 5,
+          "text": "You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over."
+        }
+      ],
+      "text": "You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over."
+    },
+    {
+      "id": "L10-q13",
+      "reference": "Psalm 23:6",
+      "passageId": "passage-091",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 6,
+          "text": "Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever."
+        }
+      ],
+      "text": "Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever."
+    },
+    {
+      "id": "L10-q14",
+      "reference": "Romans 8:27",
+      "passageId": "passage-067",
+      "fragment": false,
+      "verses": [
+        {
+          "verse": 27,
+          "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God."
+        }
+      ],
+      "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God."
     }
   ]
 }

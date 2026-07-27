@@ -93,4 +93,36 @@ describe('Daily Word Search puzzle builder', () => {
       lineBetween({ row: 0, col: 0 }, { row: 2, col: 1 }),
     ).toEqual([]);
   });
+
+  it('builds a Chinese-character grid from a Chinese daily verse', () => {
+    const text = '上帝爱世人，甚至赐下他的独生子。';
+    const puzzle = buildDailyWordSearch(
+      text,
+      'ccb-john-3-16',
+    );
+
+    expect(puzzle.targets.length).toBeGreaterThanOrEqual(2);
+    expect(
+      puzzle.grid.flat().every((character) => /\p{Script=Han}/u.test(character)),
+    ).toBe(true);
+    for (const target of puzzle.targets) {
+      expect(
+        target.path
+          .map(({ row, col }) => puzzle.grid[row][col])
+          .join(''),
+      ).toBe(target.answer.join(''));
+    }
+  });
+
+  it('does not mix simplified fillers into a traditional Chinese board', () => {
+    const text = '我們的主，我們的上帝，你配得榮耀、尊貴和權能。';
+    const puzzle = buildDailyWordSearch(text, 'ccbt-revelation-4-11');
+    const verseCharacters = new Set(
+      Array.from(text).filter((character) => /\p{Script=Han}/u.test(character)),
+    );
+
+    expect(
+      puzzle.grid.flat().every((character) => verseCharacters.has(character)),
+    ).toBe(true);
+  });
 });

@@ -2,14 +2,12 @@ import type { BuiltLevel } from '../game/build';
 
 interface FailureRevealProps {
   level: BuiltLevel;
-  showChinese: boolean;
   onContinue: () => void;
   modeLabel?: string;
 }
 
 export function FailureReveal({
   level,
-  showChinese,
   onContinue,
   modeLabel,
 }: FailureRevealProps) {
@@ -25,9 +23,6 @@ export function FailureReveal({
 
         <p className="reference" style={{ display: 'block' }}>
           {level.reference}
-          {showChinese && level.referenceZh && (
-            <span className="reference-zh"> · {level.referenceZh}</span>
-          )}
         </p>
 
         <div className="failure-reveal__scroll">
@@ -43,14 +38,6 @@ export function FailureReveal({
               : level.fullText}
           </blockquote>
 
-          {showChinese && level.fullTextZh && (
-            <details className="zh-disclosure failure-reveal__zh">
-              <summary lang="zh-Hans">中文经文</summary>
-              <p className="scripture-zh zh-disclosure__text" lang="zh-Hans">
-                {level.fullTextZh}
-              </p>
-            </details>
-          )}
         </div>
 
         <div className="btn-row failure-reveal__actions">
