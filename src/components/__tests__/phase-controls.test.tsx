@@ -149,6 +149,33 @@ describe('phase controls', () => {
     expect(container.querySelector('.heart--lost')).toBeInTheDocument();
   });
 
+  it('plays exactly one correct cue inside the first correct tap', () => {
+    const firstCorrectSound = {
+      resume: vi.fn(),
+      playWrong: vi.fn(),
+      playCorrect: vi.fn(),
+      playSection: vi.fn(),
+      playComplete: vi.fn(),
+      playClick: vi.fn(),
+      playHeartDrain: vi.fn(),
+    } as unknown as SoundEngine;
+    render(
+      <RecallPhase
+        level={level}
+        sound={firstCorrectSound}
+        announce={noop}
+        onComplete={noop}
+        onFail={noop}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Word: Jesus' }));
+
+    expect(firstCorrectSound.resume).toHaveBeenCalledTimes(1);
+    expect(firstCorrectSound.playCorrect).toHaveBeenCalledTimes(1);
+    expect(firstCorrectSound.playWrong).not.toHaveBeenCalled();
+  });
+
   it('shows only the continue action on the level-complete screen', () => {
     render(
       <LevelComplete

@@ -21,6 +21,7 @@ export class SoundEngine {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
   private damageAudio: HTMLAudioElement | null = null;
+  private correctAudio: HTMLAudioElement | null = null;
   private resumePending: Promise<void> | null = null;
   private enabled = true;
   readonly supported: boolean;
@@ -38,6 +39,7 @@ export class SoundEngine {
     if (!value) {
       this.stopContextGain();
       this.damageAudio?.pause();
+      this.correctAudio?.pause();
     }
   }
 
@@ -49,6 +51,7 @@ export class SoundEngine {
   resume(): Promise<void> {
     if (!this.supported || !this.enabled) return Promise.resolve();
     this.prepareDamageAudio();
+    this.prepareCorrectAudio();
     try {
       const Ctor =
         window.AudioContext ||
@@ -95,6 +98,19 @@ export class SoundEngine {
       this.damageAudio.load();
     } catch {
       this.damageAudio = null;
+    }
+  }
+
+  private prepareCorrectAudio(): void {
+    if (this.correctAudio || typeof Audio === 'undefined') return;
+    try {
+      const src = new URL('audio/correct.wav', document.baseURI).href;
+      this.correctAudio = new Audio(src);
+      this.correctAudio.preload = 'auto';
+      this.correctAudio.volume = 1;
+      this.correctAudio.load();
+    } catch {
+      this.correctAudio = null;
     }
   }
 
@@ -206,8 +222,35 @@ export class SoundEngine {
     this.tone(660, 0, 0.06, { type: 'triangle', gain: 0.12, release: 0.06 });
   }
 
-  /** Ascending pentatonic note; pitch rises with the streak. */
+  /**
+   * Ascending correct-cue. Plays the preloaded HTMLAudio chime — the same
+   * reliable path as the damage cue, so mobile Safari sounds it even when the
+   * Web Audio context is suspended by speech synthesis. Pitch rises with the
+   * streak via playbackRate. Falls back to the Web Audio synth if unavailable.
+   */
   playCorrect(streak = 1): void {
+    if (!this.enabled) return;
+    this.prepareCorrectAudio();
+    const rates = [1, 1.09, 1.2, 1.3, 1.42, 1.5];
+    const rate = rates[Math.max(0, streak - 1) % rates.length];
+    const audio = this.correctAudio;
+    if (audio) {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.volume = 0.9;
+        audio.playbackRate = rate;
+        const playback = audio.play();
+        if (playback) void playback.catch(() => this.playCorrectSynth(streak));
+        return;
+      } catch {
+        /* fall back to the synth below */
+      }
+    }
+    this.playCorrectSynth(streak);
+  }
+
+  private playCorrectSynth(streak = 1): void {
     // A major pentatonic: A C# E F# A ...
     const scale = [440, 554.37, 659.25, 739.99, 880, 1108.73];
     const note = scale[Math.max(0, streak - 1) % scale.length];

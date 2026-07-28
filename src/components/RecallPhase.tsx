@@ -51,7 +51,7 @@ export function RecallPhase({
     if (!ev) return;
     switch (ev.kind) {
       case 'correct':
-        sound.playCorrect(ev.streak);
+        // Played synchronously inside the tap gesture for mobile reliability.
         break;
       case 'wrong': {
         if (ev.belongsToVerse) {
@@ -137,6 +137,13 @@ export function RecallPhase({
       setWrongId(id);
       window.clearTimeout(wrongTimer.current);
       wrongTimer.current = window.setTimeout(() => setWrongId(null), 480);
+    } else if (tile) {
+      // Play the correct chime INSIDE the tap gesture too (same reliable path as
+      // the damage cue) — a deferred effect drops the first note on mobile after
+      // narration. A tap that finishes a section defers to its section/complete
+      // cue in the event effect instead.
+      const finishesSection = state.placed.length + 1 >= section.correct.length;
+      if (!finishesSection) sound.playCorrect(state.placed.length + 1);
     }
     dispatch({ type: 'select', tileId: id });
   };

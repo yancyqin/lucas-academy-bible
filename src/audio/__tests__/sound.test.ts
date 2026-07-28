@@ -23,7 +23,8 @@ describe('SoundEngine mobile damage cue', () => {
     sound.playWrong();
     sound.playWrong();
 
-    expect(load).toHaveBeenCalledTimes(1);
+    // resume() preloads both cues (damage.wav + correct.wav).
+    expect(load).toHaveBeenCalledTimes(2);
     expect(pause).toHaveBeenCalledTimes(2);
     expect(play).toHaveBeenCalledTimes(2);
     const audio = play.mock.instances[0] as unknown as HTMLAudioElement;
@@ -50,66 +51,55 @@ describe('SoundEngine mobile damage cue', () => {
     expect(play).not.toHaveBeenCalled();
   });
 
-  it('waits for a suspended mobile context before playing the first correct cue', async () => {
+  it('plays the correct cue through the preloaded HTML Audio clip, not the suspended synth', () => {
+    const load = vi
+      .spyOn(window.HTMLMediaElement.prototype, 'load')
+      .mockImplementation(() => undefined);
+    vi.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(
+      () => undefined,
+    );
+    // The correct cue reuses one <audio> element, so capture playbackRate at
+    // play-time rather than reading the mutated value afterward.
+    const srcs: string[] = [];
+    const rates: number[] = [];
+    const play = vi
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockImplementation(function (this: HTMLMediaElement) {
+        srcs.push(this.src);
+        rates.push(this.playbackRate);
+        return Promise.resolve();
+      });
+    const sound = new SoundEngine();
+
+    sound.resume();
+    sound.playCorrect(1);
+    sound.playCorrect(3);
+
+    // Both damage.wav and correct.wav are preloaded on resume().
+    expect(load).toHaveBeenCalledTimes(2);
+    expect(play).toHaveBeenCalledTimes(2);
+    expect(srcs[0]).toContain('/audio/correct.wav');
+    // Streak raises the pitch via playbackRate.
+    expect(rates[0]).toBe(1);
+    expect(rates[1]).toBeGreaterThan(1);
+  });
+
+  it('does not play the correct cue while sound is disabled', () => {
     vi.spyOn(window.HTMLMediaElement.prototype, 'load').mockImplementation(
       () => undefined,
     );
-    let finishResume: (() => void) | undefined;
-    const start = vi.fn();
-    const resume = vi.fn();
-
-    class FakeAudioContext {
-      state: AudioContextState = 'suspended';
-      currentTime = 0;
-      destination = {} as AudioDestinationNode;
-
-      createGain(): GainNode {
-        return {
-          gain: {
-            value: 1,
-            setValueAtTime: vi.fn(),
-            exponentialRampToValueAtTime: vi.fn(),
-          },
-          connect: vi.fn(),
-        } as unknown as GainNode;
-      }
-
-      createOscillator(): OscillatorNode {
-        return {
-          type: 'sine',
-          frequency: {
-            setValueAtTime: vi.fn(),
-            exponentialRampToValueAtTime: vi.fn(),
-          },
-          connect: vi.fn(),
-          start,
-          stop: vi.fn(),
-        } as unknown as OscillatorNode;
-      }
-
-      resume = resume.mockImplementation(
-        () =>
-          new Promise<void>((resolve) => {
-            finishResume = () => {
-              this.state = 'running';
-              resolve();
-            };
-          }),
-      );
-    }
-
-    vi.stubGlobal('AudioContext', FakeAudioContext);
+    vi.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(
+      () => undefined,
+    );
+    const play = vi
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockResolvedValue(undefined);
     const sound = new SoundEngine();
-    const resuming = sound.resume();
 
-    sound.playCorrect();
-    expect(start).not.toHaveBeenCalled();
-    expect(resume).toHaveBeenCalledTimes(1);
+    sound.resume();
+    sound.setEnabled(false);
+    sound.playCorrect(1);
 
-    finishResume?.();
-    await resuming;
-    await Promise.resolve();
-
-    expect(start).toHaveBeenCalledTimes(2);
+    expect(play).not.toHaveBeenCalled();
   });
 });
