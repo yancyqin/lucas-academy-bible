@@ -3,6 +3,7 @@ import { SoundEngine } from '../sound';
 
 afterEach(() => {
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
 });
 
 describe('SoundEngine mobile damage cue', () => {
@@ -47,5 +48,68 @@ describe('SoundEngine mobile damage cue', () => {
     sound.playWrong();
 
     expect(play).not.toHaveBeenCalled();
+  });
+
+  it('waits for a suspended mobile context before playing the first correct cue', async () => {
+    vi.spyOn(window.HTMLMediaElement.prototype, 'load').mockImplementation(
+      () => undefined,
+    );
+    let finishResume: (() => void) | undefined;
+    const start = vi.fn();
+    const resume = vi.fn();
+
+    class FakeAudioContext {
+      state: AudioContextState = 'suspended';
+      currentTime = 0;
+      destination = {} as AudioDestinationNode;
+
+      createGain(): GainNode {
+        return {
+          gain: {
+            value: 1,
+            setValueAtTime: vi.fn(),
+            exponentialRampToValueAtTime: vi.fn(),
+          },
+          connect: vi.fn(),
+        } as unknown as GainNode;
+      }
+
+      createOscillator(): OscillatorNode {
+        return {
+          type: 'sine',
+          frequency: {
+            setValueAtTime: vi.fn(),
+            exponentialRampToValueAtTime: vi.fn(),
+          },
+          connect: vi.fn(),
+          start,
+          stop: vi.fn(),
+        } as unknown as OscillatorNode;
+      }
+
+      resume = resume.mockImplementation(
+        () =>
+          new Promise<void>((resolve) => {
+            finishResume = () => {
+              this.state = 'running';
+              resolve();
+            };
+          }),
+      );
+    }
+
+    vi.stubGlobal('AudioContext', FakeAudioContext);
+    const sound = new SoundEngine();
+    const resuming = sound.resume();
+
+    sound.playCorrect();
+    expect(start).not.toHaveBeenCalled();
+    expect(resume).toHaveBeenCalledTimes(1);
+
+    finishResume?.();
+    await resuming;
+    await Promise.resolve();
+
+    expect(start).toHaveBeenCalledTimes(2);
   });
 });

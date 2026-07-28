@@ -21,6 +21,7 @@ export class SoundEngine {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
   private damageAudio: HTMLAudioElement | null = null;
+  private resumePending: Promise<void> | null = null;
   private enabled = true;
   readonly supported: boolean;
 
@@ -45,31 +46,42 @@ export class SoundEngine {
   }
 
   /** Create/resume the AudioContext. Call from within a user-gesture handler. */
-  resume(): void {
-    if (!this.supported || !this.enabled) return;
+  resume(): Promise<void> {
+    if (!this.supported || !this.enabled) return Promise.resolve();
     this.prepareDamageAudio();
     try {
       const Ctor =
         window.AudioContext ||
         (window as unknown as { webkitAudioContext?: typeof AudioContext })
           .webkitAudioContext;
-      if (!Ctor) return;
+      if (!Ctor) return Promise.resolve();
       if (!this.ctx) {
         this.ctx = new Ctor();
         this.master = this.ctx.createGain();
         this.master.gain.value = 0.9;
         this.master.connect(this.ctx.destination);
       }
-      // Safari may report a non-standard "interrupted" state after the app
-      // backgrounds. Resume every non-running context from the next gesture.
-      if (this.ctx.state !== 'running') {
-        void this.ctx.resume().catch(() => {
+      if (this.ctx.state === 'running') return Promise.resolve();
+      if (this.resumePending) return this.resumePending;
+
+      // Safari may report a non-standard "interrupted" state after narration
+      // or backgrounding. Keep one shared promise so a cue can wait for the
+      // context to be genuinely running instead of losing its first note.
+      const context = this.ctx;
+      this.resumePending = context
+        .resume()
+        .catch(() => {
           // A later user gesture can retry; audio never blocks gameplay.
+        })
+        .finally(() => {
+          this.resumePending = null;
         });
-      }
+      return this.resumePending;
     } catch {
       this.ctx = null;
       this.master = null;
+      this.resumePending = null;
+      return Promise.resolve();
     }
   }
 
@@ -110,11 +122,22 @@ export class SoundEngine {
   }
 
   private ready(): boolean {
-    return this.supported && this.enabled && this.ctx !== null && this.master !== null;
+    return (
+      this.supported &&
+      this.enabled &&
+      this.ctx !== null &&
+      this.ctx.state === 'running' &&
+      this.master !== null
+    );
   }
 
   private tone(freq: number, startOffset: number, duration: number, opts: ToneOpts = {}): void {
-    if (!this.ready()) return;
+    if (!this.ready()) {
+      void this.resume().then(() => {
+        if (this.ready()) this.tone(freq, startOffset, duration, opts);
+      });
+      return;
+    }
     const ctx = this.ctx as AudioContext;
     const master = this.master as GainNode;
     const t0 = ctx.currentTime + startOffset;
@@ -143,7 +166,14 @@ export class SoundEngine {
     duration: number,
     opts: ToneOpts = {},
   ): void {
-    if (!this.ready()) return;
+    if (!this.ready()) {
+      void this.resume().then(() => {
+        if (this.ready()) {
+          this.sweep(from, to, startOffset, duration, opts);
+        }
+      });
+      return;
+    }
     const ctx = this.ctx as AudioContext;
     const master = this.master as GainNode;
     const t0 = ctx.currentTime + startOffset;
