@@ -269,27 +269,27 @@ export function Welcome({
             )}
 
             {dailyVerse && (
-              <>
-                <p className="daily-panel__reference">{dailyVerse.reference}</p>
-                <button
-                  type="button"
-                  className="btn btn--primary"
-                  onClick={
-                    activeTab === 'daily'
-                      ? onBeginDaily
-                      : activeTab === 'scrabble'
-                        ? onBeginScrabble
-                        : onBeginWordSearch
-                  }
-                  disabled={!dailyReady || dailyLoading}
-                >
-                  {activeTab === 'daily'
-                    ? 'Play today’s verse'
+              <button
+                type="button"
+                className="btn btn--primary"
+                aria-label={`${
+                  activeTab === 'daily'
+                    ? 'Play Daily Verse'
                     : activeTab === 'scrabble'
                       ? 'Play Daily Scrabble'
-                      : 'Play Daily Word Search'}
-                </button>
-              </>
+                      : 'Play Daily Word Search'
+                } for ${dailyVerse.reference}`}
+                onClick={
+                  activeTab === 'daily'
+                    ? onBeginDaily
+                    : activeTab === 'scrabble'
+                      ? onBeginScrabble
+                      : onBeginWordSearch
+                }
+                disabled={!dailyReady || dailyLoading}
+              >
+                {dailyVerse.reference}
+              </button>
             )}
           </div>
         )}

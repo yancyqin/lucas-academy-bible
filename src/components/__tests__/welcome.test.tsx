@@ -171,8 +171,11 @@ describe('welcome game tabs', () => {
     expect(screen.getByRole('tab', { name: 'Daily Scrabble' })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: 'Word Search' })).toBeInTheDocument();
     expect(screen.queryByRole('tab', { name: 'Journey' })).not.toBeInTheDocument();
-    expect(screen.getByText('John 3:16')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeInTheDocument();
+    const button = screen.getByRole('button', {
+      name: 'Play Daily Verse for John 3:16',
+    });
+    expect(button).toHaveTextContent(/^John 3:16$/);
+    expect(screen.queryByText('John 3:16', { selector: 'p' })).not.toBeInTheDocument();
     expect(screen.queryByText(daily.text)).not.toBeInTheDocument();
     expect(screen.queryByText(/^today$/i)).not.toBeInTheDocument();
     expect(
@@ -209,9 +212,12 @@ describe('welcome game tabs', () => {
       />,
     );
 
-    expect(screen.getByText('John 3:16')).toBeInTheDocument();
     expect(screen.queryByText(/loading today’s verse/i)).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Play today’s verse' })).toBeDisabled();
+    const button = screen.getByRole('button', {
+      name: 'Play Daily Verse for John 3:16',
+    });
+    expect(button).toHaveTextContent(/^John 3:16$/);
+    expect(button).toBeDisabled();
   });
 
   it('offers the same loaded passage in the Daily Scrabble tab', () => {
@@ -243,8 +249,12 @@ describe('welcome game tabs', () => {
       'aria-selected',
       'true',
     );
-    expect(screen.getByText('John 3:16')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Play Daily Scrabble' })).toBeEnabled();
+    const button = screen.getByRole('button', {
+      name: 'Play Daily Scrabble for John 3:16',
+    });
+    expect(button).toHaveTextContent(/^John 3:16$/);
+    expect(button).toBeEnabled();
+    expect(screen.queryByText('John 3:16', { selector: 'p' })).not.toBeInTheDocument();
     expect(screen.queryByText(daily.text)).not.toBeInTheDocument();
   });
 
@@ -277,7 +287,11 @@ describe('welcome game tabs', () => {
       'aria-selected',
       'true',
     );
-    expect(screen.getByText('John 3:16')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Play Daily Word Search' })).toBeEnabled();
+    const button = screen.getByRole('button', {
+      name: 'Play Daily Word Search for John 3:16',
+    });
+    expect(button).toHaveTextContent(/^John 3:16$/);
+    expect(button).toBeEnabled();
+    expect(screen.queryByText('John 3:16', { selector: 'p' })).not.toBeInTheDocument();
   });
 });
