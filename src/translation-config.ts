@@ -48,9 +48,17 @@ export const TRANSLATIONS = {
     language: 'zh',
     requiresApi: true,
   },
+  KLB: {
+    key: 'KLB',
+    label: 'KLB',
+    name: '현대인의 성경 (Korean Living Bible 1985)',
+    language: 'ko',
+    requiresApi: true,
+  },
 } as const;
 
 export type TranslationKey = keyof typeof TRANSLATIONS;
+export type BibleLanguage = (typeof TRANSLATIONS)[TranslationKey]['language'];
 
 export const DEFAULT_TRANSLATION: TranslationKey = 'WEB';
 
@@ -60,6 +68,10 @@ export const ENGLISH_TRANSLATIONS = Object.values(TRANSLATIONS).filter(
 
 export const CHINESE_TRANSLATIONS = Object.values(TRANSLATIONS).filter(
   (translation) => translation.language === 'zh',
+);
+
+export const KOREAN_TRANSLATIONS = Object.values(TRANSLATIONS).filter(
+  (translation) => translation.language === 'ko',
 );
 
 export function isTranslationKey(value: unknown): value is TranslationKey {

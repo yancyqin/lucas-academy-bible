@@ -4,7 +4,9 @@ import type { DailyVerse } from '../daily';
 import {
   CHINESE_TRANSLATIONS,
   ENGLISH_TRANSLATIONS,
+  KOREAN_TRANSLATIONS,
   TRANSLATIONS,
+  type BibleLanguage,
   type TranslationKey,
 } from '../translation-config';
 
@@ -59,7 +61,14 @@ export function Welcome({
   const visibleTranslations =
     selectedLanguage === 'zh'
       ? CHINESE_TRANSLATIONS
-      : ENGLISH_TRANSLATIONS;
+      : selectedLanguage === 'ko'
+        ? KOREAN_TRANSLATIONS
+        : ENGLISH_TRANSLATIONS;
+  const languageName: Record<BibleLanguage, string> = {
+    en: 'English',
+    zh: 'Chinese',
+    ko: 'Korean',
+  };
 
   return (
     <div className="stage stage--fit stage--welcome" role="region" aria-label="Welcome">
@@ -186,12 +195,26 @@ export function Welcome({
               >
                 中文
               </button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={selectedLanguage === 'ko'}
+                className={`translation-language ${
+                  selectedLanguage === 'ko'
+                    ? 'translation-language--active'
+                    : ''
+                }`}
+                onClick={() => onSelectTranslation('KLB')}
+                lang="ko"
+              >
+                한국어
+              </button>
             </div>
 
             <div
               className={`translation-picker translation-picker--${visibleTranslations.length}`}
               role="radiogroup"
-              aria-label={`${selectedLanguage === 'zh' ? 'Chinese' : 'English'} Bible translation`}
+              aria-label={`${languageName[selectedLanguage]} Bible translation`}
             >
               {visibleTranslations.map((option) => (
                 <button

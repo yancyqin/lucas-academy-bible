@@ -26,10 +26,11 @@ afterEach(() => {
 });
 
 describe('daily verse Worker', () => {
-  it('configures the approved simplified and traditional Chinese editions', () => {
+  it('configures the approved Chinese and Korean editions', () => {
     expect(TRANSLATIONS.CCB.bibleId).toBe(36);
     expect(TRANSLATIONS.CCBT.bibleId).toBe(1392);
     expect(TRANSLATIONS.CUV.local).toBe(true);
+    expect(TRANSLATIONS.KLB.bibleId).toBe(86);
   });
 
   it('uses the America/Los_Angeles calendar day', () => {
@@ -138,6 +139,41 @@ describe('daily verse Worker', () => {
     await expect(
       getTranslationPassage(env, 'NIV', '../../secrets'),
     ).rejects.toThrow('Invalid YouVersion passage id');
+    expect(api).toHaveBeenCalledTimes(2);
+  });
+
+  it('returns localized KLB passage text and metadata', async () => {
+    const kv = new MemoryKv();
+    const api = vi.fn(async (input) => {
+      const url = String(input);
+      if (url.includes('/bibles/86/passages/JHN.11.35')) {
+        return Response.json({
+          id: 'JHN.11.35',
+          reference: '요한복음 11:35',
+          content: '예수님은 눈물을 흘리셨다.',
+        });
+      }
+      if (url.endsWith('/bibles/86')) {
+        return Response.json({
+          id: 86,
+          abbreviation: 'KLB',
+          title: 'Korean Living Bible 1985',
+          localized_title: '현대인의 성경',
+          copyright: 'Required KLB copyright.',
+          youversion_deep_link: 'https://www.bible.com/versions/86',
+        });
+      }
+      return new Response(null, { status: 404 });
+    });
+    vi.stubGlobal('fetch', api);
+    const env = { YVP_APP_KEY: 'test-only', DAILY_VERSE_KV: kv };
+
+    const passage = await getTranslationPassage(env, 'KLB', 'JHN.11.35');
+
+    expect(passage.reference).toBe('요한복음 11:35');
+    expect(passage.text).toBe('예수님은 눈물을 흘리셨다.');
+    expect(passage.translation.abbreviation).toBe('KLB');
+    expect(passage.translation.copyright).toBe('Required KLB copyright.');
     expect(api).toHaveBeenCalledTimes(2);
   });
 

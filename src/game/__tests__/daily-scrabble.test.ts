@@ -93,4 +93,25 @@ describe('Daily Scrabble puzzle builder', () => {
       expect(target.answer.length).toBeLessThanOrEqual(4);
     }
   });
+
+  it('selects Korean words and scrambles their Hangul syllables', () => {
+    const puzzle = buildDailyScrabble(
+      '예수님은 눈물을 흘리셨다.',
+      'klb-john-11-35',
+    );
+
+    expect(puzzle.targets.map((target) => target.word)).toEqual([
+      '예수님은',
+      '눈물을',
+      '흘리셨다',
+    ]);
+    for (const target of puzzle.targets) {
+      expect(target.answer.join('')).toBe(target.word);
+      expect(
+        target.answer.every((character) =>
+          /\p{Script=Hangul}/u.test(character),
+        ),
+      ).toBe(true);
+    }
+  });
 });

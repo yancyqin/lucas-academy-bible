@@ -26,6 +26,7 @@ export const TRANSLATIONS = Object.freeze({
   },
   CCB: { key: 'CCB', label: 'CCB', bibleId: 36 },
   CCBT: { key: 'CCBT', label: 'CCBT', bibleId: 1392 },
+  KLB: { key: 'KLB', label: 'KLB', bibleId: 86 },
 });
 
 const PASSAGE_ID_PATTERN = /^[1-3]?[A-Z]{2,3}\.\d+\.\d+(?:-\d+)?$/;

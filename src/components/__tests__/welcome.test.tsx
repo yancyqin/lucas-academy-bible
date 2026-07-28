@@ -25,7 +25,7 @@ const daily: DailyVerse = {
 const noop = vi.fn();
 
 describe('welcome game tabs', () => {
-  it('switches between English and playable Chinese Bible editions', () => {
+  it('switches among English, Chinese, and Korean Bible editions', () => {
     const selectTranslation = vi.fn();
     render(
       <Welcome
@@ -60,6 +60,47 @@ describe('welcome game tabs', () => {
 
     fireEvent.click(screen.getByRole('radio', { name: '中文' }));
     expect(selectTranslation).toHaveBeenCalledWith('CUV');
+
+    fireEvent.click(screen.getByRole('radio', { name: '한국어' }));
+    expect(selectTranslation).toHaveBeenCalledWith('KLB');
+  });
+
+  it('shows KLB as the Korean Bible edition', () => {
+    render(
+      <Welcome
+        soundEnabled
+        onToggleSound={noop}
+        onBegin={noop}
+        practiceMode={false}
+        onTogglePracticeMode={noop}
+        activeTab="journey"
+        onSelectTab={noop}
+        dailyVerse={daily}
+        dailyLoading={false}
+        dailyError=""
+        onRetryDaily={noop}
+        onBeginDaily={noop}
+        onBeginScrabble={noop}
+        onBeginWordSearch={noop}
+        dailyEnabled
+        translation="KLB"
+        onSelectTranslation={noop}
+        journeyError=""
+        translationApiEnabled
+      />,
+    );
+
+    expect(screen.getByRole('radio', { name: '한국어' })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+    expect(
+      screen.getByRole('radiogroup', { name: 'Korean Bible translation' }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('radio', { name: 'KLB' })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
   });
 
   it('offers an accessible no-timer Practice Mode option for Challenge', () => {

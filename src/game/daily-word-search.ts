@@ -2,7 +2,7 @@ import {
   buildDailyScrabble,
   type ScrabbleTarget,
 } from './daily-scrabble';
-import { isCjkText } from './chunk';
+import { isCjkText, isHangulText } from './chunk';
 
 const MIN_GRID_SIZE = 7;
 const MAX_GRID_SIZE = 10;
@@ -250,7 +250,11 @@ export function buildDailyWordSearch(
   // traditional boards consistent without maintaining two fragile alphabets.
   const fillerCharacters = isCjkText(text)
     ? Array.from(text).filter((character) => /\p{Script=Han}/u.test(character))
-    : Array.from(FILLER_ALPHABET);
+    : isHangulText(text)
+      ? Array.from(text).filter((character) =>
+          /\p{Script=Hangul}/u.test(character),
+        )
+      : Array.from(FILLER_ALPHABET);
   const grid = placement.grid.map((row) =>
     row.map(
       (cell) =>

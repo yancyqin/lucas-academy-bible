@@ -74,6 +74,16 @@ describe('autoChunk (content-word tiles)', () => {
     expect(joinChunks(phrases)).toBe(text);
     expect(phrases).toHaveLength(2);
   });
+
+  it('keeps Korean word spacing intact across sequence tiles', () => {
+    const text = '예수님은 눈물을 흘리셨다.';
+    const chunks = autoChunk(text);
+
+    expect(tokenize(text)).toEqual(['예수님은', '눈물을', '흘리셨다.']);
+    expect(chunks).toEqual(['예수님은', '눈물을', '흘리셨다.']);
+    expect(joinChunks(chunks)).toBe(text);
+    expect(chunksReproduce(text, chunks)).toBe(true);
+  });
 });
 
 describe('splitSentences', () => {

@@ -212,4 +212,51 @@ describe('runtime YouVersion journey levels', () => {
     expect(built.reference).toBe('约翰福音 11:35');
     expect(joinChunks(built.sections[0].correct)).toBe('耶稣哭了。');
   });
+
+  it('uses API Korean text as the playable answer with its spaces preserved', async () => {
+    const file: LevelFile = {
+      level: 0,
+      policy: { ...policy, distractorsPerSection: 0 },
+      questions: [
+        {
+          id: 'klb-q',
+          reference: 'John 11:35',
+          passageId: 'passage-001',
+          fragment: false,
+          verses: [{ verse: 35, text: 'Jesus wept.' }],
+          text: 'Jesus wept.',
+        },
+      ],
+    };
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () =>
+        Response.json({
+          passageId: 'JHN.11.35',
+          reference: '요한복음 11:35',
+          text: '예수님은 눈물을 흘리셨다.',
+          cache: 'MISS',
+          translation: {
+            ...translation,
+            key: 'KLB',
+            label: 'KLB',
+            id: 86,
+            abbreviation: 'KLB',
+          },
+        }),
+      ),
+    );
+
+    const built = await prepareJourneyLevel(file, 'KLB', 2);
+
+    expect(built.reference).toBe('요한복음 11:35');
+    expect(built.sections[0].correct).toEqual([
+      '예수님은',
+      '눈물을',
+      '흘리셨다.',
+    ]);
+    expect(joinChunks(built.sections[0].correct)).toBe(
+      '예수님은 눈물을 흘리셨다.',
+    );
+  });
 });

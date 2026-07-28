@@ -125,4 +125,26 @@ describe('Daily Word Search puzzle builder', () => {
       puzzle.grid.flat().every((character) => verseCharacters.has(character)),
     ).toBe(true);
   });
+
+  it('builds a Hangul-only grid for a Korean daily verse', () => {
+    const text = '예수님은 눈물을 흘리셨다.';
+    const puzzle = buildDailyWordSearch(text, 'klb-john-11-35');
+    const verseCharacters = new Set(
+      Array.from(text).filter((character) =>
+        /\p{Script=Hangul}/u.test(character),
+      ),
+    );
+
+    expect(puzzle.targets).toHaveLength(3);
+    expect(
+      puzzle.grid.flat().every((character) => verseCharacters.has(character)),
+    ).toBe(true);
+    for (const target of puzzle.targets) {
+      expect(
+        target.path
+          .map(({ row, col }) => puzzle.grid[row][col])
+          .join(''),
+      ).toBe(target.answer.join(''));
+    }
+  });
 });

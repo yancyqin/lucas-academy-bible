@@ -27,6 +27,15 @@ export function shouldAutoNarrate(
   return soundEnabled === true && supported === true;
 }
 
+export type SpeechLanguage = 'en' | 'zh' | 'ko';
+
+/** Detect the spoken language from the scripture text itself. */
+export function detectSpeechLanguage(text: string): SpeechLanguage {
+  if (/\p{Script=Han}/u.test(text)) return 'zh';
+  if (/\p{Script=Hangul}/u.test(text)) return 'ko';
+  return 'en';
+}
+
 /** Break text into clause-sized segments for gap-paced narration. */
 export function segmentForSpeech(text: string): string[] {
   if (/\p{Script=Han}/u.test(text)) {
@@ -50,13 +59,14 @@ export function segmentForSpeech(text: string): string[] {
   return segments.length ? segments : [text];
 }
 
-function scoreVoice(v: SpeechSynthesisVoice, language: 'en' | 'zh'): number {
+function scoreVoice(v: SpeechSynthesisVoice, language: SpeechLanguage): number {
   let score = 0;
   const name = v.name.toLowerCase();
   const lang = (v.lang || '').toLowerCase();
   if (lang.startsWith(language)) score += 5;
   if (language === 'en' && (lang === 'en-us' || lang === 'en_us')) score += 2;
   if (language === 'zh' && /zh-(cn|tw|hans|hant)/.test(lang)) score += 2;
+  if (language === 'ko' && (lang === 'ko-kr' || lang === 'ko_kr')) score += 2;
   if (/natural|neural|premium|enhanced/.test(name)) score += 4;
   if (
     language === 'en' &&
@@ -65,6 +75,9 @@ function scoreVoice(v: SpeechSynthesisVoice, language: 'en' | 'zh'): number {
     score += 3;
   }
   if (language === 'zh' && /ting|mei|xiaoxiao|yunxi|google.*中文|mandarin/.test(name)) {
+    score += 3;
+  }
+  if (language === 'ko' && /yuna|sunhi|google.*한국|korean/.test(name)) {
     score += 3;
   }
   if (v.localService) score += 1;
@@ -108,11 +121,18 @@ export class Narrator {
     return this.bestVoice('en')?.name ?? null;
   }
 
-  private bestVoice(language: 'en' | 'zh'): SpeechSynthesisVoice | null {
+  private bestVoice(language: SpeechLanguage): SpeechSynthesisVoice | null {
     const matching = this.voices.filter((voice) =>
       (voice.lang || '').toLowerCase().startsWith(language),
     );
-    const pool = matching.length ? matching : this.voices;
+    // If Korean is not installed, keep the requested ko-KR language and let
+    // the browser resolve its default instead of forcing an English voice.
+    const pool =
+      matching.length || language !== 'ko'
+        ? matching.length
+          ? matching
+          : this.voices
+        : [];
     return (
       pool
         .slice()
@@ -138,7 +158,7 @@ export class Narrator {
     const rate = slow ? 0.7 : 0.95;
     const gapMs = slow ? 320 : 60;
     const segments = slow ? segmentForSpeech(text) : [text];
-    const language = /\p{Script=Han}/u.test(text) ? 'zh' : 'en';
+    const language = detectSpeechLanguage(text);
     const voice = this.bestVoice(language);
 
     try {
@@ -168,7 +188,13 @@ export class Narrator {
       try {
         const u = new SpeechSynthesisUtterance(chunk);
         if (voice) u.voice = voice;
-        u.lang = voice?.lang || (language === 'zh' ? 'zh-CN' : 'en-US');
+        u.lang =
+          voice?.lang ||
+          (language === 'zh'
+            ? 'zh-CN'
+            : language === 'ko'
+              ? 'ko-KR'
+              : 'en-US');
         u.rate = rate;
         u.pitch = 1.0;
         u.volume = 1.0;

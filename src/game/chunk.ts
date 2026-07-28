@@ -15,6 +15,10 @@ export function isCjkText(text: string): boolean {
   return /\p{Script=Han}/u.test(text);
 }
 
+export function isHangulText(text: string): boolean {
+  return /\p{Script=Hangul}/u.test(text);
+}
+
 function chineseTokens(text: string): string[] {
   const Segmenter = (
     Intl as unknown as {
