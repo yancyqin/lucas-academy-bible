@@ -21,7 +21,7 @@ export class SoundEngine {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
   private damageAudio: HTMLAudioElement | null = null;
-  private correctAudio: HTMLAudioElement | null = null;
+  private correctAudio: HTMLAudioElement[] = [];
   private resumePending: Promise<void> | null = null;
   private enabled = true;
   readonly supported: boolean;
@@ -39,7 +39,7 @@ export class SoundEngine {
     if (!value) {
       this.stopContextGain();
       this.damageAudio?.pause();
-      this.correctAudio?.pause();
+      this.correctAudio.forEach((audio) => audio.pause());
     }
   }
 
@@ -102,15 +102,26 @@ export class SoundEngine {
   }
 
   private prepareCorrectAudio(): void {
-    if (this.correctAudio || typeof Audio === 'undefined') return;
+    if (this.correctAudio.length || typeof Audio === 'undefined') return;
     try {
-      const src = new URL('audio/correct.wav', document.baseURI).href;
-      this.correctAudio = new Audio(src);
-      this.correctAudio.preload = 'auto';
-      this.correctAudio.volume = 1;
-      this.correctAudio.load();
+      const filenames = [
+        'correct.wav',
+        'correct-2.wav',
+        'correct-3.wav',
+        'correct-4.wav',
+        'correct-5.wav',
+        'correct-6.wav',
+      ];
+      this.correctAudio = filenames.map((filename) => {
+        const src = new URL(`audio/${filename}`, document.baseURI).href;
+        const audio = new Audio(src);
+        audio.preload = 'auto';
+        audio.volume = 1;
+        audio.load();
+        return audio;
+      });
     } catch {
-      this.correctAudio = null;
+      this.correctAudio = [];
     }
   }
 
@@ -223,23 +234,22 @@ export class SoundEngine {
   }
 
   /**
-   * Ascending correct-cue. Plays the preloaded HTMLAudio chime — the same
-   * reliable path as the damage cue, so mobile Safari sounds it even when the
-   * Web Audio context is suspended by speech synthesis. Pitch rises with the
-   * streak via playbackRate. Falls back to the Web Audio synth if unavailable.
+   * Ascending A-major pentatonic correct-cue. Each note is a separately
+   * rendered clip with the original two-sine timbre and full decay, rather than
+   * a speed-shifted sample. It keeps the reliable HTML Audio path on mobile
+   * without sacrificing the musical scale. Falls back to Web Audio if needed.
    */
   playCorrect(streak = 1): void {
     if (!this.enabled) return;
     this.prepareCorrectAudio();
-    const rates = [1, 1.09, 1.2, 1.3, 1.42, 1.5];
-    const rate = rates[Math.max(0, streak - 1) % rates.length];
-    const audio = this.correctAudio;
+    const noteIndex = Math.max(0, streak - 1) % 6;
+    const audio = this.correctAudio[noteIndex];
     if (audio) {
       try {
         audio.pause();
         audio.currentTime = 0;
-        audio.volume = 0.9;
-        audio.playbackRate = rate;
+        audio.volume = 1;
+        audio.playbackRate = 1;
         const playback = audio.play();
         if (playback) void playback.catch(() => this.playCorrectSynth(streak));
         return;

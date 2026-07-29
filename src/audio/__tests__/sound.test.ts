@@ -23,8 +23,8 @@ describe('SoundEngine mobile damage cue', () => {
     sound.playWrong();
     sound.playWrong();
 
-    // resume() preloads both cues (damage.wav + correct.wav).
-    expect(load).toHaveBeenCalledTimes(2);
+    // resume() preloads damage.wav plus all six notes of the correct scale.
+    expect(load).toHaveBeenCalledTimes(7);
     expect(pause).toHaveBeenCalledTimes(2);
     expect(play).toHaveBeenCalledTimes(2);
     const audio = play.mock.instances[0] as unknown as HTMLAudioElement;
@@ -51,15 +51,13 @@ describe('SoundEngine mobile damage cue', () => {
     expect(play).not.toHaveBeenCalled();
   });
 
-  it('plays the correct cue through the preloaded HTML Audio clip, not the suspended synth', () => {
+  it('plays the correct cue through six pre-rendered scale notes', () => {
     const load = vi
       .spyOn(window.HTMLMediaElement.prototype, 'load')
       .mockImplementation(() => undefined);
     vi.spyOn(window.HTMLMediaElement.prototype, 'pause').mockImplementation(
       () => undefined,
     );
-    // The correct cue reuses one <audio> element, so capture playbackRate at
-    // play-time rather than reading the mutated value afterward.
     const srcs: string[] = [];
     const rates: number[] = [];
     const play = vi
@@ -72,16 +70,18 @@ describe('SoundEngine mobile damage cue', () => {
     const sound = new SoundEngine();
 
     sound.resume();
-    sound.playCorrect(1);
-    sound.playCorrect(3);
+    for (let streak = 1; streak <= 6; streak += 1) {
+      sound.playCorrect(streak);
+    }
 
-    // Both damage.wav and correct.wav are preloaded on resume().
-    expect(load).toHaveBeenCalledTimes(2);
-    expect(play).toHaveBeenCalledTimes(2);
+    // damage.wav plus six correct-scale clips are preloaded on resume().
+    expect(load).toHaveBeenCalledTimes(7);
+    expect(play).toHaveBeenCalledTimes(6);
     expect(srcs[0]).toContain('/audio/correct.wav');
-    // Streak raises the pitch via playbackRate.
-    expect(rates[0]).toBe(1);
-    expect(rates[1]).toBeGreaterThan(1);
+    expect(srcs[1]).toContain('/audio/correct-2.wav');
+    expect(srcs[5]).toContain('/audio/correct-6.wav');
+    expect(new Set(srcs)).toHaveLength(6);
+    expect(rates).toEqual([1, 1, 1, 1, 1, 1]);
   });
 
   it('does not play the correct cue while sound is disabled', () => {
