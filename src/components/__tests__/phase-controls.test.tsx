@@ -117,6 +117,7 @@ describe('phase controls', () => {
   it('restarts damage sound and heart visuals for every wrong tap, including failure', () => {
     const damageSound = {
       resume: vi.fn(),
+      primeCorrectAudio: vi.fn(),
       playWrong: vi.fn(),
       playCorrect: vi.fn(),
       playSection: vi.fn(),
@@ -157,6 +158,7 @@ describe('phase controls', () => {
   it('plays exactly one correct cue inside the first correct tap', () => {
     const firstCorrectSound = {
       resume: vi.fn(),
+      primeCorrectAudio: vi.fn(),
       playWrong: vi.fn(),
       playCorrect: vi.fn(),
       playSection: vi.fn(),
@@ -174,11 +176,50 @@ describe('phase controls', () => {
       />,
     );
 
+    // Recall warms the note clips on mount — right after narration stops.
+    expect(firstCorrectSound.primeCorrectAudio).toHaveBeenCalled();
+
     fireEvent.click(screen.getByRole('button', { name: 'Word: Jesus' }));
 
     expect(firstCorrectSound.resume).toHaveBeenCalledTimes(1);
+    // Exactly one scale note, from the tap handler only — the React effect
+    // must not add a duplicate.
     expect(firstCorrectSound.playCorrect).toHaveBeenCalledTimes(1);
+    expect(firstCorrectSound.playCorrect).toHaveBeenCalledWith(1);
     expect(firstCorrectSound.playWrong).not.toHaveBeenCalled();
+    expect(firstCorrectSound.playSection).not.toHaveBeenCalled();
+    expect(firstCorrectSound.playComplete).not.toHaveBeenCalled();
+  });
+
+  it('plays the complete cue, not another scale note, for a level-ending word', () => {
+    const finishSound = {
+      resume: vi.fn(),
+      primeCorrectAudio: vi.fn(),
+      playWrong: vi.fn(),
+      playCorrect: vi.fn(),
+      playSection: vi.fn(),
+      playComplete: vi.fn(),
+      playClick: vi.fn(),
+      playHeartDrain: vi.fn(),
+    } as unknown as SoundEngine;
+    render(
+      <RecallPhase
+        level={level}
+        sound={finishSound}
+        announce={noop}
+        onComplete={noop}
+        onFail={noop}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Word: Jesus' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Word: wept.' }));
+
+    // Only the non-final word sounded a scale note; the ending word defers to
+    // the level-complete cue.
+    expect(finishSound.playCorrect).toHaveBeenCalledTimes(1);
+    expect(finishSound.playComplete).toHaveBeenCalledTimes(1);
+    expect(finishSound.playSection).not.toHaveBeenCalled();
   });
 
   it('shows only the continue action on the level-complete screen', () => {

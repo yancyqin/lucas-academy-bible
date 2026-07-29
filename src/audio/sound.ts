@@ -1,5 +1,6 @@
 /**
- * Interaction sound via Web Audio plus one original, locally hosted damage cue.
+ * Interaction sound via Web Audio plus original, locally hosted cue clips
+ * (the damage cue and the six-note correct scale).
  *
  * Design goals from the spec: soft, warm, never a harsh buzzer. All tones are
  * gentle sine/triangle waves with short envelopes. The engine:
@@ -17,12 +18,43 @@ interface ToneOpts {
   release?: number;
 }
 
+/**
+ * The six-note ascending A-major pentatonic correct scale, one separately
+ * rendered clip per note (see scripts/build_correct_cue.py):
+ * A4 → C♯5 → E5 → F♯5 → A5 → C♯6.
+ */
+const CORRECT_CUE_FILES = [
+  'correct.wav',
+  'correct-2.wav',
+  'correct-3.wav',
+  'correct-4.wav',
+  'correct-5.wav',
+  'correct-6.wav',
+];
+
+/**
+ * Cache-safe URL token for the rendered clips. The wav bytes have changed
+ * under the same filenames; Safari's media cache on a phone that played an
+ * older build can keep serving the stale first note. Bump whenever
+ * scripts/build_correct_cue.py output changes.
+ */
+const CORRECT_CUE_VERSION = '20260728';
+
 export class SoundEngine {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
   private damageAudio: HTMLAudioElement | null = null;
   private correctAudio: HTMLAudioElement[] = [];
-  private correctPlaybackSeq = 0;
+  /**
+   * Per-note claim counters. Every real playCorrect() bumps its note's
+   * counter, so a prime still pending on that note can tell the note has been
+   * claimed and must not pause/rewind/re-mute the player's actual cue (iOS
+   * play() promises can settle seconds late after speech synthesis).
+   */
+  private correctSeq: number[] = [];
+  /** Notes that finished a play() — Safari's per-element gesture unlock done. */
+  private correctUnlocked: boolean[] = [];
+  private correctPriming: boolean[] = [];
   private resumePending: Promise<void> | null = null;
   private enabled = true;
   readonly supported: boolean;
@@ -38,10 +70,15 @@ export class SoundEngine {
   setEnabled(value: boolean): void {
     this.enabled = value;
     if (!value) {
-      this.correctPlaybackSeq += 1;
       this.stopContextGain();
       this.damageAudio?.pause();
-      this.correctAudio.forEach((audio) => audio.pause());
+      this.correctAudio.forEach((audio, index) => {
+        // Claiming every note invalidates pending prime cleanups and keeps an
+        // in-flight play() rejection from firing the synth fallback.
+        this.correctSeq[index] += 1;
+        audio.pause();
+        audio.muted = false; // never leave a note muted for the next enable
+      });
     }
   }
 
@@ -106,24 +143,25 @@ export class SoundEngine {
   private prepareCorrectAudio(): void {
     if (this.correctAudio.length || typeof Audio === 'undefined') return;
     try {
-      const filenames = [
-        'correct.wav',
-        'correct-2.wav',
-        'correct-3.wav',
-        'correct-4.wav',
-        'correct-5.wav',
-        'correct-6.wav',
-      ];
-      this.correctAudio = filenames.map((filename) => {
-        const src = new URL(`audio/${filename}`, document.baseURI).href;
+      this.correctAudio = CORRECT_CUE_FILES.map((filename) => {
+        const src = new URL(
+          `audio/${filename}?v=${CORRECT_CUE_VERSION}`,
+          document.baseURI,
+        ).href;
         const audio = new Audio(src);
         audio.preload = 'auto';
         audio.volume = 1;
         audio.load();
         return audio;
       });
+      this.correctSeq = this.correctAudio.map(() => 0);
+      this.correctUnlocked = this.correctAudio.map(() => false);
+      this.correctPriming = this.correctAudio.map(() => false);
     } catch {
       this.correctAudio = [];
+      this.correctSeq = [];
+      this.correctUnlocked = [];
+      this.correctPriming = [];
     }
   }
 
@@ -147,43 +185,66 @@ export class SoundEngine {
   }
 
   /**
-   * Warm Safari's media audio session after speech synthesis ends. iOS can
-   * swallow the first audible clip while switching away from narration, even
-   * though play() was called from a tap. A nearly silent, short play on the
-   * first scale element makes the subsequent first-word cue reliable.
+   * Unlock + warm every scale note for mobile Safari. Two iOS realities shape
+   * this:
+   *   - Each media element must play once from a user gesture before it can
+   *     be replayed programmatically, and right after speech synthesis the
+   *     first audible clip is often swallowed while the audio session
+   *     switches back from narration. A sacrificial play per note absorbs
+   *     both — and the unlock is per element, so all six notes need it.
+   *   - iOS IGNORES the `volume` property (it is pinned to 1), so "nearly
+   *     silent" priming at volume 0.01 is actually full volume on an iPhone.
+   *     Prime MUTED instead — `muted` is honored — then pause and unmute once
+   *     playback has actually started.
+   * If a real cue claims a note while its prime is still pending (play()
+   * promises settle seconds late on iOS), the prime's cleanup backs off
+   * entirely so it can never pause, rewind, or re-mute the real note.
+   * Safe to call outside a gesture: locked notes just reject and stay ready
+   * for their first in-gesture play.
    */
   primeCorrectAudio(): void {
     if (!this.enabled) return;
     this.prepareCorrectAudio();
-    const audio = this.correctAudio[0];
-    if (!audio) return;
-
-    const token = ++this.correctPlaybackSeq;
-    const finishPrime = () => {
-      window.setTimeout(() => {
-        if (token !== this.correctPlaybackSeq) return;
-        audio.pause();
-        audio.currentTime = 0;
-        audio.volume = 1;
-      }, 48);
-    };
-
-    try {
-      audio.pause();
-      audio.currentTime = 0;
-      audio.volume = 0.01;
-      audio.playbackRate = 1;
-      const playback = audio.play();
-      if (playback) {
-        void playback.then(finishPrime).catch(() => {
-          if (token === this.correctPlaybackSeq) audio.volume = 1;
-        });
-      } else {
-        finishPrime();
+    this.correctAudio.forEach((audio, index) => {
+      if (this.correctUnlocked[index] || this.correctPriming[index]) return;
+      if (!audio.paused) return; // a real cue is already sounding this note
+      const claim = this.correctSeq[index];
+      try {
+        audio.muted = true;
+        const playback = audio.play();
+        if (!playback) {
+          // Ancient promiseless play(): stop straight away and restore.
+          audio.pause();
+          audio.muted = false;
+          return;
+        }
+        this.correctPriming[index] = true;
+        void playback
+          .then(() => {
+            this.correctPriming[index] = false;
+            this.correctUnlocked[index] = true;
+            // A real cue claimed this note while the prime was pending —
+            // never pause or rewind it out from under the player.
+            if (this.correctSeq[index] !== claim) return;
+            audio.pause();
+            try {
+              audio.currentTime = 0;
+            } catch {
+              /* not seekable yet — the next play starts at 0 anyway */
+            }
+            audio.muted = false;
+          })
+          .catch(() => {
+            // No user gesture available (or the load failed). Restore and let
+            // the first real in-gesture play unlock the note itself.
+            this.correctPriming[index] = false;
+            if (this.correctSeq[index] === claim) audio.muted = false;
+          });
+      } catch {
+        this.correctPriming[index] = false;
+        if (this.correctSeq[index] === claim) audio.muted = false;
       }
-    } catch {
-      if (token === this.correctPlaybackSeq) audio.volume = 1;
-    }
+    });
   }
 
   private stopContextGain(): void {
@@ -277,24 +338,48 @@ export class SoundEngine {
 
   /**
    * Ascending A-major pentatonic correct-cue. Each note is a separately
-   * rendered clip with the original two-sine timbre and full decay, rather than
-   * a speed-shifted sample. It keeps the reliable HTML Audio path on mobile
-   * without sacrificing the musical scale. Falls back to Web Audio if needed.
+   * rendered clip with the original two-sine timbre and full decay, rather
+   * than a speed-shifted sample. It keeps the reliable HTML Audio path on
+   * mobile without sacrificing the musical scale, and only falls back to the
+   * Web Audio synth when this exact play attempt fails while still being the
+   * newest cue on its note.
    */
   playCorrect(streak = 1): void {
     if (!this.enabled) return;
     this.prepareCorrectAudio();
-    const noteIndex = Math.max(0, streak - 1) % 6;
+    const noteIndex = Math.max(0, streak - 1) % CORRECT_CUE_FILES.length;
     const audio = this.correctAudio[noteIndex];
     if (audio) {
+      // Claim the note before anything else: a pending prime must never
+      // pause or re-mute this play, and an older aborted play() must not
+      // fire the synth fallback on top of it.
+      const claim = ++this.correctSeq[noteIndex];
       try {
-        this.correctPlaybackSeq += 1;
-        audio.pause();
-        audio.currentTime = 0;
+        audio.muted = false; // a pending prime may have muted this element
         audio.volume = 1;
         audio.playbackRate = 1;
+        if (!audio.paused) audio.pause(); // retrigger the same note cleanly
+        try {
+          audio.currentTime = 0;
+        } catch {
+          // Safari throws when seeking before metadata has arrived. Playback
+          // starts at 0 regardless — a failed seek must NOT abandon the
+          // reliable HTML Audio path for the (possibly suspended) synth.
+        }
         const playback = audio.play();
-        if (playback) void playback.catch(() => this.playCorrectSynth(streak));
+        if (playback) {
+          void playback
+            .then(() => {
+              this.correctUnlocked[noteIndex] = true;
+            })
+            .catch(() => {
+              // Only this note's newest play may fall back; a play aborted by
+              // a newer cue or by Sound Off stays silent.
+              if (this.correctSeq[noteIndex] === claim) {
+                this.playCorrectSynth(streak);
+              }
+            });
+        }
         return;
       } catch {
         /* fall back to the synth below */

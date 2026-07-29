@@ -231,8 +231,13 @@ export default function App() {
   const toggleSound = () => {
     const next = !soundEnabled;
     soundEngine.setEnabled(next);
-    if (next) soundEngine.resume();
-    else narrator.stop();
+    if (next) {
+      soundEngine.resume();
+      // This toggle tap is a user gesture — unlock the note clips for iOS.
+      soundEngine.primeCorrectAudio();
+    } else {
+      narrator.stop();
+    }
     const updated = { ...progress, soundEnabled: next };
     setProgress(updated);
     saveProgress(updated);
@@ -261,7 +266,13 @@ export default function App() {
     setResult(null);
     setJourneyError('');
     narrator.stop();
-    if (soundEnabled) soundEngine.resume(); // the tap into a level is our gesture
+    if (soundEnabled) {
+      soundEngine.resume(); // the tap into a level is our gesture
+      // Unlock all six correct-scale clips while we still hold the gesture —
+      // iOS requires each media element to play once from a tap before it can
+      // be replayed programmatically.
+      soundEngine.primeCorrectAudio();
+    }
     setBuilt(null);
     setLoadingLabel(
       TRANSLATIONS[translation].requiresApi
@@ -313,7 +324,10 @@ export default function App() {
     setResult(null);
     setBuilt(null);
     narrator.stop();
-    if (soundEnabled) soundEngine.resume();
+    if (soundEnabled) {
+      soundEngine.resume();
+      soundEngine.primeCorrectAudio(); // unlock note clips inside this tap
+    }
     setLoadingLabel(`Preparing today’s verse in ${TRANSLATIONS[translation].label}…`);
     setPhase('loading');
 
@@ -355,7 +369,10 @@ export default function App() {
     setResult(null);
     setFinal(null);
     narrator.stop();
-    if (soundEnabled) soundEngine.resume();
+    if (soundEnabled) {
+      soundEngine.resume();
+      soundEngine.primeCorrectAudio(); // Scrabble plays the scale notes too
+    }
     setPhase('scrabble');
   };
 

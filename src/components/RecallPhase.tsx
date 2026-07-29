@@ -38,6 +38,17 @@ export function RecallPhase({
   const timeBudget = Math.max(1, level.memorizeSeconds * 2);
   const [timeLeft, setTimeLeft] = useState(timeBudget);
 
+  // Warm the note clips the moment recall opens — narration has just stopped,
+  // and on iOS the first clip after speech synthesis is otherwise swallowed.
+  // This covers the automatic timer transition (which has no tap of its own):
+  // notes unlocked by an earlier gesture re-warm silently; on a still-locked
+  // fresh session it quietly no-ops and the first in-gesture tap unlocks the
+  // note itself.
+  useEffect(() => {
+    sound.primeCorrectAudio();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const section = state.level.sections[state.sectionIndex];
   const singleWord = level.sections.every((s) => s.correct.every((c) => !c.includes(' ')));
   const hearts = level.hearts;
