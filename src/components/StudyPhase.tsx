@@ -131,6 +131,7 @@ export function StudyPhase({
     // This tap is a fresh mobile user gesture. Re-unlock Web Audio after
     // speech synthesis so the very first correct tile always has a cue.
     void sound.resume();
+    sound.primeCorrectAudio();
     announce('Rebuild the verse now.');
     onReadyRef.current();
   };

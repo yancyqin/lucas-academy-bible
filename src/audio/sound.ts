@@ -22,6 +22,7 @@ export class SoundEngine {
   private master: GainNode | null = null;
   private damageAudio: HTMLAudioElement | null = null;
   private correctAudio: HTMLAudioElement[] = [];
+  private correctPlaybackSeq = 0;
   private resumePending: Promise<void> | null = null;
   private enabled = true;
   readonly supported: boolean;
@@ -37,6 +38,7 @@ export class SoundEngine {
   setEnabled(value: boolean): void {
     this.enabled = value;
     if (!value) {
+      this.correctPlaybackSeq += 1;
       this.stopContextGain();
       this.damageAudio?.pause();
       this.correctAudio.forEach((audio) => audio.pause());
@@ -144,6 +146,46 @@ export class SoundEngine {
     }
   }
 
+  /**
+   * Warm Safari's media audio session after speech synthesis ends. iOS can
+   * swallow the first audible clip while switching away from narration, even
+   * though play() was called from a tap. A nearly silent, short play on the
+   * first scale element makes the subsequent first-word cue reliable.
+   */
+  primeCorrectAudio(): void {
+    if (!this.enabled) return;
+    this.prepareCorrectAudio();
+    const audio = this.correctAudio[0];
+    if (!audio) return;
+
+    const token = ++this.correctPlaybackSeq;
+    const finishPrime = () => {
+      window.setTimeout(() => {
+        if (token !== this.correctPlaybackSeq) return;
+        audio.pause();
+        audio.currentTime = 0;
+        audio.volume = 1;
+      }, 48);
+    };
+
+    try {
+      audio.pause();
+      audio.currentTime = 0;
+      audio.volume = 0.01;
+      audio.playbackRate = 1;
+      const playback = audio.play();
+      if (playback) {
+        void playback.then(finishPrime).catch(() => {
+          if (token === this.correctPlaybackSeq) audio.volume = 1;
+        });
+      } else {
+        finishPrime();
+      }
+    } catch {
+      if (token === this.correctPlaybackSeq) audio.volume = 1;
+    }
+  }
+
   private stopContextGain(): void {
     // Let scheduled tones finish naturally; nothing to force-stop.
   }
@@ -246,6 +288,7 @@ export class SoundEngine {
     const audio = this.correctAudio[noteIndex];
     if (audio) {
       try {
+        this.correctPlaybackSeq += 1;
         audio.pause();
         audio.currentTime = 0;
         audio.volume = 1;

@@ -102,4 +102,34 @@ describe('SoundEngine mobile damage cue', () => {
 
     expect(play).not.toHaveBeenCalled();
   });
+
+  it('primes Safari quietly without stopping the first real correct cue', async () => {
+    vi.useFakeTimers();
+    vi.spyOn(window.HTMLMediaElement.prototype, 'load').mockImplementation(
+      () => undefined,
+    );
+    const pause = vi
+      .spyOn(window.HTMLMediaElement.prototype, 'pause')
+      .mockImplementation(() => undefined);
+    const volumes: number[] = [];
+    vi.spyOn(window.HTMLMediaElement.prototype, 'play').mockImplementation(
+      function (this: HTMLMediaElement) {
+        volumes.push(this.volume);
+        return Promise.resolve();
+      },
+    );
+    const sound = new SoundEngine();
+
+    sound.resume();
+    sound.primeCorrectAudio();
+    sound.playCorrect(1);
+    await Promise.resolve();
+    vi.runAllTimers();
+
+    expect(volumes).toEqual([0.01, 1]);
+    // Prime pause + real playback reset. The stale prime cleanup must not pause
+    // and cut off the real first-note cue.
+    expect(pause).toHaveBeenCalledTimes(2);
+    vi.useRealTimers();
+  });
 });

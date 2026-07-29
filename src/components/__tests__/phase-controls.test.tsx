@@ -17,6 +17,7 @@ const narrator = {
 } as unknown as Narrator;
 const sound = {
   resume: vi.fn(),
+  primeCorrectAudio: vi.fn(),
 } as unknown as SoundEngine;
 const noop = vi.fn();
 
@@ -43,6 +44,10 @@ describe('phase controls', () => {
       animationDelay: '350ms',
       animationDuration: '350ms',
     });
+
+    fireEvent.click(screen.getByRole('button', { name: /start recall/i }));
+    expect(sound.resume).toHaveBeenCalled();
+    expect(sound.primeCorrectAudio).toHaveBeenCalled();
   });
 
   it('does not count down or auto-advance during Practice Mode study', () => {
