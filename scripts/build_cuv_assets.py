@@ -1,11 +1,21 @@
 #!/usr/bin/env python3
-"""Build per-book public-domain CUV assets for the Daily Verse Worker."""
+"""Build per-book public-domain CUV assets for the Daily Verse Worker.
+
+Writes one `<BOOK>.json` per book plus an `index.json` catalogue (book order,
+Chinese titles, and per-chapter verse counts) that backs the Pick a Verse
+book/chapter/verse picker for CUV — the one edition the app serves locally
+instead of through YouVersion.
+
+    python3 scripts/build_cuv_assets.py              # download + rebuild everything
+    python3 scripts/build_cuv_assets.py --index-only # rebuild index.json in place
+"""
 
 from __future__ import annotations
 
 import io
 import json
 import re
+import sys
 import urllib.request
 import zipfile
 from collections import defaultdict
@@ -29,6 +39,9 @@ VPL_TO_USFM = {
     "2JO": "2JN",
     "3JO": "3JN",
 }
+
+# BOOK_NAMES is in canonical order; everything from MAT on is the New Testament.
+FIRST_NT_BOOK = "MAT"
 
 BOOK_NAMES = {
     "GEN": "创世记", "EXO": "出埃及记", "LEV": "利未记", "NUM": "民数记",
@@ -62,6 +75,65 @@ def download() -> str:
         return source_zip.read(SOURCE_MEMBER).decode("utf-8")
 
 
+def build_index(verse_numbers: dict[str, dict[str, list[int]]]) -> dict:
+    """Catalogue of the books we actually wrote, in canonical order.
+
+    `chapters` holds the HIGHEST verse number per chapter (chapter 1 first).
+    A handful of CUV chapters skip a verse number where the Chinese text merges
+    verses, and the local reader has no text under the skipped number — those
+    are listed in `gaps` so the picker never offers a verse that cannot load.
+    """
+    canon = "old_testament"
+    books = []
+    for book in BOOK_NAMES:
+        if book == FIRST_NT_BOOK:
+            canon = "new_testament"
+        chapters = verse_numbers.get(book)
+        if not chapters:
+            continue
+        highest = []
+        gaps = {}
+        for number in range(1, len(chapters) + 1):
+            present = sorted(chapters[str(number)])
+            highest.append(present[-1])
+            missing = sorted(set(range(1, present[-1] + 1)) - set(present))
+            if missing:
+                gaps[str(number)] = missing
+        entry = {
+            "id": book,
+            "title": BOOK_NAMES[book],
+            "canon": canon,
+            "chapters": highest,
+        }
+        if gaps:
+            entry["gaps"] = gaps
+        books.append(entry)
+    return {"books": books}
+
+
+def write_index(verse_numbers: dict[str, dict[str, list[int]]]) -> None:
+    index = build_index(verse_numbers)
+    (OUTPUT_DIR / "index.json").write_text(
+        json.dumps(index, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+    print(f"Wrote CUV index for {len(index['books'])} books to {OUTPUT_DIR}")
+
+
+def index_only() -> None:
+    """Rebuild index.json from the book assets already on disk."""
+    verse_numbers: dict[str, dict[str, list[int]]] = {}
+    for path in sorted(OUTPUT_DIR.glob("*.json")):
+        if path.name == "index.json":
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        verse_numbers[path.stem] = {
+            chapter: [int(verse) for verse in verses]
+            for chapter, verses in data["chapters"].items()
+        }
+    write_index(verse_numbers)
+
+
 def main() -> None:
     books: dict[str, dict[str, dict[str, str]]] = defaultdict(
         lambda: defaultdict(dict)
@@ -89,6 +161,19 @@ def main() -> None:
 
     print(f"Wrote {len(books)} CUV book assets to {OUTPUT_DIR}")
 
+    write_index(
+        {
+            book: {
+                chapter: [int(verse) for verse in verses]
+                for chapter, verses in chapters.items()
+            }
+            for book, chapters in books.items()
+        }
+    )
+
 
 if __name__ == "__main__":
-    main()
+    if "--index-only" in sys.argv:
+        index_only()
+    else:
+        main()

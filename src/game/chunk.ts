@@ -111,17 +111,30 @@ export function isContentWord(token: string): boolean {
   );
 }
 
+/**
+ * Merge adjacent chunks into bigger tiles — fewer, longer tiles to order, which
+ * is the strongest difficulty lever there is. Rejoining is exact: tiles are
+ * joined with the same separator `joinChunks` uses. Never collapses to a single
+ * tile (that would hand the player a solved round).
+ */
+export function groupChunks(chunks: string[], groupSize: number): string[] {
+  if (groupSize <= 1 || chunks.length <= 2) return chunks;
+  const separator = chunks.some(isCjkText) ? '' : ' ';
+  const grouped: string[] = [];
+  for (let index = 0; index < chunks.length; index += groupSize) {
+    grouped.push(chunks.slice(index, index + groupSize).join(separator));
+  }
+  return grouped.length === 1 ? chunks : grouped;
+}
+
 function groupChineseChunks(
   chunks: string[],
   granularity: 'words' | 'short' | 'phrase',
 ): string[] {
-  const groupSize = granularity === 'phrase' ? 3 : granularity === 'short' ? 2 : 1;
-  if (groupSize === 1 || chunks.length <= 2) return chunks;
-  const grouped: string[] = [];
-  for (let index = 0; index < chunks.length; index += groupSize) {
-    grouped.push(chunks.slice(index, index + groupSize).join(''));
-  }
-  return grouped.length === 1 ? chunks : grouped;
+  return groupChunks(
+    chunks,
+    granularity === 'phrase' ? 3 : granularity === 'short' ? 2 : 1,
+  );
 }
 
 /**
