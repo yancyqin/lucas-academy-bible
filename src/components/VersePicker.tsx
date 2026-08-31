@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   CANON_LABELS,
   chapterVerses,
@@ -28,11 +28,7 @@ export interface VersePickerProps {
   shareUrl: string;
 }
 
-const CANON_ORDER: BibleCanon[] = [
-  'old_testament',
-  'new_testament',
-  'deuterocanon',
-];
+const CANON_ORDER: BibleCanon[] = ['old_testament', 'new_testament'];
 
 /** "John 3:16" / "John 3:16-18", in the edition's own book name. */
 export function pickedReference(
@@ -62,6 +58,10 @@ export function VersePicker({
 }: VersePickerProps) {
   const [copied, setCopied] = useState(false);
   const [showLink, setShowLink] = useState(false);
+  const copiedTimer = useRef<number | undefined>(undefined);
+  const modeRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => () => window.clearTimeout(copiedTimer.current), []);
   const book = books ? findBook(books, request.book) : undefined;
   const chapterCount = book?.chapters.length ?? 0;
   const verses = book ? chapterVerses(book, request.chapter) : [];
@@ -93,11 +93,32 @@ export function VersePicker({
     });
   };
 
+  const moveDifficulty = (from: number, step: number) => {
+    const next =
+      (from + step + VERSE_DIFFICULTIES.length) % VERSE_DIFFICULTIES.length;
+    onChangeDifficulty(VERSE_DIFFICULTIES[next]);
+    modeRefs.current[next]?.focus();
+  };
+
+  const onDifficultyKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      moveDifficulty(index, 1);
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      moveDifficulty(index, -1);
+    }
+  };
+
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      window.setTimeout(() => setCopied(false), 2200);
+      window.clearTimeout(copiedTimer.current);
+      copiedTimer.current = window.setTimeout(() => setCopied(false), 2200);
     } catch {
       // No clipboard here — an insecure origin (a tablet on the LAN) or a
       // browser that blocks it. Show the link so it can be copied by hand.
@@ -206,17 +227,23 @@ export function VersePicker({
             role="radiogroup"
             aria-label="Difficulty"
           >
-            {VERSE_DIFFICULTIES.map((key) => (
+            {VERSE_DIFFICULTIES.map((key, index) => (
               <button
                 key={key}
                 type="button"
                 role="radio"
                 aria-checked={difficulty === key}
+                // Roving tabindex: Tab reaches the group once, arrows move on.
+                tabIndex={difficulty === key ? 0 : -1}
+                ref={(node) => {
+                  modeRefs.current[index] = node;
+                }}
                 className={`verse-mode ${
                   difficulty === key ? 'verse-mode--active' : ''
                 }`}
                 title={VERSE_MODES[key].blurb}
                 onClick={() => onChangeDifficulty(key)}
+                onKeyDown={(event) => onDifficultyKeyDown(event, index)}
               >
                 {VERSE_MODES[key].label}
               </button>

@@ -89,6 +89,18 @@ body {
   overflow: hidden;
 }
 
+/* The home screen is a set of controls, not a fixed-height game board. It gets
+   no card frame and no inner scroll area: when the picker makes it taller than
+   the viewport the PAGE scrolls, which is what a thumb expects. */
+.app--welcome {
+  height: auto;
+  /* Horizontal clipping stays: the off-screen live regions sit at left:-1px and
+     would otherwise give the page a 2px sideways scroll. Vertically the page is
+     free to grow — height is auto, so nothing scrolls inside here. */
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
 .stage {
   width: 100%;
   max-width: var(--maxw);
@@ -115,14 +127,14 @@ body {
 }
 
 .stage--welcome > .card {
-  height: 100%;
-  max-height: 820px;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.stage--welcome > .card::-webkit-scrollbar {
-  display: none;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
 }
 
 .stage--recall {
@@ -2045,9 +2057,6 @@ body {
   .study__start { order: -1; }
   .heart { width: 34px; height: 34px; }
 
-  .stage--welcome > .card {
-    padding: 16px 14px;
-  }
   .stage--welcome .center-col {
     gap: 10px;
   }
@@ -2105,7 +2114,6 @@ body {
   .stage--fit .cert__seal { width: 60px; height: 60px; }
   .stage--fit .cert__level { font-size: clamp(2.35rem, 8vw, 3.5rem); }
   .stage--welcome .center-col { gap: 9px; }
-  .stage--welcome > .card { padding-top: 12px; padding-bottom: 12px; }
   .stage--welcome .center-col > div:first-child {
     width: 48px !important;
     height: 48px !important;

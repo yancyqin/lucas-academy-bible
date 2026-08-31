@@ -59,6 +59,11 @@ describe('clamping a selection to an edition', () => {
     });
   });
 
+  it('leaves the request alone when there is no catalogue to clamp against', () => {
+    const request = { book: 'JHN', chapter: 3, verse: 16 };
+    expect(clampRequest([], request)).toEqual(request);
+  });
+
   it('pulls the chapter and verse back inside the book', () => {
     expect(clampRequest(books, { book: 'JHN', chapter: 40, verse: 200 })).toEqual({
       book: 'JHN',

@@ -174,10 +174,16 @@ async function loadDistractors(
     (id) => !id.startsWith(`${request.book}.`),
   );
   const source = sources[seed % sources.length];
-  const passage = await fetchBiblePassage(edition, source, signal);
-  return [
-    { id: `youversion-${passage.passageId}`, text: passage.text },
-  ];
+  try {
+    const passage = await fetchBiblePassage(edition, source, signal);
+    return [{ id: `youversion-${passage.passageId}`, text: passage.text }];
+  } catch {
+    // The verse itself already loaded. Play it decoy-free rather than throwing
+    // the round away over the second request — an empty pool yields no decoys,
+    // where falling through to the bundled pool would put English tiles in a
+    // Korean round.
+    return [];
+  }
 }
 
 export default function App() {
@@ -797,7 +803,11 @@ export default function App() {
         );
 
   return (
-    <div className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'}`}>
+    <div
+      className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'} ${
+        phase === 'welcome' ? 'app--welcome' : ''
+      }`}
+    >
       <div className="visually-hidden" aria-live="polite" aria-atomic="true">
         <span key={polite.id}>{polite.text}</span>
       </div>

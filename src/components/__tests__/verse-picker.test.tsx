@@ -133,6 +133,29 @@ describe('Pick a Verse', () => {
     expect(onChangeDifficulty).toHaveBeenCalledWith('hard');
   });
 
+  it('is arrowed through, not tabbed through, like any radio group', () => {
+    const onChangeDifficulty = vi.fn();
+    setup({ difficulty: 'normal', onChangeDifficulty });
+
+    const easy = screen.getByRole('radio', { name: 'Easy' });
+    const normal = screen.getByRole('radio', { name: 'Normal' });
+    // One tab stop for the whole group: the chosen option.
+    expect(normal).toHaveAttribute('tabindex', '0');
+    expect(easy).toHaveAttribute('tabindex', '-1');
+
+    fireEvent.keyDown(normal, { key: 'ArrowRight' });
+    expect(onChangeDifficulty).toHaveBeenCalledWith('hard');
+
+    fireEvent.keyDown(normal, { key: 'ArrowLeft' });
+    expect(onChangeDifficulty).toHaveBeenLastCalledWith('easy');
+
+    // Arrows wrap around the group.
+    fireEvent.keyDown(screen.getByRole('radio', { name: 'Practice' }), {
+      key: 'ArrowDown',
+    });
+    expect(onChangeDifficulty).toHaveBeenLastCalledWith('easy');
+  });
+
   it('copies the share link', async () => {
     const writeText = vi.fn(async () => undefined);
     vi.stubGlobal('navigator', { clipboard: { writeText } });

@@ -9,8 +9,11 @@ import { MAX_VERSE_SPAN, type VerseRequest } from './verse-request';
  * publisher (创世记 / 창세기 / Genesis) and the chapter and verse counts really
  * do differ between translations, so the picker can never offer a reference
  * the chosen edition does not have.
+ *
+ * The Worker serves the 66-book Protestant canon only, so no deuterocanon
+ * reaches here.
  */
-export type BibleCanon = 'old_testament' | 'new_testament' | 'deuterocanon';
+export type BibleCanon = 'old_testament' | 'new_testament';
 
 export interface BibleBook {
   /** USFM book id, e.g. "JHN". */
@@ -110,9 +113,11 @@ export function clampRequest(
   books: BibleBook[],
   request: VerseRequest,
 ): VerseRequest {
+  if (books.length === 0) return request;
+
   const book = findBook(books, request.book);
-  // An edition without that book at all (switching away from a Bible with the
-  // deuterocanon, say) starts over rather than landing somewhere unrelated.
+  // An edition without that book at all starts over rather than landing
+  // somewhere unrelated.
   if (!book) {
     const first = books[0];
     return { book: first.id, chapter: 1, verse: chapterVerses(first, 1)[0] ?? 1 };
@@ -142,5 +147,4 @@ export function clampRequest(
 export const CANON_LABELS: Record<BibleCanon, string> = {
   old_testament: 'Old Testament',
   new_testament: 'New Testament',
-  deuterocanon: 'Deuterocanon',
 };

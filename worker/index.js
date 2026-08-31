@@ -30,7 +30,10 @@ export const TRANSLATIONS = Object.freeze({
   KLB: { key: 'KLB', label: 'KLB', bibleId: 86 },
 });
 
-const PASSAGE_ID_PATTERN = /^[1-3]?[A-Z]{2,3}\.\d+\.\d+(?:-\d+)?$/;
+// USFM book ids are always exactly three characters, and a numbered book leads
+// with its digit (1SA, 2KI). Anything past that shape is rejected before we
+// build a YouVersion URL from it.
+const PASSAGE_ID_PATTERN = /^[A-Z0-9]{3}\.\d+\.\d+(?:-\d+)?$/;
 
 function json(data, init = {}) {
   const headers = new Headers(init.headers);
@@ -119,9 +122,7 @@ async function getLocalCuvPassage(env, passageId) {
   if (!env.ASSETS) {
     throw new Error('Local CUV assets are not configured');
   }
-  const match = passageId.match(
-    /^([1-3]?[A-Z]{2,3})\.(\d+)\.(\d+)(?:-(\d+))?$/,
-  );
+  const match = passageId.match(/^([A-Z0-9]{3})\.(\d+)\.(\d+)(?:-(\d+))?$/);
   if (!match) throw new Error('Invalid YouVersion passage id');
   const [, book, chapter, firstText, lastText] = match;
   const first = Number(firstText);
@@ -215,10 +216,16 @@ export async function getTranslationPassage(env, translationKey, passageId) {
  * ids with the edition's own localized titles, and the HIGHEST verse number in
  * each chapter. Verse numbers a translation merges away still resolve through
  * the passages endpoint, so a plain 1..highest range is safe to offer.
+ *
+ * The 66-book Protestant canon only. YouVersion's WEB carries 14 more books
+ * tagged `deuterocanon` (Sirach, 4 Maccabees, Psalm 151…) which no other
+ * edition this app offers has; listing them in English alone would be a set of
+ * books that vanish the moment the player switches language.
  */
 function compactBooks(books) {
   const compact = [];
   for (const book of books ?? []) {
+    if (book.canon === 'deuterocanon') continue;
     const chapters = [];
     for (const chapter of book.chapters ?? []) {
       // Some editions carry non-numeric chapters (intros, "1_1"); skip those.
@@ -229,7 +236,10 @@ function compactBooks(books) {
       if (verses.length === 0) continue;
       chapters[Number(chapter.id) - 1] = Math.max(...verses);
     }
-    if (chapters.length === 0 || chapters.some((count) => !count)) continue;
+    // Skipping a chapter leaves a HOLE, and `some` steps over holes — spread
+    // first so a book missing chapter 2 is dropped instead of shipping a
+    // chapter whose verse list would render empty.
+    if (chapters.length === 0 || [...chapters].some((count) => !count)) continue;
     compact.push({
       id: book.id,
       title: book.title,

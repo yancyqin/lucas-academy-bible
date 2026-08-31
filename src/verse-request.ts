@@ -31,7 +31,9 @@ export interface VerseRequest {
 /** Longest range the picker offers — enough for Psalm 23 without a wall of tiles. */
 export const MAX_VERSE_SPAN = 8;
 
-const PASSAGE_ID_PATTERN = /^([1-3]?[A-Z]{2,3})\.(\d+)\.(\d+)(?:-(\d+))?$/;
+// USFM book ids are always exactly three characters, and a numbered book leads
+// with its digit (1SA, 2KI) — matching the Worker's own guard.
+const PASSAGE_ID_PATTERN = /^([A-Z0-9]{3})\.(\d+)\.(\d+)(?:-(\d+))?$/;
 
 /** YouVersion passage id: "JHN.3.16", or "PSA.23.1-3" for a range. */
 export function formatPassageId(request: VerseRequest): string {
@@ -85,6 +87,20 @@ export function readVerseLink(search: string): VerseLink | null {
   const request = parsePassageId(passage);
   if (!request) return null;
 
+  // The picker cannot select a longer span, so a hand-edited link does not get
+  // one either: Psalm 119 in one round would be 176 verses against a 45-second
+  // memorize cap.
+  const capped: VerseRequest =
+    request.endVerse === undefined
+      ? request
+      : {
+          ...request,
+          endVerse: Math.min(
+            request.endVerse,
+            request.verse + MAX_VERSE_SPAN - 1,
+          ),
+        };
+
   const key = params.get('translation');
   const version = params.get('version');
   const translation = isTranslationKey(key)
@@ -93,7 +109,7 @@ export function readVerseLink(search: string): VerseLink | null {
 
   const difficulty = params.get('difficulty');
   return {
-    request,
+    request: capped,
     ...(translation ? { translation } : {}),
     difficulty: isVerseDifficulty(difficulty)
       ? difficulty

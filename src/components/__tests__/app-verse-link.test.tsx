@@ -117,6 +117,34 @@ describe('Pick a Verse tab', () => {
     ).toBeInTheDocument();
   });
 
+  it('plays on when only the decoy request fails', async () => {
+    // Hard in a licensed edition needs a second passage for its decoys.
+    window.history.replaceState(
+      {},
+      '',
+      '/?passage=JHN.3.16&translation=NIRV&difficulty=hard',
+    );
+    vi.stubGlobal('fetch', async (input: unknown) => {
+      const url = String(input);
+      if (url.startsWith('/api/books')) return Response.json(catalogue);
+      if (url.includes('passage=JHN.3.16')) {
+        return Response.json({ ...john316, translation: { ...john316.translation, key: 'NIRV' } });
+      }
+      // The decoy source, and only the decoy source, is unavailable.
+      return Response.json(
+        { error: 'passage_unavailable', message: 'That passage could not be loaded.' },
+        { status: 502 },
+      );
+    });
+    render(<App />);
+
+    // The verse itself came through, so the round runs — decoy-free.
+    expect(
+      await screen.findByRole('region', { name: 'Memorize John 3:16' }),
+    ).toBeInTheDocument();
+    expect(screen.getByText('Hard · Memorize')).toBeInTheDocument();
+  });
+
   it('honours the edition a link names without saving it over the player’s choice', async () => {
     window.history.replaceState({}, '', '/?passage=JHN.3.16&version=110');
     stubApi();
