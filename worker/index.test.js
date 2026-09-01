@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   dateInfo,
+  getBibleBooks,
   getDailyVerse,
   getTranslationMetadata,
   getTranslationPassage,
@@ -105,6 +106,29 @@ describe('daily verse Worker', () => {
     }
   });
 
+  it('accepts every USFM book id shape', async () => {
+    const kv = new MemoryKv();
+    const api = vi.fn(async (input) => {
+      const url = String(input);
+      if (url.includes('/passages/')) {
+        return Response.json({ id: 'x', reference: 'ref', content: 'text' });
+      }
+      return Response.json({ id: 206, abbreviation: 'WEB', title: 'WEB' });
+    });
+    vi.stubGlobal('fetch', api);
+    const env = { YVP_APP_KEY: 'test-only', DAILY_VERSE_KV: kv };
+
+    // A leading digit (1SA) and an embedded one (S3Y) are both real USFM ids.
+    for (const id of ['JHN.3.16', '1SA.1.1', 'S3Y.1.1-3']) {
+      await expect(getTranslationPassage(env, 'WEB', id)).resolves.toBeTruthy();
+    }
+    for (const id of ['JOHN.3.16', 'JH.3.16', 'JHN.3', 'JHN.3.16.1', '']) {
+      await expect(getTranslationPassage(env, 'WEB', id)).rejects.toThrow(
+        'Invalid YouVersion passage id',
+      );
+    }
+  });
+
   it('caches passages by translation and rejects invalid ids before fetch', async () => {
     const kv = new MemoryKv();
     const api = vi.fn(async (input) => {
@@ -201,6 +225,154 @@ describe('daily verse Worker', () => {
     expect(second.cache).toBe('HIT');
     expect(first.translation.copyright).toBe('Required NIV copyright.');
     expect(api).toHaveBeenCalledTimes(1);
+  });
+
+  it('compacts the book list to titles and highest verse numbers', async () => {
+    const kv = new MemoryKv();
+    const api = vi.fn(async (input) => {
+      const url = String(input);
+      if (url.endsWith('/bibles/86/books')) {
+        return Response.json({
+          data: [
+            {
+              id: 'GEN',
+              title: '창세기',
+              canon: 'old_testament',
+              chapters: [
+                {
+                  id: '1',
+                  // KLB merges verses 7 and 15 away; 31 is still the highest.
+                  verses: [{ id: '1' }, { id: '6' }, { id: '31' }],
+                },
+                { id: '2', verses: [{ id: '1' }, { id: '25' }] },
+              ],
+            },
+            {
+              // Non-numeric chapters (intros) carry no verses to pick from.
+              id: 'PS2',
+              title: 'Psalm 151',
+              canon: 'deuterocanon',
+              chapters: [{ id: '1_1', verses: [{ id: '1' }] }],
+            },
+          ],
+        });
+      }
+      if (url.endsWith('/bibles/86')) {
+        return Response.json({
+          id: 86,
+          abbreviation: 'KLB',
+          title: 'Korean Living Bible',
+          copyright: 'Required KLB copyright.',
+        });
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', api);
+    const env = { YVP_APP_KEY: 'test-only', DAILY_VERSE_KV: kv };
+
+    const first = await getBibleBooks(env, 'KLB');
+    const second = await getBibleBooks(env, 'KLB');
+
+    expect(first.cache).toBe('MISS');
+    expect(second.cache).toBe('HIT');
+    expect(first.books).toEqual([
+      {
+        id: 'GEN',
+        title: '창세기',
+        canon: 'old_testament',
+        chapters: [31, 25],
+      },
+    ]);
+    expect(first.translation.copyright).toBe('Required KLB copyright.');
+    expect(api).toHaveBeenCalledTimes(2);
+  });
+
+  it('leaves the deuterocanon out and drops a book missing a chapter', async () => {
+    const kv = new MemoryKv();
+    const chapter = (id, highest) => ({
+      id,
+      verses: [{ id: '1' }, { id: String(highest) }],
+    });
+    const api = vi.fn(async (input) => {
+      const url = String(input);
+      if (url.endsWith('/bibles/206/books')) {
+        return Response.json({
+          data: [
+            {
+              id: 'GEN',
+              title: 'Genesis',
+              canon: 'old_testament',
+              chapters: [chapter('1', 31), chapter('2', 25)],
+            },
+            {
+              // 4MA and friends exist only in WEB; no other edition has them.
+              id: '4MA',
+              title: '4 Maccabees',
+              canon: 'deuterocanon',
+              chapters: [chapter('1', 35)],
+            },
+            {
+              // Chapter 2 is absent, which used to leave a hole `some` stepped
+              // over — the book shipped with an unplayable chapter.
+              id: 'GAP',
+              title: 'Gapped',
+              canon: 'old_testament',
+              chapters: [chapter('1', 10), chapter('3', 12)],
+            },
+          ],
+        });
+      }
+      if (url.endsWith('/bibles/206')) {
+        return Response.json({ id: 206, abbreviation: 'WEB', title: 'WEB' });
+      }
+      throw new Error(`unexpected fetch ${url}`);
+    });
+    vi.stubGlobal('fetch', api);
+    const env = { YVP_APP_KEY: 'test-only', DAILY_VERSE_KV: kv };
+
+    const catalogue = await getBibleBooks(env, 'WEB');
+
+    expect(catalogue.books.map((book) => book.id)).toEqual(['GEN']);
+  });
+
+  it('serves the CUV book list from the local index, gaps included', async () => {
+    const kv = new MemoryKv();
+    const api = vi.fn();
+    vi.stubGlobal('fetch', api);
+    const assets = {
+      fetch: vi.fn(async () =>
+        Response.json({
+          books: [
+            {
+              id: 'PSA',
+              title: '诗篇',
+              canon: 'old_testament',
+              chapters: [6, 12],
+              gaps: { 2: [7, 8] },
+            },
+          ],
+        }),
+      ),
+    };
+    const env = {
+      YVP_APP_KEY: 'test-only',
+      DAILY_VERSE_KV: kv,
+      ASSETS: assets,
+    };
+
+    const catalogue = await getBibleBooks(env, 'CUV');
+
+    expect(catalogue.books[0].title).toBe('诗篇');
+    expect(catalogue.books[0].gaps).toEqual({ 2: [7, 8] });
+    expect(catalogue.translation.copyright).toBe('Public Domain');
+    expect(api).not.toHaveBeenCalled();
+  });
+
+  it('rejects a book list for an unsupported translation', async () => {
+    const env = { YVP_APP_KEY: 'test-only', DAILY_VERSE_KV: new MemoryKv() };
+    await expect(getBibleBooks(env, 'ESV')).rejects.toThrow(
+      'Unsupported Bible translation',
+    );
   });
 
   it('reads CUV passage text from local public-domain assets', async () => {

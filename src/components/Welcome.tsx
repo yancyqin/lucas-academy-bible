@@ -1,5 +1,6 @@
 import { BookMark } from './icons';
 import { SoundToggle } from './SoundToggle';
+import { VersePicker, type VersePickerProps } from './VersePicker';
 import type { DailyVerse } from '../daily';
 import {
   CHINESE_TRANSLATIONS,
@@ -10,7 +11,12 @@ import {
   type TranslationKey,
 } from '../translation-config';
 
-export type WelcomeTab = 'journey' | 'daily' | 'scrabble' | 'word-search';
+export type WelcomeTab =
+  | 'verse'
+  | 'journey'
+  | 'daily'
+  | 'scrabble'
+  | 'word-search';
 
 interface WelcomeProps {
   soundEnabled: boolean;
@@ -32,6 +38,8 @@ interface WelcomeProps {
   onSelectTranslation: (translation: TranslationKey) => void;
   journeyError: string;
   translationApiEnabled: boolean;
+  /** Everything the Pick a Verse panel needs, grouped so it travels as one. */
+  versePicker: VersePickerProps;
 }
 
 export function Welcome({
@@ -54,6 +62,7 @@ export function Welcome({
   onSelectTranslation,
   journeyError,
   translationApiEnabled,
+  versePicker,
 }: WelcomeProps) {
   const dailyReady =
     dailyVerse !== null && dailyVerse.translation.key === translation;
@@ -82,10 +91,19 @@ export function Welcome({
 
         {dailyEnabled && (
           <div
-            className="welcome-tabs welcome-tabs--four"
+            className="welcome-tabs welcome-tabs--five"
             role="tablist"
             aria-label="Choose a Bible Sequence game"
           >
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'verse'}
+              className={`welcome-tab ${activeTab === 'verse' ? 'welcome-tab--active' : ''}`}
+              onClick={() => onSelectTab('verse')}
+            >
+              Pick a Verse
+            </button>
             <button
               type="button"
               role="tab"
@@ -235,7 +253,9 @@ export function Welcome({
           </div>
         )}
 
-        {activeTab === 'journey' ? (
+        {activeTab === 'verse' ? (
+          <VersePicker {...versePicker} />
+        ) : activeTab === 'journey' ? (
           <div className="welcome-panel" role="tabpanel">
             {journeyError && (
               <p className="daily-panel__error" role="alert">

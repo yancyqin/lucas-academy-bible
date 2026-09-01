@@ -4,6 +4,7 @@ import {
   type ScriptureAttribution,
 } from './game/build';
 import { allPassages, requirePassage } from './data/scripture';
+import type { DistractorPassage } from './game/distractors';
 import type { LevelFile, Question } from './game/levels';
 import { mulberry32 } from './game/random';
 import { joinChunks } from './game/chunk';
@@ -58,6 +59,31 @@ const BOOK_CODES: Record<string, string> = {
   '1 Peter': '1PE',
   '1 John': '1JN',
 };
+
+/**
+ * Decoy text for a verse the player picked, drawn from the bundled collection
+ * (WEB, or its CUV column) — the same source the Challenge uses. Anything from
+ * the picked chapter is left out so a decoy is never a neighbouring fragment of
+ * the passage being rebuilt.
+ */
+export function localDistractorPool(
+  exclude: { book: string; chapter: number },
+  chinese: boolean,
+): DistractorPassage[] {
+  return allPassages
+    .filter(
+      (passage) =>
+        !(
+          BOOK_CODES[passage.book] === exclude.book &&
+          passage.chapter === exclude.chapter
+        ),
+    )
+    .map((passage) => ({
+      id: passage.id,
+      text: (chinese ? passage.textZh : passage.text) ?? '',
+    }))
+    .filter((passage) => passage.text !== '');
+}
 
 function responseMessage(data: unknown, fallback: string): string {
   return data && typeof data === 'object' && 'message' in data

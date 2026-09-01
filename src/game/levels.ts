@@ -27,6 +27,13 @@ export interface LevelPolicy {
   hearts: number;
   hintLevel: HintLevel;
   granularity: Granularity;
+  /**
+   * Merge this many adjacent chunks into one tile, in EVERY language. The level
+   * banks leave it unset (1): their tiles are content-word groups, and
+   * `granularity` only resizes Chinese ones. Pick a Verse uses it to make Easy
+   * genuinely easy — a handful of phrase tiles instead of a wall of words.
+   */
+  tileGroup?: number;
   sectionBy: SectionBy;
   distractorsPerSection: number;
   /** Memorize-timer tuning (seconds). */

@@ -3,6 +3,7 @@ const TIME_ZONE = 'America/Los_Angeles';
 const DAILY_TTL_SECONDS = 8 * 24 * 60 * 60;
 const VERSION_TTL_SECONDS = 30 * 24 * 60 * 60;
 const PASSAGE_TTL_SECONDS = 30 * 24 * 60 * 60;
+const BOOKS_TTL_SECONDS = 30 * 24 * 60 * 60;
 
 export const TRANSLATIONS = Object.freeze({
   WEB: { key: 'WEB', label: 'WEB', bibleId: 206 },
@@ -29,7 +30,10 @@ export const TRANSLATIONS = Object.freeze({
   KLB: { key: 'KLB', label: 'KLB', bibleId: 86 },
 });
 
-const PASSAGE_ID_PATTERN = /^[1-3]?[A-Z]{2,3}\.\d+\.\d+(?:-\d+)?$/;
+// USFM book ids are always exactly three characters, and a numbered book leads
+// with its digit (1SA, 2KI). Anything past that shape is rejected before we
+// build a YouVersion URL from it.
+const PASSAGE_ID_PATTERN = /^[A-Z0-9]{3}\.\d+\.\d+(?:-\d+)?$/;
 
 function json(data, init = {}) {
   const headers = new Headers(init.headers);
@@ -118,9 +122,7 @@ async function getLocalCuvPassage(env, passageId) {
   if (!env.ASSETS) {
     throw new Error('Local CUV assets are not configured');
   }
-  const match = passageId.match(
-    /^([1-3]?[A-Z]{2,3})\.(\d+)\.(\d+)(?:-(\d+))?$/,
-  );
+  const match = passageId.match(/^([A-Z0-9]{3})\.(\d+)\.(\d+)(?:-(\d+))?$/);
   if (!match) throw new Error('Invalid YouVersion passage id');
   const [, book, chapter, firstText, lastText] = match;
   const first = Number(firstText);
@@ -204,6 +206,92 @@ export async function getTranslationPassage(env, translationKey, passageId) {
 
   await env.DAILY_VERSE_KV.put(cacheKey, JSON.stringify(result), {
     expirationTtl: PASSAGE_TTL_SECONDS,
+  });
+
+  return { ...result, cache: 'MISS' };
+}
+
+/**
+ * Compact catalogue behind the Pick a Verse book/chapter/verse picker: book
+ * ids with the edition's own localized titles, and the HIGHEST verse number in
+ * each chapter. Verse numbers a translation merges away still resolve through
+ * the passages endpoint, so a plain 1..highest range is safe to offer.
+ *
+ * The 66-book Protestant canon only. YouVersion's WEB carries 14 more books
+ * tagged `deuterocanon` (Sirach, 4 Maccabees, Psalm 151…) which no other
+ * edition this app offers has; listing them in English alone would be a set of
+ * books that vanish the moment the player switches language.
+ */
+function compactBooks(books) {
+  const compact = [];
+  for (const book of books ?? []) {
+    if (book.canon === 'deuterocanon') continue;
+    const chapters = [];
+    for (const chapter of book.chapters ?? []) {
+      // Some editions carry non-numeric chapters (intros, "1_1"); skip those.
+      if (!/^\d+$/.test(String(chapter.id))) continue;
+      const verses = (chapter.verses ?? [])
+        .map((verse) => Number(verse.id))
+        .filter((verse) => Number.isInteger(verse) && verse > 0);
+      if (verses.length === 0) continue;
+      chapters[Number(chapter.id) - 1] = Math.max(...verses);
+    }
+    // Skipping a chapter leaves a HOLE, and `some` steps over holes — spread
+    // first so a book missing chapter 2 is dropped instead of shipping a
+    // chapter whose verse list would render empty.
+    if (chapters.length === 0 || [...chapters].some((count) => !count)) continue;
+    compact.push({
+      id: book.id,
+      title: book.title,
+      canon: book.canon ?? 'old_testament',
+      chapters,
+    });
+  }
+  return compact;
+}
+
+async function getLocalCuvBooks(env) {
+  if (!env.ASSETS) {
+    throw new Error('Local CUV assets are not configured');
+  }
+  const response = await env.ASSETS.fetch(
+    new Request('https://local-assets.invalid/cuv/index.json'),
+  );
+  if (!response.ok) {
+    throw new Error('The local CUV book index is unavailable');
+  }
+  const index = await response.json();
+  return index?.books ?? [];
+}
+
+export async function getBibleBooks(env, translationKey) {
+  assertConfigured(env);
+  const translation = requireTranslation(translationKey);
+  const cacheKey = `books:${translation.bibleId}`;
+  const cached = await env.DAILY_VERSE_KV.get(cacheKey, 'json');
+  if (cached) return { ...cached, cache: 'HIT' };
+
+  const [books, versionResult] = await Promise.all([
+    translation.local
+      ? getLocalCuvBooks(env)
+      : youVersionJson(
+          `/bibles/${translation.bibleId}/books`,
+          env.YVP_APP_KEY,
+        ).then((data) => compactBooks(data?.data)),
+    getBibleMetadata(env, translation),
+  ]);
+
+  if (!Array.isArray(books) || books.length === 0) {
+    throw new Error('YouVersion returned no books for this translation');
+  }
+
+  const result = {
+    translation: translationPayload(translation, versionResult.value),
+    books,
+  };
+
+  await env.DAILY_VERSE_KV.put(cacheKey, JSON.stringify(result), {
+    expirationTtl: BOOKS_TTL_SECONDS,
   });
 
   return { ...result, cache: 'MISS' };
@@ -333,6 +421,42 @@ export default {
               : unavailable
                 ? 'Bible translations are not configured yet.'
                 : 'That passage could not be loaded. Please try again.',
+          },
+          { status: invalid ? 400 : unavailable ? 503 : 502 },
+        );
+      }
+    }
+
+    if (url.pathname === '/api/books') {
+      if (request.method !== 'GET') {
+        return json(
+          { error: 'method_not_allowed' },
+          { status: 405, headers: { Allow: 'GET' } },
+        );
+      }
+
+      try {
+        const translation = url.searchParams.get('translation') ?? 'WEB';
+        const catalogue = await getBibleBooks(env, translation);
+        return json(catalogue, {
+          headers: {
+            'Cache-Control': 'private, max-age=3600',
+            'X-Bible-Books-Cache': catalogue.cache,
+          },
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : '';
+        const unavailable = message.includes('is not configured');
+        const invalid = message.includes('Unsupported Bible translation');
+        if (!invalid) console.error('bible-books', error);
+        return json(
+          {
+            error: invalid ? 'invalid_translation' : 'books_unavailable',
+            message: invalid
+              ? 'That Bible translation is not supported.'
+              : unavailable
+                ? 'Bible translations are not configured yet.'
+                : 'The book list could not be loaded. Please try again.',
           },
           { status: invalid ? 400 : unavailable ? 503 : 502 },
         );

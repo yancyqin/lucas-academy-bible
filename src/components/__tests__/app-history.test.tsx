@@ -15,6 +15,7 @@ describe('browser Back navigation', () => {
     fireEvent.click(
       screen.getByRole('switch', { name: 'Sound is on. Turn sound off.' }),
     );
+    fireEvent.click(screen.getByRole('tab', { name: 'Challenge' }));
     fireEvent.click(screen.getByRole('button', { name: 'Begin challenge' }));
     await waitFor(() => expect(pushState).toHaveBeenCalledTimes(1));
     await waitFor(() =>
@@ -43,6 +44,7 @@ describe('browser Back navigation', () => {
     fireEvent.click(
       screen.getByRole('switch', { name: 'Sound is on. Turn sound off.' }),
     );
+    fireEvent.click(screen.getByRole('tab', { name: 'Challenge' }));
     fireEvent.click(screen.getByRole('button', { name: 'Begin challenge' }));
     const home = await screen.findByRole('button', {
       name: 'Bible Sequence — go to start screen',

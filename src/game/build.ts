@@ -1,4 +1,4 @@
-import { autoChunk, splitSentences, tokenize } from './chunk';
+import { autoChunk, groupChunks, splitSentences, tokenize } from './chunk';
 import {
   pickDistractors,
   type DistractorPassage,
@@ -166,7 +166,10 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
   const { label, texts } = sectionUnits(question, file.policy.sectionBy);
 
   const sections: RecallSection[] = texts.map((unitText, si) => {
-    const correct = autoChunk(unitText, file.policy.granularity);
+    const correct = groupChunks(
+      autoChunk(unitText, file.policy.granularity),
+      file.policy.tileGroup ?? 1,
+    );
     const distractors = pickDistractors({
       excludeId: question.passageId,
       correctChunks: correct,

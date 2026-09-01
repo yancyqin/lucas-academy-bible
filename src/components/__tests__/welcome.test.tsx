@@ -24,6 +24,20 @@ const daily: DailyVerse = {
 
 const noop = vi.fn();
 
+const versePicker = {
+  books: null,
+  loading: false,
+  error: '',
+  onRetry: noop,
+  request: { book: 'JHN', chapter: 3, verse: 16 },
+  onChangeRequest: noop,
+  difficulty: 'normal' as const,
+  onChangeDifficulty: noop,
+  onPlay: noop,
+  playError: '',
+  shareUrl: 'https://bible.lucasacademy.org/?passage=JHN.3.16',
+};
+
 describe('welcome game tabs', () => {
   it('switches among English, Chinese, and Korean Bible editions', () => {
     const selectTranslation = vi.fn();
@@ -48,6 +62,7 @@ describe('welcome game tabs', () => {
         onSelectTranslation={selectTranslation}
         journeyError=""
         translationApiEnabled
+        versePicker={versePicker}
       />,
     );
 
@@ -87,6 +102,7 @@ describe('welcome game tabs', () => {
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        versePicker={versePicker}
       />,
     );
 
@@ -126,6 +142,7 @@ describe('welcome game tabs', () => {
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        versePicker={versePicker}
       />,
     );
 
@@ -163,6 +180,7 @@ describe('welcome game tabs', () => {
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        versePicker={versePicker}
       />,
     );
 
@@ -209,6 +227,7 @@ describe('welcome game tabs', () => {
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        versePicker={versePicker}
       />,
     );
 
@@ -242,6 +261,7 @@ describe('welcome game tabs', () => {
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        versePicker={versePicker}
       />,
     );
 
@@ -280,6 +300,7 @@ describe('welcome game tabs', () => {
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        versePicker={versePicker}
       />,
     );
 

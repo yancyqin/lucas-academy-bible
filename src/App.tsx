@@ -27,6 +27,7 @@ import {
   type DailyVerse,
 } from './daily';
 import type { WelcomeTab } from './components/Welcome';
+import { pickedReference } from './components/VersePicker';
 import {
   TRANSLATIONS,
   type TranslationKey,
@@ -35,8 +36,23 @@ import {
   attributionFor,
   fetchBiblePassage,
   fetchBibleTranslation,
+  localDistractorPool,
   prepareJourneyLevel,
 } from './youversion';
+import { clampRequest, fetchBibleBooks, type BibleBook } from './books';
+import {
+  buildPickedVerse,
+  DEFAULT_VERSE_DIFFICULTY,
+  VERSE_MODES,
+  type VerseDifficulty,
+} from './game/verse-modes';
+import {
+  formatPassageId,
+  readVerseLink,
+  verseLinkUrl,
+  type VerseRequest,
+} from './verse-request';
+import type { DistractorPassage } from './game/distractors';
 import { tokenize } from './game/chunk';
 import { BUILD_FEATURES } from './build-config';
 
@@ -50,7 +66,12 @@ type Phase =
   | 'scrabble'
   | 'word-search'
   | 'final';
-type GameMode = 'journey' | 'daily' | 'daily-scrabble' | 'daily-word-search';
+type GameMode =
+  | 'journey'
+  | 'verse'
+  | 'daily'
+  | 'daily-scrabble'
+  | 'daily-word-search';
 
 /** Score accumulated across a single run (which always starts at Level 0). */
 interface Run {
@@ -87,6 +108,21 @@ function freshSeed(): number {
   return Math.floor(Math.random() * 1_000_000_000);
 }
 
+/** Where a picked verse starts before the player touches anything. */
+const DEFAULT_VERSE_REQUEST: VerseRequest = { book: 'JHN', chapter: 3, verse: 16 };
+
+/**
+ * Decoy source for a picked verse in a licensed edition, where the bundled
+ * collection has no matching text: well-known passages that exist in every
+ * Bible, long enough to yield believable fragments. Never the picked book.
+ */
+const DISTRACTOR_SOURCES = [
+  'PSA.23.1-4',
+  'JHN.1.1-5',
+  'PRO.3.5-6',
+  'ISA.40.28-31',
+];
+
 const WEB_ATTRIBUTION: ScriptureAttribution = {
   abbreviation: 'WEB',
   title: 'World English Bible Classic',
@@ -116,10 +152,58 @@ function translationFallback(
   };
 }
 
+/**
+ * Same-edition decoy text for a picked verse: the bundled collection covers
+ * WEB and CUV outright; a licensed edition needs one extra passage request
+ * from a book the player did not pick.
+ */
+async function loadDistractors(
+  edition: TranslationKey,
+  request: VerseRequest,
+  difficulty: VerseDifficulty,
+  seed: number,
+  signal: AbortSignal,
+): Promise<DistractorPassage[] | undefined> {
+  if (VERSE_MODES[difficulty].policy.distractorsPerSection === 0) {
+    return undefined;
+  }
+  if (edition === 'WEB') return localDistractorPool(request, false);
+  if (edition === 'CUV') return localDistractorPool(request, true);
+
+  const sources = DISTRACTOR_SOURCES.filter(
+    (id) => !id.startsWith(`${request.book}.`),
+  );
+  const source = sources[seed % sources.length];
+  try {
+    const passage = await fetchBiblePassage(edition, source, signal);
+    return [{ id: `youversion-${passage.passageId}`, text: passage.text }];
+  } catch {
+    // The verse itself already loaded. Play it decoy-free rather than throwing
+    // the round away over the second request — an empty pool yields no decoys,
+    // where falling through to the bundled pool would put English tiles in a
+    // Korean round.
+    return [];
+  }
+}
+
 export default function App() {
   const dailyEnabled = BUILD_FEATURES.dailyVerse;
   const translationApiEnabled = BUILD_FEATURES.licensedTranslations;
-  const [progress, setProgress] = useState<Progress>(() => loadProgress());
+  // A ?passage= link opens straight into that verse. Read once, before any
+  // state initializer that depends on it. The itch build has no API to ask.
+  const [verseLink] = useState(() =>
+    dailyEnabled && typeof window !== 'undefined'
+      ? readVerseLink(window.location.search)
+      : null,
+  );
+  const [progress, setProgress] = useState<Progress>(() => {
+    const stored = loadProgress();
+    // A shared link names its own edition; honour it for this visit without
+    // overwriting the player's saved choice.
+    return verseLink?.translation
+      ? { ...stored, translation: verseLink.translation }
+      : stored;
+  });
   const [phase, setPhase] = useState<Phase>('welcome');
   const [level, setLevel] = useState(MIN_LEVEL);
   const [playId, setPlayId] = useState(0);
@@ -131,7 +215,27 @@ export default function App() {
   const [assertive, setAssertive] = useState<LiveMsg>({ text: '', id: 0 });
   const [gameMode, setGameMode] = useState<GameMode>('journey');
   const [practiceMode, setPracticeMode] = useState(false);
-  const [welcomeTab, setWelcomeTab] = useState<WelcomeTab>('journey');
+  // Pick a Verse is the home tab. The itch build has no tab strip and no API to
+  // fill the picker, so it opens on the Challenge it can actually play.
+  const [welcomeTab, setWelcomeTab] = useState<WelcomeTab>(
+    dailyEnabled ? 'verse' : 'journey',
+  );
+  const [verseRequest, setVerseRequest] = useState<VerseRequest>(
+    verseLink?.request ?? DEFAULT_VERSE_REQUEST,
+  );
+  const [verseDifficulty, setVerseDifficulty] = useState<VerseDifficulty>(
+    verseLink?.difficulty ?? DEFAULT_VERSE_DIFFICULTY,
+  );
+  const [verseCatalogue, setVerseCatalogue] = useState<{
+    translation: TranslationKey;
+    books: BibleBook[];
+  } | null>(null);
+  const [booksError, setBooksError] = useState<{
+    translation: TranslationKey;
+    message: string;
+  } | null>(null);
+  const [booksRequest, setBooksRequest] = useState(0);
+  const [verseError, setVerseError] = useState('');
   const [dailyVerse, setDailyVerse] = useState<DailyVerse | null>(null);
   const [dailyLoading, setDailyLoading] = useState(false);
   const [dailyError, setDailyError] = useState('');
@@ -143,6 +247,7 @@ export default function App() {
     attribution: ScriptureAttribution;
   } | null>(null);
   const activeGameRequest = useRef<AbortController | null>(null);
+  const verseLinkStarted = useRef(false);
   const phaseRef = useRef<Phase>('welcome');
   const gameHistoryActive = useRef(false);
   const ignoreNextPopState = useRef(false);
@@ -177,6 +282,54 @@ export default function App() {
       });
     return () => controller.abort();
   }, [translation, translationApiEnabled]);
+
+  // The book/chapter/verse lists belong to the chosen edition, so they reload
+  // whenever the edition changes (and only while the picker is on screen).
+  // "Loading" is derived, not stored: a request that is aborted mid-flight —
+  // which is exactly what a ?passage= link does on the first render — can never
+  // leave a stale flag behind.
+  const booksErrorMessage =
+    booksError?.translation === translation ? booksError.message : '';
+  const booksLoading =
+    verseCatalogue?.translation !== translation && booksErrorMessage === '';
+
+  useEffect(() => {
+    if (!dailyEnabled || phase !== 'welcome' || welcomeTab !== 'verse') {
+      return undefined;
+    }
+    if (verseCatalogue?.translation === translation) return undefined;
+    if (booksErrorMessage) return undefined; // wait for an explicit retry
+
+    const controller = new AbortController();
+    fetchBibleBooks(translation, controller.signal)
+      .then((catalogue) => {
+        if (controller.signal.aborted) return;
+        setVerseCatalogue({ translation, books: catalogue.books });
+        // Chapter and verse counts differ between editions — keep the current
+        // selection inside what this one actually has.
+        setVerseRequest((request) => clampRequest(catalogue.books, request));
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        setBooksError({
+          translation,
+          message:
+            error instanceof Error
+              ? error.message
+              : 'The list of books could not be loaded.',
+        });
+      });
+
+    return () => controller.abort();
+  }, [
+    booksErrorMessage,
+    booksRequest,
+    dailyEnabled,
+    phase,
+    translation,
+    verseCatalogue?.translation,
+    welcomeTab,
+  ]);
 
   useEffect(() => {
     if (
@@ -251,6 +404,7 @@ export default function App() {
     saveProgress(updated);
     setDailyError('');
     setJourneyError('');
+    setVerseError('');
     announce(`${TRANSLATIONS[next].label} selected.`);
   };
 
@@ -310,6 +464,82 @@ export default function App() {
     setRun({ levelsAttempted: 0, heartsKept: 0, top: null });
     setFinal(null);
     void enterLevel(MIN_LEVEL);
+  };
+
+  /**
+   * Play any verse the player named. One passage request builds the whole
+   * game — the difficulty supplies the policy, so no level bank is involved.
+   */
+  const startPickedVerse = async (
+    request: VerseRequest,
+    difficulty: VerseDifficulty,
+    edition: TranslationKey,
+  ) => {
+    activeGameRequest.current?.abort();
+    const controller = new AbortController();
+    activeGameRequest.current = controller;
+    const seed = freshSeed();
+    const passageId = formatPassageId(request);
+    setGameMode('verse');
+    setVerseRequest(request);
+    setVerseDifficulty(difficulty);
+    setRun({ levelsAttempted: 0, heartsKept: 0, top: null });
+    setFinal(null);
+    setResult(null);
+    setBuilt(null);
+    setVerseError('');
+    narrator.stop();
+    if (soundEnabled) {
+      soundEngine.resume(); // the tap into the verse is our gesture
+      soundEngine.primeCorrectAudio();
+    }
+    setLoadingLabel(
+      `Loading ${pickedReference(
+        verseCatalogue?.translation === edition ? verseCatalogue.books : null,
+        request,
+      )} in ${TRANSLATIONS[edition].label}…`,
+    );
+    setPhase('loading');
+
+    try {
+      const passage = await fetchBiblePassage(
+        edition,
+        passageId,
+        controller.signal,
+      );
+      const distractors = await loadDistractors(
+        edition,
+        request,
+        difficulty,
+        seed,
+        controller.signal,
+      );
+      if (controller.signal.aborted) return;
+      const picked = buildPickedVerse(
+        {
+          passageId: passage.passageId,
+          reference: passage.reference,
+          text: passage.text,
+          attribution: attributionFor(passage.translation),
+        },
+        difficulty,
+        seed,
+        distractors,
+      );
+      setLevel(picked.level);
+      setBuilt(picked);
+      setPlayId((p) => p + 1);
+      setPhase('study');
+    } catch (error: unknown) {
+      if (controller.signal.aborted) return;
+      setVerseError(
+        error instanceof Error
+          ? error.message
+          : 'That verse could not be loaded.',
+      );
+      setWelcomeTab('verse');
+      setPhase('welcome');
+    }
   };
 
   const startDaily = async () => {
@@ -389,7 +619,7 @@ export default function App() {
   };
 
   const handleComplete = (mistakes: number, hearts: number) => {
-    if (gameMode === 'daily') {
+    if (gameMode === 'daily' || gameMode === 'verse') {
       setResult({ stars: computeStars(mistakes, 0), mistakes });
       setPhase('success');
       return;
@@ -421,7 +651,7 @@ export default function App() {
   };
 
   const handleFail = () => {
-    if (gameMode === 'daily') {
+    if (gameMode === 'daily' || gameMode === 'verse') {
       setPhase('failure-reveal');
       return;
     }
@@ -444,7 +674,9 @@ export default function App() {
     activeGameRequest.current?.abort();
     narrator.stop();
     setWelcomeTab(
-      gameMode === 'daily'
+      gameMode === 'verse'
+        ? 'verse'
+        : gameMode === 'daily'
         ? 'daily'
         : gameMode === 'daily-scrabble'
           ? 'scrabble'
@@ -502,9 +734,17 @@ export default function App() {
     }
   }, [phase]);
 
+  // A ?passage= link plays that verse straight away — once per page load.
+  useEffect(() => {
+    if (!verseLink || verseLinkStarted.current) return;
+    verseLinkStarted.current = true;
+    void startPickedVerse(verseLink.request, verseLink.difficulty, translation);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const continueNext = () => {
     narrator.stop();
-    if (gameMode === 'daily') {
+    if (gameMode === 'daily' || gameMode === 'verse') {
       goWelcome();
       return;
     }
@@ -536,15 +776,38 @@ export default function App() {
         translationFallback(translation);
   const footerAttributions = [activeAttribution];
   const practiceRunActive = gameMode === 'journey' && practiceMode;
+  // Picked verses carry their difficulty instead of a level number, and the
+  // Practice difficulty is what turns the clocks off for them.
+  const untimedPhase =
+    gameMode === 'verse'
+      ? VERSE_MODES[verseDifficulty].untimed
+      : practiceRunActive;
   const phaseModeLabel =
-    gameMode === 'daily'
-      ? 'Daily Verse'
-      : practiceRunActive && built
-        ? `Practice · Level ${built.level}`
-        : undefined;
+    gameMode === 'verse'
+      ? VERSE_MODES[verseDifficulty].label
+      : gameMode === 'daily'
+        ? 'Daily Verse'
+        : practiceRunActive && built
+          ? `Practice · Level ${built.level}`
+          : undefined;
+  const verseShareUrl =
+    typeof window === 'undefined'
+      ? ''
+      : verseLinkUrl(
+          {
+            request: verseRequest,
+            translation,
+            difficulty: verseDifficulty,
+          },
+          window.location.href,
+        );
 
   return (
-    <div className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'}`}>
+    <div
+      className={`app ${phase === 'recall' ? 'app--recall' : 'app--fit'} ${
+        phase === 'welcome' ? 'app--welcome' : ''
+      }`}
+    >
       <div className="visually-hidden" aria-live="polite" aria-atomic="true">
         <span key={polite.id}>{polite.text}</span>
       </div>
@@ -595,6 +858,30 @@ export default function App() {
           onSelectTranslation={selectTranslation}
           journeyError={journeyError}
           translationApiEnabled={translationApiEnabled}
+          versePicker={{
+            books:
+              verseCatalogue?.translation === translation
+                ? verseCatalogue.books
+                : null,
+            loading: booksLoading,
+            error: booksErrorMessage,
+            onRetry: () => {
+              setBooksError(null);
+              setBooksRequest((request) => request + 1);
+            },
+            request: verseRequest,
+            onChangeRequest: (request) => {
+              setVerseRequest(request);
+              setVerseError('');
+            },
+            difficulty: verseDifficulty,
+            onChangeDifficulty: setVerseDifficulty,
+            onPlay: () => {
+              void startPickedVerse(verseRequest, verseDifficulty, translation);
+            },
+            playError: verseError,
+            shareUrl: verseShareUrl,
+          }}
         />
       )}
 
@@ -618,7 +905,7 @@ export default function App() {
           onReady={() => setPhase('recall')}
           announce={announce}
           modeLabel={phaseModeLabel}
-          practiceMode={practiceRunActive}
+          practiceMode={untimedPhase}
         />
       )}
 
@@ -631,7 +918,7 @@ export default function App() {
           onComplete={handleComplete}
           onFail={handleFail}
           modeLabel={phaseModeLabel}
-          practiceMode={practiceRunActive}
+          practiceMode={untimedPhase}
         />
       )}
 
@@ -644,7 +931,13 @@ export default function App() {
           narrator={narrator}
           onContinue={continueNext}
           modeLabel={phaseModeLabel}
-          continueLabel={gameMode === 'daily' ? 'Done for today' : undefined}
+          continueLabel={
+            gameMode === 'daily'
+              ? 'Done for today'
+              : gameMode === 'verse'
+                ? 'Pick another verse'
+                : undefined
+          }
         />
       )}
 
@@ -652,7 +945,7 @@ export default function App() {
         <FailureReveal
           level={built}
           onContinue={() => {
-            if (gameMode === 'daily') goWelcome();
+            if (gameMode === 'daily' || gameMode === 'verse') goWelcome();
             else setPhase('final');
           }}
           modeLabel={phaseModeLabel}
