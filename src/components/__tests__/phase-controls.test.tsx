@@ -21,12 +21,20 @@ const sound = {
 } as unknown as SoundEngine;
 const noop = vi.fn();
 
+/** A narrator that reports speech support, so the Listen controls render. */
+function speakingNarrator() {
+  return {
+    supported: true,
+    speak: vi.fn(),
+    stop: vi.fn(),
+  } as unknown as Narrator;
+}
+
 describe('phase controls', () => {
   it('animates the study text and has no quit control', () => {
     const { container } = render(
       <StudyPhase
         built={level}
-        soundEnabled={false}
         narrator={narrator}
         sound={sound}
         onReady={noop}
@@ -56,7 +64,6 @@ describe('phase controls', () => {
     const { unmount } = render(
       <StudyPhase
         built={level}
-        soundEnabled={false}
         narrator={narrator}
         sound={sound}
         onReady={onReady}
@@ -228,7 +235,6 @@ describe('phase controls', () => {
         level={level}
         stars={3}
         mistakes={0}
-        soundEnabled={false}
         narrator={narrator}
         onContinue={noop}
       />,
@@ -239,6 +245,55 @@ describe('phase controls', () => {
     expect(screen.getByRole('region', { name: /level 0 complete/i })).toHaveClass(
       'stage--complete',
     );
+  });
+
+  it('never narrates the memorize screen on its own — only on a Listen tap', () => {
+    vi.useFakeTimers();
+    const talker = speakingNarrator();
+    const { unmount } = render(
+      <StudyPhase
+        built={level}
+        narrator={talker}
+        sound={sound}
+        onReady={noop}
+        announce={noop}
+      />,
+    );
+
+    // Nothing speaks while the screen simply sits there.
+    vi.advanceTimersByTime(5_000);
+    expect(talker.speak).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
+    expect(talker.speak).toHaveBeenCalledTimes(1);
+    expect(talker.speak).toHaveBeenCalledWith(level.fullText, expect.objectContaining({ slow: true }));
+
+    unmount();
+    vi.useRealTimers();
+  });
+
+  it('never narrates the level-complete screen on its own — only on a Listen tap', () => {
+    vi.useFakeTimers();
+    const talker = speakingNarrator();
+    const { unmount } = render(
+      <LevelComplete
+        level={level}
+        stars={3}
+        mistakes={0}
+        narrator={talker}
+        onContinue={noop}
+      />,
+    );
+
+    vi.advanceTimersByTime(5_000);
+    expect(talker.speak).not.toHaveBeenCalled();
+
+    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
+    expect(talker.speak).toHaveBeenCalledTimes(1);
+    expect(talker.speak).toHaveBeenCalledWith(level.fullText, expect.objectContaining({ slow: true }));
+
+    unmount();
+    vi.useRealTimers();
   });
 
   it('reveals the failed verse before continuing', () => {

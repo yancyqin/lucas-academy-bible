@@ -1,16 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { MAX_LEVEL } from '../game/levels';
 import type { BuiltLevel } from '../game/build';
 // MAX_LEVEL is used only to decide the final "Finish" vs "Continue" label.
 import type { Narrator } from '../audio/speech';
-import { shouldAutoNarrate } from '../audio/speech';
 import { Stars } from './Stars';
 
 interface LevelCompleteProps {
   level: BuiltLevel;
   stars: number;
   mistakes: number;
-  soundEnabled: boolean;
   narrator: Narrator;
   onContinue: () => void;
   modeLabel?: string;
@@ -21,30 +19,26 @@ export function LevelComplete({
   level,
   stars,
   mistakes,
-  soundEnabled,
   narrator,
   onContinue,
   modeLabel,
   continueLabel,
 }: LevelCompleteProps) {
-  const started = useRef(false);
+  const [speaking, setSpeaking] = useState(false);
   const nextLevel = level.level + 1;
 
+  // Narration never starts on its own here — the verse is read back only when
+  // someone taps Listen.
   const readAloud = () => {
     if (!narrator.supported) return;
-    narrator.speak(level.fullText, { slow: true });
+    setSpeaking(true);
+    narrator.speak(level.fullText, { slow: true, onend: () => setSpeaking(false) });
   };
 
-  useEffect(() => {
-    if (started.current) return;
-    started.current = true;
-    if (shouldAutoNarrate(soundEnabled, narrator.supported)) {
-      const id = window.setTimeout(readAloud, 700); // after the complete chord
-      return () => window.clearTimeout(id);
-    }
-    return undefined;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const stopReading = () => {
+    narrator.stop();
+    setSpeaking(false);
+  };
 
   useEffect(() => () => narrator.stop(), [narrator]);
 
@@ -79,6 +73,16 @@ export function LevelComplete({
         </div>
 
         <div className="btn-row">
+          {narrator.supported &&
+            (speaking ? (
+              <button type="button" className="btn btn--ghost btn--sm" onClick={stopReading}>
+                ⏹ Stop
+              </button>
+            ) : (
+              <button type="button" className="btn btn--ghost btn--sm" onClick={readAloud}>
+                ▶ Listen
+              </button>
+            ))}
           {continueLabel ? (
             <button type="button" className="btn btn--primary" onClick={onContinue}>
               {continueLabel}

@@ -329,9 +329,10 @@ No audio files are shipped; everything is generated with browser-native APIs
   the passage is read aloud with a preferred natural English voice, **slowly** — it is
   spoken clause-by-clause with a pause between clauses at a reduced rate. (Gap-pacing is
   what actually slows it down; browsers, notably iOS Safari, clamp a very low `rate`.)
-  There’s always a Listen/Stop control.
-  - Auto-narration on the memorize screen happens **only when sound is enabled** and
-    speech is supported — never when muted.
+  - **Narration never starts on its own.** Nothing is spoken until you tap
+    **▶ Listen** — on the memorize screen and again on the level-complete screen,
+    where you can hear the verse you just rebuilt. **⏹ Stop** ends it, and leaving
+    the screen stops it too.
   - If `speechSynthesis` is unavailable the Listen button hides and the game plays
     normally without it.
 - The sound preference is persisted, and **sound is never the only channel** —
@@ -432,7 +433,8 @@ words get unique IDs; the shuffle doesn’t mutate its input; the memorize timer
 with length within bounds; every question in every level is completable; progress
 unlocks only after completion and survives a reload; invalid localStorage is handled
 safely; wrong picks reduce hearts; long passages advance through their sections; and
-sound-disabled mode never auto-narrates.
+neither the memorize nor the level-complete screen ever narrates on its own —
+speech starts only from a Listen tap.
 
 For Pick a Verse it also covers: passage ids round-trip through the deep-link
 reader and writer; an unusable `?passage=` is ignored; every difficulty rebuilds

@@ -899,7 +899,6 @@ export default function App() {
         <StudyPhase
           key={`study-${playId}`}
           built={built}
-          soundEnabled={soundEnabled}
           narrator={narrator}
           sound={soundEngine}
           onReady={() => setPhase('recall')}
@@ -927,7 +926,6 @@ export default function App() {
           level={built}
           stars={result.stars}
           mistakes={result.mistakes}
-          soundEnabled={soundEnabled}
           narrator={narrator}
           onContinue={continueNext}
           modeLabel={phaseModeLabel}
