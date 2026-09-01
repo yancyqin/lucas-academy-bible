@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import type { BuiltLevel } from '../game/build';
 import type { Narrator } from '../audio/speech';
-import { shouldAutoNarrate } from '../audio/speech';
 import type { SoundEngine } from '../audio/sound';
 import { Hearts } from './Hearts';
 import { isCjkText, tokenize } from '../game/chunk';
 
 interface StudyPhaseProps {
   built: BuiltLevel;
-  soundEnabled: boolean;
   narrator: Narrator;
   sound: SoundEngine;
   onReady: () => void;
@@ -63,7 +61,6 @@ function AnimatedWords({
 
 export function StudyPhase({
   built,
-  soundEnabled,
   narrator,
   sound,
   onReady,
@@ -76,7 +73,7 @@ export function StudyPhase({
   const [speaking, setSpeaking] = useState(false);
   const onReadyRef = useRef(onReady);
   onReadyRef.current = onReady;
-  const startedNarration = useRef(false);
+  const announced = useRef(false);
 
   const readAloud = () => {
     if (!narrator.supported) return;
@@ -107,20 +104,16 @@ export function StudyPhase({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [left, practiceMode]);
 
-  // Auto-narrate once (slow) when memorize opens — only if sound is on.
+  // Announce the screen once. Narration is never automatic — the reader
+  // starts only when someone taps Listen.
   useEffect(() => {
-    if (startedNarration.current) return;
-    startedNarration.current = true;
+    if (announced.current) return;
+    announced.current = true;
     announce(
       practiceMode
         ? `Practice mode. Memorize ${built.reference}. Take as much time as you need.`
         : `Memorize ${built.reference}. ${total} seconds.`,
     );
-    if (shouldAutoNarrate(soundEnabled, narrator.supported)) {
-      const id = window.setTimeout(readAloud, 350);
-      return () => window.clearTimeout(id);
-    }
-    return undefined;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

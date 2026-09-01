@@ -1,5 +1,7 @@
 /**
  * Scripture narration via the browser SpeechSynthesis API.
+ * Narration is always started by a tap on a Listen control — nothing here ever
+ * speaks on its own.
  * Degrades gracefully: if speech synthesis is unavailable, every method is a
  * safe no-op and `supported` is false so callers can hide the Listen button.
  *
@@ -14,17 +16,6 @@ export function speechSupported(): boolean {
     'speechSynthesis' in window &&
     typeof window.SpeechSynthesisUtterance !== 'undefined'
   );
-}
-
-/**
- * Pure decision: should we auto-narrate when a study/memorize phase opens?
- * Only when sound is on AND speech is supported — never when muted.
- */
-export function shouldAutoNarrate(
-  soundEnabled: boolean,
-  supported: boolean = speechSupported(),
-): boolean {
-  return soundEnabled === true && supported === true;
 }
 
 export type SpeechLanguage = 'en' | 'zh' | 'ko';
