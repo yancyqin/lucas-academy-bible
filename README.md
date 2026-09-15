@@ -17,7 +17,7 @@ final screen shows your score (percentage of hearts kept) and PASS / FAIL.
 
 The home screen **opens on Pick a Verse**: choose any book, chapter, and verse
 (or a short range) in the edition you are reading, choose Easy / Normal / Hard /
-Practice, and the same sequence game is built from that passage on the spot. A link like
+Ultra / Practice, and the same sequence game is built from that passage on the spot. A link like
 `https://bible.lucasacademy.org/?passage=JHN.3.16&translation=NIV&difficulty=hard`
 plays that verse immediately — see [Pick a Verse](#pick-a-verse--play-any-passage).
 
@@ -146,15 +146,17 @@ something that vanishes the moment the player switches language.
 | Easy | whole phrases (`tileGroup: 3`) | empty slots | 0 | 4.0 s/word (12–60 s) | 5 |
 | Normal | words | empty slots | 0 | 3.0 s/word (10–45 s) | 3 |
 | Hard | words | none | 6 | 1.5 s/word (18–120 s) | 3 |
+| Ultra | every token is its own tile | none | 8 single-word decoys | 1.1 s/word (20–150 s) | 3 |
 | Practice | words | empty slots | 0 | **no timer** | 5 |
 
 The lever that decides how hard a round really feels is **how many tiles** there
 are, and `tileGroup` (an optional `LevelPolicy` field the level banks leave
-unset) is the only knob that moves that in English: `autoChunk` builds
-content-word tiles regardless of `granularity`, which resizes Chinese tiles only.
-So Easy hands over about five phrases where Normal and Hard hand over fourteen
-words. Recall always gets twice the memorize time, and Practice removes both
-clocks and the overtime heart drain. Decoys stay inside the edition being played: WEB and
+unset) is the main knob that moves that in English. Normal and Hard use
+`autoChunk`, which keeps small function words attached to a content word; Ultra
+uses the tokenizer directly, so `the`, `and`, and `of` are all independent tiles.
+Ultra's decoys are also single tokenizer words. Recall always gets twice the
+memorize time, and Practice removes both clocks and the overtime heart drain.
+Decoys stay inside the edition being played: WEB and
 CUV draw from the bundled collection (never from the picked chapter), and a
 licensed edition fetches one extra well-known passage from a different book. If
 that second request fails the round still plays, decoy-free — the verse itself
@@ -166,7 +168,7 @@ already loaded.
 ?passage=JHN.3.16                      # single verse, saved edition, Normal
 ?passage=PSA.23.1-3&translation=CUV    # a range, in a named edition
 ?passage=JHN.3.16&version=111          # YouVersion's own Bible id (bible.com/bible/111/…)
-?passage=JHN.3.16&difficulty=practice  # easy | normal | hard | practice
+?passage=JHN.3.16&difficulty=ultra     # easy | normal | hard | ultra | practice
 ```
 
 `passage` and `translation` are exactly the parameters the Worker's own
@@ -316,23 +318,27 @@ builder avoids handing you a round that’s already in order.
 
 ## Audio & narration
 
-No audio files are shipped; everything is generated with browser-native APIs
-(see [`src/audio/`](src/audio)).
+The game keeps its audio offline-safe: a few original local WAV clips cover the
+most latency-sensitive interaction cues, with 19 owner-selected local victory
+MP3 clips (see [`src/audio/`](src/audio)).
 
 - **Interaction sounds — Web Audio API** ([`sound.ts`](src/audio/sound.ts)): a soft
   start cue, a gentle click, ascending pentatonic notes for consecutive correct
-  picks, a soft low note for a wrong pick (never a harsh buzzer), a warm chord on
-  level completion, and a restrained fanfare after all 20 levels.
+  picks, a soft low note for a wrong pick (never a harsh buzzer), and 19 recorded
+  victory clips shuffled without repeats until the pool is exhausted. Each is
+  3–5 seconds, with vocals at 50% and a baked-in 0.9-second accompaniment fade.
+  The finale continues the current clip without overlapping another fanfare.
+  Three synthesized motifs remain only as a media-playback failure fallback.
   - The `AudioContext` is created only after a user gesture (autoplay-safe).
   - Missing / blocked audio degrades to silent no-ops.
 - **Scripture narration — SpeechSynthesis API** ([`speech.ts`](src/audio/speech.ts)):
   the passage is read aloud with a preferred natural English voice, **slowly** — it is
   spoken clause-by-clause with a pause between clauses at a reduced rate. (Gap-pacing is
   what actually slows it down; browsers, notably iOS Safari, clamp a very low `rate`.)
-  - **Narration never starts on its own.** Nothing is spoken until you tap
-    **▶ Listen** — on the memorize screen and again on the level-complete screen,
-    where you can hear the verse you just rebuilt. **⏹ Stop** ends it, and leaving
-    the screen stops it too.
+  - Passage narration starts from **▶ Listen** — on the memorize screen and again
+    on the level-complete screen, where you can hear the verse you just rebuilt.
+    Victory recordings already contain speech; no browser praise is layered over them.
+    **⏹ Stop** ends narration, and leaving the screen stops narration too.
   - If `speechSynthesis` is unavailable the Listen button hides and the game plays
     normally without it.
 - The sound preference is persisted, and **sound is never the only channel** —
@@ -433,8 +439,9 @@ words get unique IDs; the shuffle doesn’t mutate its input; the memorize timer
 with length within bounds; every question in every level is completable; progress
 unlocks only after completion and survives a reload; invalid localStorage is handled
 safely; wrong picks reduce hearts; long passages advance through their sections; and
-neither the memorize nor the level-complete screen ever narrates on its own —
-speech starts only from a Listen tap.
+neither the memorize nor the level-complete screen ever reads the full passage on
+its own — passage speech starts only from a Listen tap; short victory praise is
+the one intentional automatic voice cue.
 
 For Pick a Verse it also covers: passage ids round-trip through the deep-link
 reader and writer; an unusable `?passage=` is ignored; every difficulty rebuilds
@@ -444,4 +451,5 @@ Hard; the deuterocanon never reaches the picker and a book missing a chapter is
 dropped; every USFM id shape round-trips through the link reader; a hand-edited
 range is capped; the catalogue never offers a verse an edition merged away;
 selections clamp into whatever edition is chosen; and a `?passage=` link plays
-that verse using the YouVersion id verbatim.
+that verse using the YouVersion id verbatim; Ultra exposes every tokenizer word
+and adds eight single-word decoys.

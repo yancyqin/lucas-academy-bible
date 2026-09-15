@@ -2,6 +2,7 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import type { BuiltLevel } from '../game/build';
 import { initRecall, recallReducer } from '../game/recall';
 import type { SoundEngine } from '../audio/sound';
+import type { Narrator } from '../audio/speech';
 import { Hearts } from './Hearts';
 import { Tile } from './Tile';
 import { joinChunks } from '../game/chunk';
@@ -16,6 +17,9 @@ interface RecallPhaseProps {
   onFail: () => void;
   modeLabel?: string;
   practiceMode?: boolean;
+  /** Use the browser's matching-language voice for a short win phrase. */
+  narrator?: Narrator;
+  voiceEnabled?: boolean;
 }
 
 export function RecallPhase({
@@ -79,7 +83,6 @@ export function RecallPhase({
         );
         break;
       case 'level-complete':
-        sound.playComplete();
         announce('Passage restored! Level complete.', true);
         break;
       case 'undo':
@@ -155,6 +158,7 @@ export function RecallPhase({
       // cue in the event effect instead.
       const finishesSection = state.placed.length + 1 >= section.correct.length;
       if (!finishesSection) sound.playCorrect(state.placed.length + 1);
+      else if (state.sectionIndex === level.sections.length - 1) sound.playComplete();
     }
     dispatch({ type: 'select', tileId: id });
   };

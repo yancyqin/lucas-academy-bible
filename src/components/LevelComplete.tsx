@@ -13,6 +13,7 @@ interface LevelCompleteProps {
   onContinue: () => void;
   modeLabel?: string;
   continueLabel?: string;
+  onListen?: () => void;
 }
 
 export function LevelComplete({
@@ -23,6 +24,7 @@ export function LevelComplete({
   onContinue,
   modeLabel,
   continueLabel,
+  onListen,
 }: LevelCompleteProps) {
   const [speaking, setSpeaking] = useState(false);
   const nextLevel = level.level + 1;
@@ -31,6 +33,7 @@ export function LevelComplete({
   // someone taps Listen.
   const readAloud = () => {
     if (!narrator.supported) return;
+    onListen?.();
     setSpeaking(true);
     narrator.speak(level.fullText, { slow: true, onend: () => setSpeaking(false) });
   };

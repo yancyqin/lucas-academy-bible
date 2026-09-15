@@ -9,6 +9,8 @@
  *   - is never the sole channel of information (UI + a11y carry meaning too).
  */
 
+import victoryClips from '../../public/audio/victory/manifest.json';
+
 type OscType = OscillatorType;
 
 interface ToneOpts {
@@ -17,6 +19,41 @@ interface ToneOpts {
   attack?: number;
   release?: number;
 }
+
+interface VictoryNote {
+  frequency: number;
+  startOffset: number;
+  duration: number;
+  opts?: ToneOpts;
+}
+
+/**
+ * Small, original victory fragments. A complete cue chooses one motif at
+ * random, so repeated wins feel celebratory without shipping a large audio
+ * pack or making the app depend on a remote CDN. These are intentionally
+ * short musical phrases rather than a single repeated jingle.
+ */
+const VICTORY_MOTIFS: VictoryNote[][] = [
+  [
+    { frequency: 523.25, startOffset: 0, duration: 0.2, opts: { type: 'triangle', gain: 0.16 } },
+    { frequency: 659.25, startOffset: 0.14, duration: 0.22, opts: { type: 'triangle', gain: 0.17 } },
+    { frequency: 783.99, startOffset: 0.3, duration: 0.28, opts: { type: 'triangle', gain: 0.18 } },
+    { frequency: 1046.5, startOffset: 0.5, duration: 0.48, opts: { type: 'sine', gain: 0.14, release: 0.42 } },
+  ],
+  [
+    { frequency: 392, startOffset: 0, duration: 0.18, opts: { type: 'sine', gain: 0.15 } },
+    { frequency: 523.25, startOffset: 0.12, duration: 0.2, opts: { type: 'sine', gain: 0.16 } },
+    { frequency: 659.25, startOffset: 0.25, duration: 0.2, opts: { type: 'sine', gain: 0.17 } },
+    { frequency: 783.99, startOffset: 0.39, duration: 0.3, opts: { type: 'sine', gain: 0.16 } },
+    { frequency: 1046.5, startOffset: 0.58, duration: 0.42, opts: { type: 'triangle', gain: 0.12, release: 0.4 } },
+  ],
+  [
+    { frequency: 659.25, startOffset: 0, duration: 0.16, opts: { type: 'triangle', gain: 0.15 } },
+    { frequency: 783.99, startOffset: 0.11, duration: 0.18, opts: { type: 'triangle', gain: 0.16 } },
+    { frequency: 1046.5, startOffset: 0.24, duration: 0.24, opts: { type: 'triangle', gain: 0.17 } },
+    { frequency: 1318.51, startOffset: 0.42, duration: 0.42, opts: { type: 'sine', gain: 0.1, release: 0.44 } },
+  ],
+];
 
 /**
  * The six-note ascending A-major pentatonic correct scale, one separately
@@ -57,6 +94,11 @@ export class SoundEngine {
   private correctPriming: boolean[] = [];
   private resumePending: Promise<void> | null = null;
   private enabled = true;
+  private victoryAudio: HTMLAudioElement | null = null;
+  private victoryActive = false;
+  private victorySequence = 0;
+  private victoryBag: number[] = [];
+  private lastVictory = -1;
   readonly supported: boolean;
 
   constructor() {
@@ -70,6 +112,7 @@ export class SoundEngine {
   setEnabled(value: boolean): void {
     this.enabled = value;
     if (!value) {
+      this.stopVictory();
       this.stopContextGain();
       this.damageAudio?.pause();
       this.correctAudio.forEach((audio, index) => {
@@ -421,21 +464,65 @@ export class SoundEngine {
     this.tone(659.25, 0.1, 0.16, { type: 'sine', gain: 0.16 });
   }
 
-  /** Warm major chord when a level is complete. */
-  playComplete(): void {
-    const chord = [523.25, 659.25, 783.99]; // C major
-    chord.forEach((f, i) => this.tone(f, i * 0.04, 0.5, { type: 'sine', gain: 0.16, release: 0.5 }));
-    this.tone(1046.5, 0.22, 0.4, { type: 'sine', gain: 0.08, release: 0.4 });
+  /**
+   * Locally hosted, owner-selected stem mixes. Draw without replacement;
+   * the accompaniment fade is encoded in each file, not a browser timer.
+   */
+  playVictory(): void {
+    if (!this.enabled) return;
+    this.stopVictory();
+    if (!this.victoryBag.length) {
+      this.victoryBag = victoryClips.map((_, index) => index);
+    }
+    const choices = this.victoryBag.filter((index) => index !== this.lastVictory);
+    const index = choices[Math.floor(Math.random() * choices.length)] ?? this.victoryBag[0];
+    this.victoryBag.splice(this.victoryBag.indexOf(index), 1);
+    this.lastVictory = index;
+    const sequence = this.victorySequence;
+    try {
+      const audio = this.victoryAudio ?? new Audio();
+      this.victoryAudio = audio;
+      audio.src = new URL(`audio/victory/${victoryClips[index].file}`, document.baseURI).href;
+      audio.volume = 1; // Stem balance and fade are baked in, including on iOS.
+      this.victoryActive = true;
+      audio.onended = () => { if (sequence === this.victorySequence) this.victoryActive = false; };
+      const fallback = () => {
+        if (sequence !== this.victorySequence || !this.enabled) return;
+        this.victoryActive = false;
+        audio.onerror = null;
+        this.playVictorySynth();
+      };
+      // play() rejects on loading errors too, so only one fallback is needed.
+      void audio.play()?.catch(fallback);
+      return;
+    } catch {
+      this.victoryActive = false;
+      this.playVictorySynth();
+    }
   }
 
-  /** Distinct but restrained fanfare for finishing all 20 levels. */
+  stopVictory(): void {
+    this.victorySequence += 1;
+    this.victoryActive = false;
+    this.victoryAudio?.pause();
+  }
+
+  private playVictorySynth(): void {
+    const motif = VICTORY_MOTIFS[Math.floor(Math.random() * VICTORY_MOTIFS.length)];
+    motif.forEach(({ frequency, startOffset, duration, opts }) => {
+      this.tone(frequency, startOffset, duration, opts);
+    });
+  }
+
+  /** Warm, varied major-key cue when a level is complete. */
+  playComplete(): void {
+    this.playVictory();
+  }
+
+  /** Preserve the last win cue when the full challenge screen mounts. */
   playFinale(): void {
-    const seq = [523.25, 659.25, 783.99, 1046.5];
-    seq.forEach((f, i) => this.tone(f, i * 0.16, 0.3, { type: 'triangle', gain: 0.16 }));
-    // sustained warm chord underneath
-    [261.63, 329.63, 392.0].forEach((f) =>
-      this.tone(f, 0.64, 0.9, { type: 'sine', gain: 0.12, release: 0.8 }),
-    );
+    // Recall hands over to this screen after 650ms. Keep its full cue playing.
+    if (!this.victoryActive) this.playVictory();
   }
 }
 

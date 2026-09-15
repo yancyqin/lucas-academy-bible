@@ -660,7 +660,7 @@ body {
 .verse-modes {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
   padding: 6px;
   border-radius: 20px;
@@ -795,6 +795,10 @@ body {
   .verse-mode {
     padding-inline: 2px;
     font-size: 0.88rem;
+  }
+
+  .verse-modes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .welcome-tabs--three .welcome-tab {

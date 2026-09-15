@@ -229,6 +229,42 @@ describe('phase controls', () => {
     expect(finishSound.playSection).not.toHaveBeenCalled();
   });
 
+  it('plays the recorded victory once without overlapping browser praise', () => {
+    const victoryVoice = {
+      supported: true,
+      speakVictory: vi.fn(),
+      speak: vi.fn(),
+      stop: vi.fn(),
+    } as unknown as Narrator;
+    const victorySound = {
+      resume: vi.fn(),
+      primeCorrectAudio: vi.fn(),
+      playWrong: vi.fn(),
+      playCorrect: vi.fn(),
+      playSection: vi.fn(),
+      playComplete: vi.fn(),
+      playClick: vi.fn(),
+      playHeartDrain: vi.fn(),
+    } as unknown as SoundEngine;
+    render(
+      <RecallPhase
+        level={level}
+        sound={victorySound}
+        narrator={victoryVoice}
+        voiceEnabled
+        announce={noop}
+        onComplete={noop}
+        onFail={noop}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Word: Jesus' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Word: wept.' }));
+
+    expect(victoryVoice.speakVictory).not.toHaveBeenCalled();
+    expect(victorySound.playComplete).toHaveBeenCalledTimes(1);
+  });
+
   it('shows only the continue action on the level-complete screen', () => {
     render(
       <LevelComplete

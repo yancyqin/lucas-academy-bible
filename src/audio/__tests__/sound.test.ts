@@ -189,6 +189,42 @@ describe('SoundEngine six-note correct scale', () => {
     expect(media.plays).toHaveLength(0);
   });
 
+  it('plays exactly the 19 approved clips before repeating, without synth overlap', () => {
+    const media = mockMedia();
+    const synth = stubSynthContext();
+    const sound = new SoundEngine();
+    sound.resume();
+    vi.spyOn(Math, 'random')
+      .mockReturnValueOnce(0)
+      .mockReturnValueOnce(0.5);
+
+    for (let i = 0; i < 19; i++) sound.playComplete();
+    const ids = media.plays.map(p => Number(p.src.split('/').pop()!.slice(0, 2)));
+    expect(ids.sort((a,b) => a-b)).toEqual([1,2,3,4,6,9,10,11,12,14,18,19,20,21,23,24,27,28,30]);
+    const last = media.plays[18].src;
+    sound.playFinale();
+    expect(media.plays).toHaveLength(19);
+    sound.playComplete();
+    expect(media.plays[19].src).not.toBe(last);
+    expect(synth.createOscillator).not.toHaveBeenCalled();
+    sound.setEnabled(false);
+    expect(media.pauses).toContain(media.plays[19].el);
+    sound.playComplete();
+    expect(media.plays).toHaveLength(20);
+  });
+
+  it('does not play a late victory fallback after being muted', async () => {
+    const media = mockMedia('defer');
+    const synth = stubSynthContext();
+    const sound = new SoundEngine();
+    sound.resume();
+    sound.playComplete();
+    sound.setEnabled(false);
+    media.deferred[0].reject(new Error('cancelled'));
+    await flush();
+    expect(synth.createOscillator).not.toHaveBeenCalled();
+  });
+
   it('primes every scale note muted so priming is never audible', async () => {
     const media = mockMedia();
     const sound = new SoundEngine();

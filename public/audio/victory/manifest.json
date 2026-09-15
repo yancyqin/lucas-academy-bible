@@ -1,0 +1,154 @@
+[
+  {
+    "id": 1,
+    "label": "All clear!",
+    "file": "01-all-clear.mp3",
+    "duration": 3.6,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 2,
+    "label": "Perfect!",
+    "file": "02-perfect.mp3",
+    "duration": 4.0,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 3,
+    "label": "Nicely done.",
+    "file": "03-nicely-done.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 4,
+    "label": "Yes! We did it!",
+    "file": "04-yes-we-did-it.mp3",
+    "duration": 3.6,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 6,
+    "label": "Brilliant!",
+    "file": "06-brilliant.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 9,
+    "label": "Beautiful.",
+    "file": "09-beautiful.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 10,
+    "label": "Stage clear!",
+    "file": "10-stage-clear.mp3",
+    "duration": 3.6,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 11,
+    "label": "All right!",
+    "file": "11-all-right.mp3",
+    "duration": 4.0,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 12,
+    "label": "Victory!",
+    "file": "12-victory.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 14,
+    "label": "Mission complete.",
+    "file": "14-mission-complete.mp3",
+    "duration": 4.0,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 18,
+    "label": "Made it!",
+    "file": "18-made-it.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 19,
+    "label": "What a finish!",
+    "file": "19-what-a-finish.mp3",
+    "duration": 3.6,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 20,
+    "label": "Challenge complete!",
+    "file": "20-challenge-complete.mp3",
+    "duration": 4.0,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 21,
+    "label": "Well remembered.",
+    "file": "21-well-remembered.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 23,
+    "label": "A worthy victory.",
+    "file": "23-a-worthy-victory.mp3",
+    "duration": 4.0,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 24,
+    "label": "Wonderful!",
+    "file": "24-wonderful.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 27,
+    "label": "Faith shines bright.",
+    "file": "27-faith-shines-bright.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 28,
+    "label": "Magnificent!",
+    "file": "28-magnificent.mp3",
+    "duration": 3.6,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  },
+  {
+    "id": 30,
+    "label": "Victory is yours!",
+    "file": "30-victory-is-yours.mp3",
+    "duration": 4.4,
+    "vocal_gain": 0.5,
+    "accompaniment_fade_seconds": 0.9
+  }
+]

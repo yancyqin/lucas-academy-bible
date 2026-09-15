@@ -113,7 +113,7 @@ describe('Pick a Verse', () => {
     expect(screen.getByLabelText('Through')).toBeDisabled();
   });
 
-  it('offers the four difficulties and marks the chosen one', () => {
+  it('offers the five difficulties and marks the chosen one', () => {
     const onChangeDifficulty = vi.fn();
     setup({ difficulty: 'practice', onChangeDifficulty });
 
@@ -122,7 +122,7 @@ describe('Pick a Verse', () => {
       Array.from(modes.querySelectorAll('[role="radio"]')).map(
         (radio) => radio.textContent,
       ),
-    ).toEqual(['Easy', 'Normal', 'Hard', 'Practice']);
+    ).toEqual(['Easy', 'Normal', 'Hard', 'Ultra', 'Practice']);
     expect(screen.getByRole('radio', { name: 'Practice' })).toHaveAttribute(
       'aria-checked',
       'true',

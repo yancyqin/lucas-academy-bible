@@ -28,6 +28,12 @@ export interface LevelPolicy {
   hintLevel: HintLevel;
   granularity: Granularity;
   /**
+   * How a text unit becomes tiles. The default/content mode keeps small
+   * function words attached to a nearby content word; `tokens` exposes every
+   * tokenizer token as its own tile for the Ultra picked-verse mode.
+   */
+  chunking?: 'content' | 'tokens';
+  /**
    * Merge this many adjacent chunks into one tile, in EVERY language. The level
    * banks leave it unset (1): their tiles are content-word groups, and
    * `granularity` only resizes Chinese ones. Pick a Verse uses it to make Easy

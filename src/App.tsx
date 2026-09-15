@@ -205,6 +205,9 @@ export default function App() {
       : stored;
   });
   const [phase, setPhase] = useState<Phase>('welcome');
+  useEffect(() => {
+    if (phase !== 'success' && phase !== 'final') soundEngine.stopVictory();
+  }, [phase]);
   const [level, setLevel] = useState(MIN_LEVEL);
   const [playId, setPlayId] = useState(0);
   const [built, setBuilt] = useState<BuiltLevel | null>(null);
@@ -918,6 +921,8 @@ export default function App() {
           onFail={handleFail}
           modeLabel={phaseModeLabel}
           practiceMode={untimedPhase}
+          narrator={narrator}
+          voiceEnabled={soundEnabled}
         />
       )}
 
@@ -925,6 +930,7 @@ export default function App() {
         <LevelComplete
           level={built}
           stars={result.stars}
+          onListen={() => soundEngine.stopVictory()}
           mistakes={result.mistakes}
           narrator={narrator}
           onContinue={continueNext}

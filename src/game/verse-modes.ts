@@ -17,7 +17,7 @@ import type { LevelFile, LevelPolicy, Question } from './levels';
  * Practice is Normal with the pressure removed: no memorize countdown, no recall
  * clock, no overtime heart drain, and extra hearts.
  */
-export type VerseDifficulty = 'easy' | 'normal' | 'hard' | 'practice';
+export type VerseDifficulty = 'easy' | 'normal' | 'hard' | 'ultra' | 'practice';
 
 export interface VerseMode {
   key: VerseDifficulty;
@@ -34,6 +34,7 @@ const NORMAL_POLICY: LevelPolicy = {
   hearts: 3,
   hintLevel: 'slots',
   granularity: 'phrase',
+  chunking: 'content',
   sectionBy: 'sentence',
   distractorsPerSection: 0,
   memorizeSecondsPerWord: 3,
@@ -51,6 +52,7 @@ export const VERSE_MODES: Record<VerseDifficulty, VerseMode> = {
       hearts: 5,
       hintLevel: 'slots',
       granularity: 'words',
+      chunking: 'content',
       // Three content-word chunks per tile: John 3:16 becomes about five
       // phrases to order instead of fourteen words.
       tileGroup: 3,
@@ -77,11 +79,29 @@ export const VERSE_MODES: Record<VerseDifficulty, VerseMode> = {
       hearts: 3,
       hintLevel: 'none',
       granularity: 'words',
+      chunking: 'content',
       sectionBy: 'sentence',
       distractorsPerSection: 6,
       memorizeSecondsPerWord: 1.5,
       memorizeMin: 18,
       memorizeMax: 120,
+    },
+  },
+  ultra: {
+    key: 'ultra',
+    label: 'Ultra',
+    blurb: 'Every word is separate, with 8 scripture decoys and no hints.',
+    untimed: false,
+    policy: {
+      hearts: 3,
+      hintLevel: 'none',
+      granularity: 'words',
+      chunking: 'tokens',
+      sectionBy: 'sentence',
+      distractorsPerSection: 8,
+      memorizeSecondsPerWord: 1.1,
+      memorizeMin: 20,
+      memorizeMax: 150,
     },
   },
   practice: {
@@ -97,6 +117,7 @@ export const VERSE_DIFFICULTIES: VerseDifficulty[] = [
   'easy',
   'normal',
   'hard',
+  'ultra',
   'practice',
 ];
 

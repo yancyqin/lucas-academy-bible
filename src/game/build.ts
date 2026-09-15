@@ -167,7 +167,9 @@ export function buildLevel(file: LevelFile, opts: BuildOptions = {}): BuiltLevel
 
   const sections: RecallSection[] = texts.map((unitText, si) => {
     const correct = groupChunks(
-      autoChunk(unitText, file.policy.granularity),
+      file.policy.chunking === 'tokens'
+        ? tokenize(unitText)
+        : autoChunk(unitText, file.policy.granularity),
       file.policy.tileGroup ?? 1,
     );
     const distractors = pickDistractors({

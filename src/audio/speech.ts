@@ -1,7 +1,7 @@
 /**
  * Scripture narration via the browser SpeechSynthesis API.
- * Narration is always started by a tap on a Listen control — nothing here ever
- * speaks on its own.
+ * Passage narration is started by a tap on a Listen control. Short victory
+ * praise is also available to the game after a successful round.
  * Degrades gracefully: if speech synthesis is unavailable, every method is a
  * safe no-op and `supported` is false so callers can hide the Listen button.
  *
@@ -19,6 +19,12 @@ export function speechSupported(): boolean {
 }
 
 export type SpeechLanguage = 'en' | 'zh' | 'ko';
+
+const VICTORY_PHRASES: Record<SpeechLanguage, string[]> = {
+  en: ['Well done!', 'Beautifully restored!', 'Excellent work!', 'You remembered the Word!'],
+  zh: ['做得好！', '经文恢复得很好！', '太棒了！', '你记住了神的话！'],
+  ko: ['잘했어요!', '말씀을 아름답게 완성했어요!', '훌륭해요!', '말씀을 기억했어요!'],
+};
 
 /** Detect the spoken language from the scripture text itself. */
 export function detectSpeechLanguage(text: string): SpeechLanguage {
@@ -133,12 +139,9 @@ export class Narrator {
     );
   }
 
-  /**
-   * Speak text aloud. In slow mode (default) the passage is read clause by
-   * clause with pauses. `onend` fires when narration finishes or is cancelled.
-   */
-  speak(
+  private speakInLanguage(
     text: string,
+    language: SpeechLanguage,
     opts: { onend?: () => void; onstart?: () => void; slow?: boolean } = {},
   ): void {
     if (!this.supported) {
@@ -149,7 +152,6 @@ export class Narrator {
     const rate = slow ? 0.7 : 0.95;
     const gapMs = slow ? 320 : 60;
     const segments = slow ? segmentForSpeech(text) : [text];
-    const language = detectSpeechLanguage(text);
     const voice = this.bestVoice(language);
 
     try {
@@ -208,6 +210,32 @@ export class Narrator {
     };
 
     next();
+  }
+
+  /**
+   * Speak text aloud. In slow mode (default) the passage is read clause by
+   * clause with pauses. `onend` fires when narration finishes or is cancelled.
+   */
+  speak(
+    text: string,
+    opts: { onend?: () => void; onstart?: () => void; slow?: boolean } = {},
+  ): void {
+    this.speakInLanguage(text, detectSpeechLanguage(text), opts);
+  }
+
+  /**
+   * Short, randomized praise after a completed passage. The phrase follows
+   * the language of the scripture rather than forcing an English voice, and
+   * uses the same browser-native voice selection as Listen.
+   */
+  speakVictory(
+    scriptureText: string,
+    opts: { onend?: () => void; onstart?: () => void } = {},
+  ): void {
+    const language = detectSpeechLanguage(scriptureText);
+    const phrases = VICTORY_PHRASES[language];
+    const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+    this.speakInLanguage(phrase, language, { ...opts, slow: false });
   }
 
   stop(): void {

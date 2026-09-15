@@ -55,10 +55,10 @@ describe('YouVersion passage ids', () => {
 
 describe('deep links', () => {
   it('plays the passage named in the query string', () => {
-    expect(readVerseLink('?passage=JHN.3.16&translation=NIV&difficulty=hard')).toEqual({
+    expect(readVerseLink('?passage=JHN.3.16&translation=NIV&difficulty=ultra')).toEqual({
       request: { book: 'JHN', chapter: 3, verse: 16 },
       translation: 'NIV',
-      difficulty: 'hard',
+      difficulty: 'ultra',
     });
   });
 

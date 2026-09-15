@@ -31,8 +31,8 @@ const chineseVerse: PickedPassage = {
 };
 
 describe('picked-verse difficulties', () => {
-  it('recognizes only the four modes', () => {
-    expect(VERSE_DIFFICULTIES).toEqual(['easy', 'normal', 'hard', 'practice']);
+  it('recognizes the five picked-verse modes', () => {
+    expect(VERSE_DIFFICULTIES).toEqual(['easy', 'normal', 'hard', 'ultra', 'practice']);
     for (const key of VERSE_DIFFICULTIES) expect(isVerseDifficulty(key)).toBe(true);
     for (const key of ['', 'medium', 'HARD', null, 7]) {
       expect(isVerseDifficulty(key)).toBe(false);
@@ -40,7 +40,7 @@ describe('picked-verse difficulties', () => {
   });
 
   it('gets harder in the ways the player is promised', () => {
-    const { easy, normal, hard } = VERSE_MODES;
+    const { easy, normal, hard, ultra } = VERSE_MODES;
     // Help never increases along the curve.
     expect([easy.policy.hintLevel, normal.policy.hintLevel, hard.policy.hintLevel])
       .toEqual(['slots', 'slots', 'none']);
@@ -60,6 +60,9 @@ describe('picked-verse difficulties', () => {
     expect(easy.policy.tileGroup).toBeGreaterThan(1);
     expect(normal.policy.tileGroup).toBeUndefined();
     expect(hard.policy.tileGroup).toBeUndefined();
+    expect(ultra.policy.chunking).toBe('tokens');
+    expect(ultra.policy.distractorsPerSection).toBeGreaterThan(hard.policy.distractorsPerSection);
+    expect(ultra.policy.hintLevel).toBe('none');
   });
 
   it('gives Easy far fewer tiles to order than Normal or Hard', () => {
@@ -74,6 +77,21 @@ describe('picked-verse difficulties', () => {
     expect(tiles('normal')).toBe(tiles('hard'));
     expect(tiles('easy')).toBeLessThan(tiles('normal') / 2);
     expect(tiles('easy')).toBeLessThanOrEqual(6);
+  });
+
+  it('makes Ultra a true one-token challenge with word-sized decoys', () => {
+    const built = buildPickedVerse(john316, 'ultra', 4);
+    const correct = built.sections.flatMap((section) => section.correct);
+
+    expect(correct).toEqual(tokenize(john316.text));
+    expect(correct).toContain('so');
+    expect(correct).toContain('the');
+    expect(correct.every((tile) => tokenize(tile).length === 1)).toBe(true);
+    for (const section of built.sections) {
+      const decoys = section.bank.filter((tile) => tile.isDistractor);
+      expect(decoys).toHaveLength(VERSE_MODES.ultra.policy.distractorsPerSection);
+      expect(decoys.every((tile) => tokenize(tile.text).length === 1)).toBe(true);
+    }
   });
 
   it('only practice removes the clocks, and it is the most forgiving', () => {
