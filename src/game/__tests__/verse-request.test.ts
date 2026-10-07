@@ -97,6 +97,19 @@ describe('deep links', () => {
     });
   });
 
+  it('opens a guessing game when the link asks for one, and writes it back', () => {
+    const link = readVerseLink('?passage=JHN.3.16&translation=CUV&game=letters');
+    expect(link).toEqual({
+      request: { book: 'JHN', chapter: 3, verse: 16 },
+      translation: 'CUV',
+      difficulty: 'normal',
+      game: 'letters',
+    });
+    expect(verseLinkParams(link!)).toBe('passage=JHN.3.16&translation=CUV&game=letters');
+    expect(readVerseLink('?passage=JHN.3.16&game=words')?.game).toBe('words');
+    expect(readVerseLink('?passage=JHN.3.16&game=sequence')).not.toHaveProperty('game');
+  });
+
   it('ignores a query string with no usable passage', () => {
     expect(readVerseLink('')).toBeNull();
     expect(readVerseLink('?translation=NIV')).toBeNull();

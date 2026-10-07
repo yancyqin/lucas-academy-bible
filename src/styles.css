@@ -657,6 +657,108 @@ body {
   cursor: default;
 }
 
+/* How to play the picked verse: three cards, each showing its game in miniature. */
+.verse-games {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.verse-game {
+  min-width: 0;
+  padding: 9px 6px 8px;
+  border: 2px solid rgba(169, 132, 47, 0.28);
+  border-radius: 18px;
+  background: rgba(243, 236, 219, 0.8);
+  color: var(--ink-soft);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-ui);
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.verse-game:hover {
+  border-color: var(--gold);
+}
+
+.verse-game--active {
+  color: #302407;
+  background: var(--surface);
+  border-color: var(--gold);
+  box-shadow: 0 8px 18px -12px rgba(80, 57, 9, 0.95);
+}
+
+.verse-game:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+.verse-game__sample {
+  height: 28px;
+  margin-bottom: 2px;
+  display: inline-flex;
+  align-items: flex-end;
+  color: var(--ink);
+  font: 700 1.4rem/1 var(--font-scripture);
+  opacity: 0.55;
+  transition: opacity 160ms ease;
+}
+
+.verse-game--active .verse-game__sample {
+  opacity: 1;
+}
+
+.verse-game__sample--tiles {
+  gap: 4px;
+  align-items: center;
+}
+
+.verse-game__tile {
+  width: 17px;
+  height: 22px;
+  border: 2px solid rgba(85, 77, 64, 0.38);
+  border-radius: 5px;
+  background: var(--ivory);
+  box-shadow: 0 2px 0 rgba(7, 13, 24, 0.16);
+}
+
+.verse-game__tile:nth-child(2) {
+  transform: translateY(-5px) rotate(-8deg);
+  border-color: var(--gold);
+}
+
+.verse-game__slot {
+  width: 0.6em;
+  height: 0.95em;
+  margin-left: 2px;
+  border-bottom: 3px solid var(--gold-deep);
+}
+
+.verse-game__slot--word {
+  width: 1.5em;
+  margin-left: 6px;
+  color: var(--gold-deep);
+  font: 800 0.95rem/1 var(--font-ui);
+  text-align: center;
+}
+
+.verse-game__title {
+  font: 800 1.02rem/1.15 var(--font-ui);
+}
+
+.verse-game__caption {
+  font: 600 0.78rem/1.25 var(--font-ui);
+  color: var(--ink-soft);
+}
+
 .verse-modes {
   width: 100%;
   display: grid;
@@ -790,6 +892,19 @@ body {
 
   .verse-fields > .verse-field:first-child {
     grid-column: 1 / -1;
+  }
+
+  .verse-game {
+    padding: 10px 4px 9px;
+    border-radius: 16px;
+  }
+
+  .verse-game__title {
+    font-size: 0.92rem;
+  }
+
+  .verse-game__caption {
+    display: none;
   }
 
   .verse-mode {
@@ -1013,6 +1128,312 @@ body {
   background: var(--sage-tint);
   border: 3px solid var(--sage);
   font-size: 1.9rem;
+}
+
+/* ---- Guess the Next Word (Shannon's guessing game) ---- */
+.stage--guess {
+  max-width: 900px;
+}
+
+.guess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vh, 26px);
+  text-align: center;
+}
+
+/* A long passage makes the card scroll; nothing in it gets squeezed. */
+.guess > * {
+  flex-shrink: 0;
+}
+
+.guess__heading {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  text-align: left;
+}
+
+.guess__heading .eyebrow {
+  margin: 0 0 6px;
+}
+
+.guess__reference {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-scripture);
+  font-size: clamp(1.9rem, 5vw, 2.7rem);
+  line-height: 1.1;
+}
+
+.guess__progress {
+  flex: none;
+  padding: 9px 14px;
+  border-radius: 999px;
+  color: var(--gold-deep);
+  background: var(--parchment-2);
+  border: 2px solid rgba(169, 132, 47, 0.28);
+  font-size: 0.98rem;
+  font-weight: 800;
+}
+
+.guess__verse {
+  width: 100%;
+  min-height: 3.6em;
+  margin: 0;
+  padding: clamp(18px, 3vw, 26px);
+  border: 2px solid rgba(169, 132, 47, 0.3);
+  border-radius: 20px;
+  background: rgba(243, 236, 219, 0.68);
+  font-size: clamp(1.28rem, 3.4vw, 1.72rem);
+  line-height: 1.75;
+  text-align: left;
+}
+
+.guess__verse--cjk {
+  letter-spacing: 0.04em;
+}
+
+.guess__blank {
+  white-space: nowrap;
+}
+
+.guess__blank-slot {
+  display: inline-block;
+  min-width: 2.4em;
+  margin: 0 0.15em;
+  border-bottom: 3px solid var(--gold-deep);
+  color: var(--gold-deep);
+  font-family: var(--font-ui);
+  font-weight: 800;
+  text-align: center;
+  animation: breathe 1.6s ease-in-out infinite;
+}
+
+.guess-word {
+  border-radius: 6px;
+  padding: 0 2px;
+  animation: place-in 0.24s ease both;
+}
+
+.guess-heat--first {
+  color: var(--sage-deep);
+  background: var(--sage-tint);
+}
+
+.guess-heat--second {
+  color: var(--gold-deep);
+  background: rgba(227, 202, 127, 0.35);
+}
+
+.guess-heat--more {
+  color: var(--terracotta);
+  background: var(--terracotta-tint);
+}
+
+/* A hidden letter (Guess the Letters), coloured inside its word. */
+.guess-letter {
+  border-radius: 3px;
+  font-weight: 800;
+}
+
+/* The words a sentence opens with, handed over as context. */
+.guess-word--given {
+  color: var(--navy-soft);
+  background: transparent;
+  border-bottom: 2px dotted var(--gold-soft);
+  border-radius: 0;
+}
+
+.guess-word--plain,
+.guess-word--current {
+  padding: 0;
+  background: transparent;
+}
+
+/* A finished word was already on show while its letters were guessed. */
+.guess-word--plain {
+  animation: none;
+}
+
+.guess__slot {
+  display: inline-block;
+  width: 0.62em;
+  margin: 0 0.04em;
+  border-bottom: 3px solid rgba(169, 132, 47, 0.45);
+}
+
+.guess__verse--cjk .guess__slot {
+  width: 1em;
+}
+
+.guess__slot--current {
+  border-bottom-color: var(--gold-deep);
+  animation: breathe 1.6s ease-in-out infinite;
+}
+
+.guess__play {
+  /* The choices stay in reach however long the passage gets. */
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 22px;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+  border: 2px solid rgba(200, 162, 76, 0.42);
+  box-shadow: var(--shadow-soft);
+}
+
+.guess__prompt {
+  margin: 0;
+  color: var(--on-navy-soft);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.guess__options {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* A hidden letter: one row of four, as big as the verse they finish. */
+.guess__options--letters {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 440px;
+}
+
+.guess__options--letters .guess-option {
+  min-height: 68px;
+  padding: 6px;
+  font-size: clamp(1.8rem, 6.4vw, 2.3rem);
+  line-height: 1;
+}
+
+.guess-option {
+  min-height: 64px;
+  padding: 10px 14px;
+  border: 2px solid rgba(85, 77, 64, 0.28);
+  border-radius: 15px;
+  background: var(--ivory);
+  color: var(--ink);
+  box-shadow: 0 4px 0 rgba(7, 13, 24, 0.2);
+  cursor: pointer;
+  font: 700 clamp(1.25rem, 4.2vw, 1.6rem)/1.2 var(--font-scripture);
+  transition:
+    transform 100ms ease,
+    opacity 140ms ease,
+    border-color 140ms ease,
+    background-color 140ms ease;
+}
+
+.guess-option:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+
+.guess-option:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 rgba(7, 13, 24, 0.2);
+}
+
+.guess-option:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--navy), 0 0 0 6px var(--gold-soft);
+}
+
+.guess-option--out {
+  opacity: 0.28;
+  text-decoration: line-through;
+  cursor: default;
+}
+
+.guess-option--wrong {
+  opacity: 1;
+  border-color: var(--terracotta);
+  background: var(--terracotta-tint);
+  animation: shake 0.4s ease;
+}
+
+.guess__summary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.guess__done {
+  color: var(--sage-deep);
+  font-size: clamp(1.5rem, 4.6vw, 2.1rem);
+}
+
+.guess__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+.guess__stats b {
+  color: var(--ink);
+  font-size: 1.6rem;
+}
+
+.guess__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.guess__legend .guess-word {
+  padding: 4px 10px;
+}
+
+.guess__insight {
+  max-width: 60ch;
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+@media (max-width: 560px) {
+  .guess {
+    gap: 14px;
+    padding: 20px 16px;
+  }
+
+  .guess__heading {
+    align-items: flex-start;
+  }
+
+  .guess__progress {
+    padding: 7px 10px;
+    font-size: 0.84rem;
+  }
+
+  .guess__options {
+    gap: 10px;
+  }
+
+  .guess-option {
+    min-height: 56px;
+  }
+
 }
 
 @media (max-width: 560px) {
@@ -2131,4 +2552,6 @@ body {
   .stage--welcome .verse-field__input,
   .stage--welcome .verse-mode,
   .stage--welcome .translation-option { min-height: 46px; }
+  .stage--welcome .verse-game { padding-block: 7px; }
+  .stage--welcome .verse-game__sample { height: 26px; font-size: 1.25rem; }
 }

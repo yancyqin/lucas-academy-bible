@@ -19,6 +19,7 @@ import { BookMark } from './components/icons';
 import { BibleAttribution } from './components/BibleAttribution';
 import { DailyScrabble } from './components/DailyScrabble';
 import { DailyWordSearch } from './components/DailyWordSearch';
+import { GuessPhase } from './components/GuessPhase';
 import {
   buildDailyVerse,
   currentPacificDate,
@@ -50,10 +51,12 @@ import {
   formatPassageId,
   readVerseLink,
   verseLinkUrl,
+  type VerseGame,
   type VerseRequest,
 } from './verse-request';
 import type { DistractorPassage } from './game/distractors';
-import { tokenize } from './game/chunk';
+import { isCjkText, tokenize } from './game/chunk';
+import { buildGuessGame, type GuessGame, type GuessKind } from './game/guess';
 import { BUILD_FEATURES } from './build-config';
 
 type Phase =
@@ -65,13 +68,15 @@ type Phase =
   | 'failure-reveal'
   | 'scrabble'
   | 'word-search'
+  | 'guess'
   | 'final';
 type GameMode =
   | 'journey'
   | 'verse'
   | 'daily'
   | 'daily-scrabble'
-  | 'daily-word-search';
+  | 'daily-word-search'
+  | 'guess';
 
 /** Score accumulated across a single run (which always starts at Level 0). */
 interface Run {
@@ -167,6 +172,16 @@ async function loadDistractors(
   if (VERSE_MODES[difficulty].policy.distractorsPerSection === 0) {
     return undefined;
   }
+  return loadDecoyPool(edition, request, seed, signal);
+}
+
+/** Other same-edition text to draw decoys from (Sequence tiles, Guess choices). */
+async function loadDecoyPool(
+  edition: TranslationKey,
+  request: VerseRequest,
+  seed: number,
+  signal: AbortSignal,
+): Promise<DistractorPassage[]> {
   if (edition === 'WEB') return localDistractorPool(request, false);
   if (edition === 'CUV') return localDistractorPool(request, true);
 
@@ -229,6 +244,7 @@ export default function App() {
   const [verseDifficulty, setVerseDifficulty] = useState<VerseDifficulty>(
     verseLink?.difficulty ?? DEFAULT_VERSE_DIFFICULTY,
   );
+  const [verseGame, setVerseGame] = useState<VerseGame>(verseLink?.game ?? 'sequence');
   const [verseCatalogue, setVerseCatalogue] = useState<{
     translation: TranslationKey;
     books: BibleBook[];
@@ -245,6 +261,13 @@ export default function App() {
   const [dailyRequest, setDailyRequest] = useState(0);
   const [journeyError, setJourneyError] = useState('');
   const [loadingLabel, setLoadingLabel] = useState('');
+  const [guess, setGuess] = useState<{
+    reference: string;
+    text: string;
+    attribution: ScriptureAttribution;
+    pool: DistractorPassage[];
+    game: GuessGame;
+  } | null>(null);
   const [loadedAttribution, setLoadedAttribution] = useState<{
     translation: TranslationKey;
     attribution: ScriptureAttribution;
@@ -545,6 +568,75 @@ export default function App() {
     }
   };
 
+  /**
+   * A guessing game on a picked verse: the same passage request as the Sequence
+   * game, then Shannon's letters or next-word prediction instead of memorize-and-rebuild.
+   */
+  const startGuess = async (request: VerseRequest, edition: TranslationKey, kind: GuessKind) => {
+    activeGameRequest.current?.abort();
+    const controller = new AbortController();
+    activeGameRequest.current = controller;
+    const seed = freshSeed();
+    setGameMode('guess');
+    setVerseRequest(request);
+    setFinal(null);
+    setResult(null);
+    setBuilt(null);
+    setVerseError('');
+    narrator.stop();
+    if (soundEnabled) {
+      soundEngine.resume(); // the tap into the game is our gesture
+      soundEngine.primeCorrectAudio();
+    }
+    setLoadingLabel(
+      `Loading ${pickedReference(
+        verseCatalogue?.translation === edition ? verseCatalogue.books : null,
+        request,
+      )} in ${TRANSLATIONS[edition].label}…`,
+    );
+    setPhase('loading');
+
+    try {
+      const passage = await fetchBiblePassage(
+        edition,
+        formatPassageId(request),
+        controller.signal,
+      );
+      const pool = await loadDecoyPool(edition, request, seed, controller.signal);
+      if (controller.signal.aborted) return;
+      setGuess({
+        reference: passage.reference,
+        text: passage.text,
+        attribution: attributionFor(passage.translation),
+        pool,
+        game: buildGuessGame(passage.text, seed, pool, kind),
+      });
+      setPlayId((p) => p + 1);
+      setPhase('guess');
+    } catch (error: unknown) {
+      if (controller.signal.aborted) return;
+      setVerseError(
+        error instanceof Error
+          ? error.message
+          : 'That verse could not be loaded.',
+      );
+      setWelcomeTab('verse');
+      setPhase('welcome');
+    }
+  };
+
+  /** Same passage, freshly shuffled choices; nothing is fetched again. */
+  const replayGuess = () => {
+    if (soundEnabled) soundEngine.resume();
+    setGuess((current) =>
+      current && {
+        ...current,
+        game: buildGuessGame(current.text, freshSeed(), current.pool, current.game.kind),
+      },
+    );
+    setPlayId((p) => p + 1);
+  };
+
   const startDaily = async () => {
     if (!dailyVerse) return;
     activeGameRequest.current?.abort();
@@ -677,7 +769,7 @@ export default function App() {
     activeGameRequest.current?.abort();
     narrator.stop();
     setWelcomeTab(
-      gameMode === 'verse'
+      gameMode === 'verse' || gameMode === 'guess'
         ? 'verse'
         : gameMode === 'daily'
         ? 'daily'
@@ -741,7 +833,8 @@ export default function App() {
   useEffect(() => {
     if (!verseLink || verseLinkStarted.current) return;
     verseLinkStarted.current = true;
-    void startPickedVerse(verseLink.request, verseLink.difficulty, translation);
+    if (verseLink.game) void startGuess(verseLink.request, translation, verseLink.game);
+    else void startPickedVerse(verseLink.request, verseLink.difficulty, translation);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -764,10 +857,11 @@ export default function App() {
       ? loadedAttribution.attribution
       : null;
   const activePassageAttribution =
-    built?.attribution &&
-    phase !== 'welcome'
-      ? built.attribution
-      : null;
+    phase === 'welcome'
+      ? null
+      : phase === 'guess'
+        ? guess?.attribution ?? null
+        : built?.attribution ?? null;
   const activeAttribution =
     translation === 'WEB'
       ? WEB_ATTRIBUTION
@@ -801,6 +895,7 @@ export default function App() {
             request: verseRequest,
             translation,
             difficulty: verseDifficulty,
+            ...(verseGame === 'sequence' ? {} : { game: verseGame }),
           },
           window.location.href,
         );
@@ -879,8 +974,14 @@ export default function App() {
             },
             difficulty: verseDifficulty,
             onChangeDifficulty: setVerseDifficulty,
+            game: verseGame,
+            onChangeGame: setVerseGame,
             onPlay: () => {
-              void startPickedVerse(verseRequest, verseDifficulty, translation);
+              if (verseGame === 'sequence') {
+                void startPickedVerse(verseRequest, verseDifficulty, translation);
+              } else {
+                void startGuess(verseRequest, translation, verseGame);
+              }
             },
             playError: verseError,
             shareUrl: verseShareUrl,
@@ -962,6 +1063,19 @@ export default function App() {
           verse={dailyVerse}
           sound={soundEngine}
           announce={announce}
+          onDone={goWelcome}
+        />
+      )}
+
+      {phase === 'guess' && guess && (
+        <GuessPhase
+          key={`guess-${playId}`}
+          game={guess.game}
+          reference={guess.reference}
+          chinese={isCjkText(guess.text)}
+          sound={soundEngine}
+          announce={announce}
+          onPlayAgain={replayGuess}
           onDone={goWelcome}
         />
       )}

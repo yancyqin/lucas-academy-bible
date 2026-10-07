@@ -3,6 +3,7 @@ import {
   isVerseDifficulty,
   type VerseDifficulty,
 } from './game/verse-modes';
+import type { GuessKind } from './game/guess';
 import {
   bibleIdTranslation,
   isTranslationKey,
@@ -72,6 +73,15 @@ export interface VerseLink {
   request: VerseRequest;
   translation?: TranslationKey;
   difficulty: VerseDifficulty;
+  /** Open a guessing game instead of the Sequence game: Shannon's letters, or next words. */
+  game?: GuessKind;
+}
+
+/** How a picked verse is played: rebuilt from tiles (the Sequence game), or a guessing game. */
+export type VerseGame = 'sequence' | GuessKind;
+
+function isGuessKind(value: string | null): value is GuessKind {
+  return value === 'letters' || value === 'words';
 }
 
 /**
@@ -108,12 +118,14 @@ export function readVerseLink(search: string): VerseLink | null {
     : bibleIdTranslation(Number(version));
 
   const difficulty = params.get('difficulty');
+  const game = params.get('game');
   return {
     request: capped,
     ...(translation ? { translation } : {}),
     difficulty: isVerseDifficulty(difficulty)
       ? difficulty
       : DEFAULT_VERSE_DIFFICULTY,
+    ...(isGuessKind(game) ? { game } : {}),
   };
 }
 
@@ -124,6 +136,7 @@ export function verseLinkParams(link: VerseLink): string {
   if (link.difficulty !== DEFAULT_VERSE_DIFFICULTY) {
     params.set('difficulty', link.difficulty);
   }
+  if (link.game) params.set('game', link.game);
   return params.toString();
 }
 

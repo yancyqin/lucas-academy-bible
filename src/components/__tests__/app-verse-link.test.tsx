@@ -145,6 +145,25 @@ describe('Pick a Verse tab', () => {
     expect(screen.getByText('Hard · Memorize')).toBeInTheDocument();
   });
 
+  it('opens a guessing game from a link, and keeps it chosen back on the picker', async () => {
+    window.history.replaceState({}, '', '/?passage=JHN.3.16&translation=WEB&game=letters');
+    stubApi();
+    render(<App />);
+
+    expect(
+      await screen.findByRole('region', { name: 'Guess the Letters: John 3:16' }),
+    ).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Bible Sequence — go to start screen' }));
+    expect(await screen.findByRole('radio', { name: /Guess Letters/ })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+    expect(
+      screen.getByRole('button', { name: 'Guess the letters in John 3:16' }),
+    ).toBeInTheDocument();
+  });
+
   it('honours the edition a link names without saving it over the player’s choice', async () => {
     window.history.replaceState({}, '', '/?passage=JHN.3.16&version=110');
     stubApi();

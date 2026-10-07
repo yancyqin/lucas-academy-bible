@@ -181,6 +181,47 @@ passage that edition does not have opens the picker with the API's own message.
 
 ---
 
+## Guessing games — redundancy you can play
+
+On the Pick a Verse tab, three cards under the verse choose how to play it:
+**Rebuild** (the Sequence game, with its difficulty row), **Guess Letters** and
+**Next Word**. The two guessing games have no difficulty; both count every try and colour what was guessed by how many tries
+it took (first try / second / three or more), so the end screen shows where the
+passage was predictable: the part a reader can fill in is what Claude Shannon called
+redundancy.
+
+**Guess Letters** is Shannon's own game. Every word appears with its start
+showing and its ending hidden: the last letter of a short word (up to four letters),
+the last two of a longer one; a Chinese word hides its last character (or last two,
+from four characters up). Each hidden letter is picked from four. The other three are
+letters that other words starting the same way have there (beside God's *d*: *o*,
+*s*, *n* from good, gospel, gone), so spelling alone rarely settles it and the words
+before have to. One-letter words and numbers are shown whole. Most endings come on the
+first try; Shannon played this game to show that about half of English is redundant.
+On a laptop, typing the letter or its number (1–4) picks it.
+
+**Next Word** is next-word prediction, the game a language model trains
+on. Each sentence starts with a few of its opening words handed over as context
+(about a quarter of the sentence, one to three words); every word after them is
+picked from four choices before it appears. Only what came before is ever on the page.
+
+- The logic is [`src/game/guess.ts`](src/game/guess.ts) (pure, seeded, tested in
+  `src/game/__tests__/guess.test.ts`); the screen is
+  [`src/components/GuessPhase.tsx`](src/components/GuessPhase.tsx).
+- Tokens come from the Sequence tokenizer, so the words and their punctuation
+  rejoin into the passage exactly. Choices show bare words: a trailing comma
+  never gives the answer away.
+- Word decoys are real words from other passages in the same edition and from the
+  rest of the passage, chosen to look like the answer: a function word (the, of / 的,
+  在) gets function-word decoys, a capitalised English word gets capitalised decoys,
+  and a Chinese word gets decoys with the same number of characters. Character decoys
+  come first from words that start the same way (世 → 界, 代, 上) and always take the
+  answer's case. So context decides the guess, not the shape of the word.
+- The screen's own words switch to Chinese for a Chinese passage.
+- A link opens either game directly: `?passage=JHN.3.16&translation=CUV&game=letters`
+  or `&game=words`; **Copy link** writes the chosen game into the link. **Play again**
+  reshuffles the choices without fetching the passage again.
+
 ## Scripture data — `data/verses.json`
 
 The public-domain WEB Challenge baseline comes from `data/verses.json`. Rebuild it
