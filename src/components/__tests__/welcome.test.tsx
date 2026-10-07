@@ -33,6 +33,8 @@ const versePicker = {
   onChangeRequest: noop,
   difficulty: 'normal' as const,
   onChangeDifficulty: noop,
+  game: 'sequence' as const,
+  onChangeGame: noop,
   onPlay: noop,
   playError: '',
   shareUrl: 'https://bible.lucasacademy.org/?passage=JHN.3.16',

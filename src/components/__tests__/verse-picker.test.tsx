@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { BibleBook } from '../../books';
 import { VersePicker, type VersePickerProps } from '../VersePicker';
@@ -26,6 +26,8 @@ function setup(overrides: Partial<VersePickerProps> = {}) {
     onChangeRequest: noop,
     difficulty: 'normal',
     onChangeDifficulty: noop,
+    game: 'sequence',
+    onChangeGame: noop,
     onPlay: noop,
     playError: '',
     shareUrl: 'https://bible.lucasacademy.org/?passage=JHN.3.16',
@@ -36,6 +38,34 @@ function setup(overrides: Partial<VersePickerProps> = {}) {
 }
 
 describe('Pick a Verse', () => {
+  it('offers three ways to play the verse, Rebuild first', () => {
+    const onChangeGame = vi.fn();
+    setup({ onChangeGame });
+
+    const games = within(screen.getByRole('radiogroup', { name: 'Game' })).getAllByRole('radio');
+    expect(games.map((card) => card.getAttribute('aria-label'))).toEqual([
+      'Rebuild: Memorize, then rebuild',
+      'Guess Letters: Claude Shannon’s game',
+      'Next Word: How an AI learns',
+    ]);
+    expect(games.map((card) => card.getAttribute('aria-checked'))).toEqual(['true', 'false', 'false']);
+    expect(screen.getByRole('radiogroup', { name: 'Difficulty' })).toBeInTheDocument();
+
+    fireEvent.click(games[1]);
+    fireEvent.keyDown(games[0], { key: 'ArrowLeft' });
+    expect(onChangeGame.mock.calls).toEqual([['letters'], ['words']]);
+  });
+
+  it('plays a guessing game without a difficulty to choose', () => {
+    const onPlay = vi.fn();
+    setup({ game: 'letters', onPlay });
+
+    expect(screen.queryByRole('radiogroup', { name: 'Difficulty' })).toBeNull();
+    expect(screen.getByText('Every word shows its start. Pick the letter that finishes it.')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Guess the letters in 约翰福音 3:16' }));
+    expect(onPlay).toHaveBeenCalledTimes(1);
+  });
+
   it('names the verse in the edition’s own language on the play button', () => {
     const onPlay = vi.fn();
     setup({ onPlay });
