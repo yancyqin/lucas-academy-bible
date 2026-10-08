@@ -1,9 +1,18 @@
+import { cuvRecordingsSupported, recordingsForCuv, type CuvRecording } from './cuv-recordings';
+
+interface SpeakOptions {
+  onend?: () => void;
+  onstart?: () => void;
+  slow?: boolean;
+  /** Full CUV verses only; callers must check the edition and fragment flag. */
+  cuvVerses?: readonly string[];
+}
+
 /**
- * Scripture narration via the browser SpeechSynthesis API.
+ * CUV scripture narration via local recordings, with browser speech fallback.
  * Passage narration is started by a tap on a Listen control. Short victory
  * praise is also available to the game after a successful round.
- * Degrades gracefully: if speech synthesis is unavailable, every method is a
- * safe no-op and `supported` is false so callers can hide the Listen button.
+ * Degrades gracefully when recordings or browser speech are unavailable.
  *
  * "Slow" mode reads the passage clause-by-clause with a pause between clauses
  * AND a reduced rate. Gap-pacing matters because browsers (notably iOS Safari)
@@ -86,10 +95,11 @@ export class Narrator {
   private voices: SpeechSynthesisVoice[] = [];
   private sessionId = 0;
   private active = false;
+  private audio: HTMLAudioElement | null = null;
 
   constructor() {
-    this.supported = speechSupported();
-    if (this.supported) {
+    this.supported = speechSupported() || cuvRecordingsSupported();
+    if (speechSupported()) {
       this.refreshVoice();
       try {
         window.speechSynthesis.addEventListener?.('voiceschanged', () => this.refreshVoice());
@@ -104,7 +114,7 @@ export class Narrator {
   }
 
   private refreshVoice(): void {
-    if (!this.supported) return;
+    if (!speechSupported()) return;
     try {
       const voices = window.speechSynthesis.getVoices();
       if (!voices || voices.length === 0) return;
@@ -144,7 +154,8 @@ export class Narrator {
     language: SpeechLanguage,
     opts: { onend?: () => void; onstart?: () => void; slow?: boolean } = {},
   ): void {
-    if (!this.supported) {
+    this.stop();
+    if (!speechSupported()) {
       opts.onend?.();
       return;
     }
@@ -214,13 +225,71 @@ export class Narrator {
 
   /**
    * Speak text aloud. In slow mode (default) the passage is read clause by
-   * clause with pauses. `onend` fires when narration finishes or is cancelled.
+   * clause with pauses. `onend` fires when narration finishes.
    */
   speak(
     text: string,
-    opts: { onend?: () => void; onstart?: () => void; slow?: boolean } = {},
+    opts: SpeakOptions = {},
   ): void {
+    const clips = recordingsForCuv(text, opts.cuvVerses);
+    if (clips && typeof Audio !== 'undefined') {
+      this.speakRecordings(clips, opts);
+      return;
+    }
     this.speakInLanguage(text, detectSpeechLanguage(text), opts);
+  }
+
+  private speakRecordings(clips: CuvRecording[], opts: SpeakOptions): void {
+    this.stop();
+    const id = ++this.sessionId;
+    this.active = true;
+    const audio = new Audio();
+    this.audio = audio;
+    audio.preload = 'none';
+    // The files already use the selected 0.85 reading pace.
+    audio.playbackRate = opts.slow === false ? 1 / 0.85 : 1;
+    let index = 0;
+    let started = false;
+    let fallingBack = false;
+    const next = () => {
+      if (id !== this.sessionId) return;
+      if (index >= clips.length) {
+        this.active = false;
+        audio.onended = audio.onerror = audio.onplaying = null;
+        this.audio = null;
+        this.sessionId++;
+        opts.onend?.();
+        return;
+      }
+      audio.src = clips[index].url;
+      try {
+        void audio.play().catch(fallback);
+      } catch {
+        fallback();
+      }
+    };
+    const fallback = () => {
+      if (id !== this.sessionId || fallingBack) return;
+      fallingBack = true;
+      // Finish the remaining verses if delivery fails, without replaying
+      // the preceding ones or reviving a cancelled Listen session.
+      this.speakInLanguage(clips.slice(index).map((clip) => clip.text).join(' '), 'zh', {
+        ...opts,
+        onstart: started ? undefined : opts.onstart,
+      });
+    };
+    audio.onplaying = () => {
+      if (id !== this.sessionId || started) return;
+      started = true;
+      opts.onstart?.();
+    };
+    audio.onended = () => {
+      if (id !== this.sessionId) return;
+      index += 1;
+      next();
+    };
+    audio.onerror = fallback;
+    next();
   }
 
   /**
@@ -241,7 +310,13 @@ export class Narrator {
   stop(): void {
     this.sessionId++; // invalidate any in-flight queue
     this.active = false;
-    if (!this.supported) return;
+    if (this.audio) {
+      this.audio.onended = this.audio.onerror = this.audio.onplaying = null;
+      this.audio.pause();
+      this.audio.removeAttribute('src');
+      this.audio = null;
+    }
+    if (!speechSupported()) return;
     try {
       window.speechSynthesis.cancel();
     } catch {
@@ -250,7 +325,8 @@ export class Narrator {
   }
 
   isSpeaking(): boolean {
-    if (!this.supported) return false;
+    if (this.audio) return this.active;
+    if (!speechSupported()) return false;
     try {
       return this.active || window.speechSynthesis.speaking;
     } catch {

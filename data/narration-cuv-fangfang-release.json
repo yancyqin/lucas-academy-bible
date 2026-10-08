@@ -1,0 +1,884 @@
+{
+  "schema": "lucas-bible-narration/1",
+  "translation": "CUV",
+  "voice": "fangfang",
+  "enabled": true,
+  "catalog": "/audio/cuv-fangfang/catalog.json",
+  "clips": [
+    {
+      "id": "GEN.1.1",
+      "text": "起初，　神创造天地。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GEN/1/1-c99216ca7cfd7a4367c1ae7425e465ab020f1324459670d3bd3c2cab56a2d671.mp3"
+    },
+    {
+      "id": "GEN.2.24",
+      "text": "因此，人要离开父母，与妻子连合，二人成为一体。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GEN/2/24-8857e1bd97d8ab32c3ab64d681fc43a0cd48fe24ba967a5648baf5b9eea1a752.mp3"
+    },
+    {
+      "id": "GEN.15.6",
+      "text": "亚伯兰信耶和华，耶和华就以此为他的义。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GEN/15/6-23f27faccbde709fce59a227aa7bc821e2af0265db92684de25a7d83ce9a17df.mp3"
+    },
+    {
+      "id": "JOS.1.9",
+      "text": "我岂没有吩咐你吗？你当刚强壮胆！不要惧怕，也不要惊惶；因为你无论往哪里去，耶和华—你的　神必与你同在。」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JOS/1/9-415cf75eaccfa20dd35914417671e902469178f602ba30a7a8507eceec01d026.mp3"
+    },
+    {
+      "id": "PSA.8.4",
+      "text": "[便说]：人算什么，你竟顾念他！ 世人算什么，你竟眷顾他！",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/8/4-3792081d8b23c4c34f3131813d163c8d1dcb40d39a8297e258375457773b1590.mp3"
+    },
+    {
+      "id": "PSA.19.1",
+      "text": "大卫的诗，交与伶长。 诸天述说　神的荣耀； 穹苍传扬他的手段。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/19/1-f66d983297a02ecc515a795644628df1f7f09c4e152c3a36b543430ae8e085ce.mp3"
+    },
+    {
+      "id": "PSA.23.1",
+      "text": "大卫的诗。 耶和华是我的牧者， 我必不致缺乏。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/PSA/23/1-408fd48f28298431889dee2c72fb32a90f6bee097fee36f236df76188e911986.mp3"
+    },
+    {
+      "id": "PSA.23.2",
+      "text": "他使我躺卧在青草地上， 领我在可安歇的水边。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/23/2-90a0824fd809177e95f03879e0a356b307f91af04bf8b998d81746f136ead1aa.mp3"
+    },
+    {
+      "id": "PSA.23.3",
+      "text": "他使我的灵魂苏醒， 为自己的名引导我走义路。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/23/3-962998f639e1b0f9374274c0f216de3d3f84f7381d03c812276a53d6010807b9.mp3"
+    },
+    {
+      "id": "PSA.23.4",
+      "text": "我虽然行过死荫的[幽]谷， 也不怕遭害， 因为你与我同在； 你的杖，你的竿，都安慰我。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/23/4-d653bfda592d301b9fe0c60fe05c9aedc77a94c844b10ced33c0d5dd6902dbc4.mp3"
+    },
+    {
+      "id": "PSA.23.5",
+      "text": "在我敌人面前，你为我摆设筵席； 你用油膏了我的头，使我的[福]杯满溢。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/23/5-33738a89819431e401202bf488849091bf6d56b06a226f180b3b6eadb2cc66f9.mp3"
+    },
+    {
+      "id": "PSA.23.6",
+      "text": "我一生一世必有恩惠慈爱随着我； 我且要住在耶和华的殿中，直到永远。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/23/6-dc1bd51010dff3241dede6fb32a58771f25552415ede90b6dd60cb75a7cb0d5b.mp3"
+    },
+    {
+      "id": "PSA.56.4",
+      "text": "我倚靠　神，我要赞美他的话； 我倚靠　神，必不惧怕。 血气之辈能把我怎么样呢？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/56/4-edecd4a26fde041846d98fe921206178dbaa4f3d11f97121a560e9048aa63d78.mp3"
+    },
+    {
+      "id": "PSA.103.11",
+      "text": "天离地何等的高， 他的慈爱向敬畏他的人也是何等的大！",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/103/11-e36512fc4124d8e0e3a08955e22181c71055248d1f1dd5f33952ad7be0181f55.mp3"
+    },
+    {
+      "id": "PSA.119.105",
+      "text": "你的话是我脚前的灯， 是我路上的光。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PSA/119/105-51e1a9359e8536cfc694ee6fc79501d3810ed38aa542598bb4aa1f79ba7435c9.mp3"
+    },
+    {
+      "id": "PRO.4.23",
+      "text": "你要保守你心，胜过保守一切， 因为一生的果效是由心发出。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PRO/4/23-c5a2bd7ed36d52bd2e24bd797b65decd7ce25bb0988d5c1fd756adc393f622e3.mp3"
+    },
+    {
+      "id": "ECC.3.11",
+      "text": "神造万物，各按其时成为美好，又将永生安置在世人心里。然而　神从始至终的作为，人不能参透。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/ECC/3/11-81c847290cfc2d63faf5952ea82a47bbbe02f1c1e0f8f0ccbbe1d6e05d7fdd45.mp3"
+    },
+    {
+      "id": "ISA.42.2",
+      "text": "他不喧嚷，不扬声， 也不使街上听见他的声音。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ISA/42/2-d6feb4d65e9e17d4b7bdf4b036eef29a548193a312d177c04e5506644908586c.mp3"
+    },
+    {
+      "id": "ISA.42.3",
+      "text": "压伤的芦苇，他不折断； 将残的灯火，他不吹灭。 他凭真实将公理传开。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ISA/42/3-44cc65f727872159336da756d6986233f3dd2eb28f6cf8f8b026af1f8688928f.mp3"
+    },
+    {
+      "id": "ISA.42.4",
+      "text": "他不灰心，也不丧胆， 直到他在地上设立公理； 海岛都等候他的训诲。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ISA/42/4-6b61537be054c0a530f8020237b5e78ddd11b6573744787a7e406b207581213b.mp3"
+    },
+    {
+      "id": "ISA.50.6",
+      "text": "人打我的背，我任他打； 人拔我腮颊的胡须，我由他拔； 人辱我，吐我，我并不掩面。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ISA/50/6-b096eed66fff14012924f6620806ec978fe05ad1d343ae570e3f1436be989422.mp3"
+    },
+    {
+      "id": "ISA.55.8",
+      "text": "耶和华说：我的意念非同你们的意念； 我的道路非同你们的道路。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ISA/55/8-ef77dc8501135df2e76a74a8abc2ec64ea0f78ddfb7033ad3a74480cf732b1a7.mp3"
+    },
+    {
+      "id": "ISA.55.9",
+      "text": "天怎样高过地， 照样，我的道路高过你们的道路； 我的意念高过你们的意念。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ISA/55/9-bb3ef1a243bbf26dbadba0097609945bb6c01c5e5818d7533a49bd0fe338d5de.mp3"
+    },
+    {
+      "id": "HOS.6.6",
+      "text": "我喜爱良善，不喜爱祭祀； 喜爱认识　神，胜于燔祭。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/HOS/6/6-98134a0f3e3168153d2014d7b9cf315c1666a58791f06955a3b6e25f2e9a7ab8.mp3"
+    },
+    {
+      "id": "JOL.2.28",
+      "text": "以后，我要将我的灵浇灌凡有血气的。 你们的儿女要说预言； 你们的老年人要做异梦， 少年人要见异象。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JOL/2/28-fdb63a6074760359951b09f17b301e5ffb4bbc135ef038349d3aef03975c4646.mp3"
+    },
+    {
+      "id": "JOL.2.29",
+      "text": "在那些日子， 我要将我的灵浇灌我的仆人和使女。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JOL/2/29-f65aa07518719c66b982f5b3a35ebf8670e7744400cb2797d506384adfd1df39.mp3"
+    },
+    {
+      "id": "MAT.5.13",
+      "text": "「你们是世上的盐。盐若失了味，怎能叫它再咸呢？以后无用，不过丢在外面，被人践踏了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/5/13-d1b7ae2959a9cc0da25c2e566ea84673478c1df4ec9b73931431fc05bc7643d8.mp3"
+    },
+    {
+      "id": "MAT.5.14",
+      "text": "你们是世上的光。城造在山上是不能隐藏的。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/5/14-6e4cf18106b337529ef46428673ed09173ec9dcb84c7d8e3f0bc8b8ac2892657.mp3"
+    },
+    {
+      "id": "MAT.6.9",
+      "text": "所以，你们祷告要这样说： 我们在天上的父： 愿人都尊你的名为圣。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/6/9-47d18e5c69ca81253fcbf5e91bd59b9272e18d5b53df0ae547352070f1a8989f.mp3"
+    },
+    {
+      "id": "MAT.6.10",
+      "text": "愿你的国降临； 愿你的旨意行在地上， 如同行在天上。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/6/10-c5dc1400c29e20243fc93abfd34aa6351a7e5dc9a587bb4ae7a2f2a1a1ca1466.mp3"
+    },
+    {
+      "id": "MAT.6.11",
+      "text": "我们日用的饮食，今日赐给我们。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/6/11-2c0008e3fbacb4d87cc98f85d0c1d082225d23f362283d5a05897fd6615f3832.mp3"
+    },
+    {
+      "id": "MAT.6.12",
+      "text": "免我们的债， 如同我们免了人的债。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/6/12-5d561a31ef872707e4f64cd0e8d60fd6f7adad276cf327d01cc3c645c9dd1cc0.mp3"
+    },
+    {
+      "id": "MAT.6.13",
+      "text": "不叫我们遇见试探； 救我们脱离凶恶。 因为国度、权柄、荣耀，全是你的， 直到永远。阿们！",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/6/13-86a2959fa230ba1eb5418cb63fba0b6dc224f0c680d88362ad8d8c471423420f.mp3"
+    },
+    {
+      "id": "MAT.7.7",
+      "text": "「你们祈求，就给你们；寻找，就寻见；叩门，就给你们开门。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/MAT/7/7-db080e6b95215db19eeac1f4ee71a78efeed391330de322a3059f999d7490bde.mp3"
+    },
+    {
+      "id": "LUK.11.11",
+      "text": "你们中间作父亲的，谁有儿子求饼，反给他石头呢？求鱼，反拿蛇当鱼给他呢？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/LUK/11/11-e1fedfd530c67687c0c9e5f5efe2eed855fcea36180d0ffe26ab99d9c11b97eb.mp3"
+    },
+    {
+      "id": "LUK.11.12",
+      "text": "求[鸡]蛋，反给他蝎子呢？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/LUK/11/12-91938f063c16fdf439690f19ee2202cb4807aa8969add2cd270ccaf16d292ceb.mp3"
+    },
+    {
+      "id": "LUK.11.13",
+      "text": "你们虽然不好，尚且知道拿好东西给儿女；何况天父，岂不更将圣灵给求他的人吗？」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/LUK/11/13-b6ab04ec71a513ef3cf3b583582dae7d1f7759ac32f273612abed08e6a8239fc.mp3"
+    },
+    {
+      "id": "LUK.16.8",
+      "text": "主人就夸奖这不义的管家做事聪明；因为今世之子，在世事之上，较比光明之子更加聪明。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/LUK/16/8-1c81b81d7be89f5bb2dfd67da8b41f9f76f0072a10c43dc790a98475608fbc99.mp3"
+    },
+    {
+      "id": "LUK.16.9",
+      "text": "我又告诉你们，要借着那不义的钱财结交朋友，到了钱财无用的时候，他们可以接你们到永存的帐幕里去。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/LUK/16/9-6b6855a126b253ff824fa938c6911ba634e1aecfa1112f89940d95cb7bc20a47.mp3"
+    },
+    {
+      "id": "JHN.3.3",
+      "text": "耶稣回答说：「我实实在在地告诉你，人若不重生，就不能见　神的国。」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/3/3-159cf8b87ba4c832f05dbffac09972e290ef9fe988c88bf59c3be909badae679.mp3"
+    },
+    {
+      "id": "JHN.3.5",
+      "text": "耶稣说：「我实实在在地告诉你，人若不是从水和[圣]灵生的，就不能进　神的国。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/3/5-045e57bfbb4cdc9d60ced65b2a8acd40ce4a556dab69fcdd89f7f7ea15055575.mp3"
+    },
+    {
+      "id": "JHN.3.6",
+      "text": "从肉身生的就是肉身；从灵生的就是灵。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/3/6-2017dec433054d22104f35498286f355bdb08b1199581582624ad7776685e401.mp3"
+    },
+    {
+      "id": "JHN.3.7",
+      "text": "我说：『你们必须重生』，你不要以为希奇。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/3/7-338bcec9dfb0448918c8721b7b82592cfb58fa538ba545cf7284d85f81c64836.mp3"
+    },
+    {
+      "id": "JHN.3.8",
+      "text": "风随着意思吹，你听见风的响声，却不晓得从哪里来，往哪里去；凡从[圣]灵生的，也是如此。」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/3/8-f0f723ee7d9d607675448f2b5309d1c728a9cd17781a0ab768c786240df040ff.mp3"
+    },
+    {
+      "id": "JHN.3.14",
+      "text": "摩西在旷野怎样举蛇，人子也必照样被举起来，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/3/14-221c2448c6ad1f310c3a64ee6f75dc3f8aebaf5addde41c3a25687f131189678.mp3"
+    },
+    {
+      "id": "JHN.3.15",
+      "text": "叫一切信他的都得永生。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/3/15-4e2ba2f7b9ba209e6dc7c9347973f77318924e08e3f4251db85cb287f13354c0.mp3"
+    },
+    {
+      "id": "JHN.3.16",
+      "text": "「　神爱世人，甚至将他的独生子赐给[他们]，叫一切信他的，不致灭亡，反得永生。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/JHN/3/16-77d9b2a6edc096851d7d39597c864cd2cb44df4e9058727d30294a57bb153cbe.mp3"
+    },
+    {
+      "id": "JHN.8.31",
+      "text": "耶稣对信他的犹太人说：「你们若常常遵守我的道，就真是我的门徒；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/8/31-91c73ffdc9fe4c6af139f82f80842e66236ef9f71da7eebf0be9caf9f70c496e.mp3"
+    },
+    {
+      "id": "JHN.8.32",
+      "text": "你们必晓得真理，真理必叫你们得以自由。」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/8/32-5b25260325d9e378dfcac5ceb7a36017bc9325af9346e10b658ed05b8ac9b9ec.mp3"
+    },
+    {
+      "id": "JHN.8.33",
+      "text": "他们回答说：「我们是亚伯拉罕的后裔，从来没有作过谁的奴仆。你怎么说『你们必得以自由』呢？」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/8/33-5287c11bfc7581ba4af4c5d7bcb759cfdaa76f70f4aab78849e6b151f191aeb8.mp3"
+    },
+    {
+      "id": "JHN.8.34",
+      "text": "耶稣回答说：「我实实在在地告诉你们，所有犯罪的就是罪的奴仆。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/8/34-5d3c6d504913a07afaacf1b7cf84aa139e73c611acc946c066451607019e4e4b.mp3"
+    },
+    {
+      "id": "JHN.11.35",
+      "text": "耶稣哭了。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/JHN/11/35-74e9c78298a889072d63aaa12fb3ebfba12072401b515f2891404d45f88a16b2.mp3"
+    },
+    {
+      "id": "JHN.12.20",
+      "text": "那时，上来过节礼拜的人中，有几个希腊人。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/12/20-8b15cabea61334e913bc11b6a12b5ffc07b935eadde67a1a836e8411bc7b0f27.mp3"
+    },
+    {
+      "id": "JHN.12.21",
+      "text": "他们来见加利利、伯赛大的腓力，求他说：「先生，我们愿意见耶稣。」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/12/21-f275f2db09ebc9fbc7695443bc47f966ab8088095ad0e526f3bb00680e5b1b5c.mp3"
+    },
+    {
+      "id": "JHN.12.22",
+      "text": "腓力去告诉安得烈，安得烈同腓力去告诉耶稣。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/12/22-3682362b497f82efea9ef32c4102ab620d703c7406ad97875a708a9813ada76d.mp3"
+    },
+    {
+      "id": "JHN.12.23",
+      "text": "耶稣说：「人子得荣耀的时候到了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/12/23-7650ea5e35557cba250d0e4554c771352e51a2980dd0042635fb355736bd0ad0.mp3"
+    },
+    {
+      "id": "JHN.12.24",
+      "text": "我实实在在地告诉你们，一粒麦子不落在地里死了，仍旧是一粒，若是死了，就结出许多子粒来。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/12/24-8c02938b5d36cc30af621dccda5beaf2667910add05a674974d4c0acd8707974.mp3"
+    },
+    {
+      "id": "JHN.12.25",
+      "text": "爱惜自己生命的，就失丧生命；在这世上恨恶自己生命的，就要保守生命到永生。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/12/25-adddfbdedf3278ed84e08bce91d4022fa058c9883bc35771b5c79d347a98780a.mp3"
+    },
+    {
+      "id": "JHN.12.26",
+      "text": "若有人服事我，就当跟从我；我在哪里，服事我的人也要在那里；若有人服事我，我父必尊重他。」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/JHN/12/26-4f0c662efe511c41e15b3bfeef7738e78bab803e54c8dbe2e75abf9e531cf860.mp3"
+    },
+    {
+      "id": "ROM.2.4",
+      "text": "还是你藐视他丰富的恩慈、宽容、忍耐，不晓得他的恩慈是领你悔改呢？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/2/4-370ecf41534bbbf8273634e120a54cb2617680fd834c34f85d2244e06d9db092.mp3"
+    },
+    {
+      "id": "ROM.3.25",
+      "text": "神设立耶稣作挽回祭，是凭着耶稣的血，借着人的信，要显明　神的义；因为他用忍耐的心宽容人先时所犯的罪，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/3/25-0bcac5f01c5c02be6e5ff2242701536b47454c91884ec52d8861f6119cd12ca1.mp3"
+    },
+    {
+      "id": "ROM.4.2",
+      "text": "倘若亚伯拉罕是因行为称义，就有可夸的；只是在　神面前并无可夸。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/4/2-16faa855a2422997456c5b274a709235f6e2691c195918e77934d8957e581950.mp3"
+    },
+    {
+      "id": "ROM.4.3",
+      "text": "经上说什么呢？说：「亚伯拉罕信　神，这就算为他的义。」",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/4/3-ae4020bdf73a956d7e4739bd5dc37007dd6a57c4d28193ab8509ddba395b9917.mp3"
+    },
+    {
+      "id": "ROM.4.23",
+      "text": "「算为他义」的这句话不是单为他写的，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/4/23-4d1f408b6f2d83456c4b951447ecb5be9b2d30cba61ec38e4720035383c0f5fa.mp3"
+    },
+    {
+      "id": "ROM.4.24",
+      "text": "也是为我们将来得算为义之人写的，就是我们这信　神使我们的主耶稣从死里复活的人。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/4/24-32279cda5e0cf6c04c80d6e8bb76d7cd05f6adc1f799c96e054d2e191e23bea9.mp3"
+    },
+    {
+      "id": "ROM.4.25",
+      "text": "耶稣被交给人，是为我们的过犯；复活，是为叫我们称义。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/4/25-28e98982c325bacd541e089ed86073d69403a446618cfcb50079f357f27241dd.mp3"
+    },
+    {
+      "id": "ROM.5.1",
+      "text": "我们既因信称义，就借着我们的主耶稣基督得与　神相和。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/1-feba837410f80da8ba3903b789d57d11305190b893fe4f9e0e345bf759d450ce.mp3"
+    },
+    {
+      "id": "ROM.5.2",
+      "text": "我们又借着他，因信得进入现在所站的这恩典中，并且欢欢喜喜盼望　神的荣耀。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/2-8dba1b479ee0d374b62270dbda861a4a35ba6147b4b91977cbf562add74cc683.mp3"
+    },
+    {
+      "id": "ROM.5.3",
+      "text": "不但如此，就是在患难中也是欢欢喜喜的；因为知道患难生忍耐，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/3-44ea8a6667cb68e32bf0e56fa324a2a7701ed965e4e01a3dcb7c769509d3e908.mp3"
+    },
+    {
+      "id": "ROM.5.4",
+      "text": "忍耐生老练，老练生盼望；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/4-768c25025276760f1f643ffa36a00a6e276e7cd4f730f9ab1bd4a2c51886708e.mp3"
+    },
+    {
+      "id": "ROM.5.5",
+      "text": "盼望不至于羞耻，因为所赐给我们的圣灵将　神的爱浇灌在我们心里。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/5-d561f55ee37dd7693d8f1868787a09628b8688bbff409d95b8fa39091784089b.mp3"
+    },
+    {
+      "id": "ROM.5.6",
+      "text": "因我们还软弱的时候，基督就按所定的日期为罪人死。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/6-460e29ca008a6e827cb1150c4cbf64f433199759eb4543aa7d493634d4f053ef.mp3"
+    },
+    {
+      "id": "ROM.5.7",
+      "text": "为义人死，是少有的；为仁人死，或者有敢做的。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/7-8c4d1dadc5a568bd79bebc837e8cac8a2a5a8b0ec5fa7a24e0aa86f8118949c7.mp3"
+    },
+    {
+      "id": "ROM.5.8",
+      "text": "惟有基督在我们还作罪人的时候为我们死，　神的爱就在此向我们显明了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/5/8-b26c062da25f2b643e8efed8cc040d773b4e4736e71a381c21b63f8b46f06b27.mp3"
+    },
+    {
+      "id": "ROM.6.1",
+      "text": "这样，怎么说呢？我们可以仍在罪中、叫恩典显多吗？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/6/1-94f03f5e208a36aa8c69c450363dba0e39d50e75cd910616c181a47fd46ddbb1.mp3"
+    },
+    {
+      "id": "ROM.6.2",
+      "text": "断乎不可！我们在罪上死了的人岂可仍在罪中活着呢？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/6/2-5494facfcc789c09b4d14eddd1bc85a028528126f4499a2418def9fcf2230436.mp3"
+    },
+    {
+      "id": "ROM.6.3",
+      "text": "岂不知我们这受洗归入基督耶稣的人是受洗归入他的死吗？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/6/3-e662104747d9323b433c4b38d7b132a5a83860e83c51d894f8680ad451c2c390.mp3"
+    },
+    {
+      "id": "ROM.6.4",
+      "text": "所以，我们借着洗礼归入死，和他一同埋葬，原是叫我们一举一动有新生的样式，像基督借着父的荣耀从死里复活一样。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/6/4-f4437833890a741dbf95900b32701a823849171879e35f150f961874393c8836.mp3"
+    },
+    {
+      "id": "ROM.6.5",
+      "text": "我们若在他死的形状上与他联合，也要在他复活的形状上与他联合；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/6/5-4934278b3edada8bbbe33e3402b8c9e2cb80f0a3b7c533505968f882dd181d31.mp3"
+    },
+    {
+      "id": "ROM.6.14",
+      "text": "罪必不能作你们的主；因你们不在律法之下，乃在恩典之下。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/6/14-1a5fdb2499ff4c5bed02550de7a8541697a2f59a8fb025e5ce81bd5bc334ea05.mp3"
+    },
+    {
+      "id": "ROM.7.18",
+      "text": "我也知道，在我里头，就是我肉体之中，没有良善。因为，立志为善由得我，只是行出来由不得我。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/7/18-7ee701942aaae95821c1bfe3fd97acf61e529de69b1ef084fa633c6e97c9f5fb.mp3"
+    },
+    {
+      "id": "ROM.7.23",
+      "text": "但我觉得肢体中另有个律和我心中的律交战，把我掳去，叫我附从那肢体中犯罪的律。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/7/23-e06c5fd3a1445585eab7402e29768cc0954a612e0fcb08fb29d5ea1cd515d615.mp3"
+    },
+    {
+      "id": "ROM.7.24",
+      "text": "我真是苦啊！谁能救我脱离这取死的身体呢？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/7/24-1547307ce21122f052ce9dc03130044fbedf519e67575b3d790efe2f16e56251.mp3"
+    },
+    {
+      "id": "ROM.7.25",
+      "text": "感谢　神，靠着我们的主耶稣基督[就能脱离了]。这样看来，我以内心顺服　神的律，我肉体却顺服罪的律了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/7/25-4aa7a56b1e2feadfa4243a6e681cd2f511fc7aa1aa4d1ced6a973c638ca1606c.mp3"
+    },
+    {
+      "id": "ROM.8.1",
+      "text": "如今，那些在基督耶稣里的就不定罪了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/1-86f276e92c6fb23bc64eb86881acd5f0f32a3342e879fefefbf09c4738db6a53.mp3"
+    },
+    {
+      "id": "ROM.8.2",
+      "text": "因为赐生命[圣]灵的律，在基督耶稣里释放了我，使我脱离罪和死的律了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/2-132710df25d054685b6316a105557b07a63efe7bbb3c6ee6bd7dbeffb5a8abd0.mp3"
+    },
+    {
+      "id": "ROM.8.27",
+      "text": "鉴察人心的，晓得[圣]灵的意思，因为[圣]灵照着　神的[旨意]替圣徒祈求。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/27-e5ab0ab0728a704edff9aa61f63093523d20d1ff869b25fe12b99661398cc17f.mp3"
+    },
+    {
+      "id": "ROM.8.28",
+      "text": "我们晓得万事都互相效力，叫爱　神的人得益处，就是按他旨意被召的人。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/28-f4b368de70bfa52bf5f5a0e7dd70600b6e45f2bd40fa690090ef5a11de54b347.mp3"
+    },
+    {
+      "id": "ROM.8.29",
+      "text": "因为他预先所知道的人，就预先定下效法他儿子的模样，使他儿子在许多弟兄中作长子。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/29-5be849f59e06394f58fc12cc3a72821e669439a9257a7a354202118cad5bf3d6.mp3"
+    },
+    {
+      "id": "ROM.8.30",
+      "text": "预先所定下的人又召他们来；所召来的人又称他们为义；所称为义的人又叫他们得荣耀。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/30-e3ac1f9ce15127dbad109dccb4edcb28a5c8adf5a8fbcc0bad0858ce8daeffd9.mp3"
+    },
+    {
+      "id": "ROM.8.31",
+      "text": "既是这样，还有什么说的呢？　神若帮助我们，谁能敌挡我们呢？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/31-2e1ae09bb74f035d91112c6346919d3e2a27ca194af167576f89ce4fc80e29d5.mp3"
+    },
+    {
+      "id": "ROM.8.32",
+      "text": "神既不爱惜自己的儿子，为我们众人舍了，岂不也把万物和他一同白白地赐给我们吗？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/32-49f5512ce2cb7f1f0f6b786531f61fc54a1e638bc12f803463cf0fcdfd710c6c.mp3"
+    },
+    {
+      "id": "ROM.8.33",
+      "text": "谁能控告　神所拣选的人呢？有　神称他们为义了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/33-4a89ad59ca753ecb134070a6a5dac5dddb0caa50e9b24843f0ecc74713bc9e09.mp3"
+    },
+    {
+      "id": "ROM.8.34",
+      "text": "谁能定他们的罪呢？有基督耶稣已经死了，而且从死里复活，现今在　神的右边，也替我们祈求。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/8/34-a84e86912854cf3394f56153e398c4f4d7f7d6b3010a96ab4d798f89e472a903.mp3"
+    },
+    {
+      "id": "ROM.12.1",
+      "text": "所以，弟兄们，我以　神的慈悲劝你们，将身体献上，当作活祭，是圣洁的，是　神所喜悦的；你们如此事奉乃是理所当然的。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/12/1-dee53af449eddae2e69d6b01a05072d9400f5f1eafe4e4474437ffb5ecfb06d0.mp3"
+    },
+    {
+      "id": "ROM.12.2",
+      "text": "不要效法这个世界，只要心意更新而变化，叫你们察验何为　神的善良、纯全、可喜悦的旨意。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/ROM/12/2-564c0a65cfc3adc0e0703de5a04cc6415311cb6060f3a34e1fee7a7fe82e28af.mp3"
+    },
+    {
+      "id": "1CO.2.12",
+      "text": "我们所领受的，并不是世上的灵，乃是从　神来的灵，叫我们能知道　神开恩赐给我们的事。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1CO/2/12-156a475229ebc2ac351af614f5c23ed9a82e640e4f90052ad61d1a71e2c6a54f.mp3"
+    },
+    {
+      "id": "1CO.2.13",
+      "text": "并且我们讲说这些事，不是用人智慧所指教的言语，乃是用[圣]灵所指教的言语，将属灵的话解释属灵的事。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1CO/2/13-3109e1d061cce895ed62a352feb581d8c55336fe29c282e2ce9f9afd12a34a3f.mp3"
+    },
+    {
+      "id": "1CO.2.14",
+      "text": "然而，属血气的人不领会　神[圣]灵的事，反倒以为愚拙，并且不能知道，因为这些事惟有属灵的人才能看透。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1CO/2/14-990de6c0028064d35dbf77ca4ed74a36b0ea556a6aeb60bad514192c5fc9841b.mp3"
+    },
+    {
+      "id": "1CO.11.11",
+      "text": "然而照主的安排，女也不是无男，男也不是无女。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1CO/11/11-00b0acecf6d37509e811fed3430710b262cf72158f5685efa1bac30cc8737f52.mp3"
+    },
+    {
+      "id": "1CO.12.12",
+      "text": "就如身子是一个，却有许多肢体；而且肢体虽多，仍是一个身子；基督也是这样。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1CO/12/12-b872e0fa21a5d70ffdb5a6598e65c536143da364c16a95eaebaed5a25664d277.mp3"
+    },
+    {
+      "id": "1CO.13.13",
+      "text": "如今常存的有信，有望，有爱这三样，其中最大的是爱。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1CO/13/13-ad0e1f58861f8889b207d68a7fe62f97bae33846c6f47d7ed235571b25b89c8b.mp3"
+    },
+    {
+      "id": "2CO.3.17",
+      "text": "主就是那灵；主的灵在哪里，那里就得以自由。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/2CO/3/17-e04d5018712a355200e651e88cb489bb3f564da3781cac37363c1d676a35a65b.mp3"
+    },
+    {
+      "id": "2CO.3.18",
+      "text": "我们众人既然敞着脸得以看见主的荣光，好像从镜子里返照，就变成主的形状，荣上加荣，如同从主的灵变成的。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/2CO/3/18-e7ef57f9fcd2d31f2c2f17bc1565df2995150ec05e5dc68336ea0050c5dc2467.mp3"
+    },
+    {
+      "id": "2CO.5.16",
+      "text": "所以，我们从今以后，不凭着外貌认人了。虽然凭着外貌认过基督，如今却不再[这样]认他了。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/2CO/5/16-b22989f54a377bad5add299310d04ef969ac10091b068604dcf2759ce5225f48.mp3"
+    },
+    {
+      "id": "2CO.5.17",
+      "text": "若有人在基督里，他就是新造的人，旧事已过，都变成新的了。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/2CO/5/17-c92d61f378e0d6bc599a275335b8914aa6c449734fd9fd279ce1816ff4365b61.mp3"
+    },
+    {
+      "id": "GAL.2.20",
+      "text": "我已经与基督同钉十字架，现在活着的不再是我，乃是基督在我里面活着；并且我如今在肉身活着，是因信　神的儿子而活；他是爱我，为我舍己。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GAL/2/20-ff2e034191bbd2d8ed5f7a9d8eb0786d71642f46f39310a7244924e0f3c72593.mp3"
+    },
+    {
+      "id": "GAL.5.1",
+      "text": "基督释放了我们，叫我们得以自由。所以要站立得稳，不要再被奴仆的轭挟制。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GAL/5/1-0a7a7986a7fbfca1aa1805c4ab78ba8b26cb71aa4d22492bb64790116907b1b0.mp3"
+    },
+    {
+      "id": "GAL.5.16",
+      "text": "我说，你们当顺着[圣]灵而行，就不放纵肉体的情欲了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GAL/5/16-cc537311c9039a71f0db7cef50df974dea0646fa3c858abe2e993a2faf9e992e.mp3"
+    },
+    {
+      "id": "GAL.5.22",
+      "text": "圣灵所结的果子，就是仁爱、喜乐、和平、忍耐、恩慈、良善、信实、",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GAL/5/22-31cb30a7d5dffa7b4e68a1f875dcafcb5786b8f79f3b4bfdbaa940fbeec5fe92.mp3"
+    },
+    {
+      "id": "GAL.5.23",
+      "text": "温柔、节制。这样的事没有律法禁止。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GAL/5/23-8759f2a81acd7049f85d82ea4e91c4b6a8a81d22c8fcd166db98b1bd85589bcc.mp3"
+    },
+    {
+      "id": "GAL.6.15",
+      "text": "受割礼不受割礼都无关紧要，要紧的就是作新造的人。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/GAL/6/15-4ed6d65035cef755417711bcdcdcb2846f4914f91f63aff2572da66fa190d288.mp3"
+    },
+    {
+      "id": "EPH.1.3",
+      "text": "愿颂赞归与我们主耶稣基督的父　神！他在基督里曾赐给我们天上各样属灵的福气：",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/3-35392be9e565dcb51c00f562f20e59cf3e76cf1b7c3291559dbd4c750fc73639.mp3"
+    },
+    {
+      "id": "EPH.1.4",
+      "text": "就如　神从创立世界以前，在基督里拣选了我们，使我们在他面前成为圣洁，无有瑕疵；",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/4-0369b260daf90f679864f3425bc444f5082d1ab6d8b8f7d8381413023a797ae4.mp3"
+    },
+    {
+      "id": "EPH.1.5",
+      "text": "又因爱我们，就按着自己的意旨所喜悦的，预定我们借着耶稣基督得儿子的名分，",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/5-81ca1ccfcaf40ef89753fd4b35022660e0364daf6051dd92ebc51dc1e3787ef1.mp3"
+    },
+    {
+      "id": "EPH.1.6",
+      "text": "使他荣耀的恩典得着称赞；这恩典是他在爱子里所赐给我们的。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/6-e84f80220a3fac1d1a6b579196fe7f5198f05500cce2f7adf1b073900ed1e7ed.mp3"
+    },
+    {
+      "id": "EPH.1.7",
+      "text": "我们借这爱子的血得蒙救赎，过犯得以赦免，乃是照他丰富的恩典。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/7-c3ee19c5842dd74f2f4a1df8ea3170813043580e980637c73bde859c56874663.mp3"
+    },
+    {
+      "id": "EPH.1.8",
+      "text": "这恩典是　神用诸般智慧聪明，充充足足赏给我们的；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/1/8-c0476ae214b6bee4760d75b10dc3cf7e56f0ee00853c04050bc05547f81b868e.mp3"
+    },
+    {
+      "id": "EPH.1.9",
+      "text": "都是照他自己所预定的美意，叫我们知道他旨意的奥秘，",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/9-c9b71a065906dbb92a8569f370f546a5411b0ee19d65070e6c022a2401d83e8a.mp3"
+    },
+    {
+      "id": "EPH.1.10",
+      "text": "要照所安排的，在日期满足的时候，使天上、地上、一切所有的都在基督里面同归于一。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/10-af5aa58930aec10d15eb99ee6dbfa0cf8f2897e76b8c781332fe83e048da85a3.mp3"
+    },
+    {
+      "id": "EPH.1.11",
+      "text": "我们也在他里面得了基业；这原是那位随己意行、做万事的，照着他旨意所预定的，",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/11-917d739ae22889421bbe96ff7ac4a9df5b5c7356a96474d4bb54b4627d8c6f10.mp3"
+    },
+    {
+      "id": "EPH.1.12",
+      "text": "叫他的荣耀从我们这首先在基督里有盼望的人可以得着称赞。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/12-8d6287742e76ea70df9dfcd1f011852bc8c8715fdd309c6f325de49033d9f707.mp3"
+    },
+    {
+      "id": "EPH.1.13",
+      "text": "你们既听见真理的道，就是那叫你们得救的福音，也[信了]基督，既然信他，就受了所应许的圣灵为印记。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/1/13-5cbc5aa8d60cf8571cad803f2a078b924a8da2f9bf40088d81961af1c89496e3.mp3"
+    },
+    {
+      "id": "EPH.1.14",
+      "text": "这圣灵是我们得基业的凭据，直等到　[神]之民被赎，使他的荣耀得着称赞。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/1/14-6917805c549acd7d01ffd93590c6770e59b89e6f5e3aebced2c5be6540b7f426.mp3"
+    },
+    {
+      "id": "EPH.2.1",
+      "text": "你们死在过犯罪恶之中，[他叫你们活过来]。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/2/1-c29c014a4d653001cb2699a02b3c76cc965a89537e7bb6af07fa57a96ec901b2.mp3"
+    },
+    {
+      "id": "EPH.2.2",
+      "text": "那时，你们在其中行事为人，随从今世的风俗，顺服空中掌权者的首领，就是现今在悖逆之子心中运行的[邪]灵。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/2/2-0d920c021159d2098d2503646ddf02eab4482f5647f3f5a5277969ce641d3771.mp3"
+    },
+    {
+      "id": "EPH.2.8",
+      "text": "你们得救是本乎恩，也因着信；这并不是出于自己，乃是　神所赐的；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/2/8-209b6ef23326c6001fdc2893b6d99f42919b26b694d5a26ed545a789996301c0.mp3"
+    },
+    {
+      "id": "EPH.2.10",
+      "text": "我们原是他的工作，在基督耶稣里造成的，为要叫我们行善，就是　神所预备叫我们行的。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/2/10-3697b80bcf396bb52ec7d57f04000ad76e633d430fb06b9e696c63487b7cc38d.mp3"
+    },
+    {
+      "id": "EPH.4.1",
+      "text": "我为主被囚的劝你们：既然蒙召，行事为人就当与蒙召的恩相称。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/4/1-fe1cae7fb0aa3803bb0444c38cb98f0d3c3668079a5f6ccb86b36e62466608ad.mp3"
+    },
+    {
+      "id": "EPH.4.2",
+      "text": "凡事谦虚、温柔、忍耐，用爱心互相宽容，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/2-6bc687a8996f4cf02f1a9d8ae216dbdc5b9a5cf4d0a24f33a152b03fffd48ddb.mp3"
+    },
+    {
+      "id": "EPH.4.3",
+      "text": "用和平彼此联络，竭力保守[圣]灵所赐合而为一的心。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/3-566e90ab17c86848c35f4bde9a7e10407a1cc7b76c7de815402c5e1552da4e4f.mp3"
+    },
+    {
+      "id": "EPH.4.4",
+      "text": "身体只有一个，[圣]灵只有一个，正如你们蒙召同有一个指望。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/4-3cbc10c161aab10e8a41d8b0427084161d16682e5ed90dd384f10f630d90133b.mp3"
+    },
+    {
+      "id": "EPH.4.5",
+      "text": "一主，一信，一洗，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/5-bd6c407e209ecb2d44556757636cc0a44442f0195037ba4b17f4bc472329a1c6.mp3"
+    },
+    {
+      "id": "EPH.4.6",
+      "text": "一　神，就是众人的父，超乎众人之上，贯乎众人之中，也住在众人之内。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/6-e7b317178f002326064963a194c1f55e21eb21c33357ea785789627eddb4be95.mp3"
+    },
+    {
+      "id": "EPH.4.7",
+      "text": "我们各人蒙恩，都是照基督所量给各人的恩赐。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/7-b679d414731d6d63631ec68f73699fda19c6ffe91ab1ac8f71cabd4cd421810c.mp3"
+    },
+    {
+      "id": "EPH.4.8",
+      "text": "所以[经上]说： 他升上高天的时候，掳掠了仇敌， 将各样的恩赐赏给人。 （",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/8-e862022326f514fa9d3d2c821594189e9a04ccd24f5bad4a80056cc947772db4.mp3"
+    },
+    {
+      "id": "EPH.4.9",
+      "text": "既说升上，岂不是先降在地下吗？",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/9-8ac14b8a72d1cf757ff35d0549bed9d6a0b741eb258441c6a843bd58e1127d37.mp3"
+    },
+    {
+      "id": "EPH.4.10",
+      "text": "那降下的，就是远升诸天之上要充满万有的。）",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/10-6e6e712de9b5f27fc7a1ef62c315bebbfe99146f6003b314eeed3b4b160feb04.mp3"
+    },
+    {
+      "id": "EPH.4.11",
+      "text": "他所赐的，有使徒，有先知，有传福音的，有牧师和教师，",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/EPH/4/11-285118c68565c8ed116aa0dd7fd0affed55b33fd845481c1c3e8da575fc308ba.mp3"
+    },
+    {
+      "id": "EPH.4.12",
+      "text": "为要成全圣徒，各尽其职，建立基督的身体，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/4/12-d46e2fb207e6f40c429ad3c9cb24ba7d7537a25437d5f4063d9f7e525981e3a2.mp3"
+    },
+    {
+      "id": "EPH.5.15",
+      "text": "你们要谨慎行事，不要像愚昧人，当像智慧人。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/5/15-9f1fff70909710f86d5bfe92186a3307754dbc7908229c75b410a4d77cc2badb.mp3"
+    },
+    {
+      "id": "EPH.5.16",
+      "text": "要爱惜光阴，因为现今的世代邪恶。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/5/16-946dd73bfab87b86cd471543e582d021b2a8b098eca807d6c9eb63e562ec6b7c.mp3"
+    },
+    {
+      "id": "EPH.5.17",
+      "text": "不要作糊涂人，要明白主的旨意如何。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/5/17-a699da21f7ff08d64dff51b7236d12fb47d1f5545caae9f3dcf056a1614576d0.mp3"
+    },
+    {
+      "id": "EPH.5.18",
+      "text": "不要醉酒，酒能使人放荡；乃要被[圣]灵充满。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/EPH/5/18-91a969317fd996b166d4e5cada6a72a47797fa25e772e6817f0df6b3508e0c5a.mp3"
+    },
+    {
+      "id": "PHP.1.9",
+      "text": "我所祷告的，就是要你们的爱心在知识和各样见识上多而又多，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/1/9-ff54f59e7fa22541109b10da772cd8ae958685b6c19edea278f1ff6fe34dac52.mp3"
+    },
+    {
+      "id": "PHP.1.10",
+      "text": "使你们能分别是非，作诚实无过的人，直到基督的日子；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/1/10-9fe01c3e49466f4b17436e582b60adad2cb23be6de89ed432d1b0581e5bf9245.mp3"
+    },
+    {
+      "id": "PHP.1.11",
+      "text": "并靠着耶稣基督结满了仁义的果子，叫荣耀称赞归与　神。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/1/11-2090242bc01bf2baf6117e009238274a45f403c1d43faec7128d056329844cb1.mp3"
+    },
+    {
+      "id": "PHP.2.3",
+      "text": "凡事不可结党，不可贪图虚浮的荣耀；只要存心谦卑，各人看别人比自己强。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/3-0fd326895e30978802b8172cf6d0731c3bff9b8c569ad3dce43208ea685f5cd1.mp3"
+    },
+    {
+      "id": "PHP.2.4",
+      "text": "各人不要单顾自己的事，也要顾别人的事。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/4-911dc1b094940bb586ecadeea47dfd7b2c4c3396a647e9b46e3b9d2f9664be3b.mp3"
+    },
+    {
+      "id": "PHP.2.5",
+      "text": "你们当以基督耶稣的心为心：",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/5-e096e3ce20531c5ef4244abe1dbb154e56aeb552e0604bd4a9a34006d4557e4d.mp3"
+    },
+    {
+      "id": "PHP.2.6",
+      "text": "他本有　神的形象， 不以自己与　神同等为强夺的；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/6-a612882679870dea68a8b18313f99b4dff7aaf50269352c95472aa915097dd82.mp3"
+    },
+    {
+      "id": "PHP.2.7",
+      "text": "反倒虚己， 取了奴仆的形象， 成为人的样式；",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/7-b22d65b94e788162d932e476e69ac8d099f1bfe506a062e270f1faae5d1aa742.mp3"
+    },
+    {
+      "id": "PHP.2.8",
+      "text": "既有人的样子，就自己卑微， 存心顺服，以至于死， 且死在十字架上。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/8-15975efce22c0d7431f1ccb1261c9600fe64915f2e3e8e6e6ed1d0bc50d34523.mp3"
+    },
+    {
+      "id": "PHP.2.9",
+      "text": "所以，　神将他升为至高， 又赐给他那超乎万名之上的名，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/9-c29bd975e5e1f10b0f16d3510b8aa5b3803098769ae62478554553bd1ee69315.mp3"
+    },
+    {
+      "id": "PHP.2.10",
+      "text": "叫一切在天上的、地上的，和地底下的， 因耶稣的名无不屈膝，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/10-f38e1be09be831d6faedf9be212b36fec6475ad37274a50a3bbbd3aa3c88e04d.mp3"
+    },
+    {
+      "id": "PHP.2.11",
+      "text": "无不口称「耶稣基督为主」， 使荣耀归与父　神。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/11-76a335d79f6490a2c155938e945f4068a3d22b0009a72a905ad905c7f7832194.mp3"
+    },
+    {
+      "id": "PHP.2.15",
+      "text": "使你们无可指摘，诚实无伪，在这弯曲悖谬的世代作　神无瑕疵的儿女。你们显在这世代中，好像明光照耀，",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/2/15-26c4600eb4f1f34ae93b3561b375727e0ed389535c699396a3ae9e367f8a2773.mp3"
+    },
+    {
+      "id": "PHP.4.4",
+      "text": "你们要靠主常常喜乐。我再说，你们要喜乐。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/4/4-957f03e20ca162d83cea0d575c6e92fd7143f850b65f7267c0aeb6ac28680f58.mp3"
+    },
+    {
+      "id": "PHP.4.5",
+      "text": "当叫众人知道你们谦让的心。主已经近了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/4/5-0600d1f2b324d5d11a5122ef0718a244ffaf96cd477468b57a62917b7a7e1546.mp3"
+    },
+    {
+      "id": "PHP.4.6",
+      "text": "应当一无挂虑，只要凡事借着祷告、祈求，和感谢，将你们所要的告诉　神。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/4/6-01b2c0086421332800c7d45a7a45bd2eb4e3bc7192e71128772082ccf275b221.mp3"
+    },
+    {
+      "id": "PHP.4.7",
+      "text": "神所赐、出人意外的平安必在基督耶稣里保守你们的心怀意念。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/PHP/4/7-319740f3c30f6032d95e0018411699a72e1e245e23ff688d8cf8fdbb9862aac7.mp3"
+    },
+    {
+      "id": "HEB.3.14",
+      "text": "我们若将起初确实的信心坚持到底，就在基督里有分了。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/HEB/3/14-7d91182d7b70e3a62902778127ba42c6331acc262609687d3cb13c91ec1a38f6.mp3"
+    },
+    {
+      "id": "HEB.4.12",
+      "text": "神的道是活泼的，是有功效的，比一切两刃的剑更快，甚至魂与灵，骨节与骨髓，都能刺入、剖开，连心中的思念和主意都能辨明。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/HEB/4/12-6a7aa5c052910e4a5f8920a8aa33c3a8084d965ea9069b16df43542a5e0eb6c7.mp3"
+    },
+    {
+      "id": "HEB.4.14",
+      "text": "我们既然有一位已经升入高天尊荣的大祭司，就是　神的儿子耶稣，便当持定所承认的道。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/HEB/4/14-ed3009ba0c7fa050c2e8d70e0e88b780393a9e5a8c5b72f3dcb4783d4cb25058.mp3"
+    },
+    {
+      "id": "HEB.4.15",
+      "text": "因我们的大祭司并非不能体恤我们的软弱。他也曾凡事受过试探，与我们一样，只是他没有犯罪。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/HEB/4/15-666721785d2511ad81cdd5b79d15ad8f1c3c2723d54e9d45175d0e09d97fa74b.mp3"
+    },
+    {
+      "id": "HEB.4.16",
+      "text": "所以，我们只管坦然无惧地来到施恩的宝座前，为要得怜恤，蒙恩惠，作随时的帮助。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/HEB/4/16-d4f72ea37276482d75e62d807f0f1d9570421d48ca9cf6e8cd3a53d9d57d0b71.mp3"
+    },
+    {
+      "id": "HEB.12.2",
+      "text": "仰望为我们信心创始成终的耶稣。他因那摆在前面的喜乐，就轻看羞辱，忍受了十字架[的苦难]，便坐在　神宝座的右边。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/HEB/12/2-df3e98a52d3cfabfd23388fa84a2666866fee9bee43c100780ecb51c4c5f05ab.mp3"
+    },
+    {
+      "id": "1PE.2.2",
+      "text": "就要爱慕那纯净的灵奶，像才生的婴孩爱慕奶一样，叫你们因此渐长，以致得救。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/1PE/2/2-303b68816f5a068eaafc10f05b098f0875b5ef461c9ce744c6ec8c2ee1f44e1d.mp3"
+    },
+    {
+      "id": "1PE.2.3",
+      "text": "你们若尝过主恩的滋味，[就必如此]。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1PE/2/3-29af9e657e22fa620520b8e5033112c1d204c644a954d4762ca53c10ad4a5763.mp3"
+    },
+    {
+      "id": "1PE.2.10",
+      "text": "你们从前算不得子民， 现在却作了　神的子民； 从前未曾蒙怜恤， 现在却蒙了怜恤。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1PE/2/10-1a6ad172aaf3986027adc9550266232ac2a096a36b28b33637971dd6b7442195.mp3"
+    },
+    {
+      "id": "1PE.5.1",
+      "text": "我这作长老、作基督受苦的见证、同享后来所要显现之荣耀的，劝你们中间与我同作长老的人：",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1PE/5/1-3cf265b0b0af3e0573513f19bf749a6b01b9488bada10498d859a0224eb78868.mp3"
+    },
+    {
+      "id": "1PE.5.2",
+      "text": "务要牧养在你们中间　神的群羊，按着　神[旨意]照管他们；不是出于勉强，乃是出于甘心；也不是因为贪财，乃是出于乐意；",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1PE/5/2-6dedc1e67dabf6478d0cd719b552f4db59aa0c7a5b619024bc28212fff9f88f1.mp3"
+    },
+    {
+      "id": "1PE.5.3",
+      "text": "也不是辖制所托付你们的，乃是作群羊的榜样。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1PE/5/3-27276ff593cfbcc087c96472330b79f51d2e9995f69a6def265b788d2f494dee.mp3"
+    },
+    {
+      "id": "1PE.5.4",
+      "text": "到了牧长显现的时候，你们必得那永不衰残的荣耀冠冕。",
+      "url": "/audio/cuv-fangfang/473d26e104fb56e8/1PE/5/4-878314176b1f5ec6df7ddf9ae410a4f2c367d3f6c678d39fd755df9aa8531fa6.mp3"
+    },
+    {
+      "id": "1JN.1.9",
+      "text": "我们若认自己的罪，　神是信实的，是公义的，必要赦免我们的罪，洗净我们一切的不义。",
+      "url": "/audio/cuv-fangfang/29fb4e9bdb6735d4/1JN/1/9-ea0736e594c5eeb6a4237233f2cf26938b1a4959df0236e378d52bd45635ca3a.mp3"
+    }
+  ]
+}

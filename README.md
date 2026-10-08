@@ -372,7 +372,15 @@ MP3 clips (see [`src/audio/`](src/audio)).
   Three synthesized motifs remain only as a media-playback failure fallback.
   - The `AudioContext` is created only after a user gesture (autoplay-safe).
   - Missing / blocked audio degrades to silent no-ops.
-- **Scripture narration — SpeechSynthesis API** ([`speech.ts`](src/audio/speech.ts)):
+- **Scripture narration — Fangfang MP3 + SpeechSynthesis API** ([`speech.ts`](src/audio/speech.ts)):
+  175 curated CUV verses use owner-reviewed Fangfang recordings, served by the
+  website's Cloudflare Static Assets. Clips load only after Listen, with full
+  verse matching and browser speech fallback for missing or failed recordings.
+  Shared catalog: `/audio/cuv-fangfang/catalog.json`; CORS permits other domains
+  to reuse its absolute audio URLs. See [recording status and incremental
+  workflow](docs/NARRATION.md). Private voice references and WAV masters stay
+  outside Git; online narration is excluded from offline distribution builds.
+  For other passages,
   the passage is read aloud with a preferred natural English voice, **slowly** — it is
   spoken clause-by-clause with a pause between clauses at a reduced rate. (Gap-pacing is
   what actually slows it down; browsers, notably iOS Safari, clamp a very low `rate`.)
@@ -380,8 +388,8 @@ MP3 clips (see [`src/audio/`](src/audio)).
     on the level-complete screen, where you can hear the verse you just rebuilt.
     Victory recordings already contain speech; no browser praise is layered over them.
     **⏹ Stop** ends narration, and leaving the screen stops narration too.
-  - If `speechSynthesis` is unavailable the Listen button hides and the game plays
-    normally without it.
+  - If both recording playback and `speechSynthesis` are unavailable the Listen
+    button hides and the game plays normally without it.
 - The sound preference is persisted, and **sound is never the only channel** —
   correct/wrong, hearts, section changes, and completion are all conveyed visually
   and announced to screen readers as well.
