@@ -22,7 +22,7 @@
 `checked` 不代表人工听审。ASR 会错认人名、同音字和繁简字；保留识别原文及疑点。声调文字比对只作为参考，ASR 选字不能测量真实发声的声调。
 `cuv-slow-reading/1` 对完整音节匹配、无额外词或异常声音的录音，允许最长 2 秒自然停顿及 0.6–1.8 倍本批中位数的朗读时长，原疑点保存在 `reviewNotes`。
 
-2026-10-08，所有者确认“我检查语音了 没问题”，175 节均已标为 `reviewed`；罗马书 5:2、以弗所书 1:14 和 4:5 的原 ASR 疑点仍保留。
+2026-10-08，所有者确认“我检查语音了 没问题”，175 节均已完成人工试听确认；罗马书 5:2、以弗所书 1:14 和 4:5 的原 ASR 疑点仍保留。
 确认记录在输出目录的 `owner-reviews.json`，绑定当前 WAV、经文文字及声线配置。替换录音或改文字后，机器检查和人工确认自动失效。
 只有取得所有者明确的试听确认，才可运行 `review --note '<所有者的确认原话>'`；用 `--only` 限定实际试听的经文，不指定时记录当前全部经文。
 
@@ -76,6 +76,8 @@ Stop、切换页面和下一次 Listen 会取消旧播放；文件连续播放�
 Vite 的 `narrationBuild` 插件把配音索引和 MP3 从 itch 及 iOS 离线目标中排除；保留现有离线浏览器朗读。
 
 开 PR 时状态保留为 `reviewed` / `published:false`。合并并部署后，再验证公网文件 SHA、MIME、缓存、CORS 及浏览器播放，然后记录 `published`。
+
+2026-10-08，[PR #4](https://github.com/yancyqin/lucas-academy-bible/pull/4) 已合并并上线，175 节均已标为 `published`。部署代码提交为 `678a3579051cb97af28e2a937008dd47eb48fdd0`，Cloudflare 验证版本为 `c6319508-9d15-4af8-b577-ea066146c337`。公网 175 个 MP3 及两份 JSON 清单全部通过 SHA-256、字节数、MIME、缓存和跨域核验；Chrome/WebKit 实际单节及连续播放、点击前不加载、停止操作均通过。公开清单可直接从 `https://bible.lucasacademy.org/audio/cuv-fangfang/catalog.json` 读取。
 当前 R2 资源的迁移不在这次改动范围内。
 
 [Workers 静态资源费用](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/) · [响应头配置](https://developers.cloudflare.com/workers/static-assets/headers/)
