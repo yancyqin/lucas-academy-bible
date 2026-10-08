@@ -11,3 +11,4 @@ coverage
 .vite
 .wrangler
 *.tsbuildinfo
+__pycache__/

@@ -35,7 +35,12 @@ export function LevelComplete({
     if (!narrator.supported) return;
     onListen?.();
     setSpeaking(true);
-    narrator.speak(level.fullText, { slow: true, onend: () => setSpeaking(false) });
+    narrator.speak(level.fullText, {
+      slow: true,
+      cuvVerses: level.attribution?.abbreviation === 'CUV' && !level.fragment
+        ? level.verses.map((verse) => verse.text) : undefined,
+      onend: () => setSpeaking(false),
+    });
   };
 
   const stopReading = () => {

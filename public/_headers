@@ -1,0 +1,10 @@
+/audio/cuv-fangfang/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Expose-Headers: Content-Length, Content-Range, Accept-Ranges
+  X-Content-Type-Options: nosniff
+
+/audio/cuv-fangfang/:version/*
+  Cache-Control: public, max-age=31536000, immutable, no-transform
+
+/audio/cuv-fangfang/catalog.json
+  Cache-Control: public, max-age=300, must-revalidate

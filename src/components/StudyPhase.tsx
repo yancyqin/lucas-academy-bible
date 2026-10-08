@@ -79,7 +79,12 @@ export function StudyPhase({
     if (!narrator.supported) return;
     sound.resume();
     setSpeaking(true);
-    narrator.speak(built.fullText, { slow: true, onend: () => setSpeaking(false) });
+    narrator.speak(built.fullText, {
+      slow: true,
+      cuvVerses: built.attribution?.abbreviation === 'CUV' && !built.fragment
+        ? built.verses.map((verse) => verse.text) : undefined,
+      onend: () => setSpeaking(false),
+    });
   };
 
   const stopReading = () => {
