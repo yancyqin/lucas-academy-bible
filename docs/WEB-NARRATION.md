@@ -64,3 +64,9 @@ Listen 点击后才请求当前经文，不预载整套 MP3。只为完整、明
 默认 Challenge 和这 175 节的选经文入口使用仓库内同一份 WEB Classic 原文，保留诗篇标题等原文内容；其他选经文仍走原有 API。译本选择依据稳定 translationKey，再比较全部文字。其他译本不能借用 WEB 录音。
 片段、未配音或缺失经文保留现有浏览器朗读；连续播放失败时，浏览器只接着读剩余经文，并保持英文语言。
 Stop、切换页面和再次 Listen 会取消旧会话。itch 和 iOS 离线构建均排除这批网站录音及索引。
+
+2026-10-09，[PR #5](https://github.com/yancyqin/lucas-academy-bible/pull/5) 已由所有者合并并授权部署，175 节 Louise WEB 录音均已上线并标为 `published`。
+部署代码为 `72bfa85b9d1e3abb1c25e0b06a75250cc2599e99`，Cloudflare 版本为 `707b10ed-2094-44cd-a741-1c534a9d2415`。
+公网核验涵盖 WEB 和 CUV 的 350 个 MP3 及四份清单：SHA-256、字节数、MIME、缓存、跨域读取均通过；两种译本均通过 Chromium/WebKit 的单节、连续播放、Stop 和点击前不加载检查。
+部署状态与人工试听确认分别记录，合并和部署指令不写入人工试听记录。
+部署收据与核验结果保存在外部输出目录的 `production-receipt.json`、`production-static-verification.json` 和 `production-browser-verification-WEB.json` / `production-browser-verification-CUV.json`。
