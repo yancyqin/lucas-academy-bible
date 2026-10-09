@@ -1,0 +1,884 @@
+{
+  "schema": "lucas-bible-narration/1",
+  "translation": "WEB",
+  "voice": "louise",
+  "enabled": true,
+  "catalog": "/audio/web-louise/catalog.json",
+  "clips": [
+    {
+      "id": "JHN.11.35",
+      "text": "Jesus wept.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/11/35-1949ecab370fce9db85f63648fcaf0b4cabb80038104dcb66177f44e4c2f0ee3.mp3"
+    },
+    {
+      "id": "PSA.119.105",
+      "text": "Your word is a lamp to my feet, and a light for my path.",
+      "url": "/audio/web-louise/eb9544913d184c3a/PSA/119/105-9e0145cc931600c26f0724a0d0999aea3d99b624fc048f568d0da2e37a8d9b2b.mp3"
+    },
+    {
+      "id": "1JN.1.9",
+      "text": "If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness.",
+      "url": "/audio/web-louise/eb9544913d184c3a/1JN/1/9-68f9b42add1b7400995dcd4fa95ee567298cb48ef25b7416282801ef723f2c28.mp3"
+    },
+    {
+      "id": "JHN.8.31",
+      "text": "Jesus therefore said to those Jews who had believed him, “If you remain in my word, then you are truly my disciples.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/8/31-1cfa543abb3e9d2792d7ff9c02d268570e603be72395d56d9ca7744802076f0d.mp3"
+    },
+    {
+      "id": "JHN.8.32",
+      "text": "You will know the truth, and the truth will make you free.”",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/8/32-957298775ac22b17586a99d8f0f045752a710aed9b9aa48333c449045c20efba.mp3"
+    },
+    {
+      "id": "PHP.2.15",
+      "text": "that you may become blameless and harmless, children of God without defect in the middle of a crooked and perverse generation, among whom you are seen as lights in the world,",
+      "url": "/audio/web-louise/eb9544913d184c3a/PHP/2/15-33920d4c68a84f2c48508406b30806de1a2c7f1d2c7270cab09d27b065585486.mp3"
+    },
+    {
+      "id": "1PE.2.10",
+      "text": "In the past, you were not a people, but now are God’s people, who had not obtained mercy, but now have obtained mercy.",
+      "url": "/audio/web-louise/eb9544913d184c3a/1PE/2/10-adab6ff120777353fdd6e60f0e7dcd6567b7e256d4e1e25d66def058e5e264aa.mp3"
+    },
+    {
+      "id": "EPH.2.8",
+      "text": "for by grace you have been saved through faith, and that not of yourselves; it is the gift of God,",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/2/8-540e0c67dabf69de3d7335740bded98b0afc77fb07fda256791dac351086ad90.mp3"
+    },
+    {
+      "id": "EPH.2.10",
+      "text": "For we are his workmanship, created in Christ Jesus for good works, which God prepared before that we would walk in them.",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/2/10-1a28101959aa8826e24157b2985801022d959034566f5825be9030b4a31615b7.mp3"
+    },
+    {
+      "id": "MAT.7.7",
+      "text": "“Ask, and it will be given you. Seek, and you will find. Knock, and it will be opened for you.",
+      "url": "/audio/web-louise/eb9544913d184c3a/MAT/7/7-df62d8590900af011594e03e5c885928b7587acbb4301aa0b03d4153179ad6f6.mp3"
+    },
+    {
+      "id": "GEN.1.1",
+      "text": "In the beginning, God created the heavens and the earth.",
+      "url": "/audio/web-louise/eb9544913d184c3a/GEN/1/1-f7264e975b0bc206b739a82a998f26aa1c051e479b86c1667422b648da456557.mp3"
+    },
+    {
+      "id": "GEN.2.24",
+      "text": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh.",
+      "url": "/audio/web-louise/eb9544913d184c3a/GEN/2/24-8ec09f4157e7c5a14842f489a9fa3f4f7a532f08dedfa094250e255b8d82de81.mp3"
+    },
+    {
+      "id": "ECC.3.11",
+      "text": "He has made everything beautiful in its time. He has also set eternity in their hearts, yet so that man can’t find out the work that God has done from the beginning even to the end.",
+      "url": "/audio/web-louise/eb9544913d184c3a/ECC/3/11-e77099b0791865d0a5414ea2e00b7229db60b85378c9674d8f4cc886bc3045a9.mp3"
+    },
+    {
+      "id": "PSA.19.1",
+      "text": "For the Chief Musician. A Psalm by David. The heavens declare the glory of God. The expanse shows his handiwork.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PSA/19/1-0973a941e3ab4e3f4384a8d2527a0f1ec0a186a2bda5f778ad005cd96dc24dc9.mp3"
+    },
+    {
+      "id": "PSA.8.4",
+      "text": "what is man, that you think of him? What is the son of man, that you care for him?",
+      "url": "/audio/web-louise/eb9544913d184c3a/PSA/8/4-9ca5b2f9fdc65e9271713ca5048fdee922d66d82acc12bc737bf606daf4d0a91.mp3"
+    },
+    {
+      "id": "JOS.1.9",
+      "text": "Haven’t I commanded you? Be strong and courageous. Don’t be afraid. Don’t be dismayed, for Yahweh your God is with you wherever you go.”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JOS/1/9-2287786d6e3f92b0ab3edf8c3234b8b256b0d6bb29d2ca3199908880fe22c00f.mp3"
+    },
+    {
+      "id": "PSA.56.4",
+      "text": "In God, I praise his word. In God, I put my trust. I will not be afraid. What can flesh do to me?",
+      "url": "/audio/web-louise/eb9544913d184c3a/PSA/56/4-9ba8c4c1e5d1b23cb67934dc9fa332e80ef6c173f9fadfa092ce3c7abaa428a7.mp3"
+    },
+    {
+      "id": "GAL.2.20",
+      "text": "I have been crucified with Christ, and it is no longer I who live, but Christ lives in me. That life which I now live in the flesh, I live by faith in the Son of God, who loved me and gave himself up for me.",
+      "url": "/audio/web-louise/eb9544913d184c3a/GAL/2/20-4f3b85827677258f0fa3ae8a8c923b05692a0dbb4d7336aab952c9c98ff5c595.mp3"
+    },
+    {
+      "id": "GAL.5.22",
+      "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/GAL/5/22-d0dbffa6fe3876161667bfef857571dc9d29b151baa49e73b1af7cdb9817723b.mp3"
+    },
+    {
+      "id": "GAL.5.23",
+      "text": "gentleness, and self-control. Against such things there is no law.",
+      "url": "/audio/web-louise/eb9544913d184c3a/GAL/5/23-cb5dc1530f060134ea4f0a84247d9d7b541bd3c5807737d937605c1552663f41.mp3"
+    },
+    {
+      "id": "GAL.6.15",
+      "text": "For in Christ Jesus neither is circumcision anything, nor uncircumcision, but a new creation.",
+      "url": "/audio/web-louise/eb9544913d184c3a/GAL/6/15-7e0b8443e93ac289e8832552e3ce77f62d9ba86c83311a7c65fabf93c5491579.mp3"
+    },
+    {
+      "id": "2CO.5.17",
+      "text": "Therefore if anyone is in Christ, he is a new creation. The old things have passed away. Behold, all things have become new.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/2CO/5/17-e55c1ec1f2165a19ff20cf76ca36465c91fb1d26722eff7b910fe35c4e51e7a5.mp3"
+    },
+    {
+      "id": "2CO.3.17",
+      "text": "Now the Lord is the Spirit; and where the Spirit of the Lord is, there is liberty.",
+      "url": "/audio/web-louise/eb9544913d184c3a/2CO/3/17-a387b96ee8fb688631f71eb57c7a9ea4bc2201785fb78edd4bc88cfdb6084231.mp3"
+    },
+    {
+      "id": "2CO.3.18",
+      "text": "But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory, even as from the Lord, the Spirit.",
+      "url": "/audio/web-louise/eb9544913d184c3a/2CO/3/18-b6184cf770009f7610b8b11c811426e6613ad86fc842604adbf485a9af3e33e8.mp3"
+    },
+    {
+      "id": "JOL.2.28",
+      "text": "“It will happen afterward, that I will pour out my Spirit on all flesh; and your sons and your daughters will prophesy. Your old men will dream dreams. Your young men will see visions.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JOL/2/28-c71cd9e2046dbafbe99ed576ac09bfb58ac73e0558e484744bf3bda567c6d285.mp3"
+    },
+    {
+      "id": "JOL.2.29",
+      "text": "And also on the servants and on the handmaids in those days, I will pour out my Spirit.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JOL/2/29-c86c9075604b2638cf4b717385a2cc1472724c3003e6a8af2fc72bd647dde2bd.mp3"
+    },
+    {
+      "id": "1CO.11.11",
+      "text": "Nevertheless, neither is the woman independent of the man, nor the man independent of the woman, in the Lord.",
+      "url": "/audio/web-louise/eb9544913d184c3a/1CO/11/11-05e82ecbabe73d98e5173f1b23b61ff19029466a8d63787cb1077aa2387f7189.mp3"
+    },
+    {
+      "id": "1CO.12.12",
+      "text": "For as the body is one and has many members, and all the members of the body, being many, are one body; so also is Christ.",
+      "url": "/audio/web-louise/eb9544913d184c3a/1CO/12/12-496aefd945f5708631a492877f8ea4204878d21151e4ccce01b24604c01247f3.mp3"
+    },
+    {
+      "id": "1CO.13.13",
+      "text": "But now faith, hope, and love remain—these three. The greatest of these is love.",
+      "url": "/audio/web-louise/eb9544913d184c3a/1CO/13/13-0151570443c593cd4f7b8f19b48488a5c1cef7bbbe82a4dc3d19f7cb3e649845.mp3"
+    },
+    {
+      "id": "JHN.8.33",
+      "text": "They answered him, “We are Abraham’s offspring, and have never been in bondage to anyone. How do you say, ‘You will be made free’?”",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/8/33-faa84d874f72aecd291811bd415e10c8af4aaf9903ca58f1a6ceeb513aa1fad0.mp3"
+    },
+    {
+      "id": "JHN.8.34",
+      "text": "Jesus answered them, “Most certainly I tell you, everyone who commits sin is the bondservant of sin.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/8/34-79e895230b219c3f25f3dae63d00d2544b9d23e89cfde3560dedd031ae70bee5.mp3"
+    },
+    {
+      "id": "JHN.12.20",
+      "text": "Now there were certain Greeks among those who went up to worship at the feast.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/12/20-0547b7e93555918384c18f49947d14680502a6cb9ea7c9e14fca6588890443f4.mp3"
+    },
+    {
+      "id": "JHN.12.21",
+      "text": "Therefore, these came to Philip, who was from Bethsaida of Galilee, and asked him, saying, “Sir, we want to see Jesus.”",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/12/21-37ee893b8f74d4cd9b536a9f4ed29e15245b31cea0f9adc61c419aedd03aa1b0.mp3"
+    },
+    {
+      "id": "JHN.12.22",
+      "text": "Philip came and told Andrew, and in turn, Andrew came with Philip, and they told Jesus.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/12/22-63aac53b5cd80917c87763237e7a75489c457bb8a37162aa9ee278cdeaa98c52.mp3"
+    },
+    {
+      "id": "JHN.12.23",
+      "text": "Jesus answered them, “The time has come for the Son of Man to be glorified.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/12/23-d13b014e9350a1b8d176b8a405d727f13d0f51838da2033d27d4c63e18fcab98.mp3"
+    },
+    {
+      "id": "JHN.12.24",
+      "text": "Most certainly I tell you, unless a grain of wheat falls into the earth and dies, it remains by itself alone. But if it dies, it bears much fruit.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/12/24-af1f4981e1ede2393ded8844d2ca6d1c1f3a8578014e1ac585eb9b135cc27007.mp3"
+    },
+    {
+      "id": "JHN.12.25",
+      "text": "He who loves his life will lose it. He who hates his life in this world will keep it to eternal life.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/12/25-10b25fbb2fe8d12bc8bc16be855a9aefc1edd5540619f23541e76ec35cf9cec2.mp3"
+    },
+    {
+      "id": "JHN.12.26",
+      "text": "If anyone serves me, let him follow me. Where I am, there my servant will also be. If anyone serves me, the Father will honor him.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/12/26-7c5d9cb50db7ab8ed9be9bcbcd48679b67ee72cc52ead19c9db7482eccf640c3.mp3"
+    },
+    {
+      "id": "PRO.4.23",
+      "text": "Keep your heart with all diligence, for out of it is the wellspring of life.",
+      "url": "/audio/web-louise/eb9544913d184c3a/PRO/4/23-07746439d01acce40b012c3e3114fc1afe61b7882e6d3acec20054d6df1b780f.mp3"
+    },
+    {
+      "id": "JHN.3.16",
+      "text": "For God so loved the world, that he gave his only born Son, that whoever believes in him should not perish, but have eternal life.",
+      "url": "/audio/web-louise/eb9544913d184c3a/JHN/3/16-31da3932f8d7d4fb0e77dc455aae87169932de9c0825d5b4735240ecb61175c6.mp3"
+    },
+    {
+      "id": "ROM.5.5",
+      "text": "and hope doesn’t disappoint us, because God’s love has been poured into our hearts through the Holy Spirit who was given to us.",
+      "url": "/audio/web-louise/eb9544913d184c3a/ROM/5/5-e38d7519b13b7c470262137e9e958cb25838b041ec8460373795208dff6bc0e1.mp3"
+    },
+    {
+      "id": "ROM.5.6",
+      "text": "For while we were yet weak, at the right time Christ died for the ungodly.",
+      "url": "/audio/web-louise/eb9544913d184c3a/ROM/5/6-830c897d0ff981fe4229501e4d6fb6cea3e8f855807db73bc7c0fbc8eff31b2a.mp3"
+    },
+    {
+      "id": "ROM.5.7",
+      "text": "For one will hardly die for a righteous man. Yet perhaps for a good person someone would even dare to die.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/5/7-16e28b19db21cfcc44b876a1173fcc01c258d1c2b1593021802b2f080be7ef8a.mp3"
+    },
+    {
+      "id": "ROM.5.8",
+      "text": "But God commends his own love toward us, in that while we were yet sinners, Christ died for us.",
+      "url": "/audio/web-louise/eb9544913d184c3a/ROM/5/8-f06abe4e125d281f097fdab4b980efd205259b39bbb6b6f72a268d7ec048b44b.mp3"
+    },
+    {
+      "id": "EPH.1.3",
+      "text": "Blessed be the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly places in Christ,",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/3-62866915eb1cdfe523809cbf98282fff0e0e858c8ba65e1c39b3d8830ed1b5a1.mp3"
+    },
+    {
+      "id": "EPH.1.4",
+      "text": "even as he chose us in him before the foundation of the world, that we would be holy and without defect before him in love,",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/4-8d98438ed27cc9d9cb67fbda06cb691eb619d54d1515db83470c88bc6ce375d6.mp3"
+    },
+    {
+      "id": "EPH.1.5",
+      "text": "having predestined us for adoption as children through Jesus Christ to himself, according to the good pleasure of his desire,",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/5-f0a0cb56d2b8e0bbbb772b6df5c76a13c6f32e4b0cb08e7786651169bdcf6f84.mp3"
+    },
+    {
+      "id": "EPH.1.6",
+      "text": "to the praise of the glory of his grace, by which he freely gave us favor in the Beloved.",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/6-fa9f85e73824e6d6687b580ad189144deced69a1324d6b87f015fb786bb95b69.mp3"
+    },
+    {
+      "id": "EPH.1.7",
+      "text": "In him we have our redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/1/7-e6029e04571e9b22166f139ebd65f385f97ce2e83b8c41c7fc8439aba674cb93.mp3"
+    },
+    {
+      "id": "EPH.1.8",
+      "text": "which he made to abound toward us in all wisdom and prudence,",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/8-d163a729504f1b0edfe56d4efae041e2027998ea0f1fe5f8b8c40703f44c784f.mp3"
+    },
+    {
+      "id": "EPH.1.9",
+      "text": "making known to us the mystery of his will, according to his good pleasure which he purposed in him",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/9-e6ef67de395bb55487c14e3d90ac5a2d6a737cfa6019ff55a4a8f98d9fb35bd1.mp3"
+    },
+    {
+      "id": "EPH.1.10",
+      "text": "to an administration of the fullness of the times, to sum up all things in Christ, the things in the heavens and the things on the earth, in him.",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/10-ac716e71ae64fa95f265602a720f1b73736ff709e3732c4ab584398afec6a950.mp3"
+    },
+    {
+      "id": "EPH.1.11",
+      "text": "We were also assigned an inheritance in him, having been foreordained according to the purpose of him who does all things after the counsel of his will,",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/11-6645a84960e7d65218e933a9d30909c0dc6e50d9387f2bfdb75888adfe7cbeb8.mp3"
+    },
+    {
+      "id": "EPH.1.12",
+      "text": "to the end that we should be to the praise of his glory, we who had before hoped in Christ.",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/12-96991f4853b02c578401e4a8e467a61dd0a8a1bedf18960eba5e56b81d9ad51a.mp3"
+    },
+    {
+      "id": "EPH.1.13",
+      "text": "In him you also, having heard the word of the truth, the Good News of your salvation—in whom, having also believed, you were sealed with the promised Holy Spirit,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/1/13-c8e83926cf2cafc8bafb0cf530628cfaba45d85ada3721cf18e68beca1de2dc2.mp3"
+    },
+    {
+      "id": "EPH.1.14",
+      "text": "who is a pledge of our inheritance, to the redemption of God’s own possession, to the praise of his glory.",
+      "url": "/audio/web-louise/eb9544913d184c3a/EPH/1/14-53cc70e4786c3aee811b4b43b7a1832e4dbe7d4e760feffe849bbf11858f6f9a.mp3"
+    },
+    {
+      "id": "HEB.4.14",
+      "text": "Having then a great high priest who has passed through the heavens, Jesus, the Son of God, let’s hold tightly to our confession.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/HEB/4/14-e44d4a2d440a5fca54a7adc669cd196a9d2ab762598efc99cf0b101ef2d488cc.mp3"
+    },
+    {
+      "id": "HEB.4.15",
+      "text": "For we don’t have a high priest who can’t be touched with the feeling of our infirmities, but one who has been in all points tempted like we are, yet without sin.",
+      "url": "/audio/web-louise/eb9544913d184c3a/HEB/4/15-e5238f268b79cfd193a2f7400daa728a59acad3ad5f64cc508dff9b078fd9798.mp3"
+    },
+    {
+      "id": "HEB.4.16",
+      "text": "Let’s therefore draw near with boldness to the throne of grace, that we may receive mercy and may find grace for help in time of need.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/HEB/4/16-0ca5373dedc75064d562b815013014e42f3d24efa0008e09a91b78f46e52ec28.mp3"
+    },
+    {
+      "id": "ISA.42.3",
+      "text": "He won’t break a bruised reed. He won’t quench a dimly burning wick. He will faithfully bring justice.",
+      "url": "/audio/web-louise/eb9544913d184c3a/ISA/42/3-8243c0dfb054433ba15d7f3b26e5d27467990bf0fbece1747f25a786b82ea805.mp3"
+    },
+    {
+      "id": "ISA.50.6",
+      "text": "I gave my back to those who beat me, and my cheeks to those who plucked off the hair. I didn’t hide my face from shame and spitting.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ISA/50/6-747f212ad832eb1d10d94f8548ed77a475f9656c64e5986506c3441112ea5d9a.mp3"
+    },
+    {
+      "id": "HEB.4.12",
+      "text": "For the word of God is living and active, and sharper than any two-edged sword, piercing even to the dividing of soul and spirit, of both joints and marrow, and is able to discern the thoughts and intentions of the heart.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/HEB/4/12-b1bbf466127c90e7c9b8008399dae14d76cfea23b3742de40b2609ab93bb244d.mp3"
+    },
+    {
+      "id": "LUK.11.11",
+      "text": "“Which of you fathers, if your son asks for bread, will give him a stone? Or if he asks for a fish, he won’t give him a snake instead of a fish, will he?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/LUK/11/11-174c2ed8af5f4d4f8667a787f34bf8f5af8fd1bd856504d31ee8f5efc98ffad3.mp3"
+    },
+    {
+      "id": "LUK.11.12",
+      "text": "Or if he asks for an egg, he won’t give him a scorpion, will he?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/LUK/11/12-f54f0e81fc63b84087ee52e223feb4c7b865fe7dd813ba5f562546bee6c5ffc2.mp3"
+    },
+    {
+      "id": "LUK.11.13",
+      "text": "If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/LUK/11/13-ec0ae000588f40e1c792e44271585b0138cafa52297938a062920c129350b180.mp3"
+    },
+    {
+      "id": "MAT.6.9",
+      "text": "Pray like this: “‘Our Father in heaven, may your name be kept holy.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/MAT/6/9-3203b93dd68aa5806205ad6c2cba549b9ffad9d6ab502ff6e34a68e2b8f12174.mp3"
+    },
+    {
+      "id": "MAT.6.10",
+      "text": "Let your Kingdom come. Let your will be done on earth as it is in heaven.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/MAT/6/10-14d7a451afbe41fce0a663d8ecbb9eb37719a08ad3e631f2e0b00105ab4eab4c.mp3"
+    },
+    {
+      "id": "MAT.6.11",
+      "text": "Give us today our daily bread.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/MAT/6/11-b4c8408cb0e1a4dd9e3a393e5e689a426153618263a085e3c6fae5b7f55346f0.mp3"
+    },
+    {
+      "id": "MAT.6.12",
+      "text": "Forgive us our debts, as we also forgive our debtors.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/MAT/6/12-30174af21c4aae3c847657d6daa2c5fe3eceec5ca03d56fefd5b3345d110e334.mp3"
+    },
+    {
+      "id": "MAT.6.13",
+      "text": "Bring us not into temptation, but deliver us from the evil one. For yours is the Kingdom, the power, and the glory forever. Amen.’",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/MAT/6/13-788bfdfb196e0341b28da5616b993894cdb93163f99896f1ef7ccd8d16eb3ce8.mp3"
+    },
+    {
+      "id": "HEB.12.2",
+      "text": "looking to Jesus, the author and perfecter of faith, who for the joy that was set before him endured the cross, despising its shame, and has sat down at the right hand of the throne of God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/HEB/12/2-07b253df900e7361fafeb2b83b060aa9afcdd3fc5da6168e6d058b40a563afa7.mp3"
+    },
+    {
+      "id": "HEB.3.14",
+      "text": "For we have become partakers of Christ, if we hold the beginning of our confidence firm to the end,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/HEB/3/14-14d6c7b65e586f5e371e519b0e1d7064e142f8e8e27448500484591541e11ec8.mp3"
+    },
+    {
+      "id": "ROM.4.23",
+      "text": "Now it was not written that it was accounted to him for his sake alone,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/4/23-3b5f75ac62d00761825c7de249b6676a35ee54d789d1ae0306b1338620d4fcf0.mp3"
+    },
+    {
+      "id": "ROM.4.24",
+      "text": "but for our sake also, to whom it will be accounted, who believe in him who raised Jesus our Lord from the dead,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/4/24-20661618b283e9fe0d18b59d7b946382a99480faaebd34b48d16edddb980fcb1.mp3"
+    },
+    {
+      "id": "ROM.4.25",
+      "text": "who was delivered up for our trespasses, and was raised for our justification.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/4/25-e3f9605bc98d722979143cce74b01d52af10da6fc2eb973e3e19569c93cf8a7a.mp3"
+    },
+    {
+      "id": "ROM.5.1",
+      "text": "Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/5/1-cd081a351b25746f528c135a678f6ee41525cac1211d46dcae0f6478e78a5d6e.mp3"
+    },
+    {
+      "id": "ROM.5.2",
+      "text": "through whom we also have our access by faith into this grace in which we stand. We rejoice in hope of the glory of God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/5/2-c9297ecd72b25b018d1ade4eb800a7ef4e7d5861ed5ca79151e0f773957b6609.mp3"
+    },
+    {
+      "id": "ROM.5.3",
+      "text": "Not only this, but we also rejoice in our sufferings, knowing that suffering produces perseverance;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/5/3-6cb56b600841c0ff2b50e228636adacf3e6cfd87bf5ed0dee4d8e952d80d8e6a.mp3"
+    },
+    {
+      "id": "ROM.5.4",
+      "text": "and perseverance, proven character; and proven character, hope;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/5/4-25796d4924ccf9708a287ee092e8068235a5892ee5893329d8f77013c3e48500.mp3"
+    },
+    {
+      "id": "ROM.6.1",
+      "text": "What shall we say then? Shall we continue in sin, that grace may abound?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/6/1-9ace40fc0ba40f9d96d16ae4bda728ad49d18f243132f26ddae1af6c8ca48b2e.mp3"
+    },
+    {
+      "id": "ROM.6.2",
+      "text": "May it never be! We who died to sin, how could we live in it any longer?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/6/2-d59960377581ad8e1d9c93003645a0a07c1d8d6dc3f2bc06946e22987c203500.mp3"
+    },
+    {
+      "id": "ROM.6.3",
+      "text": "Or don’t you know that all of us who were baptized into Christ Jesus were baptized into his death?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/6/3-9e140c11cbfb1c2f6dcf45e82850f620a303f8590da8a12f1199cc8d00ed2d13.mp3"
+    },
+    {
+      "id": "ROM.6.4",
+      "text": "We were buried therefore with him through baptism into death, that just as Christ was raised from the dead through the glory of the Father, so we also might walk in newness of life.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/6/4-8abcfb57cadf3167337b779a687cd066c9c2c5015a083738c780367a30fb92fc.mp3"
+    },
+    {
+      "id": "EPH.2.1",
+      "text": "You were made alive when you were dead in transgressions and sins,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/2/1-608d98b98551603b886761ef649bb8bf9cc641d8457ddeca3781495ab753a131.mp3"
+    },
+    {
+      "id": "EPH.2.2",
+      "text": "in which you once walked according to the course of this world, according to the prince of the power of the air, the spirit who now works in the children of disobedience.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/2/2-f2f5b02ec51d47337067360982892227b136f3b732ed8aee62da2c9f7458ccc0.mp3"
+    },
+    {
+      "id": "JHN.3.5",
+      "text": "Jesus answered, “Most certainly I tell you, unless one is born of water and Spirit, he can’t enter into God’s Kingdom.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/3/5-46df8fbfe7cd7d77b73ebfe2e363b1058a536fd3baf938f8a6fd56ae956f615a.mp3"
+    },
+    {
+      "id": "JHN.3.6",
+      "text": "That which is born of the flesh is flesh. That which is born of the Spirit is spirit.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/3/6-b34cb723c437ff9eda399d44e6699d0881a257de59c6577710c7cf46a01e889e.mp3"
+    },
+    {
+      "id": "JHN.3.7",
+      "text": "Don’t marvel that I said to you, ‘You must all be born anew.’",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/3/7-b6bed8389ed45d4142e9adc36a8b9875566241f67b8367995a88b4626f2deb2e.mp3"
+    },
+    {
+      "id": "JHN.3.8",
+      "text": "The wind blows where it wants to, and you hear its sound, but don’t know where it comes from and where it is going. So is everyone who is born of the Spirit.”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/3/8-38f7acbbec5523129bcc85c09a06a9c7b4143313c0f77bd1da0ee055ca2fbb22.mp3"
+    },
+    {
+      "id": "2CO.5.16",
+      "text": "Therefore we know no one according to the flesh from now on. Even though we have known Christ according to the flesh, yet now we know him so no more.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/2CO/5/16-965f480efed51c0cb163390da34ee923c5287700364756474eae5254583a1f22.mp3"
+    },
+    {
+      "id": "JHN.3.3",
+      "text": "Jesus answered him, “Most certainly I tell you, unless one is born anew, he can’t see God’s Kingdom.”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/3/3-46fa313ad258935175879b6cda60d109975f3e0f017fa728ff441e03b7a01bf7.mp3"
+    },
+    {
+      "id": "ROM.4.2",
+      "text": "For if Abraham was justified by works, he has something to boast about, but not toward God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/4/2-c72200d637ab0900089c8225f1b86e3cf9bfb7789ba012772a9eb9a25c05d531.mp3"
+    },
+    {
+      "id": "ROM.4.3",
+      "text": "For what does the Scripture say? “Abraham believed God, and it was accounted to him for righteousness.”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/4/3-9342ec5cc720cf826850320965ee9b7a2946ddcaf8759ca6d3f33a247555f81e.mp3"
+    },
+    {
+      "id": "GEN.15.6",
+      "text": "He believed in Yahweh, who credited it to him for righteousness.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/GEN/15/6-41e6f406a8dd9dd375cdfbcba6942525355401d4f7461dff874f4e46e759cfc4.mp3"
+    },
+    {
+      "id": "ROM.6.5",
+      "text": "For if we have become united with him in the likeness of his death, we will also be part of his resurrection;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/6/5-31f9352b03727a06f6e7113bb7689c62479bf539931809b21b76e3609f0f11e0.mp3"
+    },
+    {
+      "id": "ROM.2.4",
+      "text": "Or do you despise the riches of his goodness, forbearance, and patience, not knowing that the goodness of God leads you to repentance?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/2/4-a1119946d49e73ff07ae4893ed5bbc0e6df540bfa7d9df2582b53b42461058ea.mp3"
+    },
+    {
+      "id": "ROM.3.25",
+      "text": "whom God sent to be an atoning sacrifice through faith in his blood, for a demonstration of his righteousness through the passing over of prior sins, in God’s forbearance;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/3/25-d3f2fd58953054c754c0cd1aba81358c164c67135ec72a3ed14748d2615da2e1.mp3"
+    },
+    {
+      "id": "JHN.3.14",
+      "text": "As Moses lifted up the serpent in the wilderness, even so must the Son of Man be lifted up,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/3/14-fa927ccb6dc17fd9370f2912d4716d848c72c38cab8dbafdfeb4a160ebe88e71.mp3"
+    },
+    {
+      "id": "JHN.3.15",
+      "text": "that whoever believes in him should not perish, but have eternal life.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/JHN/3/15-df965ffaee3dc076281f7f0297025c27f86c68523f0066de092196ebcb7ec625.mp3"
+    },
+    {
+      "id": "ROM.6.14",
+      "text": "For sin will not have dominion over you, for you are not under law, but under grace.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/6/14-0f1f4a9a4e1c28f11dbe121f7a9c08c2e7dbc38ee2b309710eaf873531a7d8fe.mp3"
+    },
+    {
+      "id": "ROM.7.18",
+      "text": "For I know that in me, that is, in my flesh, dwells no good thing. For desire is present with me, but I don’t find it doing that which is good.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/7/18-e79701798d228961e313c245de978b3234a9ec996f02424a265dc3d235174aec.mp3"
+    },
+    {
+      "id": "ROM.7.23",
+      "text": "but I see a different law in my members, warring against the law of my mind, and bringing me into captivity under the law of sin which is in my members.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/7/23-7a45c6ce38fa70ad6cedd5674bcd9cc4ec0055555f8a50d4ddc1360c6fb5fdbf.mp3"
+    },
+    {
+      "id": "ROM.7.24",
+      "text": "What a wretched man I am! Who will deliver me out of the body of this death?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/7/24-4e559b7eec5c7c5e8653f86d5f3e5d38d0cb2fb255ccff7c6c4d505e08160fcb.mp3"
+    },
+    {
+      "id": "ROM.7.25",
+      "text": "I thank God through Jesus Christ, our Lord! So then with the mind, I myself serve God’s law, but with the flesh, sin’s law.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/7/25-17062b39154bfedb48a4fa9083cb4f838cb1863d96c08f1ec6a0db79570daf68.mp3"
+    },
+    {
+      "id": "ROM.8.1",
+      "text": "There is therefore now no condemnation to those who are in Christ Jesus, who don’t walk according to the flesh, but according to the Spirit.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/1-4fa0d03e78599d13f1887dbc44489f8b917e593212a9f0c8de9794ad3de4c620.mp3"
+    },
+    {
+      "id": "ROM.8.2",
+      "text": "For the law of the Spirit of life in Christ Jesus made me free from the law of sin and of death.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/2-175c9ddd38f1f9ff59e2bb5861c898a031f6870e1f82e188bab4fab37fbe7de1.mp3"
+    },
+    {
+      "id": "ROM.8.27",
+      "text": "He who searches the hearts knows what is on the Spirit’s mind, because he makes intercession for the saints according to God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/27-e6d8f4b2cc2011b14a2f0247fab10090019e7a778c7ab0e3984a5e1e954f271d.mp3"
+    },
+    {
+      "id": "ROM.8.28",
+      "text": "We know that all things work together for good for those who love God, for those who are called according to his purpose.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/28-f7c9dc94502a6bc54e2f3b508a85d66a42f335455096674b6ec62675458f16e5.mp3"
+    },
+    {
+      "id": "ROM.8.29",
+      "text": "For whom he foreknew, he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/29-2d31be2d31fcf4192695ee52a9d9b8771e599f56ec4033e67c2b2987cb56d470.mp3"
+    },
+    {
+      "id": "ROM.8.30",
+      "text": "Whom he predestined, those he also called. Whom he called, those he also justified. Whom he justified, those he also glorified.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/30-a2f48ab2ef408f9274a8d923a4609b75a1d2aaf15a6062efb8751ce5f010d9a0.mp3"
+    },
+    {
+      "id": "ROM.8.31",
+      "text": "What then shall we say about these things? If God is for us, who can be against us?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/31-95e8f88c2af6777131db00195aa334e5f756cc2212f00c5601723ed608221e66.mp3"
+    },
+    {
+      "id": "ROM.8.32",
+      "text": "He who didn’t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/32-ea3a487fdfa27c34b81570d99a8419c17ad9274a9a93cf234e96ee2b667ec49d.mp3"
+    },
+    {
+      "id": "ROM.8.33",
+      "text": "Who could bring a charge against God’s chosen ones? It is God who justifies.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/33-90eed8547fe762100085ac6feb7afee473c97c531f5a48a85d6e803a209eb117.mp3"
+    },
+    {
+      "id": "ROM.8.34",
+      "text": "Who is he who condemns? It is Christ who died, yes rather, who was raised from the dead, who is at the right hand of God, who also makes intercession for us.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/8/34-3a5994e38723736874c0babe9ec2d153ae3e32f23419d811cc7d775699c081c5.mp3"
+    },
+    {
+      "id": "PHP.1.9",
+      "text": "This I pray, that your love may abound yet more and more in knowledge and all discernment,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/1/9-55408d55da0fb78fe46d691afe1ad3ad1b526e73da557f0ed94ab949e3e67811.mp3"
+    },
+    {
+      "id": "PHP.1.10",
+      "text": "so that you may approve the things that are excellent, that you may be sincere and without offense to the day of Christ,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/1/10-3b911eeadcd990dc5a5d062896df68253c547fb191f1f88897cabc05720fbc3b.mp3"
+    },
+    {
+      "id": "PHP.1.11",
+      "text": "being filled with the fruits of righteousness which are through Jesus Christ, to the glory and praise of God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/1/11-d359ca43b71dadba5db66316db928060c7d793ab0c9feb4108276e7a270d2907.mp3"
+    },
+    {
+      "id": "EPH.4.1",
+      "text": "I therefore, the prisoner in the Lord, beg you to walk worthily of the calling with which you were called,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/1-271707f6a2b419390067a269cf1c1fa5d6a2b7b5358d6a68bbd644b3eb113084.mp3"
+    },
+    {
+      "id": "EPH.4.2",
+      "text": "with all lowliness and humility, with patience, bearing with one another in love,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/2-b0843a33a266be957ce8d489ed175b8b9e0cfc848d53bb2f8ff9922aee4f5573.mp3"
+    },
+    {
+      "id": "EPH.4.3",
+      "text": "being eager to keep the unity of the Spirit in the bond of peace.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/3-305e4a2689a7f3c0a713f9394c2b81f1171d51dbd81f5c898c4ccabc8ecf5170.mp3"
+    },
+    {
+      "id": "EPH.4.4",
+      "text": "There is one body and one Spirit, even as you also were called in one hope of your calling,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/4-d8acc6684db3056e4dde101ccdd8e070543a86a93fb4a8d80964a3e4ef6324bb.mp3"
+    },
+    {
+      "id": "EPH.4.5",
+      "text": "one Lord, one faith, one baptism,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/5-4a6b25bd15f31427dd5dccb9889c79321fd74eb5f974e1cff7b68cb5be16ec15.mp3"
+    },
+    {
+      "id": "EPH.4.6",
+      "text": "one God and Father of all, who is over all and through all and in us all.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/6-7ab9a201eaae67ef89a5cf70506d8a9eff9b3f17ab9067eb3b4c1b2767e1ca82.mp3"
+    },
+    {
+      "id": "EPH.4.7",
+      "text": "But to each one of us, the grace was given according to the measure of the gift of Christ.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/7-be59e4f7adabfc54a5a1ad8b0f8b44d54612e16772f07bf7ae296d9b9a794e9e.mp3"
+    },
+    {
+      "id": "EPH.4.8",
+      "text": "Therefore he says, “When he ascended on high, he led captivity captive, and gave gifts to people.”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/8-39354f7abe604b33e5c369d405e8134d9600ce9efc3be8d342dac33c88826449.mp3"
+    },
+    {
+      "id": "EPH.4.9",
+      "text": "Now this, “He ascended”, what is it but that he also first descended into the lower parts of the earth?",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/9-ba4045c9f837d9e22f18111a7c167376121809c20323f13409257a3d173aa246.mp3"
+    },
+    {
+      "id": "EPH.4.10",
+      "text": "He who descended is the one who also ascended far above all the heavens, that he might fill all things.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/10-71aa0cd83b1e036b7564aaaa02486c6020c9e5157e62e55b8706aa9da34664dc.mp3"
+    },
+    {
+      "id": "EPH.4.11",
+      "text": "He gave some to be apostles; and some, prophets; and some, evangelists; and some, shepherds and teachers;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/11-65cf1ea6c91e14abc026536bc85ba66fbc8482cd58cad233d23852b2c86a6c4b.mp3"
+    },
+    {
+      "id": "EPH.4.12",
+      "text": "for the perfecting of the saints, to the work of serving, to the building up of the body of Christ,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/4/12-d3bc4476a1b036e4cb62d9be78445dec41b69abd08207d225fad944342a62463.mp3"
+    },
+    {
+      "id": "PHP.2.3",
+      "text": "doing nothing through rivalry or through conceit, but in humility, each counting others better than himself;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/3-0aac1e67cdc8a405849be65d06c41f7268b54a41bd3526032b782518532e3b11.mp3"
+    },
+    {
+      "id": "ISA.42.2",
+      "text": "He will not shout, nor raise his voice, nor cause it to be heard in the street.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ISA/42/2-3842fc2e0db4a72d41b6f8167a1e70fa1432cf90a8d49b83a50153acc05a5fce.mp3"
+    },
+    {
+      "id": "ISA.42.4",
+      "text": "He will not fail nor be discouraged, until he has set justice on the earth, and the islands wait for his law.”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ISA/42/4-d86fc3044352ae8e6b352d66ca495e549d6eab7d541833eea1d6ae4f3e63abc5.mp3"
+    },
+    {
+      "id": "GAL.5.16",
+      "text": "But I say, walk by the Spirit, and you won’t fulfill the lust of the flesh.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/GAL/5/16-3705b2b922370313e86725140ec9f679037b9a9a37be656b7b0bd9de523db462.mp3"
+    },
+    {
+      "id": "PHP.4.4",
+      "text": "Rejoice in the Lord always! Again I will say, “Rejoice!”",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/4/4-2c349853635dd09130e856d354667a1edc2dc9b351690fa0b76c2a1b102ef486.mp3"
+    },
+    {
+      "id": "PHP.4.5",
+      "text": "Let your gentleness be known to all men. The Lord is at hand.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/4/5-d5d0b8ebe7bf52e17187f0b04bb47d9097f88aa91d1479a9472c82afe220e8e8.mp3"
+    },
+    {
+      "id": "PHP.4.6",
+      "text": "In nothing be anxious, but in everything, by prayer and petition with thanksgiving, let your requests be made known to God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/4/6-5b0da6b50756b7e5f919e6cfb647a0c1d9dbfc88dd15f8e297a3eb111b5e3abb.mp3"
+    },
+    {
+      "id": "PHP.4.7",
+      "text": "And the peace of God, which surpasses all understanding, will guard your hearts and your thoughts in Christ Jesus.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/4/7-9e44b6e3828af2aa92b4953921dc619c321a9dd6c1c4bb3fc3aa441b41d64271.mp3"
+    },
+    {
+      "id": "EPH.5.16",
+      "text": "redeeming the time, because the days are evil.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/5/16-ca46aa06f91367cb22f7f73ac194cf11d2a6381922fddc88ab151763b0f6b874.mp3"
+    },
+    {
+      "id": "EPH.5.15",
+      "text": "Therefore watch carefully how you walk, not as unwise, but as wise,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/5/15-7a8916b6ab5a4aaf44ffdcb56b327fab8031577f2e60c49f0cff6bc7a24d3312.mp3"
+    },
+    {
+      "id": "EPH.5.17",
+      "text": "Therefore, don’t be foolish, but understand what the will of the Lord is.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/5/17-76f39496e73efca427ac6e825de4837a9a01bd12158591514655dab34d93e58b.mp3"
+    },
+    {
+      "id": "EPH.5.18",
+      "text": "Don’t be drunken with wine, in which is dissipation, but be filled with the Spirit,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/EPH/5/18-07912145713f89cd285183e2fde784827c745248f6709ecaf3d0fc0110925a8c.mp3"
+    },
+    {
+      "id": "1PE.5.1",
+      "text": "Therefore I exhort the elders among you, as a fellow elder and a witness of the sufferings of Christ, and who will also share in the glory that will be revealed:",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1PE/5/1-bf54b4ff707b1d801fdf4df3be042b013b08023c22ad64f0c18a1ed48af4939a.mp3"
+    },
+    {
+      "id": "1PE.5.2",
+      "text": "shepherd the flock of God which is among you, exercising the oversight, not under compulsion, but voluntarily; not for dishonest gain, but willingly;",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1PE/5/2-d02f64ea57686d9b31e95a89ae19955a2b4ff1e0ccd707effcf0ff22b69d5956.mp3"
+    },
+    {
+      "id": "1PE.5.3",
+      "text": "not as lording it over those entrusted to you, but making yourselves examples to the flock.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1PE/5/3-c76883dff33083279fb18993b9c12ecd364308701cac44fea9378c1a0b5d1b50.mp3"
+    },
+    {
+      "id": "1PE.5.4",
+      "text": "When the chief Shepherd is revealed, you will receive the crown of glory that doesn’t fade away.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1PE/5/4-234f5e0113875af10361d2f9c92380d8ac9b8283a5fc2519bb04633d9ec79a59.mp3"
+    },
+    {
+      "id": "MAT.5.14",
+      "text": "“You are the light of the world. A city located on a hill can’t be hidden.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/MAT/5/14-152ec6787c19c79be176e61b4c4bd71f1c436fba8d6491f67543b1b807cd24ae.mp3"
+    },
+    {
+      "id": "1CO.2.12",
+      "text": "But we received not the spirit of the world, but the Spirit which is from God, that we might know the things that were freely given to us by God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1CO/2/12-d66eeb31a545e9e4be13897b8024e75570da1a9cb60609a31aab9c22bfcca076.mp3"
+    },
+    {
+      "id": "1CO.2.13",
+      "text": "We also speak these things, not in words which man’s wisdom teaches but which the Holy Spirit teaches, comparing spiritual things with spiritual things.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1CO/2/13-d63cfd1d8dff08588d7d9ce20ec13439d317f4df968e25fbd818c48e72474960.mp3"
+    },
+    {
+      "id": "1CO.2.14",
+      "text": "Now the natural man doesn’t receive the things of God’s Spirit, for they are foolishness to him; and he can’t know them, because they are spiritually discerned.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1CO/2/14-52cba3ce208a64e4d6a99b1974262980ca6961d68203e30acc5f3fc217852948.mp3"
+    },
+    {
+      "id": "1PE.2.2",
+      "text": "as newborn babies, long for the pure spiritual milk, that with it you may grow,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1PE/2/2-bac00099d821022464fc4beb6879d52b44f1547b074832854aede1bcf02caab0.mp3"
+    },
+    {
+      "id": "1PE.2.3",
+      "text": "if indeed you have tasted that the Lord is gracious.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/1PE/2/3-b5e18b9981588e473e34352a0ca9b8113113a79e60cf39c43bb123ad6b55eac5.mp3"
+    },
+    {
+      "id": "MAT.5.13",
+      "text": "“You are the salt of the earth, but if the salt has lost its flavor, with what will it be salted? It is then good for nothing, but to be cast out and trodden under the feet of men.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/MAT/5/13-f9b2a963cf6d4de3c7899d4746112c61295b4aebf5ebc950f4b0a13f9f5b040f.mp3"
+    },
+    {
+      "id": "LUK.16.8",
+      "text": "“His lord commended the dishonest manager because he had done wisely, for the children of this world are, in their own generation, wiser than the children of the light.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/LUK/16/8-7db6a902248acda32be2a17c6ce6648d449f09a97fd8ec70961dd4162dbb98c9.mp3"
+    },
+    {
+      "id": "LUK.16.9",
+      "text": "I tell you, make for yourselves friends by means of unrighteous mammon, so that when you fail, they may receive you into the eternal tents.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/LUK/16/9-473821bd5cd22e3d45d09b1cce55e6a0ed723d2444c791f3c94a617fa6dee0c4.mp3"
+    },
+    {
+      "id": "ROM.12.1",
+      "text": "Therefore I urge you, brothers, by the mercies of God, to present your bodies a living sacrifice, holy, acceptable to God, which is your spiritual service.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/12/1-ad9b8c6ff791c06bb7d803407a3c551fdca643fa57fb33587a1cc4f9824f4263.mp3"
+    },
+    {
+      "id": "ROM.12.2",
+      "text": "Don’t be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ROM/12/2-d0f8e62546bee7a319090876920ab03760b3b3ddd1d7875b0e38b5835f5804b5.mp3"
+    },
+    {
+      "id": "GAL.5.1",
+      "text": "Stand firm therefore in the liberty by which Christ has made us free, and don’t be entangled again with a yoke of bondage.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/GAL/5/1-1bd16e96b7257c4420d282bd46966b55d6fdfe7c611df685d1316b7c9a0c77ef.mp3"
+    },
+    {
+      "id": "HOS.6.6",
+      "text": "For I desire mercy, and not sacrifice; and the knowledge of God more than burnt offerings.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/HOS/6/6-039b7821d11bd84095dc98a25f29823e9d79250d894fb7fdbf7056bba9eaf5cd.mp3"
+    },
+    {
+      "id": "PHP.2.4",
+      "text": "each of you not just looking to his own things, but each of you also to the things of others.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/4-42b0d41ea1ae1f87e54061d85543ab26d31cd6476b146fe8a53b44f93f0ebc64.mp3"
+    },
+    {
+      "id": "PHP.2.5",
+      "text": "Have this in your mind, which was also in Christ Jesus,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/5-84161e48ee6c1d4f361fade0c45376384be56606683e5a278d78f31ae8dbb849.mp3"
+    },
+    {
+      "id": "PHP.2.6",
+      "text": "who, existing in the form of God, didn’t consider equality with God a thing to be grasped,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/6-09174c18f66aaf594fd767e3e68ddc82cd3029817b257dcbca1b643132117108.mp3"
+    },
+    {
+      "id": "PHP.2.7",
+      "text": "but emptied himself, taking the form of a servant, being made in the likeness of men.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/7-0cb36f994438b8abcb9ff5f15a08a173d2999a617bb450bc1d1511d826d0eb29.mp3"
+    },
+    {
+      "id": "PHP.2.8",
+      "text": "And being found in human form, he humbled himself, becoming obedient to the point of death, yes, the death of the cross.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/8-225b74bb019c16ea7f3d21d6d2cdcce61b83d53d82444725c095e182a02198b6.mp3"
+    },
+    {
+      "id": "PHP.2.9",
+      "text": "Therefore God also highly exalted him, and gave to him the name which is above every name,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/9-a6b0c514e955bca1998eef5151d922434cd84dadcf32c3dd8f91351777e137c6.mp3"
+    },
+    {
+      "id": "PHP.2.10",
+      "text": "that at the name of Jesus every knee should bow, of those in heaven, those on earth, and those under the earth,",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/10-9a305eb3c35229c817632334a771b1f4be76a1e7119e6cb56d618a880ede514a.mp3"
+    },
+    {
+      "id": "PHP.2.11",
+      "text": "and that every tongue should confess that Jesus Christ is Lord, to the glory of God the Father.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PHP/2/11-70a0a1d5522966a4070ab5d7f96ca29a8e64583c2082272035f36df4c5e49e88.mp3"
+    },
+    {
+      "id": "PSA.23.1",
+      "text": "A Psalm by David. Yahweh is my shepherd; I shall lack nothing.",
+      "url": "/audio/web-louise/eb9544913d184c3a/PSA/23/1-fbad3d463c978bb73fd911b0544cc4a4b788409a7df38e7e32889fe2db697a3c.mp3"
+    },
+    {
+      "id": "PSA.23.2",
+      "text": "He makes me lie down in green pastures. He leads me beside still waters.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PSA/23/2-53b632b925d868b5316ae94c35d5ad1cc50553ff10864207d319384b2a99a168.mp3"
+    },
+    {
+      "id": "PSA.23.3",
+      "text": "He restores my soul. He guides me in the paths of righteousness for his name’s sake.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PSA/23/3-3d605adc8f18c3f2f91955b1189eca7fd1e133aef1370dcad6e78e5aa9158ae1.mp3"
+    },
+    {
+      "id": "PSA.23.4",
+      "text": "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff, they comfort me.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PSA/23/4-1b3d3573239a814d9e4b0696f1efa744b891b913c2c515d781fc1518a19d920e.mp3"
+    },
+    {
+      "id": "PSA.23.5",
+      "text": "You prepare a table before me in the presence of my enemies. You anoint my head with oil. My cup runs over.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PSA/23/5-30f6e0f505b768b6a430ebecdb02a7294d24ab364c33b6fbd06a06049c584cff.mp3"
+    },
+    {
+      "id": "PSA.23.6",
+      "text": "Surely goodness and loving kindness shall follow me all the days of my life, and I will dwell in Yahweh’s house forever.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PSA/23/6-3b1c5ac075101e4400c7fc04d931a18af67ceaea30617c918c2e361fc1f868ee.mp3"
+    },
+    {
+      "id": "ISA.55.8",
+      "text": "“For my thoughts are not your thoughts, and your ways are not my ways,” says Yahweh.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ISA/55/8-614f14d7d85b5929110bc362ed523d4c873485ff9746644daf7998b9761c7c4c.mp3"
+    },
+    {
+      "id": "ISA.55.9",
+      "text": "“For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/ISA/55/9-f84925e2220a5eaa07111459085b5b838ed609d93e5166220bfb5c9fe5a0c03c.mp3"
+    },
+    {
+      "id": "PSA.103.11",
+      "text": "For as the heavens are high above the earth, so great is his loving kindness toward those who fear him.",
+      "url": "/audio/web-louise/2bb51cca70fc09f6/PSA/103/11-73e03cafc2c2cb6ac8e3c6188dc97afef5f67557ebee23126722cfd459fe1ea2.mp3"
+    }
+  ]
+}

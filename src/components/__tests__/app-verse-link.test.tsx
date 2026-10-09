@@ -73,7 +73,7 @@ describe('Pick a Verse tab', () => {
     ).toBeInTheDocument();
   });
 
-  it('plays the verse a ?passage= link names, using the YouVersion id verbatim', async () => {
+  it('plays a curated WEB link from its bundled Classic text', async () => {
     window.history.replaceState(
       {},
       '',
@@ -91,11 +91,11 @@ describe('Pick a Verse tab', () => {
     const passageCall = api.mock.calls
       .map((call) => String(call[0]))
       .find((url) => url.startsWith('/api/passage'));
-    expect(passageCall).toBe('/api/passage?translation=WEB&passage=JHN.3.16');
+    expect(passageCall).toBeUndefined();
   });
 
   it('opens a linked verse on the picker tab when the passage cannot load', async () => {
-    window.history.replaceState({}, '', '/?passage=JHN.3.16');
+    window.history.replaceState({}, '', '/?passage=JHN.3.1');
     vi.stubGlobal('fetch', async (input: unknown) => {
       if (String(input).startsWith('/api/books')) return Response.json(catalogue);
       return Response.json(

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { levelNarrationOptions } from '../audio/level-narration';
 import type { BuiltLevel } from '../game/build';
 import type { Narrator } from '../audio/speech';
 import type { SoundEngine } from '../audio/sound';
@@ -81,8 +82,7 @@ export function StudyPhase({
     setSpeaking(true);
     narrator.speak(built.fullText, {
       slow: true,
-      cuvVerses: built.attribution?.abbreviation === 'CUV' && !built.fragment
-        ? built.verses.map((verse) => verse.text) : undefined,
+      ...levelNarrationOptions(built),
       onend: () => setSpeaking(false),
     });
   };

@@ -11,8 +11,11 @@ import {
 } from './levels';
 import { mulberry32, shuffle, type Rng } from './random';
 import { translationInfo } from '../data/scripture';
+import type { TranslationKey } from '../translation-config';
 
 export interface ScriptureAttribution {
+  /** Stable application edition; publisher abbreviations can differ (e.g. engWEBUS). */
+  translationKey?: TranslationKey;
   abbreviation: string;
   title: string;
   copyright: string;

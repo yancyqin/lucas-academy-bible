@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { levelNarrationOptions } from '../audio/level-narration';
 import { MAX_LEVEL } from '../game/levels';
 import type { BuiltLevel } from '../game/build';
 // MAX_LEVEL is used only to decide the final "Finish" vs "Continue" label.
@@ -37,8 +38,7 @@ export function LevelComplete({
     setSpeaking(true);
     narrator.speak(level.fullText, {
       slow: true,
-      cuvVerses: level.attribution?.abbreviation === 'CUV' && !level.fragment
-        ? level.verses.map((verse) => verse.text) : undefined,
+      ...levelNarrationOptions(level),
       onend: () => setSpeaking(false),
     });
   };

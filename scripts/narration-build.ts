@@ -6,9 +6,10 @@ import { loadEnv, type Plugin } from 'vite';
 export function narrationBuild(): Plugin {
   let offline = false;
   let outDir = '';
-  const emptyCatalog = '\0offline-cuv-narration';
+  const emptyCatalog = '\0offline-narration';
+  const editions = ['cuv-fangfang', 'web-louise'];
   return {
-    name: 'cuv-narration-distribution',
+    name: 'scripture-narration-distribution',
     enforce: 'pre',
     configResolved(config) {
       const env = { ...loadEnv(config.mode, config.envDir, 'VITE_'), ...process.env };
@@ -17,13 +18,13 @@ export function narrationBuild(): Plugin {
       outDir = resolve(config.root, config.build.outDir);
     },
     resolveId(source) {
-      if (offline && source.endsWith('/data/narration-cuv-fangfang-release.json')) return emptyCatalog;
+      if (offline && editions.some((edition) => source.endsWith(`/data/narration-${edition}-release.json`))) return emptyCatalog;
     },
     load(id) {
       if (id === emptyCatalog) return 'export default { enabled: false, clips: [] };';
     },
     closeBundle() {
-      if (offline) rmSync(resolve(outDir, 'audio/cuv-fangfang'), { recursive: true, force: true });
+      if (offline) editions.forEach((edition) => rmSync(resolve(outDir, `audio/${edition}`), { recursive: true, force: true }));
     },
   };
 }

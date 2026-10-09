@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,9 +21,14 @@ def digest(payload: bytes) -> str:
 
 def write_json(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
-    temporary.replace(path)
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+                                     prefix=path.name + ".", suffix=".tmp", delete=False) as stream:
+        temporary = Path(stream.name)
+        stream.write(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
+    try:
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def verses(scope: str = "curated") -> list[dict]:
