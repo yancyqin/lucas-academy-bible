@@ -4,6 +4,7 @@ import {
   type ScriptureAttribution,
 } from './game/build';
 import { allPassages, requirePassage } from './data/scripture';
+import { BOOK_CODES, bundledWebPassage } from './data/bundled-web';
 import type { DistractorPassage } from './game/distractors';
 import type { LevelFile, Question } from './game/levels';
 import { mulberry32 } from './game/random';
@@ -14,6 +15,8 @@ import {
 } from './translation-config';
 
 export interface YouVersionTranslation {
+  /** Locally bundled public-domain passages have no YouVersion Bible id. */
+  source?: 'bundled';
   key: TranslationKey;
   label: string;
   id: number;
@@ -36,29 +39,6 @@ interface YouVersionTranslationResponse {
   translation: YouVersionTranslation;
   cache: 'HIT' | 'MISS';
 }
-
-const BOOK_CODES: Record<string, string> = {
-  Genesis: 'GEN',
-  Joshua: 'JOS',
-  Psalm: 'PSA',
-  Proverbs: 'PRO',
-  Ecclesiastes: 'ECC',
-  Isaiah: 'ISA',
-  Joel: 'JOL',
-  Hosea: 'HOS',
-  Matthew: 'MAT',
-  Luke: 'LUK',
-  John: 'JHN',
-  Romans: 'ROM',
-  '1 Corinthians': '1CO',
-  '2 Corinthians': '2CO',
-  Galatians: 'GAL',
-  Ephesians: 'EPH',
-  Philippians: 'PHP',
-  Hebrews: 'HEB',
-  '1 Peter': '1PE',
-  '1 John': '1JN',
-};
 
 /**
  * Decoy text for a verse the player picked, drawn from the bundled collection
@@ -149,6 +129,15 @@ export async function fetchBiblePassage(
   passageId: string,
   signal?: AbortSignal,
 ): Promise<YouVersionPassage> {
+  if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+  const bundled = translation === 'WEB' ? bundledWebPassage(passageId) : undefined;
+  if (bundled) {
+    return { passageId, ...bundled, cache: 'HIT', translation: {
+      key: 'WEB', label: 'WEB', id: 0, abbreviation: 'WEB', source: 'bundled',
+      title: 'World English Bible Classic', copyright: 'Public Domain', promotionalContent: '',
+      youVersionDeepLink: 'https://ebible.org/details.php?id=eng-web',
+    } };
+  }
   const params = new URLSearchParams({ translation, passage: passageId });
   const response = await fetch(`/api/passage?${params}`, {
     method: 'GET',
@@ -232,10 +221,11 @@ export function attributionFor(
 ): ScriptureAttribution {
   if (translation.key === 'CUV') return CUV_ATTRIBUTION;
   return {
+    translationKey: translation.key,
     abbreviation: translation.abbreviation,
     title: translation.title,
     copyright: translation.copyright,
-    sourceLabel: 'YouVersion',
+    sourceLabel: translation.source === 'bundled' ? 'eBible.org' : 'YouVersion',
     sourceUrl: translation.youVersionDeepLink,
   };
 }

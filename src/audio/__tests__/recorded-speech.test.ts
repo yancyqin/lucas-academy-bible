@@ -1,9 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-const recordings = vi.hoisted(() => ({ find: vi.fn() }));
+const recordings = vi.hoisted(() => ({ find: vi.fn(), web: vi.fn() }));
 vi.mock('../cuv-recordings', () => ({
   cuvRecordingsSupported: () => true,
   recordingsForCuv: recordings.find,
+}));
+vi.mock('../web-recordings', () => ({
+  webRecordingsSupported: () => true,
+  recordingsForWeb: recordings.web,
 }));
 
 import { Narrator } from '../speech';
@@ -33,6 +37,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   FakeAudio.instances = [];
   recordings.find.mockReturnValue(clips);
+  recordings.web.mockReturnValue(undefined);
   vi.stubGlobal('Audio', FakeAudio);
   vi.stubGlobal('speechSynthesis', synth);
   vi.stubGlobal('SpeechSynthesisUtterance', class { constructor(public text: string) {} });
@@ -40,6 +45,25 @@ beforeEach(() => {
 afterEach(() => { vi.unstubAllGlobals(); });
 
 describe('recorded scripture playback', () => {
+  it('plays WEB recordings and falls back in English for the remaining verse', () => {
+    const english = [
+      { id: 'PSA.23.1', text: 'Yahweh is my shepherd.', url: '/audio/web-louise/1.mp3' },
+      { id: 'PSA.23.2', text: 'He makes me lie down.', url: '/audio/web-louise/2.mp3' },
+    ];
+    recordings.find.mockReturnValue(undefined);
+    recordings.web.mockReturnValue(english);
+    const narrator = new Narrator();
+    narrator.speak(english.map(c => c.text).join(' '), { webVerses: english.map(c => c.text), slow: false });
+    const audio = FakeAudio.instances[0];
+    expect(audio.src).toBe(english[0].url);
+    audio.onplaying?.();
+    audio.onended?.();
+    expect(audio.src).toBe(english[1].url);
+    audio.onerror?.();
+    expect(synth.speak.mock.calls[0][0].text).toBe(english[1].text);
+    expect(synth.speak.mock.calls[0][0].lang).toBe('en-US');
+    expect(audio.pause).toHaveBeenCalledOnce();
+  });
   it('plays every verse in order with one start and one finish callback', () => {
     const narrator = new Narrator();
     const onstart = vi.fn(), onend = vi.fn();

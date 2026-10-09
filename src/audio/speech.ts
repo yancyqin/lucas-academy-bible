@@ -1,4 +1,6 @@
-import { cuvRecordingsSupported, recordingsForCuv, type CuvRecording } from './cuv-recordings';
+import { cuvRecordingsSupported, recordingsForCuv } from './cuv-recordings';
+import { webRecordingsSupported, recordingsForWeb } from './web-recordings';
+import type { Recording } from './recordings';
 
 interface SpeakOptions {
   onend?: () => void;
@@ -6,10 +8,12 @@ interface SpeakOptions {
   slow?: boolean;
   /** Full CUV verses only; callers must check the edition and fragment flag. */
   cuvVerses?: readonly string[];
+  /** Full WEB verses only; callers must check the edition and fragment flag. */
+  webVerses?: readonly string[];
 }
 
 /**
- * CUV scripture narration via local recordings, with browser speech fallback.
+ * CUV and WEB scripture narration via local recordings, with browser speech fallback.
  * Passage narration is started by a tap on a Listen control. Short victory
  * praise is also available to the game after a successful round.
  * Degrades gracefully when recordings or browser speech are unavailable.
@@ -98,7 +102,7 @@ export class Narrator {
   private audio: HTMLAudioElement | null = null;
 
   constructor() {
-    this.supported = speechSupported() || cuvRecordingsSupported();
+    this.supported = speechSupported() || cuvRecordingsSupported() || webRecordingsSupported();
     if (speechSupported()) {
       this.refreshVoice();
       try {
@@ -231,7 +235,7 @@ export class Narrator {
     text: string,
     opts: SpeakOptions = {},
   ): void {
-    const clips = recordingsForCuv(text, opts.cuvVerses);
+    const clips = recordingsForCuv(text, opts.cuvVerses) ?? recordingsForWeb(text, opts.webVerses);
     if (clips && typeof Audio !== 'undefined') {
       this.speakRecordings(clips, opts);
       return;
@@ -239,7 +243,7 @@ export class Narrator {
     this.speakInLanguage(text, detectSpeechLanguage(text), opts);
   }
 
-  private speakRecordings(clips: CuvRecording[], opts: SpeakOptions): void {
+  private speakRecordings(clips: Recording[], opts: SpeakOptions): void {
     this.stop();
     const id = ++this.sessionId;
     this.active = true;
@@ -273,7 +277,7 @@ export class Narrator {
       fallingBack = true;
       // Finish the remaining verses if delivery fails, without replaying
       // the preceding ones or reviving a cancelled Listen session.
-      this.speakInLanguage(clips.slice(index).map((clip) => clip.text).join(' '), 'zh', {
+      this.speakInLanguage(clips.slice(index).map((clip) => clip.text).join(' '), detectSpeechLanguage(clips[index].text), {
         ...opts,
         onstart: started ? undefined : opts.onstart,
       });

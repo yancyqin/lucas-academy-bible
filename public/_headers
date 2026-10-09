@@ -8,3 +8,14 @@
 
 /audio/cuv-fangfang/catalog.json
   Cache-Control: public, max-age=300, must-revalidate
+
+/audio/web-louise/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Expose-Headers: Content-Length, Content-Range, Accept-Ranges
+  X-Content-Type-Options: nosniff
+
+/audio/web-louise/:version/*
+  Cache-Control: public, max-age=31536000, immutable, no-transform
+
+/audio/web-louise/catalog.json
+  Cache-Control: public, max-age=300, must-revalidate
