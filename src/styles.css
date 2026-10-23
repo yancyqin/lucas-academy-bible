@@ -1894,6 +1894,158 @@ body {
   margin: 4px 0 0;
 }
 
+/* ---- Dictation (Practice Mode: write the verse from memory) ------------- */
+
+.dictation__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.dictation__prompt {
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.dictation__input {
+  width: 100%;
+  min-height: 9em;
+  padding: 16px 18px;
+  border: 2px solid var(--gold-soft);
+  border-radius: var(--radius-tile);
+  background: var(--surface);
+  font-size: clamp(1.35rem, 3.6vw, 1.8rem);
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.dictation__input:focus {
+  outline: none;
+  border-color: var(--gold-deep);
+  box-shadow: var(--focus);
+}
+
+.dictation__input::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.55;
+}
+
+.dictation__input--cjk {
+  letter-spacing: 0.06em;
+}
+
+.dictation__result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.dictation__done {
+  margin: 0;
+  color: var(--sage-deep);
+  font-size: clamp(1.4rem, 4.2vw, 1.9rem);
+  text-align: center;
+}
+
+.dictation__done:focus {
+  outline: none;
+}
+
+.dictation__score {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--ink-soft);
+}
+
+.dictation__score b {
+  color: var(--ink);
+  font-size: clamp(2.6rem, 8vw, 3.6rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.dictation__verse {
+  align-self: stretch;
+  margin: 6px 0 0;
+  font-size: clamp(1.6rem, 4.4vw, 2.3rem);
+  line-height: 2.1;
+}
+
+.dictation__verse--cjk {
+  letter-spacing: 0.04em;
+}
+
+.dictation-mark {
+  border-radius: 6px;
+  padding: 0 2px;
+  text-decoration: none;
+}
+
+.dictation-mark--correct {
+  color: var(--sage-deep);
+}
+
+.dictation-mark--wrong {
+  color: var(--terracotta);
+  background: var(--terracotta-tint);
+}
+
+/* What was written instead, struck through above the right word. */
+.dictation-mark--wrong rt {
+  font-family: var(--font-ui);
+  font-size: 0.5em;
+  font-weight: 700;
+  color: var(--terracotta);
+  letter-spacing: 0;
+}
+
+.dictation-mark--missing {
+  color: var(--gold-deep);
+  background: rgba(227, 202, 127, 0.35);
+  border-bottom: 2px dashed var(--gold-deep);
+  border-radius: 6px 6px 0 0;
+}
+
+.dictation-mark--extra {
+  margin: 0 0.15em;
+  padding: 0 4px;
+  font-family: var(--font-ui);
+  font-size: 0.7em;
+  color: var(--terracotta);
+  background: var(--terracotta-tint);
+  text-decoration: line-through;
+  vertical-align: middle;
+}
+
+.guess__legend .dictation-mark {
+  padding: 4px 10px;
+  font-size: inherit;
+}
+
+.dictation__yours {
+  align-self: stretch;
+  padding: 12px 16px;
+  border-radius: var(--radius-tile);
+  background: rgba(239, 229, 208, 0.6);
+}
+
+.dictation__yours-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.dictation__yours p {
+  margin: 4px 0 0;
+  font-size: 1.15rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .timer {
   font-variant-numeric: tabular-nums;
   font-size: 0.85rem;
