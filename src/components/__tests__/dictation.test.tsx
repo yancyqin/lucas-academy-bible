@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { Narrator } from '../../audio/speech';
 import type { SoundEngine } from '../../audio/sound';
 import { buildLevel } from '../../game/build';
@@ -33,60 +33,18 @@ function talker() {
 }
 
 const writeButton = () => screen.queryByRole('button', { name: /write from memory|默写/i });
-/** Long enough for any test verse to finish playing in word by word. */
-const playThrough = () => act(() => vi.advanceTimersByTime(5_000));
 
 describe('dictation in Practice Mode', () => {
-  beforeEach(() => vi.useFakeTimers());
-  afterEach(() => vi.useRealTimers());
-
-  it('offers writing from memory once the verse has played in on screen', () => {
+  it('offers writing from memory from the start, beside Start recall', () => {
     const { narrator } = talker();
     render(
       <StudyPhase built={level} narrator={narrator} sound={soundMock()} onReady={noop} announce={noop} practiceMode />,
     );
 
-    // "Jesus wept." plays in over two 350 ms words, plus the last word's growth.
-    expect(writeButton()).not.toBeInTheDocument();
-    act(() => vi.advanceTimersByTime(1_000));
-    expect(writeButton()).not.toBeInTheDocument();
-    act(() => vi.advanceTimersByTime(50));
     expect(writeButton()).toBeInTheDocument();
+    expect(narrator.speak).not.toHaveBeenCalled();
     // The usual way on stays.
     expect(screen.getByRole('button', { name: /start recall/i })).toBeInTheDocument();
-  });
-
-  it('offers it as soon as Listen has read the verse to the end', () => {
-    const { narrator, finishReading } = talker();
-    render(
-      <StudyPhase built={level} narrator={narrator} sound={soundMock()} onReady={noop} announce={noop} practiceMode />,
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
-    expect(writeButton()).not.toBeInTheDocument();
-    finishReading();
-    expect(writeButton()).toBeInTheDocument();
-  });
-
-  it('does not count narration stopped before the end', () => {
-    const { narrator } = talker();
-    render(
-      <StudyPhase built={level} narrator={narrator} sound={soundMock()} onReady={noop} announce={noop} practiceMode />,
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
-    fireEvent.click(screen.getByRole('button', { name: /stop/i }));
-    expect(writeButton()).not.toBeInTheDocument();
-  });
-
-  it('never offers it on a timed level', () => {
-    const { narrator, finishReading } = talker();
-    render(<StudyPhase built={level} narrator={narrator} sound={soundMock()} onReady={noop} announce={noop} />);
-
-    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
-    finishReading();
-    playThrough();
-    expect(writeButton()).not.toBeInTheDocument();
   });
 
   it('offers it when nothing can read the verse aloud', () => {
@@ -94,19 +52,37 @@ describe('dictation in Practice Mode', () => {
     render(
       <StudyPhase built={level} narrator={silent} sound={soundMock()} onReady={noop} announce={noop} practiceMode />,
     );
-    playThrough();
     expect(writeButton()).toBeInTheDocument();
   });
 
-  it('hides the verse, grades the writing and shows what was wrong', () => {
+  it('never offers it on a timed level', () => {
     const { narrator, finishReading } = talker();
+    render(<StudyPhase built={level} narrator={narrator} sound={soundMock()} onReady={noop} announce={noop} />);
+
+    expect(writeButton()).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
+    finishReading();
+    expect(writeButton()).not.toBeInTheDocument();
+  });
+
+  it('stops the reading when writing starts', () => {
+    const { narrator } = talker();
+    render(
+      <StudyPhase built={level} narrator={narrator} sound={soundMock()} onReady={noop} announce={noop} practiceMode />,
+    );
+    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
+    fireEvent.click(writeButton()!);
+    expect(narrator.stop).toHaveBeenCalled();
+    expect(screen.getByRole('textbox', { name: /your verse/i })).toBeInTheDocument();
+  });
+
+  it('hides the verse, grades the writing and shows what was wrong', () => {
+    const { narrator } = talker();
     const sound = soundMock();
     const announce = vi.fn();
     const { container } = render(
       <StudyPhase built={level} narrator={narrator} sound={sound} onReady={noop} announce={announce} practiceMode />,
     );
-    fireEvent.click(screen.getByRole('button', { name: /listen/i }));
-    finishReading();
     fireEvent.click(writeButton()!);
 
     expect(container.querySelector('.study__scripture')).not.toBeInTheDocument();
@@ -137,7 +113,6 @@ describe('dictation in Practice Mode', () => {
     render(
       <StudyPhase built={level} narrator={silent} sound={sound} onReady={noop} announce={noop} practiceMode />,
     );
-    playThrough();
     fireEvent.click(writeButton()!);
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'jesus wept' } });
     fireEvent.click(screen.getByRole('button', { name: /submit/i }));
@@ -152,7 +127,6 @@ describe('dictation in Practice Mode', () => {
     const { container } = render(
       <StudyPhase built={level} narrator={silent} sound={soundMock()} onReady={noop} announce={noop} practiceMode />,
     );
-    playThrough();
     fireEvent.click(writeButton()!);
     fireEvent.change(screen.getByRole('textbox'), { target: { value: 'Jesus' } });
     fireEvent.click(screen.getByRole('button', { name: /look again/i }));
@@ -167,7 +141,6 @@ describe('dictation in Practice Mode', () => {
     const { container } = render(
       <StudyPhase built={chineseLevel} narrator={silent} sound={soundMock()} onReady={noop} announce={noop} practiceMode />,
     );
-    playThrough();
     fireEvent.click(screen.getByRole('button', { name: '✎ 默写' }));
     fireEvent.change(screen.getByRole('textbox', { name: '你的默写' }), { target: { value: '耶苏了' } });
     fireEvent.click(screen.getByRole('button', { name: '提交' }));

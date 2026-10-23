@@ -30,15 +30,6 @@ function wordCount(text: string): number {
   return tokenize(text.trim()).filter(Boolean).length;
 }
 
-/** How long the memorize screen takes to play the verse in, word by word. */
-function revealMs(built: BuiltLevel): number {
-  const words =
-    built.verses.length > 1
-      ? built.verses.reduce((sum, v) => sum + wordCount(v.text), 0)
-      : wordCount(built.fullText);
-  return (words + 1) * WORD_READING_MS;
-}
-
 function AnimatedWords({
   text,
   startIndex,
@@ -82,10 +73,6 @@ export function StudyPhase({
   const total = built.memorizeSeconds;
   const [left, setLeft] = useState(total);
   const [speaking, setSpeaking] = useState(false);
-  // Practice Mode offers writing the verse from memory once the verse has
-  // played through: the word-by-word reveal has finished, or Listen has read
-  // it to the end — whichever comes first.
-  const [played, setPlayed] = useState(false);
   const [writing, setWriting] = useState(false);
   const [draft, setDraft] = useState('');
   const onReadyRef = useRef(onReady);
@@ -99,10 +86,7 @@ export function StudyPhase({
     narrator.speak(built.fullText, {
       slow: true,
       ...levelNarrationOptions(built),
-      onend: () => {
-        setSpeaking(false);
-        setPlayed(true);
-      },
+      onend: () => setSpeaking(false),
     });
   };
 
@@ -143,12 +127,6 @@ export function StudyPhase({
 
   useEffect(() => () => narrator.stop(), [narrator]);
 
-  useEffect(() => {
-    if (!practiceMode) return undefined;
-    const id = window.setTimeout(() => setPlayed(true), revealMs(built));
-    return () => window.clearTimeout(id);
-  }, [practiceMode, built]);
-
   const startRecall = () => {
     narrator.stop();
     // This tap is a fresh mobile user gesture. Re-unlock Web Audio after
@@ -166,7 +144,6 @@ export function StudyPhase({
   };
 
   const chinese = isCjkText(built.fullText);
-  const canWrite = practiceMode && played;
 
   if (writing) {
     return (
@@ -276,7 +253,7 @@ export function StudyPhase({
           </div>
 
           <div className="btn-row study__start">
-            {canWrite && (
+            {practiceMode && (
               <button type="button" className="btn btn--ghost" onClick={startWriting}>
                 {chinese ? '✎ 默写' : '✎ Write from memory'}
               </button>
