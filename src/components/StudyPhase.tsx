@@ -3,6 +3,7 @@ import { levelNarrationOptions } from '../audio/level-narration';
 import type { BuiltLevel } from '../game/build';
 import type { Narrator } from '../audio/speech';
 import type { SoundEngine } from '../audio/sound';
+import { DictationPanel } from './DictationPanel';
 import { Hearts } from './Hearts';
 import { isCjkText, tokenize } from '../game/chunk';
 
@@ -72,6 +73,11 @@ export function StudyPhase({
   const total = built.memorizeSeconds;
   const [left, setLeft] = useState(total);
   const [speaking, setSpeaking] = useState(false);
+  // Practice Mode offers writing the verse from memory once it has been heard
+  // through to the end (or straight away when nothing can read it aloud).
+  const [heard, setHeard] = useState(false);
+  const [writing, setWriting] = useState(false);
+  const [draft, setDraft] = useState('');
   const onReadyRef = useRef(onReady);
   onReadyRef.current = onReady;
   const announced = useRef(false);
@@ -83,7 +89,10 @@ export function StudyPhase({
     narrator.speak(built.fullText, {
       slow: true,
       ...levelNarrationOptions(built),
-      onend: () => setSpeaking(false),
+      onend: () => {
+        setSpeaking(false);
+        setHeard(true);
+      },
     });
   };
 
@@ -133,6 +142,30 @@ export function StudyPhase({
     announce('Rebuild the verse now.');
     onReadyRef.current();
   };
+
+  const startWriting = () => {
+    narrator.stop();
+    setSpeaking(false);
+    setWriting(true);
+  };
+
+  const chinese = isCjkText(built.fullText);
+  const canWrite = practiceMode && (heard || !narrator.supported);
+
+  if (writing) {
+    return (
+      <DictationPanel
+        built={built}
+        chinese={chinese}
+        sound={sound}
+        announce={announce}
+        modeLabel={modeLabel}
+        draft={draft}
+        onDraftChange={setDraft}
+        onBack={() => setWriting(false)}
+      />
+    );
+  }
 
   const pct = Math.max(0, Math.min(1, left / total));
   const urgent = pct <= 0.25;
@@ -227,6 +260,11 @@ export function StudyPhase({
           </div>
 
           <div className="btn-row study__start">
+            {canWrite && (
+              <button type="button" className="btn btn--ghost" onClick={startWriting}>
+                {chinese ? '✎ 默写' : '✎ Write from memory'}
+              </button>
+            )}
             <button type="button" className="btn btn--primary" onClick={startRecall}>
               Start recall
             </button>
