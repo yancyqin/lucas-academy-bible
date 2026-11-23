@@ -274,9 +274,14 @@ Free, start now
 Costs money
 
 - [ ] **Apple Developer Program, Organization, $99.** Enrollment submitted
-      2026-11-22; Apple is verifying the Account Holder's authority to sign
-      for the organization and will email how to finish. Watch the admin@
-      mailbox and the organization phone. Check status at
+      2026-11-22. Apple then replied asking for verification documents
+      (owner-reported 2026-11-23): the applicant's photo ID, proof of
+      employment, the Articles of Incorporation, and IRS documents for a
+      nonprofit. Provide them the way Apple's message says; the corporate
+      originals are in la-org `private/`. Apple will email how to finish once
+      it has verified the Account Holder's authority to sign for the
+      organization. Watch the admin@ mailbox and the organization phone.
+      Check status at
       developer.apple.com/account; to follow up use
       developer.apple.com/contact › Membership and Account › Program
       Enrollment and quote the Enrollment ID (kept, with the D-U-N-S, in
