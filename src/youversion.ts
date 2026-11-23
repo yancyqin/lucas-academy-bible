@@ -13,6 +13,7 @@ import {
   isTranslationKey,
   type TranslationKey,
 } from './translation-config';
+import { fetchLocalPassage, isLocalTranslation } from './local-bible';
 
 export interface YouVersionTranslation {
   /** Locally bundled public-domain passages have no YouVersion Bible id. */
@@ -137,6 +138,10 @@ export async function fetchBiblePassage(
       title: 'World English Bible Classic', copyright: 'Public Domain', promotionalContent: '',
       youVersionDeepLink: 'https://ebible.org/details.php?id=eng-web',
     } };
+  }
+  // WEB and CUV ship with the app — no request leaves the device for them.
+  if (isLocalTranslation(translation)) {
+    return fetchLocalPassage(translation, passageId, signal);
   }
   const params = new URLSearchParams({ translation, passage: passageId });
   const response = await fetch(`/api/passage?${params}`, {

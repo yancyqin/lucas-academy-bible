@@ -1,8 +1,11 @@
 import type { TranslationKey } from './translation-config';
+import { fetchLocalBooks, isLocalTranslation } from './local-bible';
 import { MAX_VERSE_SPAN, type VerseRequest } from './verse-request';
 
 /**
- * The book/chapter/verse catalogue behind the Pick a Verse picker, served by
+ * The book/chapter/verse catalogue behind the Pick a Verse picker. The two
+ * public-domain editions (WEB, CUV) read theirs from the bundled files under
+ * public/web and public/cuv (see src/local-bible.ts); licensed editions ask
  * the Worker's `/api/books` (YouVersion's book list, compacted and cached).
  *
  * Every edition brings its OWN catalogue: the titles are localized by the
@@ -59,6 +62,13 @@ export async function fetchBibleBooks(
 ): Promise<BibleBooks> {
   const cached = cache.get(translation);
   if (cached) return cached;
+
+  if (isLocalTranslation(translation)) {
+    const local = await fetchLocalBooks(translation, signal);
+    if (!isBooks(local)) throw new Error('The bundled list of books was incomplete.');
+    cache.set(translation, local);
+    return local;
+  }
 
   const params = new URLSearchParams({ translation });
   const response = await fetch(`/api/books?${params}`, {

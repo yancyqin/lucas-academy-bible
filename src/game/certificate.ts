@@ -5,6 +5,8 @@
  * time, and a cursive "Lucas Academy" signature.
  */
 
+import { saveFile } from '../platform';
+
 export interface CertificateData {
   pass: boolean;
   certLevel: number;
@@ -243,22 +245,23 @@ export function renderCertificate(data: CertificateData): HTMLCanvasElement {
   return canvas;
 }
 
-/** Render and download the certificate as a PNG. */
+/** File name for a certificate PNG. */
+export function certificateFilename(data: Pick<CertificateData, 'practiceMode' | 'certLevel'>): string {
+  const mode = data.practiceMode ? '-practice' : '';
+  return `bible-sequence${mode}-certificate-level-${data.certLevel}.png`;
+}
+
+/**
+ * Render the certificate as a PNG and hand it to the user — a download on the
+ * web, the share sheet on iOS (see src/platform.ts).
+ */
 export function downloadCertificate(data: CertificateData): void {
   try {
     const canvas = renderCertificate(data);
-    const mode = data.practiceMode ? '-practice' : '';
-    const filename = `bible-sequence${mode}-certificate-level-${data.certLevel}.png`;
+    const filename = certificateFilename(data);
     canvas.toBlob((blob) => {
       if (!blob) return;
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      void saveFile(blob, filename);
     }, 'image/png');
   } catch {
     /* canvas/blob unavailable — the on-screen certificate is still there */

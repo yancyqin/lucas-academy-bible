@@ -1,4 +1,5 @@
 import type { ScriptureAttribution } from '../game/build';
+import { openExternalLink } from '../platform';
 
 interface BibleAttributionProps {
   attributions: ScriptureAttribution[];
@@ -18,7 +19,12 @@ export function BibleAttribution({ attributions }: BibleAttributionProps) {
           {attribution.sourceLabel && attribution.sourceUrl && (
             <>
               {' · '}
-              <a href={attribution.sourceUrl} target="_blank" rel="noreferrer">
+              <a
+                href={attribution.sourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={openExternalLink}
+              >
                 {attribution.sourceLabel}
               </a>
             </>

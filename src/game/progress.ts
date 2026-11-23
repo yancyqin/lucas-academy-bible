@@ -4,11 +4,14 @@ import {
   isTranslationKey,
   type TranslationKey,
 } from '../translation-config';
+import { storage as platformStorage } from '../platform';
 
 /**
- * Local progress persistence. Frontend-only: everything lives in localStorage.
- * Corrupt or hostile data must never crash the app — `loadProgress` always
- * returns a valid object, resetting to defaults when parsing/validation fails.
+ * Local progress persistence. Frontend-only: everything lives in the platform
+ * storage (localStorage on the web, mirrored to native preferences on iOS —
+ * see src/platform.ts). Corrupt or hostile data must never crash the app —
+ * `loadProgress` always returns a valid object, resetting to defaults when
+ * parsing/validation fails.
  */
 
 const STORAGE_KEY = 'lucas-bible-sequence:v1';
@@ -115,13 +118,7 @@ export function sanitizeProgress(raw: unknown): Progress {
 type StorageLike = Pick<Storage, 'getItem' | 'setItem'>;
 
 function getStore(store?: StorageLike): StorageLike | null {
-  if (store) return store;
-  try {
-    if (typeof localStorage !== 'undefined') return localStorage;
-  } catch {
-    /* access can throw in sandboxed contexts */
-  }
-  return null;
+  return store ?? platformStorage;
 }
 
 export function loadProgress(store?: StorageLike): Progress {
