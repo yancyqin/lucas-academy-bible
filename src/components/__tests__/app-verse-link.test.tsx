@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from '../../App';
+import { LOCAL_BOOK_CACHE_FOR_TESTS } from '../../local-bible';
 
 const catalogue = {
   translation: { key: 'WEB', label: 'WEB' },
@@ -27,9 +28,19 @@ const john316 = {
   },
 };
 
+// WEB ships with the app: the picker's catalogue and the passage text come
+// from the bundled per-book files, never from /api/*.
+const webIndex = { translation: 'WEB', books: catalogue.books };
+const johnFile = {
+  book: 'John',
+  chapters: { '3': { '16': john316.text } },
+};
+
 function stubApi() {
   const api = vi.fn(async (input: unknown) => {
     const url = String(input);
+    if (url === '/web/index.json') return Response.json(webIndex);
+    if (url === '/web/JHN.json') return Response.json(johnFile);
     if (url.startsWith('/api/books')) return Response.json(catalogue);
     if (url.startsWith('/api/passage')) return Response.json(john316);
     throw new Error(`unexpected fetch ${url}`);
@@ -42,6 +53,8 @@ describe('Pick a Verse tab', () => {
   beforeEach(() => {
     localStorage.clear();
     window.history.replaceState({}, '', '/');
+    // Bundled book files are cached for the session; each test stubs its own.
+    LOCAL_BOOK_CACHE_FOR_TESTS.clear();
   });
 
   afterEach(() => {
@@ -67,7 +80,10 @@ describe('Pick a Verse tab', () => {
     fireEvent.click(screen.getByRole('tab', { name: 'Pick a Verse' }));
 
     expect(await screen.findByLabelText('Book')).toBeInTheDocument();
-    expect(String(api.mock.calls[0][0])).toBe('/api/books?translation=WEB');
+    expect(String(api.mock.calls[0][0])).toBe('/web/index.json');
+    expect(api.mock.calls.map((call) => String(call[0]))).not.toContainEqual(
+      expect.stringContaining('/api/'),
+    );
     expect(
       screen.getByRole('button', { name: /Play John 3:16 on Normal/ }),
     ).toBeInTheDocument();
@@ -88,20 +104,16 @@ describe('Pick a Verse tab', () => {
     // Easy is timed, so the eyebrow carries the difficulty rather than a level.
     expect(screen.getByText('Easy · Memorize')).toBeInTheDocument();
 
-    const passageCall = api.mock.calls
-      .map((call) => String(call[0]))
-      .find((url) => url.startsWith('/api/passage'));
-    expect(passageCall).toBeUndefined();
+    const urls = api.mock.calls.map((call) => String(call[0]));
+    expect(urls.some((url) => url.startsWith('/api/'))).toBe(false);
   });
 
   it('opens a linked verse on the picker tab when the passage cannot load', async () => {
     window.history.replaceState({}, '', '/?passage=JHN.3.1');
     vi.stubGlobal('fetch', async (input: unknown) => {
-      if (String(input).startsWith('/api/books')) return Response.json(catalogue);
-      return Response.json(
-        { error: 'passage_unavailable', message: 'That passage could not be loaded.' },
-        { status: 502 },
-      );
+      if (String(input) === '/web/index.json') return Response.json(webIndex);
+      // The bundled book file is missing — a broken build, but still no crash.
+      return new Response('', { status: 404 });
     });
     render(<App />);
 
@@ -113,7 +125,7 @@ describe('Pick a Verse tab', () => {
       'true',
     );
     expect(
-      await screen.findByText('That passage could not be loaded.'),
+      await screen.findByText('That Bible passage could not be loaded.'),
     ).toBeInTheDocument();
   });
 

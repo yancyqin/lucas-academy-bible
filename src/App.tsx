@@ -57,7 +57,8 @@ import {
 import type { DistractorPassage } from './game/distractors';
 import { isCjkText, tokenize } from './game/chunk';
 import { buildGuessGame, type GuessGame, type GuessKind } from './game/guess';
-import { BUILD_FEATURES } from './build-config';
+import { BUILD_FEATURES, shareLinkBase } from './build-config';
+import { isLocalTranslation } from './local-bible';
 
 type Phase =
   | 'welcome'
@@ -203,11 +204,13 @@ async function loadDecoyPool(
 
 export default function App() {
   const dailyEnabled = BUILD_FEATURES.dailyVerse;
+  const pickVerseEnabled = BUILD_FEATURES.pickVerse;
   const translationApiEnabled = BUILD_FEATURES.licensedTranslations;
+  const localTranslationsEnabled = BUILD_FEATURES.localTranslations;
   // A ?passage= link opens straight into that verse. Read once, before any
-  // state initializer that depends on it. The itch build has no API to ask.
+  // state initializer that depends on it. The itch build has no picker.
   const [verseLink] = useState(() =>
-    dailyEnabled && typeof window !== 'undefined'
+    pickVerseEnabled && typeof window !== 'undefined'
       ? readVerseLink(window.location.search)
       : null,
   );
@@ -233,10 +236,10 @@ export default function App() {
   const [assertive, setAssertive] = useState<LiveMsg>({ text: '', id: 0 });
   const [gameMode, setGameMode] = useState<GameMode>('journey');
   const [practiceMode, setPracticeMode] = useState(false);
-  // Pick a Verse is the home tab. The itch build has no tab strip and no API to
-  // fill the picker, so it opens on the Challenge it can actually play.
+  // Pick a Verse is the home tab. The itch build has no tab strip and no
+  // picker, so it opens on the Challenge it can actually play.
   const [welcomeTab, setWelcomeTab] = useState<WelcomeTab>(
-    dailyEnabled ? 'verse' : 'journey',
+    pickVerseEnabled ? 'verse' : 'journey',
   );
   const [verseRequest, setVerseRequest] = useState<VerseRequest>(
     verseLink?.request ?? DEFAULT_VERSE_REQUEST,
@@ -280,7 +283,13 @@ export default function App() {
   const goWelcomeRef = useRef<() => void>(() => undefined);
 
   const soundEnabled = progress.soundEnabled;
-  const translation = translationApiEnabled ? progress.translation : 'WEB';
+  // Without the Worker only the bundled editions can be played: a saved
+  // licensed choice falls back to WEB rather than to a request that would fail.
+  const translation: TranslationKey = translationApiEnabled
+    ? progress.translation
+    : localTranslationsEnabled && isLocalTranslation(progress.translation)
+      ? progress.translation
+      : 'WEB';
   phaseRef.current = phase;
 
   useEffect(() => {
@@ -320,7 +329,7 @@ export default function App() {
     verseCatalogue?.translation !== translation && booksErrorMessage === '';
 
   useEffect(() => {
-    if (!dailyEnabled || phase !== 'welcome' || welcomeTab !== 'verse') {
+    if (!pickVerseEnabled || phase !== 'welcome' || welcomeTab !== 'verse') {
       return undefined;
     }
     if (verseCatalogue?.translation === translation) return undefined;
@@ -350,7 +359,7 @@ export default function App() {
   }, [
     booksErrorMessage,
     booksRequest,
-    dailyEnabled,
+    pickVerseEnabled,
     phase,
     translation,
     verseCatalogue?.translation,
@@ -897,7 +906,7 @@ export default function App() {
             difficulty: verseDifficulty,
             ...(verseGame === 'sequence' ? {} : { game: verseGame }),
           },
-          window.location.href,
+          shareLinkBase(BUILD_FEATURES, window.location.href),
         );
 
   return (
@@ -952,6 +961,8 @@ export default function App() {
           onBeginScrabble={startDailyScrabble}
           onBeginWordSearch={startDailyWordSearch}
           dailyEnabled={dailyEnabled}
+          pickVerseEnabled={pickVerseEnabled}
+          localTranslationsEnabled={localTranslationsEnabled}
           translation={translation}
           onSelectTranslation={selectTranslation}
           journeyError={journeyError}

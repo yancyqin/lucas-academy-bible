@@ -12,3 +12,5 @@ coverage
 .wrangler
 *.tsbuildinfo
 __pycache__/
+dist-native
+build/

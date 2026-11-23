@@ -1,8 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { bundledWebPassage } from '../bundled-web';
 import { attributionFor, fetchBiblePassage } from '../../youversion';
+import { LOCAL_BOOK_CACHE_FOR_TESTS } from '../../local-bible';
 
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+  LOCAL_BOOK_CACHE_FOR_TESTS.clear();
+});
 
 describe('bundled WEB selections', () => {
   it('keeps the original Psalm heading and every selected verse', () => {
@@ -24,16 +28,20 @@ describe('bundled WEB selections', () => {
     expect(fetch).not.toHaveBeenCalled();
     expect(attributionFor(passage.translation).sourceLabel).toBe('eBible.org');
   });
-  it('keeps other editions and missing WEB references on the normal passage API', async () => {
-    const fetch = vi.fn().mockResolvedValue({ ok: true, json: async () => ({
-      passageId: 'JHN.11.35', reference: 'John 11:35', text: 'Jesus wept.', cache: 'HIT',
-      translation: { key: 'NIV', label: 'NIV', copyright: 'Licensed' },
-    }) });
+  it('keeps licensed editions on the passage API and reads other WEB verses from the bundled book', async () => {
+    const fetch = vi.fn(async (input: unknown) => String(input) === '/web/JHN.json'
+      ? Response.json({ book: 'John', chapters: { '11': { '36': 'The Jews therefore said, “See how much affection he had for him!”' } } })
+      : Response.json({
+        passageId: 'JHN.11.35', reference: 'John 11:35', text: 'Jesus wept.', cache: 'HIT',
+        translation: { key: 'NIV', label: 'NIV', copyright: 'Licensed' },
+      }));
     vi.stubGlobal('fetch', fetch);
     await fetchBiblePassage('NIV', 'JHN.11.35');
-    await fetchBiblePassage('WEB', 'JHN.11.36');
+    const web = await fetchBiblePassage('WEB', 'JHN.11.36');
     expect(fetch).toHaveBeenCalledTimes(2);
-    expect(fetch.mock.calls[0][0]).toContain('translation=NIV');
-    expect(fetch.mock.calls[1][0]).toContain('translation=WEB');
+    expect(String(fetch.mock.calls[0][0])).toContain('/api/passage?translation=NIV');
+    expect(String(fetch.mock.calls[1][0])).toBe('/web/JHN.json');
+    expect(web.reference).toBe('John 11:36');
+    expect(attributionFor(web.translation).sourceLabel).toBe('eBible.org');
   });
 });

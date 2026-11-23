@@ -1,26 +1,37 @@
 # Distribution — Bible Sequence as a native app
 
-Status: plan written 2026-09-28. P1 (build targets + platform layer + bundled
-WEB/CUV for offline Pick a Verse) and P2 (iOS project, verified in the
-iPhone 17 Pro and iPad Pro 13" simulators: Pick a Verse EN/中文, Challenge,
-certificate share sheet, footer link in the in-app Safari view) done
-2026-09-29, all uncommitted. Not yet checked on a device: narration and
-sound (simulator audio is not observable here). Next: owner's P0 (§4) →
-first manual TestFlight upload → P3 CI.
+Status as of 2026-11-23: **the iOS code is in the repository and runs.** P1
+(build targets, platform layer, bundled WEB + CUV editions) and P2 (the
+Capacitor iOS project) were written 2026-09-28/29, then ported onto current
+main on 2026-11-23 together with everything that landed in between (Guess
+Letters, Next Word, the 默写 Practice option, recorded narration). What is left
+before the first TestFlight upload is on the owner's side (§4): Apple's
+approval of the organization enrollment, the $99 fee, the App Store Connect
+record, and signing Xcode into the organization account. Then P3 (CI).
 
-Re-checked 2026-11-05:
+Checked on 2026-11-23, on the ported build:
 
-- **The iOS code is not in this repository yet.** It exists only as
-  uncommitted changes in the owner's local checkout, which sits 14 commits
-  behind main (PRs #3–#8 since: Guess Letters + Next Word games, Fangfang
-  CUV and Louise WEB recorded narration, the 默写 Practice option). Before
-  the first TestFlight build the P1/P2 changes described below must be
-  ported onto current main as their own PR. This document lands first so the
-  plan is not lost.
-- **Recorded narration is off in the iOS build** on origin/main
-  (`offlineNarration()` returns true for `ios`), so the app reads verses with
-  the device voice. Bundling the recordings would add about 22 MB
-  (12 MB Fangfang + 9.7 MB Louise); a v1.1 decision, not a blocker.
+- 283 tests green, `tsc -b` clean, all three builds succeed (web, itch, ios).
+- The `dist-native` bundle (11 MB) requests nothing but its own files: no
+  `/api/*`, no other origin, no recorded-narration audio.
+- In the iPhone 17 Pro Max and iPad Pro 13" simulators: Pick a Verse in English
+  and 中文, Challenge through to the certificate, Guess Letters, 默写 with the
+  keyboard up, Copy link, the footer link in the in-app Safari view, the
+  certificate PNG in the share sheet, and the chosen language surviving a
+  relaunch.
+- An unsigned Release build for a real device (`generic/platform=iOS`, what
+  Archive compiles) succeeds: arm64, 13 MB, privacy manifest inside.
+- **Not checked, needs a real device:** narration and sound effects (simulator
+  audio is not observable here).
+
+Two things differ between the app and the web site by design:
+
+- **Recorded narration is off in the iOS build** (`offlineNarration()` is true
+  for `ios`, and the build drops `audio/cuv-fangfang` and `audio/web-louise`),
+  so the app reads verses with the device voice. Bundling the recordings would
+  add about 22 MB; a v1.1 decision, not a blocker.
+- **Copy link shares the public web address** (`bible.lucasacademy.org/?passage=…`),
+  because the app's own address means nothing outside the app.
 
 Bible Sequence ships from **one codebase** as:
 
@@ -63,7 +74,7 @@ free app; see §1). Nothing in the code refers to them.
 
 ## 2. Code phases
 
-### P1 — build targets + platform layer (this branch)
+### P1 — build targets + platform layer (done)
 
 - `src/build-config.ts`: `VITE_DIST_TARGET=web|itch|ios` replaces the boolean
   `VITE_ITCH_BUILD` (still honoured as an alias so nothing external breaks).
@@ -111,11 +122,17 @@ free app; see §1). Nothing in the code refers to them.
   `@capacitor/share`, `@capacitor/preferences`, `@capacitor/browser`; dev
   `@capacitor/cli`. Plugins are loaded with dynamic `import()` inside the iOS
   branch only, so the web/itch bundles do not grow.
-- Acceptance (met 2026-09-29): 219 tests green, `tsc -b` clean, all three
-  builds succeed; the `dist-native` bundle served locally plays a CUV verse
-  and a WEB Psalm range with zero `/api` requests.
+- Passage lookups go curated selection first (`src/data/bundled-web.ts`, the
+  exact text the Challenge and the recordings use), then the bundled per-book
+  files, then the Worker for licensed editions. Bundled editions carry
+  `source: 'bundled'`, so the footer credits eBible.org, not YouVersion.
+- `shareLinkBase()` in `build-config.ts`: a build with no site behind it
+  (`offline`) bases Pick a Verse share links on `PUBLIC_SITE_URL`.
+- Acceptance (met 2026-09-29, re-met on current main 2026-11-23): tests green
+  (283), `tsc -b` clean, all three builds succeed; the `dist-native` bundle
+  served locally plays CUV and WEB verses with zero `/api` requests.
 
-### P2 — iOS project (generated 2026-09-29)
+### P2 — iOS project (done)
 
 - `capacitor.config.ts`: `appId` `org.lucasacademy.biblesequence`, `appName`
   "Bible Sequence", `webDir: 'dist-native'`. No `server.url`, no cleartext,
@@ -141,6 +158,11 @@ free app; see §1). Nothing in the code refers to them.
   `NSAppTransportSecurity` exceptions (the app makes no network calls),
   `ITSAppUsesNonExemptEncryption = false` (no export-compliance prompt per
   upload).
+- `ios/App/App/PrivacyInfo.xcprivacy`: Apple's privacy manifest. Nothing
+  collected, no tracking, and the two required-reason APIs the plugins use:
+  UserDefaults (`@capacitor/preferences`, CA92.1) and file timestamps
+  (`@capacitor/filesystem`, C617.1). A missing entry is only reported at
+  upload, so when adding a plugin read its README for a manifest section.
 - Version: `scripts/sync_ios_version.mjs` copies `package.json` `version`
   into `MARKETING_VERSION`; `IOS_BUILD_NUMBER` (CI run number) sets
   `CURRENT_PROJECT_VERSION`. `npm run ios:sync` = build:native + version sync +
@@ -224,8 +246,8 @@ Academy as seller and the copyright line as decided there.
 
 ## 4. Owner checklist — P0 (things only you can do)
 
-Status as of 2026-10-16 (owner's P0 session). Open: the $99 enrollment,
-the App Store Connect record, iPhone screenshots, Xcode signing.
+Status as of 2026-11-23. Open: Apple's approval of the enrollment and the
+$99 fee, the App Store Connect record, Xcode signing.
 
 Free, start now
 
@@ -242,7 +264,7 @@ Free, start now
 - [x] **Privacy policy.** Section "Bible Sequence app (iPhone and iPad)"
       added to lucasacademy.org/privacy, EN + ZH, anchor
       `#bible-sequence-app`, last-reviewed date updated
-      (yancyqin/Lucas-Academy PR #49, **merge to publish**). It says the
+      (yancyqin/Lucas-Academy PR #49, merged 2026-10-17, live). It says the
       app has no account or sign-in, and separately that the website's
       email sign-in is a website feature, so "no accounts" is never claimed
       for lucasacademy.org itself.
@@ -251,10 +273,21 @@ Free, start now
 
 Costs money
 
-- [ ] **Apple Developer Program, Organization, $99.** Needs the D-U-N-S,
-      admin@lucasacademy.org, and lucasacademy.org. Expect a verification
-      call. Pay from the corporate account if it has a card; otherwise
-      record it as an advance (see §3).
+- [ ] **Apple Developer Program, Organization, $99.** Enrollment submitted
+      2026-11-22. Apple then replied asking for verification documents
+      (owner-reported 2026-11-23): the applicant's photo ID, proof of
+      employment, the Articles of Incorporation, and IRS documents for a
+      nonprofit. Provide them the way Apple's message says; the corporate
+      originals are in la-org `private/`. Apple will email how to finish once
+      it has verified the Account Holder's authority to sign for the
+      organization. Watch the admin@ mailbox and the organization phone.
+      Check status at
+      developer.apple.com/account; to follow up use
+      developer.apple.com/contact › Membership and Account › Program
+      Enrollment and quote the Enrollment ID (kept, with the D-U-N-S, in
+      la-org `private/Corporate/Apple-Developer/`, never here). When the
+      approval arrives, pay the $99 from the corporate account if it has a
+      card; otherwise record it as an advance (see §3).
 - [ ] After approval: in App Store Connect create the app record (bundle id
       `org.lucasacademy.biblesequence`). The CI API key can wait for P3.
 
@@ -262,11 +295,12 @@ Assets
 
 - [x] **1024×1024 app icon** (2026-10-16): `assets/logo.svg` → `npm run
       ios:icon`. Replace the SVG if you want different artwork.
-- [x] **13" iPad screenshots** (2064×2752, 5 shots) in
-      `build/app-store/ipad-13/` (gitignored; regenerate from the simulator).
-- [ ] **6.9" iPhone screenshots** (1320×2868): blocked until the simulator
-      tool is allowed to drive the iPhone 17 Pro Max simulator. Approve it
-      once in the simulator panel and Claude captures the same five shots.
+- [x] **13" iPad screenshots** (2064×2752) and **6.9" iPhone screenshots**
+      (1320×2868), five each, retaken 2026-11-23 from the ported build with
+      the current home screen: `build/app-store/2026-11-23/ipad-13/` and
+      `…/iphone-6.9/` in the owner's main checkout (gitignored, no alpha
+      channel; regenerate from the simulator). The 2026-10-16 iPad set in
+      `build/app-store/ipad-13/` shows the older home screen.
 - [ ] Optional 15–30 s app preview video.
 
 Signing (first TestFlight, after enrollment)
@@ -279,9 +313,10 @@ Not P0, keep on the list
 - [ ] IP ownership and licence (§3) in the 501(c)(3) application (I4) and
       the IP/open-publication policy (I9).
 
-Code side, not yours (blocks the first TestFlight)
+Code side, not yours
 
-- Bring the uncommitted P1/P2 work onto current origin/main and open a PR.
+- [x] P1/P2 ported onto current main (2026-11-23).
+- [ ] P3 CI, after the first manual TestFlight upload.
 
 ---
 
@@ -296,7 +331,7 @@ Code side, not yours (blocks the first TestFlight)
 | Primary category | Education (secondary: Games › Word or Reference) |
 | Age rating | 4+ (no objectionable content; answer "No" to every questionnaire item) |
 | Privacy nutrition label | **Data Not Collected** |
-| Privacy policy URL | https://lucasacademy.org/privacy.html#bible-sequence-app (live once PR #49 merges) |
+| Privacy policy URL | https://lucasacademy.org/privacy.html#bible-sequence-app |
 | Support URL | https://lucasacademy.org/contact |
 | Copyright | per §3 IP decision |
 | Review notes | "Fully offline scripture-memory game. No account, no sign-in, no network calls, no purchases. Scripture text is public domain (World English Bible, Chinese Union Version). Tap Play on the Pick a Verse tab, or Begin challenge." |
@@ -308,7 +343,7 @@ TestFlight external testing needs its own (lighter) review.
 
 ---
 
-## 6. Runbook (once P2 exists)
+## 6. Runbook
 
 ```bash
 nvm use 22                    # Capacitor CLI

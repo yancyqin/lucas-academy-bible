@@ -33,7 +33,12 @@ interface WelcomeProps {
   onBeginDaily: () => void;
   onBeginScrabble: () => void;
   onBeginWordSearch: () => void;
+  /** Daily Verse / Daily Scrabble / Word Search tabs (need the Worker). */
   dailyEnabled: boolean;
+  /** The Pick a Verse tab (bundled WEB + CUV work offline). */
+  pickVerseEnabled: boolean;
+  /** Offer English / 中文 between the bundled editions even without the API. */
+  localTranslationsEnabled: boolean;
   translation: TranslationKey;
   onSelectTranslation: (translation: TranslationKey) => void;
   journeyError: string;
@@ -58,6 +63,8 @@ export function Welcome({
   onBeginScrabble,
   onBeginWordSearch,
   dailyEnabled,
+  pickVerseEnabled,
+  localTranslationsEnabled,
   translation,
   onSelectTranslation,
   journeyError,
@@ -67,12 +74,19 @@ export function Welcome({
   const dailyReady =
     dailyVerse !== null && dailyVerse.translation.key === translation;
   const selectedLanguage = TRANSLATIONS[translation].language;
-  const visibleTranslations =
+  const languageTranslations =
     selectedLanguage === 'zh'
       ? CHINESE_TRANSLATIONS
       : selectedLanguage === 'ko'
         ? KOREAN_TRANSLATIONS
         : ENGLISH_TRANSLATIONS;
+  // Without the Worker only the bundled public-domain editions are playable.
+  const visibleTranslations = translationApiEnabled
+    ? languageTranslations
+    : languageTranslations.filter((option) => !option.requiresApi);
+  const translationSelectorVisible =
+    translationApiEnabled || localTranslationsEnabled;
+  const tabStripVisible = pickVerseEnabled || dailyEnabled;
   const languageName: Record<BibleLanguage, string> = {
     en: 'English',
     zh: 'Chinese',
@@ -89,21 +103,23 @@ export function Welcome({
         <h1 className="title-xl">Bible Sequence</h1>
         <p className="subtitle">Remember the Word. Restore the Verse.</p>
 
-        {dailyEnabled && (
+        {tabStripVisible && (
           <div
-            className="welcome-tabs welcome-tabs--five"
+            className={`welcome-tabs ${dailyEnabled ? 'welcome-tabs--five' : ''}`}
             role="tablist"
             aria-label="Choose a Bible Sequence game"
           >
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'verse'}
-              className={`welcome-tab ${activeTab === 'verse' ? 'welcome-tab--active' : ''}`}
-              onClick={() => onSelectTab('verse')}
-            >
-              Pick a Verse
-            </button>
+            {pickVerseEnabled && (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={activeTab === 'verse'}
+                className={`welcome-tab ${activeTab === 'verse' ? 'welcome-tab--active' : ''}`}
+                onClick={() => onSelectTab('verse')}
+              >
+                Pick a Verse
+              </button>
+            )}
             <button
               type="button"
               role="tab"
@@ -113,33 +129,37 @@ export function Welcome({
             >
               Challenge
             </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'daily'}
-              className={`welcome-tab ${activeTab === 'daily' ? 'welcome-tab--active' : ''}`}
-              onClick={() => onSelectTab('daily')}
-            >
-              Daily Verse
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'scrabble'}
-              className={`welcome-tab ${activeTab === 'scrabble' ? 'welcome-tab--active' : ''}`}
-              onClick={() => onSelectTab('scrabble')}
-            >
-              Daily Scrabble
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'word-search'}
-              className={`welcome-tab ${activeTab === 'word-search' ? 'welcome-tab--active' : ''}`}
-              onClick={() => onSelectTab('word-search')}
-            >
-              Word Search
-            </button>
+            {dailyEnabled && (
+              <>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'daily'}
+                  className={`welcome-tab ${activeTab === 'daily' ? 'welcome-tab--active' : ''}`}
+                  onClick={() => onSelectTab('daily')}
+                >
+                  Daily Verse
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'scrabble'}
+                  className={`welcome-tab ${activeTab === 'scrabble' ? 'welcome-tab--active' : ''}`}
+                  onClick={() => onSelectTab('scrabble')}
+                >
+                  Daily Scrabble
+                </button>
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === 'word-search'}
+                  className={`welcome-tab ${activeTab === 'word-search' ? 'welcome-tab--active' : ''}`}
+                  onClick={() => onSelectTab('word-search')}
+                >
+                  Word Search
+                </button>
+              </>
+            )}
           </div>
         )}
 
@@ -179,7 +199,7 @@ export function Welcome({
           )}
         </div>
 
-        {translationApiEnabled && (
+        {translationSelectorVisible && (
           <div className="translation-selector">
             <div
               className="translation-languages"
@@ -213,43 +233,47 @@ export function Welcome({
               >
                 中文
               </button>
-              <button
-                type="button"
-                role="radio"
-                aria-checked={selectedLanguage === 'ko'}
-                className={`translation-language ${
-                  selectedLanguage === 'ko'
-                    ? 'translation-language--active'
-                    : ''
-                }`}
-                onClick={() => onSelectTranslation('KLB')}
-                lang="ko"
-              >
-                한국어
-              </button>
-            </div>
-
-            <div
-              className={`translation-picker translation-picker--${visibleTranslations.length}`}
-              role="radiogroup"
-              aria-label={`${languageName[selectedLanguage]} Bible translation`}
-            >
-              {visibleTranslations.map((option) => (
+              {translationApiEnabled && (
                 <button
-                  key={option.key}
                   type="button"
                   role="radio"
-                  aria-checked={translation === option.key}
-                  className={`translation-option ${
-                    translation === option.key ? 'translation-option--active' : ''
+                  aria-checked={selectedLanguage === 'ko'}
+                  className={`translation-language ${
+                    selectedLanguage === 'ko'
+                      ? 'translation-language--active'
+                      : ''
                   }`}
-                  onClick={() => onSelectTranslation(option.key)}
-                  title={option.name}
+                  onClick={() => onSelectTranslation('KLB')}
+                  lang="ko"
                 >
-                  {option.label}
+                  한국어
                 </button>
-              ))}
+              )}
             </div>
+
+            {(translationApiEnabled || visibleTranslations.length > 1) && (
+              <div
+                className={`translation-picker translation-picker--${visibleTranslations.length}`}
+                role="radiogroup"
+                aria-label={`${languageName[selectedLanguage]} Bible translation`}
+              >
+                {visibleTranslations.map((option) => (
+                  <button
+                    key={option.key}
+                    type="button"
+                    role="radio"
+                    aria-checked={translation === option.key}
+                    className={`translation-option ${
+                      translation === option.key ? 'translation-option--active' : ''
+                    }`}
+                    onClick={() => onSelectTranslation(option.key)}
+                    title={option.name}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
 

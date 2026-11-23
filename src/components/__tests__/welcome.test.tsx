@@ -60,10 +60,12 @@ describe('welcome game tabs', () => {
         onBeginScrabble={noop}
         onBeginWordSearch={noop}
         dailyEnabled
+        pickVerseEnabled
         translation="NIV"
         onSelectTranslation={selectTranslation}
         journeyError=""
         translationApiEnabled
+        localTranslationsEnabled
         versePicker={versePicker}
       />,
     );
@@ -100,10 +102,12 @@ describe('welcome game tabs', () => {
         onBeginScrabble={noop}
         onBeginWordSearch={noop}
         dailyEnabled
+        pickVerseEnabled
         translation="KLB"
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        localTranslationsEnabled
         versePicker={versePicker}
       />,
     );
@@ -140,10 +144,12 @@ describe('welcome game tabs', () => {
         onBeginScrabble={noop}
         onBeginWordSearch={noop}
         dailyEnabled
+        pickVerseEnabled
         translation="WEB"
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        localTranslationsEnabled
         versePicker={versePicker}
       />,
     );
@@ -178,10 +184,12 @@ describe('welcome game tabs', () => {
         onBeginScrabble={noop}
         onBeginWordSearch={noop}
         dailyEnabled
+        pickVerseEnabled
         translation="NIV"
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        localTranslationsEnabled
         versePicker={versePicker}
       />,
     );
@@ -225,10 +233,12 @@ describe('welcome game tabs', () => {
         onBeginScrabble={noop}
         onBeginWordSearch={noop}
         dailyEnabled
+        pickVerseEnabled
         translation="NASB2020"
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        localTranslationsEnabled
         versePicker={versePicker}
       />,
     );
@@ -259,10 +269,12 @@ describe('welcome game tabs', () => {
         onBeginScrabble={noop}
         onBeginWordSearch={noop}
         dailyEnabled
+        pickVerseEnabled
         translation="NIV"
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        localTranslationsEnabled
         versePicker={versePicker}
       />,
     );
@@ -298,10 +310,12 @@ describe('welcome game tabs', () => {
         onBeginScrabble={noop}
         onBeginWordSearch={noop}
         dailyEnabled
+        pickVerseEnabled
         translation="NIV"
         onSelectTranslation={noop}
         journeyError=""
         translationApiEnabled
+        localTranslationsEnabled
         versePicker={versePicker}
       />,
     );
